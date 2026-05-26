@@ -240,7 +240,20 @@ function buildHeroSlides() {
   const root  = depth === 0 ? '' : '../';
 
   const featured = FRANCHISES.slice(0, 6);
-  track.innerHTML = featured.map((f, i) => `
+  track.innerHTML = featured.map((f, i) => {
+    const timelineHTML = (f.timeline && f.timeline.length) ? `
+      <div class="hero-slide__timeline">
+        <div class="hero-slide__tl-track">
+          ${f.timeline.map((t, ti) => `
+            <div class="hero-slide__tl-item${ti === 0 ? ' hero-slide__tl-item--first' : ''}">
+              <div class="hero-slide__tl-dot"></div>
+              <div class="hero-slide__tl-year">${t.year}</div>
+              <div class="hero-slide__tl-label">${t.label}</div>
+            </div>`).join('')}
+        </div>
+      </div>` : '';
+
+    return `
     <div class="hero-slide${i === 0 ? ' active' : ''}">
       <div class="hero-slide__bg" style="background: ${f.bgGradient || 'var(--bg)'};"></div>
       <div class="hero-slide__overlay"></div>
@@ -250,8 +263,9 @@ function buildHeroSlides() {
         <p class="hero-slide__desc">${(f.description || '').slice(0, 160)}…</p>
         <a href="${root}franchise/${f.slug}.html" class="btn btn--primary btn--lg">Explore Universe</a>
       </div>
-    </div>
-  `).join('');
+      ${timelineHTML}
+    </div>`;
+  }).join('');
 }
 
 /* ---- News Carousel on Home Page ------------------------------ */
