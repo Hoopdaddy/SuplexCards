@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Wars Collectibles — Sci-Fi &amp; Fantasy Fandom Registry</title>
+  <meta name="description" content="Complete Star Wars collectibles catalog — action figures, premium statues, trading cards, prop replicas, and more.">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .collectible-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: var(--sp-lg);
+    }
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-md);
+      margin: var(--sp-3xl) 0 var(--sp-xl);
+      padding-bottom: var(--sp-md);
+      border-bottom: 1px solid var(--border-gold);
+    }
+    .category-header__icon { font-size: 1.5rem; }
+    .category-header__title { font-size: 1.3rem; }
+    .category-header__count { font-size: 0.8rem; color: var(--text-muted); margin-left: auto; }
+    .price-range {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-sm);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: var(--sp-sm);
+    }
+    .price-range strong { color: var(--text); }
+  </style>
+</head>
+<body data-depth="1">
+<div id="nav-placeholder"></div>
+
+<!-- ============================================================
+     L2 HEADER
+     ============================================================ -->
+<section style="padding: 100px var(--sp-xl) var(--sp-3xl); background: linear-gradient(180deg, #120d00 0%, var(--bg) 100%); border-bottom: 1px solid var(--border-gold);">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="../franchise/star-wars.html">Star Wars</a>
+      <span class="sep">›</span>
+      <span>Collectibles</span>
+    </div>
+    <h1 style="margin-bottom: var(--sp-md);">Star Wars Collectibles</h1>
+    <p class="text-muted" style="font-size:1.05rem; max-width:680px; margin-bottom: var(--sp-xl);">
+      The complete Star Wars collectibles catalog — from Kenner's original 3.75" figures to
+      today's premium Hot Toys masterpieces. Browse by category and find your next piece.
+    </p>
+    <div style="display:flex; gap: var(--sp-md); align-items:center; flex-wrap:wrap;">
+      <span class="badge badge--gold">240+ Items Tracked</span>
+      <span class="badge badge--blue">Action Figures</span>
+      <span class="badge badge--blue">Statues</span>
+      <span class="badge badge--blue">Trading Cards</span>
+      <span class="badge badge--blue">Prop Replicas</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FILTER BAR
+     ============================================================ -->
+<section style="padding: var(--sp-xl) 0; border-bottom: 1px solid var(--border); background: var(--surface);">
+  <div class="container">
+    <div class="sort-bar">
+      <span class="sort-bar__label">Category:</span>
+      <button class="toggle-btn active">All</button>
+      <button class="toggle-btn">Action Figures</button>
+      <button class="toggle-btn">Statues</button>
+      <button class="toggle-btn">Trading Cards</button>
+      <button class="toggle-btn">Prop Replicas</button>
+      <button class="toggle-btn">Art Prints</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COLLECTIBLES CATALOG
+     ============================================================ -->
+<section style="padding: var(--sp-3xl) 0;">
+  <div class="container">
+
+    <!-- HOT TOYS 1/6 SCALE -->
+    <div class="category-header">
+      <span class="category-header__icon">🤖</span>
+      <h2 class="category-header__title">Hot Toys — 1/6 Scale Figures</h2>
+      <span class="category-header__count">18 items</span>
+    </div>
+    <div class="collectible-grid">
+      <a href="../item/hot-toys-luke-skywalker.html" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #000, #1a1200); display:flex; align-items:center; justify-content:center; font-size:3rem;">🧑</div>
+        <div class="collectible-card__name">Luke Skywalker (A New Hope)</div>
+        <div class="collectible-card__maker">Hot Toys · MMS297 · 1/6 Scale</div>
+        <div class="collectible-card__price">~$320</div>
+        <div class="price-range">Market: <strong>$280–$380</strong></div>
+      </a>
+      <a href="#" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #000, #0a0000); display:flex; align-items:center; justify-content:center; font-size:3rem;">🦹</div>
+        <div class="collectible-card__name">Darth Vader (Return of the Jedi)</div>
+        <div class="collectible-card__maker">Hot Toys · MMS452 · 1/6 Scale</div>
+        <div class="collectible-card__price">~$370</div>
+        <div class="price-range">Market: <strong>$320–$440</strong></div>
+      </a>
+      <a href="#" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #0a0500, #1a0a00); display:flex; align-items:center; justify-content:center; font-size:3rem;">🛡️</div>
+        <div class="collectible-card__name">The Mandalorian (Beskar Armor)</div>
+        <div class="collectible-card__maker">Hot Toys · TMS013 · 1/6 Scale</div>
+        <div class="collectible-card__price">~$285</div>
+        <div class="price-range">Market: <strong>$250–$320</strong></div>
+      </a>
+      <a href="#" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #000a0a, #001a1a); display:flex; align-items:center; justify-content:center; font-size:3rem;">🤺</div>
+        <div class="collectible-card__name">Obi-Wan Kenobi (DX Series)</div>
+        <div class="collectible-card__maker">Hot Toys · DX07 · 1/6 Scale</div>
+        <div class="collectible-card__price">~$420</div>
+        <div class="price-range">Market: <strong>$380–$510</strong></div>
+      </a>
+    </div>
+
+    <!-- SIDESHOW COLLECTIBLES -->
+    <div class="category-header">
+      <span class="category-header__icon">🗿</span>
+      <h2 class="category-header__title">Sideshow Collectibles — Premium Format</h2>
+      <span class="category-header__count">24 items</span>
+    </div>
+    <div class="collectible-grid">
+      <a href="#" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #000, #0a0000); display:flex; align-items:center; justify-content:center; font-size:3rem;">🦹</div>
+        <div class="collectible-card__name">Darth Vader Premium Format Figure</div>
+        <div class="collectible-card__maker">Sideshow · 1/4 Scale · Edition 3000</div>
+        <div class="collectible-card__price">~$625</div>
+        <div class="price-range">Market: <strong>$550–$780</strong></div>
+      </a>
+      <a href="#" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #0a0500, #1a1000); display:flex; align-items:center; justify-content:center; font-size:3rem;">🤠</div>
+        <div class="collectible-card__name">Han Solo Premium Format (ANH)</div>
+        <div class="collectible-card__maker">Sideshow · 1/4 Scale · Edition 2000</div>
+        <div class="collectible-card__price">~$415</div>
+        <div class="price-range">Market: <strong>$380–$490</strong></div>
+      </a>
+      <a href="#" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #0a0000, #1a0000); display:flex; align-items:center; justify-content:center; font-size:3rem;">👩</div>
+        <div class="collectible-card__name">Princess Leia Boushh Bounty Hunter</div>
+        <div class="collectible-card__maker">Sideshow · 1/4 Scale</div>
+        <div class="collectible-card__price">~$380</div>
+        <div class="price-range">Market: <strong>$340–$450</strong></div>
+      </a>
+    </div>
+
+    <!-- HASBRO BLACK SERIES -->
+    <div class="category-header">
+      <span class="category-header__icon">⭐</span>
+      <h2 class="category-header__title">Hasbro — The Black Series (6")</h2>
+      <span class="category-header__count">85+ items</span>
+    </div>
+    <div class="collectible-grid">
+      <a href="#" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #000, #1a1200); display:flex; align-items:center; justify-content:center; font-size:3rem;">⚡</div>
+        <div class="collectible-card__name">Luke Skywalker (Jedi Knight ROTJ)</div>
+        <div class="collectible-card__maker">Hasbro Black Series · 6" Scale</div>
+        <div class="collectible-card__price">~$28</div>
+        <div class="price-range">Market: <strong>$22–$45</strong></div>
+      </a>
+      <a href="#" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #000, #0a0000); display:flex; align-items:center; justify-content:center; font-size:3rem;">🔴</div>
+        <div class="collectible-card__name">Darth Vader (Empire Strikes Back)</div>
+        <div class="collectible-card__maker">Hasbro Black Series · 6" Scale</div>
+        <div class="collectible-card__price">~$32</div>
+        <div class="price-range">Market: <strong>$25–$55</strong></div>
+      </a>
+      <a href="#" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #0a0500, #1a0a00); display:flex; align-items:center; justify-content:center; font-size:3rem;">🎭</div>
+        <div class="collectible-card__name">The Mandalorian w/ Grogu (Deluxe)</div>
+        <div class="collectible-card__maker">Hasbro Black Series · 6" Scale</div>
+        <div class="collectible-card__price">~$42</div>
+        <div class="price-range">Market: <strong>$35–$65</strong></div>
+      </a>
+      <a href="#" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #000510, #001020); display:flex; align-items:center; justify-content:center; font-size:3rem;">🤖</div>
+        <div class="collectible-card__name">R2-D2 (Deluxe) — Lights &amp; Sound</div>
+        <div class="collectible-card__maker">Hasbro Black Series · 6" Scale</div>
+        <div class="collectible-card__price">~$55</div>
+        <div class="price-range">Market: <strong>$45–$75</strong></div>
+      </a>
+    </div>
+
+    <!-- TRADING CARDS -->
+    <div class="category-header">
+      <span class="category-header__icon">🃏</span>
+      <h2 class="category-header__title">Trading Cards</h2>
+      <span class="category-header__count">32 sets</span>
+    </div>
+    <div class="collectible-grid">
+      <a href="#" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #0a0a00, #1a1000); display:flex; align-items:center; justify-content:center; font-size:3rem;">🃏</div>
+        <div class="collectible-card__name">Topps Chrome Star Wars Perspectives</div>
+        <div class="collectible-card__maker">Topps · Hobby Box</div>
+        <div class="collectible-card__price">$85–$140</div>
+        <div class="price-range">Per box market range</div>
+      </a>
+      <a href="#" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #0a0000, #1a0000); display:flex; align-items:center; justify-content:center; font-size:3rem;">⭐</div>
+        <div class="collectible-card__name">Star Wars: Unlimited TCG — Spark of Rebellion</div>
+        <div class="collectible-card__maker">Fantasy Flight Games · Booster Box</div>
+        <div class="collectible-card__price">~$110</div>
+        <div class="price-range">Market: <strong>$85–$140</strong></div>
+      </a>
+      <a href="#" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #000, #0a0a1a); display:flex; align-items:center; justify-content:center; font-size:3rem;">🌟</div>
+        <div class="collectible-card__name">Topps Star Wars Living Set</div>
+        <div class="collectible-card__maker">Topps · Online Exclusive</div>
+        <div class="collectible-card__price">$10–$250</div>
+        <div class="price-range">Varies by card</div>
+      </a>
+    </div>
+
+    <!-- PROP REPLICAS -->
+    <div class="category-header">
+      <span class="category-header__icon">⚔️</span>
+      <h2 class="category-header__title">Prop Replicas &amp; Weapons</h2>
+      <span class="category-header__count">28 items</span>
+    </div>
+    <div class="collectible-grid">
+      <a href="#" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #0a0500, #1a0a00); display:flex; align-items:center; justify-content:center; font-size:3rem;">⚔️</div>
+        <div class="collectible-card__name">Luke Skywalker ANH Lightsaber — EFX</div>
+        <div class="collectible-card__maker">EFX Collectibles · Elite Edition</div>
+        <div class="collectible-card__price">~$285</div>
+        <div class="price-range">Market: <strong>$240–$360</strong></div>
+      </a>
+      <a href="#" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #0a0000, #1a0000); display:flex; align-items:center; justify-content:center; font-size:3rem;">🔴</div>
+        <div class="collectible-card__name">Darth Vader Lightsaber — Force FX Elite</div>
+        <div class="collectible-card__maker">Hasbro · Force FX Elite Series</div>
+        <div class="collectible-card__price">~$185</div>
+        <div class="price-range">Market: <strong>$155–$220</strong></div>
+      </a>
+      <a href="#" class="collectible-card">
+        <div class="collectible-card__thumb" style="background: linear-gradient(135deg, #0a0500, #1a0a00); display:flex; align-items:center; justify-content:center; font-size:3rem;">🔫</div>
+        <div class="collectible-card__name">Han Solo DL-44 Blaster Replica</div>
+        <div class="collectible-card__maker">Master Replicas · Limited Edition</div>
+        <div class="collectible-card__price">~$195</div>
+        <div class="price-range">Market: <strong>$175–$260</strong></div>
+      </a>
+    </div>
+
+    <!-- Amazon CTA -->
+    <div class="amazon-cta" style="margin-top: var(--sp-3xl);">
+      <div class="amazon-cta__text">
+        <h3>Shop Star Wars Collectibles on Amazon</h3>
+        <p>Find Hot Toys, Hasbro Black Series, trading cards, and prop replicas.</p>
+      </div>
+      <a href="https://www.amazon.com/s?k=star+wars+collectibles+figures&tag=youraffid-20" target="_blank" rel="noopener" class="btn--amazon">
+        🛒 Shop All Collectibles
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

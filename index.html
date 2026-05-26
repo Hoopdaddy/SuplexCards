@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sci-Fi &amp; Fantasy Fandom Registry — The Ultimate Collectibles Database</title>
+  <meta name="description" content="The definitive database of sci-fi and fantasy IP collectibles, films, TV shows, books, games, and merchandise. Discover, track, and collect.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-depth="0">
+
+<div id="nav-placeholder"></div>
+
+<!-- ============================================================
+     SITE HEADER
+     ============================================================ -->
+<header class="site-header" style="padding-top: 130px;">
+  <h1 class="site-header__title">Sci-Fi &amp; Fantasy Fandom Registry</h1>
+  <div class="site-header__rule"></div>
+  <p class="site-header__sub">Database of your favorite things and what to collect</p>
+</header>
+
+<!-- ============================================================
+     HERO GALLERY (Rotating Featured Franchises)
+     ============================================================ -->
+<section class="hero-gallery">
+  <div class="hero-gallery__track" id="hero-slides">
+    <!-- Slides injected by main.js -->
+  </div>
+  <div class="hero-gallery__dots" id="hero-dots"></div>
+</section>
+
+<!-- ============================================================
+     FEATURED FRANCHISES GRID
+     ============================================================ -->
+<section id="franchises" style="padding: var(--sp-4xl) 0;">
+  <div class="container">
+    <div class="section-header">
+      <h2>Featured Franchises</h2>
+      <a href="catalog.html" class="section-header__see-all">Browse All →</a>
+    </div>
+    <div class="ip-grid" id="franchise-chips">
+      <!-- Chips injected by main.js -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     RECENT FILMS GALLERY
+     ============================================================ -->
+<section class="gallery-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Recent Releases</h2>
+      <a href="search.html" class="section-header__see-all">All Films &amp; Shows →</a>
+    </div>
+    <div data-carousel>
+      <div class="carousel-nav">
+        <button class="carousel-btn" data-carousel-prev>&#8592;</button>
+        <button class="carousel-btn" data-carousel-next>&#8594;</button>
+      </div>
+      <div class="scroll-track" id="films-track" data-carousel-track>
+        <!-- Cards injected by main.js -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     RECENT COLLECTIBLES GALLERY
+     ============================================================ -->
+<section class="gallery-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>New Collectibles</h2>
+      <a href="search.html" class="section-header__see-all">Browse Collectibles →</a>
+    </div>
+    <div data-carousel>
+      <div class="carousel-nav">
+        <button class="carousel-btn" data-carousel-prev>&#8592;</button>
+        <button class="carousel-btn" data-carousel-next>&#8594;</button>
+      </div>
+      <div class="scroll-track" id="collectibles-track" data-carousel-track>
+        <!-- Cards injected by main.js -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEWS CAROUSEL
+     ============================================================ -->
+<section style="padding: var(--sp-4xl) 0; border-top: 1px solid var(--border);">
+  <div class="container">
+    <div class="section-header">
+      <h2>Latest from the Fandoms</h2>
+      <span class="section-header__see-all">News &amp; Releases</span>
+    </div>
+    <p class="text-muted mb-xl" style="margin-bottom: var(--sp-xl); font-size:0.95rem;">
+      Upcoming releases, significant auctions, and industry news across sci-fi &amp; fantasy.
+    </p>
+    <div data-carousel>
+      <div class="carousel-nav">
+        <button class="carousel-btn" data-carousel-prev>&#8592;</button>
+        <button class="carousel-btn" data-carousel-next>&#8594;</button>
+      </div>
+      <div class="scroll-track" id="news-track" data-carousel-track>
+        <!-- News cards injected by main.js -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEWLY ADDED IPs
+     ============================================================ -->
+<section style="padding: var(--sp-4xl) 0; border-top: 1px solid var(--border);">
+  <div class="container">
+    <div class="section-header">
+      <h2>Recently Added to the Registry</h2>
+    </div>
+    <div class="ip-grid">
+      <a href="franchise/avatar.html" class="ip-chip">
+        <div class="ip-chip__icon" style="background: linear-gradient(135deg, #001510, #002515);">🌿</div>
+        <div>
+          <div class="ip-chip__name">Avatar</div>
+          <div class="ip-chip__count">Added May 2026</div>
+        </div>
+      </a>
+      <a href="franchise/battlestar-galactica.html" class="ip-chip">
+        <div class="ip-chip__icon" style="background: linear-gradient(135deg, #0a0800, #151000);">🛸</div>
+        <div>
+          <div class="ip-chip__name">Battlestar Galactica</div>
+          <div class="ip-chip__count">Added May 2026</div>
+        </div>
+      </a>
+      <a href="franchise/doctor-who.html" class="ip-chip">
+        <div class="ip-chip__icon" style="background: linear-gradient(135deg, #000820, #001030);">🎭</div>
+        <div>
+          <div class="ip-chip__name">Doctor Who</div>
+          <div class="ip-chip__count">Added May 2026</div>
+        </div>
+      </a>
+      <a href="franchise/foundation.html" class="ip-chip">
+        <div class="ip-chip__icon" style="background: linear-gradient(135deg, #100500, #1a0800);">📚</div>
+        <div>
+          <div class="ip-chip__name">Foundation</div>
+          <div class="ip-chip__count">Added May 2026</div>
+        </div>
+      </a>
+      <a href="franchise/game-of-thrones.html" class="ip-chip">
+        <div class="ip-chip__icon" style="background: linear-gradient(135deg, #1a0000, #3d0000);">⚔️</div>
+        <div>
+          <div class="ip-chip__name">Game of Thrones</div>
+          <div class="ip-chip__count">Added April 2026</div>
+        </div>
+      </a>
+      <a href="franchise/star-trek.html" class="ip-chip">
+        <div class="ip-chip__icon" style="background: linear-gradient(135deg, #000510, #001020);">🖖</div>
+        <div>
+          <div class="ip-chip__name">Star Trek</div>
+          <div class="ip-chip__count">Added April 2026</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT TEASER
+     ============================================================ -->
+<section style="padding: var(--sp-4xl) 0; border-top: 1px solid var(--border);">
+  <div class="container container--narrow" style="text-align:center;">
+    <h2 style="margin-bottom: var(--sp-lg);">The IMDb + PriceCharting + Fandom Wiki<br>for Sci-Fi &amp; Fantasy Collectibles</h2>
+    <p class="text-muted" style="font-size:1.05rem; margin-bottom: var(--sp-xl);">
+      Every franchise. Every film, series, comic, game, and trading card. Every action figure,
+      statue, prop replica, and poster. All in one place — cataloged, connected, and searchable.
+    </p>
+    <div style="display:flex; gap: var(--sp-lg); justify-content:center; flex-wrap:wrap;">
+      <a href="about.html"        class="btn btn--primary btn--lg">About the Registry</a>
+      <a href="how-it-works.html" class="btn btn--secondary btn--lg">How It Works</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

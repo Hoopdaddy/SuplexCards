@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Wars Films — Sci-Fi &amp; Fantasy Fandom Registry</title>
+  <meta name="description" content="Complete list of all Star Wars theatrical films in release order and in-universe chronological order.">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .film-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--sp-lg);
+    }
+    .film-tile {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--text);
+      transition: all var(--t);
+      display: block;
+    }
+    .film-tile:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--glow); }
+    .film-tile__poster {
+      aspect-ratio: 2/3;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+    }
+    .film-tile__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(0deg, rgba(8,15,28,0.95) 0%, transparent 55%);
+    }
+    .film-tile__info {
+      position: relative;
+      z-index: 1;
+      padding: var(--sp-md);
+      width: 100%;
+    }
+    .film-tile__number { font-size: 0.72rem; color: var(--accent); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    .film-tile__title  { font-size: 0.95rem; font-weight: 700; line-height: 1.3; margin: 3px 0; }
+    .film-tile__meta   { font-size: 0.78rem; color: var(--text-muted); }
+    .film-tile__body   { padding: var(--sp-md) var(--sp-md) var(--sp-lg); border-top: 1px solid var(--border); }
+    .film-tile__desc   { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+  </style>
+</head>
+<body data-depth="1">
+<div id="nav-placeholder"></div>
+
+<!-- ============================================================
+     L2 HEADER
+     ============================================================ -->
+<section style="padding: 100px var(--sp-xl) var(--sp-3xl); background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%); border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="../franchise/star-wars.html">Star Wars</a>
+      <span class="sep">›</span>
+      <span>Films</span>
+    </div>
+    <h1 style="margin-bottom: var(--sp-md);">Star Wars Films</h1>
+    <p class="text-muted" style="font-size:1.05rem; max-width:680px; margin-bottom: var(--sp-xl);">
+      All 11 theatrical Star Wars films — from the original 1977 classic to the latest releases.
+      Toggle between release date order and in-universe Skywalker Saga chronology.
+    </p>
+    <div style="display:flex; gap: var(--sp-md); align-items:center; flex-wrap:wrap;">
+      <span class="badge badge--blue">11 Films</span>
+      <span class="badge badge--gold">3 Trilogies + Anthologies</span>
+      <span class="badge badge--green">1977–2019</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SORT CONTROLS
+     ============================================================ -->
+<section style="padding: var(--sp-3xl) 0;">
+  <div class="container">
+
+    <div class="sort-bar" style="margin-bottom: var(--sp-2xl);">
+      <span class="sort-bar__label">View order:</span>
+      <button class="toggle-btn active" id="btn-release" onclick="showOrder('release')">Release Date</button>
+      <button class="toggle-btn"        id="btn-chrono"  onclick="showOrder('chrono')">In-Universe Chronology</button>
+      <button class="toggle-btn"        id="btn-grid"    onclick="showView('grid')">Grid</button>
+      <button class="toggle-btn"        id="btn-list"    onclick="showView('list')">List</button>
+    </div>
+
+    <!-- ---- RELEASE ORDER (Grid) ---- -->
+    <div id="view-release-grid">
+      <h3 style="margin-bottom: var(--sp-xl); color: var(--text-muted); font-size:0.85rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase;">Release Date Order</h3>
+      <div class="film-grid">
+
+        <a href="../item/star-wars-a-new-hope.html" class="film-tile">
+          <div class="film-tile__poster" style="background: linear-gradient(160deg, #000 30%, #1a1200);">
+            <div class="film-tile__overlay"></div>
+            <div class="film-tile__info">
+              <div class="film-tile__number">Episode IV · 1977</div>
+              <div class="film-tile__title">A New Hope</div>
+              <div class="film-tile__meta">Dir. George Lucas</div>
+            </div>
+          </div>
+          <div class="film-tile__body">
+            <p class="film-tile__desc">The film that started it all. Luke Skywalker leaves his desert home to join the Rebellion and destroy the Death Star.</p>
+          </div>
+        </a>
+
+        <a href="#" class="film-tile">
+          <div class="film-tile__poster" style="background: linear-gradient(160deg, #000 30%, #001a00);">
+            <div class="film-tile__overlay"></div>
+            <div class="film-tile__info">
+              <div class="film-tile__number">Episode V · 1980</div>
+              <div class="film-tile__title">The Empire Strikes Back</div>
+              <div class="film-tile__meta">Dir. Irvin Kershner</div>
+            </div>
+          </div>
+          <div class="film-tile__body">
+            <p class="film-tile__desc">The Empire hunts the Rebels across the galaxy. Luke trains with Yoda. Darth Vader reveals a shocking truth.</p>
+          </div>
+        </a>
+
+        <a href="#" class="film-tile">
+          <div class="film-tile__poster" style="background: linear-gradient(160deg, #000 30%, #1a0a00);">
+            <div class="film-tile__overlay"></div>
+            <div class="film-tile__info">
+              <div class="film-tile__number">Episode VI · 1983</div>
+              <div class="film-tile__title">Return of the Jedi</div>
+              <div class="film-tile__meta">Dir. Richard Marquand</div>
+            </div>
+          </div>
+          <div class="film-tile__body">
+            <p class="film-tile__desc">The Rebels plan a final attack on the Empire's new Death Star while Luke confronts his father one last time.</p>
+          </div>
+        </a>
+
+        <a href="#" class="film-tile">
+          <div class="film-tile__poster" style="background: linear-gradient(160deg, #000 30%, #0a0a1a);">
+            <div class="film-tile__overlay"></div>
+            <div class="film-tile__info">
+              <div class="film-tile__number">Episode I · 1999</div>
+              <div class="film-tile__title">The Phantom Menace</div>
+              <div class="film-tile__meta">Dir. George Lucas</div>
+            </div>
+          </div>
+          <div class="film-tile__body">
+            <p class="film-tile__desc">Young Anakin Skywalker is discovered by Jedi Knight Qui-Gon Jinn on the desert planet Tatooine.</p>
+          </div>
+        </a>
+
+        <a href="#" class="film-tile">
+          <div class="film-tile__poster" style="background: linear-gradient(160deg, #000 30%, #001a1a);">
+            <div class="film-tile__overlay"></div>
+            <div class="film-tile__info">
+              <div class="film-tile__number">Episode II · 2002</div>
+              <div class="film-tile__title">Attack of the Clones</div>
+              <div class="film-tile__meta">Dir. George Lucas</div>
+            </div>
+          </div>
+          <div class="film-tile__body">
+            <p class="film-tile__desc">Anakin and Padmé's forbidden love blossoms as the Clone Wars begin and the dark side tightens its grip.</p>
+          </div>
+        </a>
+
+        <a href="#" class="film-tile">
+          <div class="film-tile__poster" style="background: linear-gradient(160deg, #000 30%, #1a0000);">
+            <div class="film-tile__overlay"></div>
+            <div class="film-tile__info">
+              <div class="film-tile__number">Episode III · 2005</div>
+              <div class="film-tile__title">Revenge of the Sith</div>
+              <div class="film-tile__meta">Dir. George Lucas</div>
+            </div>
+          </div>
+          <div class="film-tile__body">
+            <p class="film-tile__desc">The fall of Anakin Skywalker. The rise of Darth Vader. The birth of the Empire. The darkest chapter.</p>
+          </div>
+        </a>
+
+        <a href="#" class="film-tile">
+          <div class="film-tile__poster" style="background: linear-gradient(160deg, #000 30%, #001000);">
+            <div class="film-tile__overlay"></div>
+            <div class="film-tile__info">
+              <div class="film-tile__number">Anthology · 2016</div>
+              <div class="film-tile__title">Rogue One</div>
+              <div class="film-tile__meta">Dir. Gareth Edwards</div>
+            </div>
+          </div>
+          <div class="film-tile__body">
+            <p class="film-tile__desc">The story of the Rebel spies who stole the Death Star plans, told for the very first time.</p>
+          </div>
+        </a>
+
+        <a href="#" class="film-tile">
+          <div class="film-tile__poster" style="background: linear-gradient(160deg, #000 30%, #0a001a);">
+            <div class="film-tile__overlay"></div>
+            <div class="film-tile__info">
+              <div class="film-tile__number">Episode VII · 2015</div>
+              <div class="film-tile__title">The Force Awakens</div>
+              <div class="film-tile__meta">Dir. J.J. Abrams</div>
+            </div>
+          </div>
+          <div class="film-tile__body">
+            <p class="film-tile__desc">A new generation of heroes and villains. Rey, Finn, and Poe Dameron take center stage in the galaxy.</p>
+          </div>
+        </a>
+
+        <a href="#" class="film-tile">
+          <div class="film-tile__poster" style="background: linear-gradient(160deg, #000 30%, #001a0a);">
+            <div class="film-tile__overlay"></div>
+            <div class="film-tile__info">
+              <div class="film-tile__number">Episode VIII · 2017</div>
+              <div class="film-tile__title">The Last Jedi</div>
+              <div class="film-tile__meta">Dir. Rian Johnson</div>
+            </div>
+          </div>
+          <div class="film-tile__body">
+            <p class="film-tile__desc">The Resistance faces annihilation. Rey seeks the truth about the Force. Luke Skywalker faces his legacy.</p>
+          </div>
+        </a>
+
+        <a href="#" class="film-tile">
+          <div class="film-tile__poster" style="background: linear-gradient(160deg, #000 30%, #1a0a00);">
+            <div class="film-tile__overlay"></div>
+            <div class="film-tile__info">
+              <div class="film-tile__number">Anthology · 2018</div>
+              <div class="film-tile__title">Solo</div>
+              <div class="film-tile__meta">Dir. Ron Howard</div>
+            </div>
+          </div>
+          <div class="film-tile__body">
+            <p class="film-tile__desc">The early adventures of Han Solo — the Kessel Run, meeting Chewie, and the first encounter with Lando.</p>
+          </div>
+        </a>
+
+        <a href="#" class="film-tile">
+          <div class="film-tile__poster" style="background: linear-gradient(160deg, #000 30%, #0a0a00);">
+            <div class="film-tile__overlay"></div>
+            <div class="film-tile__info">
+              <div class="film-tile__number">Episode IX · 2019</div>
+              <div class="film-tile__title">The Rise of Skywalker</div>
+              <div class="film-tile__meta">Dir. J.J. Abrams</div>
+            </div>
+          </div>
+          <div class="film-tile__body">
+            <p class="film-tile__desc">The Skywalker Saga concludes. Rey faces her destiny as the Emperor returns and the final battle begins.</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Amazon CTA -->
+    <div class="amazon-cta" style="margin-top: var(--sp-3xl);">
+      <div class="amazon-cta__text">
+        <h3>Watch Star Wars on Amazon</h3>
+        <p>All Star Wars films available on Disney+ and for purchase on Amazon Prime Video.</p>
+      </div>
+      <a href="https://www.amazon.com/s?k=star+wars+4k+bluray&tag=youraffid-20" target="_blank" rel="noopener" class="btn--amazon">
+        🛒 Buy on Amazon
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  function showOrder(order) {
+    document.getElementById('btn-release').classList.toggle('active', order === 'release');
+    document.getElementById('btn-chrono').classList.toggle('active', order === 'chrono');
+  }
+  function showView(view) {
+    document.getElementById('btn-grid').classList.toggle('active', view === 'grid');
+    document.getElementById('btn-list').classList.toggle('active', view === 'list');
+  }
+</script>
+</body>
+</html>

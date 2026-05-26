@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search — Sci-Fi &amp; Fantasy Fandom Registry</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-depth="0">
+
+<div id="nav-placeholder"></div>
+
+<!-- ============================================================
+     SEARCH HERO
+     ============================================================ -->
+<section class="page-hero">
+  <div class="container">
+    <h1 style="margin-bottom: var(--sp-lg);">
+      Search Results<span id="search-for"></span>
+    </h1>
+    <div class="search-form" style="max-width:600px;">
+      <input type="text" class="search-form__input" id="main-search" placeholder="Search franchises, films, collectibles…" autocomplete="off">
+      <button class="search-form__btn" type="button">Search</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     RESULTS
+     ============================================================ -->
+<section style="padding: var(--sp-3xl) 0;">
+  <div class="container">
+    <p class="text-muted" style="margin-bottom: var(--sp-xl); font-size:0.95rem;">
+      Showing results for: <strong id="search-query" style="color:var(--text);"></strong>
+    </p>
+    <div class="results-grid" id="search-results-grid">
+      <!-- Injected by main.js -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ALL FRANCHISES (Browse)
+     ============================================================ -->
+<section style="padding: var(--sp-3xl) 0; border-top: 1px solid var(--border);">
+  <div class="container">
+    <div class="section-header">
+      <h2>Browse All Franchises</h2>
+    </div>
+    <div class="ip-grid" id="franchise-chips"></div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+  // Populate "for: X" label
+  const params = new URLSearchParams(window.location.search);
+  const q = params.get('q');
+  const forEl = document.getElementById('search-for');
+  if (q && forEl) forEl.textContent = ': "' + q + '"';
+</script>
+</body>
+</html>
