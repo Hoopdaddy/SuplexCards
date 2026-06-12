@@ -166,7 +166,10 @@
       color: var(--muted);
       min-width: 80px;
       text-align: right;
+      text-decoration: none;
     }
+    a.ri-era { color: var(--muted); transition: color 0.15s; }
+    a.ri-era:hover { color: var(--gold); }
 
     /* Section group headers */
     .section-group-header {
@@ -582,7 +585,7 @@ function renderResults(results, q, container) {
           <span class="ri-name">${highlight(escHtml(c.name), q)}</span>
           <span class="ri-badges">${badges}</span>
           <span class="ri-set">${highlight(escHtml(c.set), q)}</span>
-          <span class="ri-era">${escHtml(c.era)}</span>
+          ${eraLink(c.era)}
         </div>`;
     });
     html += `</div>`;
@@ -626,6 +629,24 @@ function highlight(text, q) {
 
 function escHtml(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+const ERA_URLS = {
+  'Pre-1980':      'pre1980.html',
+  'Early WWF':     'early-wwf.html',
+  'Golden Age':    'golden-age.html',
+  'Fleer':         'fleer-era.html',
+  'First Topps':   'first-topps.html',
+  'Panini':        'panini-era.html',
+  'Current Topps': 'current-topps.html',
+  'AEW':           'aew-cards.html',
+  'Independent':   'independent.html',
+};
+function eraLink(era) {
+  const url = ERA_URLS[era];
+  return url
+    ? `<a href="${url}" class="ri-era">${escHtml(era)}</a>`
+    : `<span class="ri-era">${escHtml(era)}</span>`;
 }
 
 // Parse URL query params on load

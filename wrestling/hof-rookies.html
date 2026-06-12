@@ -75,7 +75,9 @@
     .col-set    { color: var(--muted); font-size: 0.81rem; }
     .col-num    { font-family: 'Oswald', sans-serif; font-size: 0.78rem; color: var(--muted); }
     .col-note   { font-size: 0.78rem; color: var(--muted); font-style: italic; }
-    .era-pill   { display: inline-block; font-family: 'Oswald', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.1rem 0.45rem; border-radius: 2px; }
+    .era-pill   { display: inline-block; font-family: 'Oswald', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.1rem 0.45rem; border-radius: 2px; text-decoration: none; }
+    .era-pill-link { cursor: pointer; transition: opacity 0.15s, transform 0.1s; }
+    .era-pill-link:hover { opacity: 0.8; transform: translateY(-1px); }
 
     .progress-summary {
       background: var(--panel);
@@ -290,15 +292,18 @@ const setId = 'hof-rookie';
 
 function getEraTag(era) {
   const map = {
-    'Pre-1980':    { bg:'rgba(136,136,136,0.15)', color:'#aaa' },
-    'Early WWF':   { bg:'rgba(232,200,74,0.15)',  color:'#e8c84a' },
-    'Golden Age':  { bg:'rgba(204,31,31,0.15)',   color:'#ff6b6b' },
-    'Fleer':       { bg:'rgba(52,152,219,0.12)',  color:'#3498db' },
-    'First Topps': { bg:'rgba(46,204,113,0.12)',  color:'#2ecc71' },
-    'Panini':      { bg:'rgba(155,89,182,0.15)',  color:'#9b59b6' },
+    'Pre-1980':    { bg:'rgba(136,136,136,0.15)', color:'#aaa',    url:'pre1980.html' },
+    'Early WWF':   { bg:'rgba(232,200,74,0.15)',  color:'#e8c84a', url:'early-wwf.html' },
+    'Golden Age':  { bg:'rgba(204,31,31,0.15)',   color:'#ff6b6b', url:'golden-age.html' },
+    'Fleer':       { bg:'rgba(52,152,219,0.12)',  color:'#3498db', url:'fleer-era.html' },
+    'First Topps': { bg:'rgba(46,204,113,0.12)',  color:'#2ecc71', url:'first-topps.html' },
+    'Panini':      { bg:'rgba(155,89,182,0.15)',  color:'#9b59b6', url:'panini-era.html' },
   };
-  const s = map[era] || { bg:'rgba(255,255,255,0.08)', color:'#aaa' };
-  return `<span class="era-pill" style="background:${s.bg};color:${s.color}">${era}</span>`;
+  const s = map[era] || { bg:'rgba(255,255,255,0.08)', color:'#aaa', url:'' };
+  const style = `background:${s.bg};color:${s.color}`;
+  return s.url
+    ? `<a href="${s.url}" class="era-pill era-pill-link" style="${style}">${era}</a>`
+    : `<span class="era-pill" style="${style}">${era}</span>`;
 }
 
 function renderTable(data) {
