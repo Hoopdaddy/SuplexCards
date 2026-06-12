@@ -48,39 +48,16 @@ nav {
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
   flex-shrink: 0;
+  text-decoration: none;
 }
-.nav-logo img {
-  height: 48px;
+.nav-logo-img {
+  height: 54px;
   width: auto;
+  display: block;
+  transition: opacity 0.15s;
 }
-.nav-logo-text {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem;
-  color: var(--gold);
-  letter-spacing: 0.06em;
-  white-space: nowrap;
-  line-height: 1;
-}
-.nav-logo-text span { color: var(--red); }
-/* Placeholder until logo is provided */
-.nav-logo-placeholder {
-  width: 44px;
-  height: 44px;
-  border-radius: 4px;
-  background: var(--mid);
-  border: 2px dashed var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.55rem;
-  color: var(--muted);
-  text-align: center;
-  line-height: 1.2;
-  font-family: 'Oswald', sans-serif;
-  letter-spacing: 0.03em;
-}
+.nav-logo:hover .nav-logo-img { opacity: 0.85; }
 
 /* Nav links list */
 .nav-links {
