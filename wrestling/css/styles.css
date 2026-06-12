@@ -48,16 +48,26 @@ nav {
 .nav-logo {
   display: flex;
   align-items: center;
+  gap: 0.55rem;
   flex-shrink: 0;
   text-decoration: none;
 }
 .nav-logo-img {
-  height: 54px;
+  height: 50px;
   width: auto;
   display: block;
   transition: opacity 0.15s;
 }
 .nav-logo:hover .nav-logo-img { opacity: 0.85; }
+.nav-logo-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.35rem;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  line-height: 1;
+}
+.nav-logo-accent { color: var(--red); }
 
 /* Nav links list */
 .nav-links {
