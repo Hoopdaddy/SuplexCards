@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First Autographed Cards — Suplex Trading Cards</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .auto-filter-bar {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.8rem;
+      align-items: center;
+    }
+    .filter-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-right: 0.3rem;
+    }
+    .filter-btn {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .filter-btn:hover  { border-color: var(--gold); color: var(--gold); }
+    .filter-btn.active { border-color: var(--red); background: var(--red); color: #fff; }
+
+    .auto-table { width: 100%; border-collapse: collapse; }
+    .auto-table thead th {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: 0.5rem 0.9rem;
+      border-bottom: 2px solid var(--border);
+      cursor: pointer;
+      white-space: nowrap;
+      user-select: none;
+    }
+    .auto-table thead th:hover { color: var(--gold); }
+    .auto-table thead th.sorted { color: var(--gold); }
+    .sort-arrow { opacity: 0.4; margin-left: 0.2rem; font-size: 0.6rem; }
+    .sorted .sort-arrow { opacity: 1; }
+
+    .auto-table tbody tr { transition: background 0.1s; }
+    .auto-table tbody tr:hover td { background: rgba(255,255,255,0.03); }
+    .auto-table tbody tr.hidden { display: none; }
+    .auto-table td {
+      padding: 0.6rem 0.9rem;
+      font-size: 0.86rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .col-check { width: 36px; text-align: center; }
+    .col-check input { accent-color: var(--green); cursor: pointer; transform: scale(1.15); }
+    .col-name  { font-weight: 500; color: var(--text); }
+    .col-year  { font-family: 'Oswald', sans-serif; font-weight: 600; color: var(--red); font-size: 0.82rem; }
+    .col-auto  { color: var(--gold); font-family: 'Oswald', sans-serif; font-size: 0.82rem; }
+    .col-set   { color: var(--muted); font-size: 0.81rem; }
+    .col-note  { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+    .type-pill { display: inline-block; font-family: 'Oswald', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.1rem 0.45rem; border-radius: 2px; }
+
+    .progress-summary {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .prog-stat .val { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--gold); line-height: 1; }
+    .prog-stat .lbl { font-family: 'Oswald', sans-serif; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+    .prog-bar-big { flex: 1; min-width: 200px; }
+    .prog-bar-big .bar-wrap { background: var(--dark); border-radius: 99px; height: 10px; overflow: hidden; margin-top: 0.3rem; }
+    .prog-bar-big .bar-fill { height: 100%; background: linear-gradient(90deg, var(--red), var(--gold)); border-radius: 99px; transition: width 0.4s; }
+    .prog-bar-big .bar-lbl  { font-family: 'Oswald', sans-serif; font-size: 0.75rem; color: var(--muted); }
+
+    .intro-callout {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--gold);
+      padding: 1.2rem 1.4rem;
+      border-radius: 4px;
+      margin-bottom: 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .intro-callout strong { color: var(--gold); }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-placeholder">YOUR<br>LOGO</div>
+      <div class="nav-logo-text">Suplex <span>Trading</span> Cards</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <span class="nav-drop-trigger">Card Eras</span>
+        <ul class="dropdown-menu">
+          <li><a href="pre1980.html"><span class="era-dot" style="background:#888"></span>Vintage Pre-1980</a></li>
+          <li><a href="early-wwf.html"><span class="era-dot" style="background:#e8c84a"></span>Early WWF (1981–1989)</a></li>
+          <li><a href="golden-age.html"><span class="era-dot" style="background:#cc1f1f"></span>Golden Age (1990–2000)</a></li>
+          <li><a href="fleer-era.html"><span class="era-dot" style="background:#3498db"></span>Fleer Years (2001–2004)</a></li>
+          <li><a href="first-topps.html"><span class="era-dot" style="background:#2ecc71"></span>First Topps Era (2005–2021)</a></li>
+          <li><a href="panini-era.html"><span class="era-dot" style="background:#9b59b6"></span>Panini Era (2022–2024)</a></li>
+          <li><a href="current-topps.html"><span class="era-dot" style="background:#e67e22"></span>Current Topps Era (2025+)</a></li>
+          <li><a href="timeline.html"><span class="era-dot" style="background:#e8c84a"></span>Release Timeline</a></li>
+        </ul>
+      </li>
+      <li><a href="aew-cards.html">AEW Cards</a></li>
+      <li><a href="independent.html">Independent</a></li>
+      <li><a href="wrestlers.html">Wrestlers</a></li>
+      <li><a href="parallels.html">Parallels</a></li>
+      <li><a href="search.html">Search</a></li>
+      <li><a href="shows.html">Card Shows</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="hero hero-era" style="border-bottom-color:var(--red);">
+  <div class="era-years">Curated Checklist · Certified Autographs</div>
+  <h1>First Autographed Cards</h1>
+  <p class="hero-sub">The earliest certified on-card autograph for every major wrestler — from 1994 Action Packed to today's Prizm autos</p>
+</div>
+
+<div class="section">
+
+  <div class="intro-callout">
+    <strong>How this list works:</strong> Each entry represents the earliest known <em>licensed, certified</em> autograph card of that wrestler — not a cut signature, not a sticker auto where possible. For most wrestlers from the 1990s, that means the 1994–95 Action Packed WWF set, which was the first major product to include on-card autographs. For WCW/ECW talent, it's often their first Fleer or Topps auto. For modern stars, Topps and Panini certified autos define the category. Cards marked <strong style="color:var(--gold);">ON-CARD</strong> have a live signature directly on the card — these command a significant premium over sticker autos.
+  </div>
+
+  <div class="progress-summary">
+    <div class="prog-stat">
+      <div class="val" id="ownedCount">0</div>
+      <div class="lbl">Autos Owned</div>
+    </div>
+    <div class="prog-stat">
+      <div class="val" id="totalCount">0</div>
+      <div class="lbl">Wrestlers Listed</div>
+    </div>
+    <div class="prog-bar-big">
+      <div class="bar-lbl" id="progLabel">0 / 0 (0%)</div>
+      <div class="bar-wrap"><div class="bar-fill" id="autoBar" style="width:0%"></div></div>
+    </div>
+    <button class="btn-small btn-uncheck-all" onclick="clearAll()">Clear All</button>
+  </div>
+
+  <div class="auto-filter-bar">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="on-card">On-Card Only</button>
+    <button class="filter-btn" data-filter="vintage">Vintage (pre-2001)</button>
+    <button class="filter-btn" data-filter="modern">Modern (2001+)</button>
+    <button class="filter-btn" data-filter="women">Women</button>
+    <button class="filter-btn" data-filter="aew">AEW</button>
+    <button class="filter-btn" data-filter="owned">Owned Only</button>
+  </div>
+
+  <table class="auto-table" id="autoTable">
+    <thead>
+      <tr>
+        <th class="col-check">?</th>
+        <th data-col="name">Wrestler <span class="sort-arrow">?</span></th>
+        <th data-col="year">Year <span class="sort-arrow">?</span></th>
+        <th>First Certified Auto</th>
+        <th>Set</th>
+        <th>Type</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody id="autoBody"></tbody>
+  </table>
+
+</div>
+
+<footer>
+  <div class="footer-logo-text">Suplex <span>Trading</span> Cards</div>
+  <p>The complete history of professional wrestling trading cards</p>
+  <nav class="footer-nav">
+    <a href="hof-rookies.html">? HOF Rookies</a>
+    <a href="index.html">Home</a>
+    <a href="golden-age.html">Golden Age Sets ?</a>
+  </nav>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+// -- AUTO DATA ---------------------------------------
+// name, year, autoCard, set, type (on-card/sticker), tags, note
+const autoData = [
+  // VINTAGE ON-CARD (1994 Action Packed)
+  { name:"Bret Hart",          year:1994, autoCard:"Bret Hart Autograph",        set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"One of the earliest certified WWF autos in existence." },
+  { name:"Shawn Michaels",     year:1994, autoCard:"HBK Autograph",              set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"Degenerate signature from the New Generation era." },
+  { name:"Undertaker",         year:1994, autoCard:"Undertaker Autograph",       set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"Taker autos are scarce in any era — this is the first." },
+  { name:"Diesel (Kevin Nash)", year:1994, autoCard:"Diesel Autograph",          set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"Big Daddy Cool's certified debut." },
+  { name:"Razor Ramon",        year:1994, autoCard:"Razor Ramon Autograph",      set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"Bad Guy — scarce on-card from this era." },
+  { name:"Lex Luger",          year:1994, autoCard:"Lex Luger Autograph",        set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"" },
+  { name:"Owen Hart",          year:1994, autoCard:"Owen Hart Autograph",        set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"One of very few certified Owen autos. Deeply significant." },
+  { name:"Yokozuna",           year:1994, autoCard:"Yokozuna Autograph",         set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"Rare — Yokozuna autographs are extraordinarily scarce." },
+  { name:"1-2-3 Kid (X-Pac)", year:1994, autoCard:"1-2-3 Kid Autograph",        set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"Pre-DX X-Pac — early on-card auto." },
+  // MODERN (Fleer Authentic era)
+  { name:"The Rock",           year:2001, autoCard:"The Rock Autograph",         set:"2001 Fleer WWF Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"The Great One's first certified auto. Major key." },
+  { name:"Stone Cold Steve Austin",year:2001,autoCard:"Steve Austin Autograph",  set:"2001 Fleer WWF Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"Austin autos from any era command premiums." },
+  { name:"Triple H",           year:2001, autoCard:"Triple H Autograph",         set:"2001 Fleer WWF Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"" },
+  { name:"Mick Foley",         year:2001, autoCard:"Mankind / Foley Auto",       set:"2001 Fleer WWF Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"" },
+  { name:"Kurt Angle",         year:2001, autoCard:"Kurt Angle Autograph",       set:"2001 Fleer WWF Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"It's true, it's damn true." },
+  { name:"Edge",               year:2001, autoCard:"Edge Autograph",             set:"2001 Fleer WWF Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"The Rated-R Superstar's debut certified auto." },
+  { name:"Lita",               year:2001, autoCard:"Lita Autograph",             set:"2001 Fleer WWF Authentic",        type:"On-Card", tags:["vintage","on-card","women"], note:"Early women's auto — historically significant." },
+  { name:"Trish Stratus",      year:2001, autoCard:"Trish Stratus Autograph",    set:"2001 Fleer WWF Authentic",        type:"On-Card", tags:["vintage","on-card","women"], note:"Hall of Famer's debut certified auto." },
+  { name:"Rob Van Dam",        year:2002, autoCard:"Rob Van Dam Autograph",      set:"2002 Fleer WWE",                  type:"Sticker", tags:["vintage"],            note:"First certified RVD auto after ECW cards had no autos." },
+  { name:"Brock Lesnar",       year:2002, autoCard:"Brock Lesnar Autograph RC",  set:"2002 Fleer WWE Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"Beast Incarnate's first auto — very hard to find." },
+  { name:"Rey Mysterio",       year:2002, autoCard:"Rey Mysterio Autograph",     set:"2002 Fleer WWE",                  type:"Sticker", tags:["vintage"],            note:"619's first certified WWE auto." },
+  { name:"John Cena",          year:2003, autoCard:"John Cena Autograph",        set:"2003 Fleer WWE Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"First Cena certified auto. Low print run. Key card." },
+  { name:"Randy Orton",        year:2003, autoCard:"Randy Orton Autograph RC",   set:"2003 Fleer WWE Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"Viper's debut auto — Fleer era, very undervalued." },
+  { name:"Batista",            year:2003, autoCard:"Batista Autograph",          set:"2003 Fleer WWE Authentic",        type:"Sticker", tags:["vintage"],            note:"Animal's first certified auto." },
+  { name:"Eddie Guerrero",     year:2003, autoCard:"Eddie Guerrero Autograph",   set:"2003 Fleer WWE Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"Viva La Raza — posthumous demand makes this a key card." },
+  { name:"Ric Flair",          year:2003, autoCard:"Ric Flair Autograph",        set:"2003 Fleer WWE Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"Nature Boy's first WWE-licensed certified auto." },
+  // FIRST TOPPS ERA AUTOS
+  { name:"CM Punk",            year:2010, autoCard:"CM Punk Autograph",          set:"2010 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"Best in the World — early Topps era auto. Very sought." },
+  { name:"Daniel Bryan",       year:2012, autoCard:"Daniel Bryan Auto RC",       set:"2012 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"YES! First certified auto in Topps era." },
+  { name:"Dolph Ziggler",      year:2010, autoCard:"Dolph Ziggler Autograph",    set:"2010 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"" },
+  { name:"The Miz",            year:2010, autoCard:"The Miz Autograph",          set:"2010 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"Awesome!" },
+  { name:"AJ Lee",             year:2012, autoCard:"AJ Lee Auto RC",             set:"2012 Topps WWE",                  type:"Sticker", tags:["modern","women"],     note:"Crazy, Sexy, Dangerous — debut auto." },
+  { name:"Paige",              year:2014, autoCard:"Paige Autograph RC",         set:"2014 Topps WWE",                  type:"Sticker", tags:["modern","women"],     note:"Anti-Diva's first certified auto." },
+  { name:"Charlotte Flair",    year:2015, autoCard:"Charlotte Auto RC",          set:"2015 Topps WWE Undisputed",        type:"On-Card", tags:["modern","on-card","women"], note:"Queen's first on-card auto. Key card." },
+  { name:"Sasha Banks",        year:2015, autoCard:"Sasha Banks Auto RC",        set:"2015 Topps WWE Undisputed",        type:"On-Card", tags:["modern","on-card","women"], note:"Boss's debut on-card auto from Undisputed." },
+  { name:"Becky Lynch",        year:2015, autoCard:"Becky Lynch Auto RC",        set:"2015 Topps WWE",                  type:"Sticker", tags:["modern","women"],     note:"The Man's first certified auto." },
+  { name:"Bayley",             year:2015, autoCard:"Bayley Auto RC",             set:"2015 Topps WWE Undisputed",        type:"On-Card", tags:["modern","on-card","women"], note:"Role Model — Undisputed on-card debut." },
+  { name:"Kevin Owens",        year:2015, autoCard:"Kevin Owens Auto RC",        set:"2015 Topps WWE Undisputed",        type:"On-Card", tags:["modern","on-card"],   note:"KO's first on-card certified auto." },
+  { name:"Finn Bálor",         year:2015, autoCard:"Finn Bálor Auto RC",         set:"2015 Topps WWE Undisputed",        type:"On-Card", tags:["modern","on-card"],   note:"Demon King's debut on-card auto." },
+  { name:"Seth Rollins",       year:2013, autoCard:"Seth Rollins Auto",          set:"2013 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"Architect's first certified auto." },
+  { name:"Dean Ambrose",       year:2013, autoCard:"Dean Ambrose Auto",          set:"2013 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"Lunatic Fringe debut auto." },
+  { name:"Roman Reigns",       year:2013, autoCard:"Roman Reigns Auto",          set:"2013 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"Tribal Chief's first certified auto — widely available." },
+  { name:"Bray Wyatt",         year:2014, autoCard:"Bray Wyatt Auto RC",         set:"2014 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"Eater of Worlds — first auto. Emotional card for fans." },
+  { name:"Luke Harper",        year:2015, autoCard:"Luke Harper Auto RC",        set:"2015 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"" },
+  { name:"AJ Styles",          year:2016, autoCard:"AJ Styles Auto RC",          set:"2016 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"Phenomenal One's first WWE-licensed certified auto." },
+  { name:"Shinsuke Nakamura",  year:2016, autoCard:"Nakamura Auto RC",           set:"2016 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"King of Strong Style's WWE auto debut." },
+  { name:"Alexa Bliss",        year:2016, autoCard:"Alexa Bliss Auto RC",        set:"2016 Topps WWE Women's Division",  type:"On-Card", tags:["modern","on-card","women"], note:"Goddess's debut certified auto." },
+  { name:"Asuka",              year:2016, autoCard:"Asuka Auto RC",              set:"2016 Topps WWE Women's Division",  type:"On-Card", tags:["modern","on-card","women"], note:"Empress of Tomorrow's first auto." },
+  { name:"Ember Moon",         year:2016, autoCard:"Ember Moon Auto RC",         set:"2016 Topps WWE Women's Division",  type:"On-Card", tags:["modern","on-card","women"], note:"" },
+  { name:"Naomi",              year:2016, autoCard:"Naomi Autograph",            set:"2016 Topps WWE",                  type:"Sticker", tags:["modern","women"],     note:"" },
+  { name:"Rhea Ripley",        year:2019, autoCard:"Rhea Ripley Auto RC",        set:"2019 Topps WWE NXT",               type:"On-Card", tags:["modern","on-card","women"], note:"Eradicator — on-card auto RC. The key modern women's auto." },
+  { name:"Bianca Belair",      year:2020, autoCard:"Bianca Belair Auto RC",      set:"2020 Topps WWE Undisputed",        type:"On-Card", tags:["modern","on-card","women"], note:"EST of WWE — Undisputed debut auto." },
+  { name:"Mandy Rose",         year:2019, autoCard:"Mandy Rose Auto",            set:"2019 Topps WWE",                  type:"Sticker", tags:["modern","women"],     note:"" },
+  { name:"Sonya Deville",      year:2019, autoCard:"Sonya Deville Auto",         set:"2019 Topps WWE",                  type:"Sticker", tags:["modern","women"],     note:"" },
+  { name:"Aleister Black",     year:2019, autoCard:"Aleister Black Auto RC",     set:"2019 Topps WWE NXT",               type:"On-Card", tags:["modern","on-card"],   note:"Tommy End — NXT era debut on-card auto." },
+  { name:"Adam Cole",          year:2019, autoCard:"Adam Cole Auto RC",          set:"2019 Topps WWE NXT",               type:"On-Card", tags:["modern","on-card"],   note:"Bay Bay — NXT championship era auto." },
+  { name:"Io Shirai",          year:2019, autoCard:"Io Shirai Auto RC",          set:"2019 Topps WWE NXT",               type:"On-Card", tags:["modern","on-card","women"], note:"Genius of the Sky NXT debut auto." },
+  { name:"Matt Riddle",        year:2019, autoCard:"Matt Riddle Auto RC",        set:"2019 Topps WWE NXT",               type:"On-Card", tags:["modern","on-card"],   note:"Original Bro — debut auto." },
+  { name:"Damian Priest",      year:2021, autoCard:"Damian Priest Auto RC",      set:"2021 Topps Chrome WWE",            type:"Sticker", tags:["modern"],             note:"" },
+  { name:"Gunther",            year:2022, autoCard:"Gunther Auto RC",            set:"2022 Panini Prizm WWE",            type:"On-Card", tags:["modern","on-card"],   note:"Ring General's debut certified auto. Key card." },
+  { name:"Cody Rhodes",        year:2022, autoCard:"Cody Rhodes Auto RC",        set:"2022 Panini Prizm WWE",            type:"On-Card", tags:["modern","on-card"],   note:"American Nightmare return — most in-demand modern wrestling auto." },
+  { name:"Sami Zayn",          year:2022, autoCard:"Sami Zayn Auto",             set:"2022 Panini Prizm WWE",            type:"On-Card", tags:["modern","on-card"],   note:"Honorary Uce — Prizm era first on-card." },
+  { name:"IYO SKY",            year:2022, autoCard:"IYO SKY Auto RC",            set:"2022 Panini Prizm WWE",            type:"On-Card", tags:["modern","on-card","women"], note:"Damage CTRL — debut certified auto." },
+  { name:"LA Knight",          year:2023, autoCard:"LA Knight Auto RC",          set:"2023 Panini Prizm WWE",            type:"On-Card", tags:["modern","on-card"],   note:"YEAH! — Prizm debut. Undervalued at current prices." },
+  { name:"CM Punk (AEW/Return)",year:2021,autoCard:"CM Punk Auto RC",            set:"2021 Upper Deck AEW",             type:"On-Card", tags:["modern","on-card","aew"], note:"Punk's AEW return first auto. Best in the World certified." },
+  { name:"Bryan Danielson",    year:2021, autoCard:"Bryan Danielson Auto RC",    set:"2021 Upper Deck AEW",             type:"On-Card", tags:["modern","on-card","aew"], note:"American Dragon's post-WWE debut auto." },
+  { name:"MJF",                year:2021, autoCard:"MJF Auto RC",                set:"2021 Upper Deck AEW",             type:"On-Card", tags:["modern","on-card","aew"], note:"Salt of the Earth — debut auto. Watch this one long-term." },
+  { name:"Sting (AEW)",        year:2021, autoCard:"Sting AEW Auto",             set:"2021 Upper Deck AEW",             type:"On-Card", tags:["modern","on-card","aew"], note:"Final chapter — Sting's AEW era debut auto." },
+  { name:"Jon Moxley",         year:2021, autoCard:"Jon Moxley Auto",            set:"2021 Upper Deck AEW",             type:"On-Card", tags:["modern","on-card","aew"], note:"Wildcard — AEW debut on-card auto." },
+  { name:"Jade Cargill",       year:2021, autoCard:"Jade Cargill Auto RC",       set:"2021 Upper Deck AEW S2",          type:"On-Card", tags:["modern","on-card","aew","women"], note:"99-0. Undefeated streak era debut auto." },
+  { name:"Britt Baker",        year:2021, autoCard:"Britt Baker Auto RC",        set:"2021 Upper Deck AEW",             type:"On-Card", tags:["modern","on-card","aew","women"], note:"DMD — debut certified auto." },
+  { name:"Hook",               year:2021, autoCard:"Hook Auto RC",               set:"2021 Upper Deck AEW",             type:"On-Card", tags:["modern","on-card","aew"], note:"Cold as HOOK — most anticipated young AEW auto." },
+  { name:"Darby Allin",        year:2021, autoCard:"Darby Allin Auto RC",        set:"2021 Upper Deck AEW",             type:"On-Card", tags:["modern","on-card","aew"], note:"Coffin Drop into cardboard immortality." },
+  { name:"Trick Williams",     year:2025, autoCard:"Trick Williams Auto RC",     set:"2025 Topps WWE",                  type:"On-Card", tags:["modern","on-card"],   note:"First auto — buy now before he blows up." },
+  { name:"Jacob Fatu",         year:2025, autoCard:"Jacob Fatu Auto RC",         set:"2025 Topps WWE",                  type:"On-Card", tags:["modern","on-card"],   note:"New Bloodline monster — debut auto to watch." },
+  { name:"Lyra Valkyria",      year:2025, autoCard:"Lyra Valkyria Auto RC",      set:"2025 Topps WWE",                  type:"On-Card", tags:["modern","on-card","women"], note:"IC Champion — first certified auto." },
+];
+
+const setId = 'first-auto';
+
+function getTypePill(type) {
+  if (type === 'On-Card') return `<span class="type-pill" style="background:rgba(46,204,113,0.15);color:var(--green);">On-Card</span>`;
+  return `<span class="type-pill" style="background:rgba(232,200,74,0.12);color:var(--gold);">Sticker</span>`;
+}
+
+function renderTable(data) {
+  const tbody = document.getElementById('autoBody');
+  tbody.innerHTML = '';
+  data.forEach((w, i) => {
+    const key = `${setId}-${i}`;
+    const checked = localStorage.getItem(key) === '1';
+    const tr = document.createElement('tr');
+    tr.dataset.tags = w.tags.join(' ');
+    tr.dataset.idx  = i;
+    if (checked) tr.classList.add('owned');
+    tr.innerHTML = `
+      <td class="col-check"><input type="checkbox" id="${key}" value="${i}" ${checked?'checked':''}></td>
+      <td class="col-name">${w.name}</td>
+      <td class="col-year">${w.year}</td>
+      <td class="col-auto">${w.autoCard}</td>
+      <td class="col-set">${w.set}</td>
+      <td>${getTypePill(w.type)}</td>
+      <td class="col-note">${w.note}</td>
+    `;
+    tbody.appendChild(tr);
+    document.getElementById(key).addEventListener('change', function() {
+      localStorage.setItem(key, this.checked ? '1' : '0');
+      this.closest('tr').classList.toggle('owned', this.checked);
+      updateProgress();
+    });
+  });
+  updateProgress();
+  document.getElementById('totalCount').textContent = autoData.length;
+}
+
+function updateProgress() {
+  const total = autoData.length;
+  const owned = Array.from({length: total}, (_, i) => localStorage.getItem(`${setId}-${i}`) === '1').filter(Boolean).length;
+  document.getElementById('ownedCount').textContent = owned;
+  document.getElementById('totalCount').textContent = total;
+  const pct = total ? Math.round((owned / total) * 100) : 0;
+  document.getElementById('autoBar').style.width = pct + '%';
+  document.getElementById('progLabel').textContent = `${owned} / ${total} (${pct}%)`;
+}
+
+function clearAll() {
+  for (let i = 0; i < autoData.length; i++) localStorage.removeItem(`${setId}-${i}`);
+  renderTable(autoData);
+}
+
+// Filter
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('#autoBody tr').forEach(tr => {
+      if (f === 'all') {
+        tr.classList.remove('hidden');
+      } else if (f === 'owned') {
+        tr.classList.toggle('hidden', !tr.querySelector('input').checked);
+      } else {
+        const tags = (tr.dataset.tags || '').split(' ');
+        tr.classList.toggle('hidden', !tags.includes(f));
+      }
+    });
+    updateProgress();
+  });
+});
+
+// Sort
+let sortCol = null, sortDir = 1;
+document.querySelectorAll('.auto-table thead th[data-col]').forEach(th => {
+  th.addEventListener('click', () => {
+    const col = th.dataset.col;
+    sortDir = (sortCol === col) ? -sortDir : 1;
+    sortCol = col;
+    document.querySelectorAll('.auto-table thead th').forEach(t => t.classList.remove('sorted'));
+    th.classList.add('sorted');
+    th.querySelector('.sort-arrow').textContent = sortDir === 1 ? '?' : '?';
+    const key = col === 'name' ? 'name' : 'year';
+    const sorted = [...autoData].sort((a,b) => {
+      const av = a[key], bv = b[key];
+      return typeof av === 'string' ? av.localeCompare(bv)*sortDir : (av-bv)*sortDir;
+    });
+    renderTable(sorted);
+  });
+});
+
+renderTable(autoData);
+</script>
+</body>
+</html>

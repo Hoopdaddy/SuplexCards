@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 270" role="img" aria-label="Suplex Trading Cards logo - wrestler pressing a graded card overhead">
+
+  <!-- ── GRADED CARD SLAB (held overhead) ── -->
+  <!-- Slab body -->
+  <rect x="30" y="4" width="118" height="80" rx="6" fill="#c8c8c8" stroke="#999" stroke-width="2.5"/>
+  <!-- Inner window -->
+  <rect x="39" y="12" width="84" height="57" rx="3" fill="#e8e8e8"/>
+  <!-- Card face inside slab -->
+  <rect x="41" y="14" width="80" height="53" rx="2" fill="#e8c84a"/>
+  <!-- Mini wrestler silhouette ON the card -->
+  <circle cx="66" cy="26" r="7" fill="#cc6600"/>
+  <ellipse cx="66" cy="19" rx="10" ry="3" fill="#cc1f1f"/>
+  <rect x="59" y="13" width="14" height="7" rx="2" fill="#cc1f1f"/>
+  <path d="M 56 33 L 54 50 L 78 50 L 76 33 Z" fill="#cc1f1f"/>
+  <line x1="56" y1="35" x2="47" y2="22" stroke="#cc6600" stroke-width="5" stroke-linecap="round"/>
+  <line x1="76" y1="35" x2="85" y2="22" stroke="#cc6600" stroke-width="5" stroke-linecap="round"/>
+  <!-- PSA Grade badge (top-right corner) -->
+  <circle cx="139" cy="20" r="13" fill="#111" stroke="#e8c84a" stroke-width="2.5"/>
+  <text x="139" y="24.5" font-family="'Arial Black',Arial,sans-serif" font-size="11" fill="#e8c84a" text-anchor="middle" font-weight="900">10</text>
+  <!-- PSA label strip -->
+  <rect x="39" y="64" width="84" height="13" rx="2" fill="#111"/>
+  <text x="81" y="74" font-family="Arial,sans-serif" font-size="8.5" fill="#e8c84a" text-anchor="middle" font-weight="bold" letter-spacing="5">PSA</text>
+
+  <!-- ── WRESTLER LEFT ARM (up to card) ── -->
+  <line x1="48" y1="150" x2="34" y2="88" stroke="#c86000" stroke-width="16" stroke-linecap="round"/>
+  <!-- Left hand gripping card edge -->
+  <circle cx="31" cy="84" r="11" fill="#c86000"/>
+
+  <!-- ── WRESTLER RIGHT ARM (up to card) ── -->
+  <line x1="152" y1="150" x2="166" y2="88" stroke="#c86000" stroke-width="16" stroke-linecap="round"/>
+  <!-- Right hand gripping card edge -->
+  <circle cx="169" cy="84" r="11" fill="#c86000"/>
+
+  <!-- ── HAT (Macho Man wide-brim) ── -->
+  <!-- Hat crown -->
+  <path d="M 55 108 L 53 78 Q 100 64 147 78 L 145 108 Z" fill="#f5e030"/>
+  <!-- Hat brim -->
+  <ellipse cx="100" cy="109" rx="52" ry="10" fill="#f5e030" stroke="#c8b000" stroke-width="1.5"/>
+  <!-- Hat band -->
+  <rect x="55" y="102" width="90" height="9" fill="#cc1f1f" rx="1"/>
+  <!-- Hat band stars -->
+  <text x="100" y="109.5" font-family="serif" font-size="8" fill="#f5e030" text-anchor="middle">★  ★  ★</text>
+
+  <!-- ── HEAD ── -->
+  <circle cx="100" cy="128" r="22" fill="#c86000"/>
+  <!-- Ear left -->
+  <ellipse cx="78" cy="128" rx="5" ry="7" fill="#b05500"/>
+  <!-- Ear right -->
+  <ellipse cx="122" cy="128" rx="5" ry="7" fill="#b05500"/>
+
+  <!-- ── SUNGLASSES ── -->
+  <!-- Bridge -->
+  <line x1="92" y1="124" x2="108" y2="124" stroke="#444" stroke-width="2"/>
+  <!-- Left lens -->
+  <rect x="76" y="119" width="16" height="10" rx="4" fill="#111" stroke="#e8c84a" stroke-width="1.5"/>
+  <!-- Right lens -->
+  <rect x="108" y="119" width="16" height="10" rx="4" fill="#111" stroke="#e8c84a" stroke-width="1.5"/>
+  <!-- Left temple -->
+  <line x1="76" y1="124" x2="70" y2="126" stroke="#e8c84a" stroke-width="1.5"/>
+  <!-- Right temple -->
+  <line x1="124" y1="124" x2="130" y2="126" stroke="#e8c84a" stroke-width="1.5"/>
+  <!-- Big grin -->
+  <path d="M 88 139 Q 100 150 112 139" fill="#fff" opacity="0.85"/>
+  <path d="M 88 139 Q 100 150 112 139" fill="none" stroke="#7a3500" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ── NECK ── -->
+  <rect x="91" y="149" width="18" height="13" fill="#c86000" rx="3"/>
+
+  <!-- ── SINGLET / TORSO ── -->
+  <path d="M 48 150 C 44 172 42 190 44 204 L 100 210 L 156 204 C 158 190 156 172 152 150 Z" fill="#cc1f1f"/>
+  <!-- Chest star -->
+  <polygon points="100,158 105,171 119,171 108,179 112,192 100,184 88,192 92,179 81,171 95,171" fill="#f5e030"/>
+
+  <!-- ── CHAMPIONSHIP BELT ── -->
+  <rect x="43" y="198" width="114" height="15" rx="3" fill="#e8c84a" stroke="#b8860b" stroke-width="1.5"/>
+  <!-- Center plate -->
+  <rect x="81" y="194" width="38" height="23" rx="4" fill="#e8c84a" stroke="#b8860b" stroke-width="2"/>
+  <circle cx="100" cy="205" r="9" fill="#cc1f1f" stroke="#b8860b" stroke-width="1.5"/>
+  <text x="100" y="209" font-family="Arial,sans-serif" font-size="10" fill="#f5e030" text-anchor="middle">★</text>
+  <!-- Side plates -->
+  <rect x="47" y="201" width="35" height="9" rx="2" fill="#d4a800"/>
+  <rect x="118" y="201" width="35" height="9" rx="2" fill="#d4a800"/>
+
+  <!-- ── TRUNKS ── -->
+  <path d="M 44 209 L 36 248 L 74 248 L 100 218 L 126 248 L 164 248 L 156 209 Z" fill="#cc1f1f"/>
+  <!-- Center stripe -->
+  <line x1="100" y1="209" x2="100" y2="248" stroke="#f5e030" stroke-width="3" opacity="0.6"/>
+  <!-- Stars on trunks -->
+  <text x="60" y="238" font-family="Arial,sans-serif" font-size="13" fill="#f5e030" opacity="0.75">★</text>
+  <text x="127" y="238" font-family="Arial,sans-serif" font-size="13" fill="#f5e030" opacity="0.75">★</text>
+
+  <!-- ── LEFT BOOT ── -->
+  <rect x="29" y="246" width="48" height="20" rx="6" fill="#111"/>
+  <rect x="29" y="246" width="48" height="8" rx="4" fill="#1f1f1f"/>
+  <line x1="44" y1="247" x2="44" y2="266" stroke="#e8c84a" stroke-width="1.5" opacity="0.55"/>
+  <line x1="53" y1="247" x2="53" y2="266" stroke="#e8c84a" stroke-width="1.5" opacity="0.55"/>
+  <line x1="62" y1="247" x2="62" y2="266" stroke="#e8c84a" stroke-width="1.5" opacity="0.55"/>
+
+  <!-- ── RIGHT BOOT ── -->
+  <rect x="123" y="246" width="48" height="20" rx="6" fill="#111"/>
+  <rect x="123" y="246" width="48" height="8" rx="4" fill="#1f1f1f"/>
+  <line x1="138" y1="247" x2="138" y2="266" stroke="#e8c84a" stroke-width="1.5" opacity="0.55"/>
+  <line x1="147" y1="247" x2="147" y2="266" stroke="#e8c84a" stroke-width="1.5" opacity="0.55"/>
+  <line x1="156" y1="247" x2="156" y2="266" stroke="#e8c84a" stroke-width="1.5" opacity="0.55"/>
+
+</svg>

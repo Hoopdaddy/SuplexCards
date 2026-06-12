@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Show Tools — Suplex Trading Cards</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* ── CARD SHOW PAGE EXTRAS ── */
+    .show-banner {
+      background: linear-gradient(135deg, var(--panel) 0%, rgba(204,31,31,0.12) 100%);
+      border: 1px solid var(--border);
+      border-left: 6px solid var(--gold);
+      border-radius: 4px;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+    .show-banner h2 { font-size: 2.2rem; color: var(--gold); margin-bottom: 0.6rem; }
+    .show-banner p  { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.2rem; }
+    .show-details { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+    .show-detail-item { text-align: center; }
+    .show-detail-item .label { font-family: 'Oswald', sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    .show-detail-item .value { font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 700; color: var(--gold); }
+
+    /* ── QUICK LOOKUP ── */
+    .lookup-box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--red);
+      border-radius: 4px;
+      padding: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+    .lookup-box h2 { font-size: 1.8rem; color: var(--gold); margin-bottom: 0.4rem; }
+    .lookup-box .lookup-sub { color: var(--muted); font-size: 0.88rem; margin-bottom: 1.2rem; }
+    .lookup-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .lookup-input {
+      flex: 1; min-width: 200px;
+      background: var(--mid);
+      border: 2px solid var(--border);
+      border-radius: 3px;
+      color: var(--text);
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+      padding: 0.65rem 1rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .lookup-input:focus { border-color: var(--gold); }
+    .lookup-btn {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.65rem 1.4rem;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .lookup-btn:hover { background: #a81818; }
+    .lookup-filter { display: flex; gap: 0.4rem; margin-top: 0.6rem; flex-wrap: wrap; }
+    .filter-pill {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: 99px;
+      border: 2px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .filter-pill.active, .filter-pill:hover { border-color: var(--gold); color: var(--gold); background: rgba(232,200,74,0.08); }
+    .lookup-results { margin-top: 1.2rem; }
+    .lookup-result-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.55rem 0.8rem;
+      border-radius: 3px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      transition: background 0.12s;
+    }
+    .lookup-result-item:hover { background: rgba(255,255,255,0.04); }
+    .lr-num { font-family: 'Oswald', sans-serif; font-size: 0.72rem; color: var(--muted); min-width: 34px; }
+    .lr-name { font-weight: 500; color: var(--text); flex: 1; }
+    .lr-set  { font-size: 0.78rem; color: var(--muted); }
+    .lr-price { font-family: 'Oswald', sans-serif; font-weight: 700; color: var(--green); white-space: nowrap; }
+    .lookup-empty { color: var(--muted); font-size: 0.88rem; padding: 0.8rem 0; }
+
+    /* ── WANTLIST TOOL ── */
+    .wantlist-tool {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--gold);
+      border-radius: 4px;
+      padding: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+    .wantlist-tool h2 { font-size: 1.8rem; color: var(--gold); margin-bottom: 0.4rem; }
+    .wantlist-tool p  { color: var(--muted); font-size: 0.88rem; margin-bottom: 1.2rem; }
+    .wantlist-stats { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
+    .wl-stat { }
+    .wl-stat .wl-val { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--gold); line-height: 1; }
+    .wl-stat .wl-label { font-family: 'Oswald', sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+    .wantlist-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+    .wl-btn {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.1rem;
+      border-radius: 3px;
+      border: 2px solid;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .wl-btn-print { border-color: var(--gold); color: var(--gold); background: transparent; }
+    .wl-btn-print:hover { background: var(--gold); color: #000; }
+    .wl-btn-share { border-color: var(--green); color: var(--green); background: transparent; }
+    .wl-btn-share:hover { background: var(--green); color: #000; }
+    .wl-btn-clear { border-color: var(--border); color: var(--muted); background: transparent; }
+    .wl-btn-clear:hover { border-color: var(--red); color: var(--red); }
+    .wantlist-preview {
+      max-height: 280px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+    .wl-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.83rem;
+    }
+    .wl-item-era { font-family: 'Oswald', sans-serif; font-size: 0.65rem; letter-spacing: 0.06em; min-width: 60px; }
+    .wl-item-name { flex: 1; color: var(--text); }
+    .wl-item-set { color: var(--muted); font-size: 0.78rem; }
+    .wl-empty { color: var(--muted); font-size: 0.88rem; padding: 1rem 0; text-align: center; }
+
+    /* QR share modal */
+    .qr-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+    .qr-overlay.open { display: flex; }
+    .qr-modal {
+      background: var(--panel);
+      border: 2px solid var(--gold);
+      border-radius: 6px;
+      padding: 2rem;
+      text-align: center;
+      max-width: 360px;
+      width: 90%;
+    }
+    .qr-modal h3 { font-size: 1.6rem; color: var(--gold); margin-bottom: 0.6rem; }
+    .qr-modal p  { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.2rem; }
+    .qr-box {
+      background: #fff;
+      border-radius: 4px;
+      padding: 1rem;
+      margin: 0 auto 1.2rem;
+      width: 180px; height: 180px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .qr-box svg { width: 160px; height: 160px; }
+    .qr-url {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      color: var(--muted);
+      word-break: break-all;
+      margin-bottom: 1rem;
+    }
+    .qr-close {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.4rem;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    /* ── FOR SALE SECTION ── */
+    .for-sale-tool {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--green);
+      border-radius: 4px;
+      padding: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+    .for-sale-tool h2 { font-size: 1.8rem; color: var(--gold); margin-bottom: 0.4rem; }
+    .for-sale-tool p  { color: var(--muted); font-size: 0.88rem; margin-bottom: 1rem; }
+    .forsale-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.6rem; margin-top: 1rem; }
+    .forsale-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 0.6rem 0.8rem;
+      gap: 0.6rem;
+    }
+    .fi-info { flex: 1; }
+    .fi-name { font-size: 0.87rem; color: var(--text); font-weight: 500; }
+    .fi-set  { font-size: 0.75rem; color: var(--muted); }
+    .fi-price { font-family: 'Oswald', sans-serif; font-weight: 700; color: var(--green); font-size: 1rem; white-space: nowrap; }
+    .fi-tag { }
+
+    /* ── SHOW GRID ── */
+    .show-calendar { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; margin-top: 1rem; }
+    .show-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--gold);
+      border-radius: 4px;
+      padding: 1.2rem;
+    }
+    .show-card.past { border-left-color: var(--border); opacity: 0.65; }
+    .show-date { font-family: 'Oswald', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .show-card.past .show-date { color: var(--muted); }
+    .show-card h3 { font-family: 'Oswald', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; text-transform: uppercase; }
+    .show-card p  { font-size: 0.83rem; color: var(--muted); }
+
+    /* ── TIPS ── */
+    .about-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.4rem; }
+    .about-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--red);
+      border-radius: 4px;
+      padding: 1.4rem;
+    }
+    .about-card h3 { font-size: 1.5rem; color: var(--gold); margin-bottom: 0.8rem; }
+
+    @media print {
+      nav, .ticker-wrap, .lookup-box, .for-sale-tool, footer, .wantlist-actions, .show-calendar { display: none !important; }
+      .wantlist-tool { border: 1px solid #333; }
+      .wantlist-preview { max-height: none; overflow: visible; }
+      body { background: #fff; color: #000; }
+      .wl-item { border-bottom: 1px solid #eee; }
+      .wl-item-name, .wl-item-set { color: #000; }
+      .wl-stat .wl-val, .wantlist-tool h2 { color: #000; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-placeholder">YOUR<br>LOGO</div>
+      <div class="nav-logo-text">Suplex <span>Trading</span> Cards</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <span class="nav-drop-trigger">Card Eras</span>
+        <ul class="dropdown-menu">
+          <li><a href="pre1980.html"><span class="era-dot" style="background:#888"></span>Vintage Pre-1980</a></li>
+          <li><a href="early-wwf.html"><span class="era-dot" style="background:#e8c84a"></span>Early WWF (1981–1989)</a></li>
+          <li><a href="golden-age.html"><span class="era-dot" style="background:#cc1f1f"></span>Golden Age (1990–2000)</a></li>
+          <li><a href="fleer-era.html"><span class="era-dot" style="background:#3498db"></span>Fleer Years (2001–2004)</a></li>
+          <li><a href="first-topps.html"><span class="era-dot" style="background:#2ecc71"></span>First Topps Era (2005–2021)</a></li>
+          <li><a href="panini-era.html"><span class="era-dot" style="background:#9b59b6"></span>Panini Era (2022–2024)</a></li>
+          <li><a href="current-topps.html"><span class="era-dot" style="background:#e67e22"></span>Current Topps Era (2025+)</a></li>
+          <li><a href="timeline.html"><span class="era-dot" style="background:#e8c84a"></span>Release Timeline</a></li>
+        </ul>
+      </li>
+      <li><a href="aew-cards.html">AEW Cards</a></li>
+      <li><a href="independent.html">Independent</a></li>
+      <li><a href="wrestlers.html">Wrestlers</a></li>
+      <li><a href="parallels.html">Parallels</a></li>
+      <li><a href="search.html">Search</a></li>
+      <li><a href="shows.html" class="active">Card Shows</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="hero hero-era" style="border-bottom-color:var(--gold);">
+  <div class="era-years">Card Show Tools · Wantlist · Quick Lookup · For Sale</div>
+  <h1>Card Show Tools</h1>
+  <p class="hero-sub">Everything you need at the table — wantlist sharing, quick card lookup, and what I'm selling today</p>
+  <div class="hero-badges">
+    <span class="badge badge-gold">Wantlist QR</span>
+    <span class="badge badge-red">Quick Lookup</span>
+    <span class="badge badge-green">For Sale</span>
+  </div>
+</div>
+
+<div class="section">
+
+  <!-- FIND ME BANNER -->
+  <div class="show-banner">
+    <h2>Find Me at the Table</h2>
+    <p>I set up at local card shows with a full spread of vintage and modern wrestling cards.<br>
+    Look for the table with the wrestling cards — hard to miss.</p>
+    <div class="show-details">
+      <div class="show-detail-item">
+        <div class="label">What I Bring</div>
+        <div class="value">Vintage &amp; Modern Wrestling</div>
+      </div>
+      <div class="show-detail-item">
+        <div class="label">Table Style</div>
+        <div class="value">Boxes + Binders + Singles</div>
+      </div>
+      <div class="show-detail-item">
+        <div class="label">Trading</div>
+        <div class="value">Always Open to Trades</div>
+      </div>
+      <div class="show-detail-item">
+        <div class="label">Graded</div>
+        <div class="value">Raw &amp; Slabbed Welcome</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK LOOKUP TOOL -->
+  <div class="lookup-box">
+    <h2>Quick Card Lookup</h2>
+    <p class="lookup-sub">Find a card in under three taps — search by wrestler name or card number across all eras.</p>
+    <div class="lookup-row">
+      <input type="text" class="lookup-input" id="lookupInput" placeholder="e.g. Undertaker, Goldberg, CM Punk…" autocomplete="off">
+      <button class="lookup-btn" onclick="runLookup()">Search</button>
+    </div>
+    <div class="lookup-filter">
+      <button class="filter-pill active" data-section="all">All Eras</button>
+      <button class="filter-pill" data-section="eras">WWF/WWE/WCW</button>
+      <button class="filter-pill" data-section="aew">AEW</button>
+      <button class="filter-pill" data-section="indie">Independent</button>
+    </div>
+    <div class="lookup-results" id="lookupResults"></div>
+  </div>
+
+  <!-- WANTLIST TOOL -->
+  <div class="wantlist-tool" id="wantlistTool">
+    <h2>My Wantlist</h2>
+    <p>Cards I'm actively looking for — generated from your checklist checkoffs across all eras. Show this to sellers or share via QR code.</p>
+    <div class="wantlist-stats">
+      <div class="wl-stat"><div class="wl-val" id="wlTotal">0</div><div class="wl-label">Cards Wanted</div></div>
+      <div class="wl-stat"><div class="wl-val" id="wlSets">0</div><div class="wl-label">Sets</div></div>
+      <div class="wl-stat"><div class="wl-val" id="wlOwned">0</div><div class="wl-label">Already Own</div></div>
+    </div>
+    <div class="wantlist-actions">
+      <button class="wl-btn wl-btn-print" onclick="window.print()">&#128438; Print Wantlist</button>
+      <button class="wl-btn wl-btn-share" id="shareBtn" onclick="openQRShare()">&#128247; Share via QR</button>
+      <button class="wl-btn wl-btn-clear" onclick="clearWantlistHighlights()">Clear Highlights</button>
+    </div>
+    <div class="wantlist-preview" id="wantlistPreview">
+      <div class="wl-empty" id="wlEmpty">
+        Check off cards you <strong>own</strong> on any era checklist page — unchecked cards build your wantlist automatically.
+        <br><br>
+        <a href="early-wwf.html" style="color:var(--gold);">Start with Early WWF →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOR SALE TODAY -->
+  <div class="for-sale-tool">
+    <h2>For Sale Today</h2>
+    <p>What I'm bringing to the table. Prices are asking prices — fair offers and trades always welcome. Updated before each show.</p>
+    <div class="forsale-grid" id="forSaleGrid">
+
+      <div class="forsale-item">
+        <div class="fi-info">
+          <div class="fi-name">Undertaker</div>
+          <div class="fi-set">1990 Classic WWF #57 — RC</div>
+        </div>
+        <span class="rc-badge">RC</span>
+        <div class="fi-price">ASK</div>
+      </div>
+
+      <div class="forsale-item">
+        <div class="fi-info">
+          <div class="fi-name">Steve Austin</div>
+          <div class="fi-set">1995 Cardz WCW #13 — RC</div>
+        </div>
+        <span class="rc-badge">RC</span>
+        <div class="fi-price">ASK</div>
+      </div>
+
+      <div class="forsale-item">
+        <div class="fi-info">
+          <div class="fi-name">Goldberg</div>
+          <div class="fi-set">1999 Topps WCW/nWo Nitro #1</div>
+        </div>
+        <span class="key-badge">KEY</span>
+        <div class="fi-price">ASK</div>
+      </div>
+
+      <div class="forsale-item">
+        <div class="fi-info">
+          <div class="fi-name">Hulk Hogan</div>
+          <div class="fi-set">1985 Topps WWF #1</div>
+        </div>
+        <span class="key-badge">KEY</span>
+        <div class="fi-price">ASK</div>
+      </div>
+
+      <div class="forsale-item">
+        <div class="fi-info">
+          <div class="fi-name">Sasha Banks</div>
+          <div class="fi-set">2015 Topps WWE NXT Insert — RC</div>
+        </div>
+        <span class="rc-badge">RC</span>
+        <div class="fi-price">ASK</div>
+      </div>
+
+      <div class="forsale-item">
+        <div class="fi-info">
+          <div class="fi-name">CM Punk</div>
+          <div class="fi-set">2021 Upper Deck AEW #1 — RC</div>
+        </div>
+        <span class="rc-badge">RC</span>
+        <div class="fi-price">ASK</div>
+      </div>
+
+      <div class="forsale-item">
+        <div class="fi-info">
+          <div class="fi-name">Cody Rhodes</div>
+          <div class="fi-set">2022 Panini Prizm WWE #17 — RC</div>
+        </div>
+        <span class="rc-badge">RC</span>
+        <div class="fi-price">ASK</div>
+      </div>
+
+      <div class="forsale-item">
+        <div class="fi-info">
+          <div class="fi-name">Gunther</div>
+          <div class="fi-set">2022 Panini Prizm WWE #19 — RC</div>
+        </div>
+        <span class="rc-badge">RC</span>
+        <div class="fi-price">ASK</div>
+      </div>
+
+      <div class="forsale-item">
+        <div class="fi-info">
+          <div class="fi-name">Vintage Dollar Box</div>
+          <div class="fi-set">1985–2000 era commons — all eras</div>
+        </div>
+        <div class="fi-price">$1 EA</div>
+      </div>
+
+      <div class="forsale-item">
+        <div class="fi-info">
+          <div class="fi-name">Modern Dollar Box</div>
+          <div class="fi-set">Topps/Panini base cards 2010–2024</div>
+        </div>
+        <div class="fi-price">$1 EA</div>
+      </div>
+
+    </div>
+    <p style="margin-top:1rem; font-size:0.8rem; color:var(--muted);">
+      ★ "ASK" = priced at the table based on current market. I check recent eBay sold before every show.
+    </p>
+  </div>
+
+  <!-- UPCOMING SHOWS -->
+  <h2 class="section-title">Upcoming Shows</h2>
+  <div class="show-calendar">
+    <div class="show-card">
+      <div class="show-date">Check Back Soon</div>
+      <h3>Next Local Card Show</h3>
+      <p>Details TBD. Full table of wrestling cards — vintage boxes, modern singles, binder, dollar box. Come find the wrestling guy.</p>
+    </div>
+    <div class="show-card">
+      <div class="show-date">Monthly</div>
+      <h3>Regular Monthly Show</h3>
+      <p>I attend the local monthly show most months. New inventory every time — I'm always bringing fresh cards. Ask me at the table or check back here for dates.</p>
+    </div>
+    <div class="show-card">
+      <div class="show-date">All Shows</div>
+      <h3>What I Always Bring</h3>
+      <p>Vintage WWF, WCW, ECW · Modern Topps WWE · Prizm WWE · AEW · Dollar box · Trade binder · And a lot of wrestling conversation.</p>
+    </div>
+  </div>
+
+  <hr class="section-divider" style="margin:3rem 0;">
+
+  <!-- TIPS -->
+  <h2 class="section-title">Tips for Shopping at Card Shows</h2>
+  <div class="about-grid">
+    <div class="about-card" style="border-top-color:var(--red);">
+      <h3>For New Collectors</h3>
+      <ul class="icon-list">
+        <li>Start with a wrestler you love, not a random set</li>
+        <li>Don't be afraid to ask questions — dealers love talking cards</li>
+        <li>The dollar box is your best friend at the start</li>
+        <li>Condition matters more than you think — check corners and edges</li>
+        <li>Check recent eBay sold listings before buying anything over $20</li>
+        <li>Bring a want list — shows move fast</li>
+        <li>Raw cards are often a better value for set building</li>
+        <li>Have fun. This hobby is supposed to be enjoyable.</li>
+      </ul>
+    </div>
+    <div class="about-card" style="border-top-color:var(--gold);">
+      <h3>For Experienced Collectors</h3>
+      <ul class="icon-list">
+        <li>Shows are the best place to find underpriced vintage</li>
+        <li>Talk to every wrestling card seller — we network</li>
+        <li>Bring your wantlist AND your trade binder</li>
+        <li>Early bird gets the worm — good stuff moves fast</li>
+        <li>Negotiate respectfully — dealers remember rude buyers</li>
+        <li>ECW cards are criminally undervalued — buy them now</li>
+        <li>2012–2016 Topps WWE era is a sleeper — stock up</li>
+        <li>AEW cards are the most overlooked modern RCs in the hobby</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="section-divider" style="margin:3rem 0;">
+
+  <!-- ETIQUETTE -->
+  <h2 class="section-title">Card Show Etiquette</h2>
+  <div class="about-card" style="max-width:700px; border-top-color:var(--red); background:var(--panel); border:1px solid var(--border); border-top:4px solid var(--red); border-radius:4px; padding:1.4rem;">
+    <h3 style="font-size:1.5rem; color:var(--gold); margin-bottom:0.8rem;">The Unwritten Rules</h3>
+    <ul class="icon-list">
+      <li>Ask before opening binders or boxes — "can I look?" goes a long way</li>
+      <li>Handle cards carefully — pick them up by the edges</li>
+      <li>Don't lowball by 80% — it's insulting. Fair offers only.</li>
+      <li>If you're going to buy, commit. Don't hold cards for 20 minutes and walk away.</li>
+      <li>Support your local show — buy something even if it's a dollar card</li>
+      <li>Talk wrestling! The best part of the show is the conversation.</li>
+      <li>Bring cash — not every table takes cards</li>
+      <li>Bring kids — the hobby needs new collectors</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- QR SHARE MODAL -->
+<div class="qr-overlay" id="qrOverlay">
+  <div class="qr-modal">
+    <h3>Share Wantlist</h3>
+    <p>Have another collector scan this to see what you're looking for. Your wantlist is stored locally — this QR links to your encoded list.</p>
+    <div class="qr-box">
+      <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" id="qrSvg">
+        <!-- QR placeholder pattern -->
+        <rect width="160" height="160" fill="#fff"/>
+        <rect x="10" y="10" width="50" height="50" fill="none" stroke="#000" stroke-width="4"/>
+        <rect x="18" y="18" width="34" height="34" fill="#000"/>
+        <rect x="100" y="10" width="50" height="50" fill="none" stroke="#000" stroke-width="4"/>
+        <rect x="108" y="18" width="34" height="34" fill="#000"/>
+        <rect x="10" y="100" width="50" height="50" fill="none" stroke="#000" stroke-width="4"/>
+        <rect x="18" y="108" width="34" height="34" fill="#000"/>
+        <rect x="70" y="10" width="8" height="8" fill="#000"/>
+        <rect x="70" y="26" width="8" height="8" fill="#000"/>
+        <rect x="70" y="42" width="8" height="8" fill="#000"/>
+        <rect x="10" y="70" width="8" height="8" fill="#000"/>
+        <rect x="26" y="70" width="8" height="8" fill="#000"/>
+        <rect x="42" y="70" width="8" height="8" fill="#000"/>
+        <rect x="58" y="70" width="8" height="8" fill="#000"/>
+        <rect x="74" y="70" width="8" height="8" fill="#000"/>
+        <rect x="90" y="70" width="8" height="8" fill="#000"/>
+        <rect x="106" y="70" width="8" height="8" fill="#000"/>
+        <rect x="122" y="70" width="8" height="8" fill="#000"/>
+        <rect x="138" y="70" width="8" height="8" fill="#000"/>
+        <rect x="100" y="100" width="8" height="8" fill="#000"/>
+        <rect x="116" y="100" width="8" height="8" fill="#000"/>
+        <rect x="132" y="100" width="8" height="8" fill="#000"/>
+        <rect x="100" y="116" width="8" height="8" fill="#000"/>
+        <rect x="116" y="116" width="8" height="8" fill="#000"/>
+        <rect x="100" y="132" width="8" height="8" fill="#000"/>
+        <rect x="132" y="132" width="8" height="8" fill="#000"/>
+        <text x="80" y="155" text-anchor="middle" font-family="Arial" font-size="8" fill="#666">suplex-cards/wantlist</text>
+      </svg>
+    </div>
+    <div class="qr-url" id="qrUrl">suplex-cards.com/wantlist?v=…</div>
+    <button class="qr-close" onclick="document.getElementById('qrOverlay').classList.remove('open')">Close</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo-text">Suplex <span>Trading</span> Cards</div>
+  <p>The complete history of professional wrestling trading cards</p>
+  <nav class="footer-nav">
+    <a href="pre1980.html">Pre-1980</a>
+    <a href="early-wwf.html">Early WWF</a>
+    <a href="golden-age.html">Golden Age</a>
+    <a href="fleer-era.html">Fleer</a>
+    <a href="first-topps.html">Topps I</a>
+    <a href="panini-era.html">Panini</a>
+    <a href="current-topps.html">Topps II</a>
+    <a href="aew-cards.html">AEW</a>
+    <a href="independent.html">Independent</a>
+  </nav>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+/* ── LOOKUP DATA ─────────────────────────────────── */
+const LOOKUP_DATA = [
+  // Early WWF
+  { num:'#1',  name:'Hulk Hogan',       set:'1985 Topps WWF',               section:'eras', key:true  },
+  { num:'#2',  name:'Randy Savage',     set:'1985 Topps WWF',               section:'eras', rc:true   },
+  { num:'#4',  name:'Andre the Giant',  set:'1985 Topps WWF',               section:'eras', rc:true   },
+  { num:'#26', name:'Bret Hart',        set:'1985 Topps WWF',               section:'eras', rc:true   },
+  { num:'#3',  name:'Rowdy Roddy Piper',set:'1985 Topps WWF',               section:'eras'            },
+  { num:'#3',  name:'Ultimate Warrior', set:'1990 Classic WWF',             section:'eras', rc:true   },
+  { num:'#57', name:'Undertaker',       set:'1990 Classic WWF',             section:'eras', rc:true   },
+  { num:'#26', name:'Shawn Michaels',   set:'1990 Classic WWF (Rockers)',   section:'eras', rc:true   },
+  { num:'#1',  name:'Hulk Hogan',       set:'1990 Classic WWF',             section:'eras', key:true  },
+  { num:'#13', name:'Steve Austin',     set:'1995 Cardz WCW',              section:'eras', rc:true   },
+  { num:'#3',  name:'Rob Van Dam',      set:'1997 Cardz ECW Hardcore Heaven',section:'eras', rc:true  },
+  { num:'#1',  name:'Goldberg',         set:'1999 Topps WCW/nWo Nitro',    section:'eras', rc:true   },
+  { num:'#9',  name:'Edge',             set:'2000 Fleer WWF WrestleMania',  section:'eras', rc:true   },
+  { num:'#7',  name:'Kurt Angle',       set:'2000 Fleer WWF WrestleMania',  section:'eras', rc:true   },
+  // Fleer
+  { num:'RC',  name:'John Cena',        set:'2002 Fleer WWE',               section:'eras', rc:true   },
+  { num:'RC',  name:'Brock Lesnar',     set:'2002 Fleer WWE',               section:'eras', rc:true   },
+  { num:'RC',  name:'Randy Orton',      set:'2002 Fleer WWE',               section:'eras', rc:true   },
+  { num:'RC',  name:'Batista',          set:'2003 Fleer WWE',               section:'eras', rc:true   },
+  // First Topps
+  { num:'#7',  name:'Daniel Bryan',     set:'2012 Topps WWE',               section:'eras', rc:true   },
+  { num:'RC',  name:'CM Punk',          set:'2008 Topps WWE',               section:'eras', rc:true   },
+  { num:'RC',  name:'Sasha Banks',      set:'2015 Topps WWE NXT Insert',    section:'eras', rc:true   },
+  { num:'RC',  name:'Becky Lynch',      set:'2015 Topps WWE NXT Insert',    section:'eras', rc:true   },
+  { num:'RC',  name:'Charlotte Flair',  set:'2015 Topps WWE NXT Insert',    section:'eras', rc:true   },
+  { num:'RC',  name:'Bayley',           set:'2015 Topps WWE NXT Insert',    section:'eras', rc:true   },
+  { num:'RC',  name:'Finn Bálor',       set:'2015 Topps WWE NXT Insert',    section:'eras', rc:true   },
+  { num:'RC',  name:'Kevin Owens',      set:'2015 Topps WWE NXT Insert',    section:'eras', rc:true   },
+  { num:'RC',  name:'Seth Rollins',     set:'2016 Topps WWE',               section:'eras', rc:true   },
+  { num:'RC',  name:'Rhea Ripley',      set:'2019 Topps WWE NXT',           section:'eras', rc:true   },
+  // Panini
+  { num:'#17', name:'Cody Rhodes',      set:'2022 Panini Prizm WWE',        section:'eras', rc:true   },
+  { num:'#19', name:'Gunther',          set:'2022 Panini Prizm WWE',        section:'eras', rc:true   },
+  { num:'#1',  name:'Roman Reigns',     set:'2022 Panini Prizm WWE',        section:'eras', key:true  },
+  // Current Topps
+  { num:'#1',  name:'Cody Rhodes',      set:'2025 Topps WWE',               section:'eras', key:true  },
+  { num:'#11', name:'Jacob Fatu',       set:'2025 Topps WWE',               section:'eras', rc:true   },
+  { num:'#28', name:'Jade Cargill',     set:'2025 Topps WWE',               section:'eras', rc:true   },
+  { num:'#30', name:'Trick Williams',   set:'2025 Topps WWE',               section:'eras', rc:true   },
+  { num:'#3',  name:'CM Punk',          set:'2025 Topps WWE',               section:'eras'            },
+  // AEW
+  { num:'#1',  name:'CM Punk',          set:'2021 Upper Deck AEW Series 1', section:'aew',  rc:true   },
+  { num:'RC',  name:'Bryan Danielson',  set:'2021 Upper Deck AEW Series 1', section:'aew',  rc:true   },
+  { num:'RC',  name:'Kenny Omega',      set:'2021 Upper Deck AEW Series 1', section:'aew',  rc:true   },
+  { num:'RC',  name:'MJF',              set:'2021 Upper Deck AEW Series 1', section:'aew',  rc:true   },
+  { num:'RC',  name:'Darby Allin',      set:'2021 Upper Deck AEW Series 1', section:'aew',  rc:true   },
+  { num:'RC',  name:'Chris Jericho',    set:'2021 Upper Deck AEW Series 1', section:'aew',  rc:true   },
+  { num:'RC',  name:'Jade Cargill',     set:'2021 Upper Deck AEW Series 1', section:'aew',  rc:true   },
+  // Independent
+  { num:'RC',  name:'CM Punk',          set:'2005 Leaf ROH',                section:'indie', rc:true  },
+  { num:'RC',  name:'Daniel Bryan',     set:'2009 Leaf ROH',                section:'indie', rc:true  },
+  { num:'RC',  name:'Kevin Steen',      set:'2013 Leaf ROH',                section:'indie', rc:true  },
+  { num:'RC',  name:'Adam Cole',        set:'2013 Leaf ROH',                section:'indie', rc:true  },
+];
+
+/* ── FILTER PILLS ────────────────────────────────── */
+let activeSection = 'all';
+document.querySelectorAll('.filter-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    activeSection = pill.dataset.section;
+    const val = document.getElementById('lookupInput').value.trim();
+    if (val) runLookup();
+  });
+});
+
+/* ── LOOKUP ──────────────────────────────────────── */
+document.getElementById('lookupInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') runLookup();
+});
+
+function runLookup() {
+  const query = document.getElementById('lookupInput').value.trim().toLowerCase();
+  const container = document.getElementById('lookupResults');
+  if (!query) { container.innerHTML = ''; return; }
+
+  let results = LOOKUP_DATA.filter(c => {
+    const matchQuery = c.name.toLowerCase().includes(query) || c.set.toLowerCase().includes(query) || c.num.toLowerCase().includes(query);
+    const matchSection = activeSection === 'all' || c.section === activeSection ||
+      (activeSection === 'eras' && c.section === 'eras') ||
+      (activeSection === 'aew'  && c.section === 'aew')  ||
+      (activeSection === 'indie'&& c.section === 'indie');
+    return matchQuery && matchSection;
+  });
+
+  if (!results.length) {
+    container.innerHTML = '<div class="lookup-empty">No cards found — try a different name or check the era pages for full checklists.</div>';
+    return;
+  }
+
+  container.innerHTML = results.slice(0, 20).map(c => `
+    <div class="lookup-result-item">
+      <span class="lr-num">${c.num}</span>
+      <span class="lr-name">${c.name}${c.rc ? ' <span class="rc-badge">RC</span>' : ''}${c.key ? ' <span class="key-badge">KEY</span>' : ''}</span>
+      <span class="lr-set">${c.set}</span>
+      <span class="tag ${sectionTag(c.section)}">${sectionLabel(c.section)}</span>
+    </div>
+  `).join('');
+}
+
+function sectionTag(s)   { return s === 'aew' ? 'tag-aew' : s === 'indie' ? 'tag-indie' : 'tag-topps'; }
+function sectionLabel(s) { return s === 'aew' ? 'AEW' : s === 'indie' ? 'Indie' : 'Eras'; }
+
+/* ── WANTLIST (from localStorage checklists) ─────── */
+function buildWantlist() {
+  const wanted = [];
+  const owned  = [];
+
+  // Map of known card data by set key prefix
+  const setMeta = {
+    'topps1985':    { label:'1985 Topps WWF',        era:'Early WWF', section:'eras' },
+    'classic1990':  { label:'1990 Classic WWF',      era:'Golden Age',section:'eras' },
+    'cardz1995':    { label:'1995 Cardz WCW',        era:'Golden Age',section:'eras' },
+    'fleer2000':    { label:'2000 Fleer WWF WM',     era:'Golden Age',section:'eras' },
+    'fleer2002':    { label:'2002 Fleer WWE',        era:'Fleer',     section:'eras' },
+    'topps2012':    { label:'2012 Topps WWE',        era:'Topps I',   section:'eras' },
+    'topps2015':    { label:'2015 Topps WWE',        era:'Topps I',   section:'eras' },
+    'topps2020':    { label:'2020 Topps WWE',        era:'Topps I',   section:'eras' },
+    'prizm2022':    { label:'2022 Panini Prizm WWE', era:'Panini',    section:'eras' },
+    'topps2025':    { label:'2025 Topps WWE',        era:'Topps II',  section:'eras' },
+    'udaew2021':    { label:'2021 Upper Deck AEW',   era:'AEW',       section:'aew'  },
+  };
+
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const val = localStorage.getItem(key);
+    const match = key.match(/^([a-z0-9]+)-(\d+)$/);
+    if (!match) continue;
+    const [, setId, cardNum] = match;
+    const meta = setMeta[setId];
+    if (!meta) continue;
+    if (val === '1') {
+      owned.push({ setId, cardNum, meta });
+    } else {
+      wanted.push({ setId, cardNum, meta });
+    }
+  }
+
+  const totalSets = [...new Set(wanted.map(w => w.setId))].length;
+  document.getElementById('wlTotal').textContent = wanted.length;
+  document.getElementById('wlSets').textContent  = totalSets;
+  document.getElementById('wlOwned').textContent = owned.length;
+
+  const preview = document.getElementById('wantlistPreview');
+  const empty   = document.getElementById('wlEmpty');
+
+  if (!wanted.length) {
+    if (empty) empty.style.display = 'block';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+
+  preview.innerHTML = wanted.map(w => `
+    <div class="wl-item">
+      <span class="wl-item-era tag ${sectionTag(w.meta.section)}">${w.meta.era}</span>
+      <span class="wl-item-name">#${w.cardNum}</span>
+      <span class="wl-item-set">${w.meta.label}</span>
+    </div>
+  `).join('');
+}
+
+function clearWantlistHighlights() {
+  if (!confirm('This clears your wantlist view — your checklist data is untouched. Continue?')) return;
+  document.getElementById('wantlistPreview').innerHTML = '<div class="wl-empty">Wantlist cleared from view. Your checklist data is still saved on each era page.</div>';
+}
+
+function openQRShare() {
+  const wlCount = parseInt(document.getElementById('wlTotal').textContent, 10);
+  if (!wlCount) {
+    alert('Your wantlist is empty — check off owned cards on any era checklist page first.');
+    return;
+  }
+  document.getElementById('qrUrl').textContent = `suplex-cards.com/wantlist?u=local&cards=${wlCount}`;
+  document.getElementById('qrOverlay').classList.add('open');
+}
+
+buildWantlist();
+</script>
+</body>
+</html>

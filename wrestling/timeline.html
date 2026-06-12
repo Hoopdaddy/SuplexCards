@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set Release Timeline — Suplex Trading Cards</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* ── TIMELINE PAGE ── */
+    .tl-hero {
+      background:
+        linear-gradient(135deg, rgba(13,13,13,0.92) 0%, rgba(204,31,31,0.18) 50%, rgba(13,13,13,0.97) 100%),
+        repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(232,200,74,0.02) 40px, rgba(232,200,74,0.02) 41px);
+      padding: 3.5rem 1.5rem 2.5rem;
+      text-align: center;
+      border-bottom: 3px solid var(--red);
+    }
+    .tl-hero h1 { font-size: clamp(2.4rem, 6vw, 4.5rem); color: var(--gold); line-height: 1; margin-bottom: 0.6rem; }
+    .tl-hero p  { font-family: 'Oswald', sans-serif; font-size: 0.95rem; color: var(--muted); letter-spacing: 0.04em; max-width: 600px; margin: 0 auto 1.4rem; }
+
+    /* Filter bar */
+    .tl-filters {
+      display: flex;
+      gap: 0.45rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .tl-pill {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 99px;
+      border: 2px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .tl-pill:hover  { border-color: var(--gold); color: var(--gold); }
+    .tl-pill.active { border-color: var(--red); background: var(--red); color: #fff; }
+
+    /* Stat strip */
+    .tl-stats {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 1rem 1.5rem;
+      background: var(--mid);
+      border-bottom: 1px solid var(--border);
+    }
+    .tl-stat { text-align: center; }
+    .tl-stat .v { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--gold); line-height: 1; }
+    .tl-stat .l { font-family: 'Oswald', sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+
+    /* Era band legend */
+    .era-legend {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0.7rem 1.5rem;
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+    }
+    .era-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+    .era-chip-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── THE TIMELINE ── */
+    .tl-body { padding: 2rem 1.5rem 4rem; max-width: 900px; margin: 0 auto; }
+
+    .tl-year-group { margin-bottom: 0.2rem; }
+    .tl-year-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      line-height: 1;
+      padding: 1.4rem 0 0.5rem;
+      border-top: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .tl-year-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .tl-entries { display: flex; flex-direction: column; gap: 0.5rem; padding-bottom: 0.5rem; }
+
+    .tl-entry {
+      display: flex;
+      gap: 1rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--border);
+      border-radius: 4px;
+      padding: 0.8rem 1rem;
+      transition: transform 0.12s, box-shadow 0.12s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .tl-entry:hover { transform: translateX(4px); box-shadow: -4px 0 0 var(--gold); }
+    .tl-entry.major { background: rgba(232,200,74,0.05); }
+    .tl-entry.hidden { display: none; }
+
+    /* Promo colors */
+    .tl-entry[data-promo="wwf"]  { border-left-color: #e8c84a; }
+    .tl-entry[data-promo="wwe"]  { border-left-color: #3498db; }
+    .tl-entry[data-promo="wcw"]  { border-left-color: #cc1f1f; }
+    .tl-entry[data-promo="ecw"]  { border-left-color: #888888; }
+    .tl-entry[data-promo="aew"]  { border-left-color: #9b59b6; }
+    .tl-entry[data-promo="indie"]{ border-left-color: #2ecc71; }
+    .tl-entry[data-promo="tna"]  { border-left-color: #e67e22; }
+    .tl-entry[data-promo="vintage"]{ border-left-color: #aaaaaa; }
+
+    .tl-promo-badge {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 0.18rem 0.5rem;
+      border-radius: 3px;
+      white-space: nowrap;
+      align-self: flex-start;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .badge-wwf   { background: rgba(232,200,74,0.15); color: #e8c84a; border: 1px solid rgba(232,200,74,0.3); }
+    .badge-wwe   { background: rgba(52,152,219,0.15); color: #3498db; border: 1px solid rgba(52,152,219,0.3); }
+    .badge-wcw   { background: rgba(204,31,31,0.15);  color: #cc5555; border: 1px solid rgba(204,31,31,0.3); }
+    .badge-ecw   { background: rgba(136,136,136,0.15);color: #aaaaaa; border: 1px solid rgba(136,136,136,0.3); }
+    .badge-aew   { background: rgba(155,89,182,0.15); color: #9b59b6; border: 1px solid rgba(155,89,182,0.3); }
+    .badge-indie { background: rgba(46,204,113,0.15); color: #2ecc71; border: 1px solid rgba(46,204,113,0.3); }
+    .badge-tna   { background: rgba(230,126,34,0.15); color: #e67e22; border: 1px solid rgba(230,126,34,0.3); }
+    .badge-vintage{background: rgba(200,200,200,0.1); color: #aaaaaa; border: 1px solid rgba(200,200,200,0.2); }
+
+    .tl-entry-body { flex: 1; min-width: 0; }
+    .tl-entry-name {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 0.98rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+    .tl-entry.major .tl-entry-name { color: var(--gold); }
+    .tl-entry-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .tl-entry-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-top: 0.4rem; }
+    .tl-entry-tag {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.1rem 0.45rem;
+      border-radius: 3px;
+      background: var(--mid);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .tl-entry-tag.tag-major  { background: rgba(232,200,74,0.1); border-color: rgba(232,200,74,0.3); color: var(--gold); }
+    .tl-entry-tag.tag-rc     { background: rgba(46,204,113,0.1); border-color: rgba(46,204,113,0.3); color: #2ecc71; }
+    .tl-entry-tag.tag-link   { background: rgba(52,152,219,0.1); border-color: rgba(52,152,219,0.3); color: #3498db; }
+
+    .tl-entry-link {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #3498db;
+      text-decoration: none;
+      white-space: nowrap;
+      align-self: center;
+      flex-shrink: 0;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid rgba(52,152,219,0.3);
+      border-radius: 3px;
+      transition: all 0.15s;
+    }
+    .tl-entry-link:hover { background: rgba(52,152,219,0.1); }
+
+    .tl-empty {
+      text-align: center;
+      padding: 4rem 1rem;
+      color: var(--muted);
+    }
+    .tl-empty h3 { color: var(--gold); margin-bottom: 0.5rem; }
+
+    /* No results */
+    #noResults { display: none; }
+
+    @media (max-width: 600px) {
+      .tl-entry { flex-wrap: wrap; }
+      .tl-entry-link { margin-top: 0.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-placeholder">YOUR<br>LOGO</div>
+      <div class="nav-logo-text">Suplex <span>Trading</span> Cards</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <span class="nav-drop-trigger">Card Eras</span>
+        <ul class="dropdown-menu">
+          <li><a href="pre1980.html"><span class="era-dot" style="background:#888"></span>Vintage Pre-1980</a></li>
+          <li><a href="early-wwf.html"><span class="era-dot" style="background:#e8c84a"></span>Early WWF (1981–1989)</a></li>
+          <li><a href="golden-age.html"><span class="era-dot" style="background:#cc1f1f"></span>Golden Age (1990–2000)</a></li>
+          <li><a href="fleer-era.html"><span class="era-dot" style="background:#3498db"></span>Fleer Years (2001–2004)</a></li>
+          <li><a href="first-topps.html"><span class="era-dot" style="background:#2ecc71"></span>First Topps Era (2005–2021)</a></li>
+          <li><a href="panini-era.html"><span class="era-dot" style="background:#9b59b6"></span>Panini Era (2022–2024)</a></li>
+          <li><a href="current-topps.html"><span class="era-dot" style="background:#e67e22"></span>Current Topps Era (2025+)</a></li>
+        </ul>
+      </li>
+      <li><a href="aew-cards.html">AEW Cards</a></li>
+      <li><a href="independent.html">Independent</a></li>
+      <li><a href="wrestlers.html">Wrestlers</a></li>
+      <li><a href="parallels.html">Parallels</a></li>
+      <li><a href="search.html">Search</a></li>
+      <li><a href="shows.html">Card Shows</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="tl-hero">
+  <div class="era-years">Set Release Timeline · Every Major Wrestling Card Release · 1955–2025</div>
+  <h1>Release Timeline</h1>
+  <p>Every major wrestling card set in chronological order. Filter by promotion to map out a collection or chase a complete run.</p>
+  <div class="tl-filters">
+    <button class="tl-pill active" data-filter="all">All Promotions</button>
+    <button class="tl-pill" data-filter="wwf">WWF</button>
+    <button class="tl-pill" data-filter="wwe">WWE</button>
+    <button class="tl-pill" data-filter="wcw">WCW</button>
+    <button class="tl-pill" data-filter="ecw">ECW</button>
+    <button class="tl-pill" data-filter="aew">AEW</button>
+    <button class="tl-pill" data-filter="tna">TNA/Impact</button>
+    <button class="tl-pill" data-filter="indie">Independent</button>
+    <button class="tl-pill" data-filter="major">Major Sets Only</button>
+  </div>
+</div>
+
+<div class="tl-stats">
+  <div class="tl-stat"><div class="v" id="statSets">75+</div><div class="l">Sets Listed</div></div>
+  <div class="tl-stat"><div class="v">70</div><div class="l">Years of History</div></div>
+  <div class="tl-stat"><div class="v">7</div><div class="l">Promotions</div></div>
+  <div class="tl-stat"><div class="v" id="statVisible">75+</div><div class="l">Showing</div></div>
+</div>
+
+<div class="era-legend">
+  <div class="era-chip"><div class="era-chip-dot" style="background:#e8c84a"></div>WWF</div>
+  <div class="era-chip"><div class="era-chip-dot" style="background:#3498db"></div>WWE</div>
+  <div class="era-chip"><div class="era-chip-dot" style="background:#cc1f1f"></div>WCW</div>
+  <div class="era-chip"><div class="era-chip-dot" style="background:#888"></div>ECW</div>
+  <div class="era-chip"><div class="era-chip-dot" style="background:#9b59b6"></div>AEW</div>
+  <div class="era-chip"><div class="era-chip-dot" style="background:#e67e22"></div>TNA/Impact</div>
+  <div class="era-chip"><div class="era-chip-dot" style="background:#2ecc71"></div>Independent</div>
+  <div class="era-chip"><div class="era-chip-dot" style="background:#aaa"></div>Vintage/Multi</div>
+</div>
+
+<div class="tl-body" id="tlBody"><!-- rendered by JS --></div>
+
+<div class="tl-empty" id="noResults">
+  <h3>No Sets Found</h3>
+  <p>Try a different filter.</p>
+</div>
+
+<footer>
+  <div class="footer-logo-text">Suplex <span>Trading</span> Cards</div>
+  <p>The complete history of professional wrestling trading cards</p>
+  <nav class="footer-nav">
+    <a href="history.html">History</a>
+    <a href="hof-rookies.html">HOF Rookie Tracker</a>
+    <a href="first-autos.html">First Autos</a>
+    <a href="search.html">Search</a>
+  </nav>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+/* ═══════════════════════════════════════════════════
+   SET DATABASE
+   promos: wwf / wwe / wcw / ecw / aew / tna / indie / vintage
+   major: true = highlighted as key release
+   link: page to link to (optional)
+═══════════════════════════════════════════════════ */
+const RELEASES = [
+  // ── PRE-1980 ────────────────────────────────────
+  { year:1955, name:'Parkhurst Wrestling',          promo:'vintage', major:true,
+    desc:'The earliest widely-documented wrestling cards. Canadian release featuring NWA talent. Extremely scarce.',
+    tags:['Vintage RC','Scarce'], link:'pre1980.html' },
+  { year:1962, name:'Mayrose Meats AWA Wrestling',  promo:'vintage', major:false,
+    desc:'Regional promotional cards featuring AWA territory talent. Food-issue set, rarely survives in good condition.',
+    tags:['Regional','Food Issue'] },
+  { year:1965, name:'Kellogg\'s WWWF Superstars',  promo:'vintage', major:false,
+    desc:'Cereal insert cards featuring early WWWF roster. Bruno Sammartino among the key cards.',
+    tags:['Bruno Sammartino RC'] },
+  { year:1972, name:'Globe Wrestling Stars',        promo:'vintage', major:false,
+    desc:'British-market wrestling cards covering both UK and US talent. Legitimate pre-modern collectibles.',
+    tags:['British Issue'] },
+  { year:1977, name:'Wonder Bread Wrestling Stars', promo:'vintage', major:false,
+    desc:'Bread-wrapper insert set featuring NWA territory talent. One of the oddball sets that serious vintage collectors love.',
+    tags:['Food Issue','NWA'], link:'pre1980.html' },
+
+  // ── EARLY WWF ───────────────────────────────────
+  { year:1982, name:'Topps WWF Tag Team',           promo:'wwf', major:false,
+    desc:'Early Topps WWF issue. Small print run, crude by modern standards, but legitimately early in the hobby.',
+    tags:[] },
+  { year:1985, name:'Topps WWF Series 1',           promo:'wwf', major:true,
+    desc:'THE set that started it all. 66 cards, wax packs, Hulk Hogan on every wrapper. Savage, Andre, Piper, Snuka. The most important wrestling set ever made.',
+    tags:['Hulk Hogan RC','Randy Savage RC','Major Set'], link:'early-wwf.html' },
+  { year:1986, name:'Topps WWF Series 2',           promo:'wwf', major:false,
+    desc:'Follow-up to the landmark 1985 set. Builds on the same checklist with deeper roster coverage.',
+    tags:[], link:'early-wwf.html' },
+  { year:1987, name:'Topps WWF Superstars',         promo:'wwf', major:true,
+    desc:'Ricky Steamboat. The British Bulldogs. Jake "The Snake" Roberts. Underrated checklist at bargain prices.',
+    tags:['Jake Roberts RC','Ricky Steamboat'], link:'early-wwf.html' },
+  { year:1988, name:'Topps WWF Superstars',         promo:'wwf', major:false,
+    desc:'Continues the annual Topps WWF release. Honky Tonk Man, Brutus Beefcake, Rick Rude early cards.',
+    tags:[] },
+  { year:1989, name:'Topps WWF Superstars',         promo:'wwf', major:false,
+    desc:'Final Topps WWF set of the decade. Big Boss Man, Demolition, Rick Martel.',
+    tags:[], link:'early-wwf.html' },
+
+  // ── GOLDEN AGE / 1990s ──────────────────────────
+  { year:1990, name:'Classic WWF Series I',         promo:'wwf', major:true,
+    desc:'150 cards from Classic Games. Undertaker\'s first card (#57). Ultimate Warrior #3. Shawn Michaels early card. Genuinely important checklist.',
+    tags:['Undertaker RC','Warrior #3','HBK Early'], link:'golden-age.html' },
+  { year:1991, name:'Classic WWF Series II',        promo:'wwf', major:false,
+    desc:'Second Classic series. Bret Hart, British Bulldog, Earthquake, Tugboat. Solid early-90s WWF coverage.',
+    tags:[] },
+  { year:1991, name:'Merlin WWF',                   promo:'wwf', major:false,
+    desc:'European-market Merlin sticker album. Surprisingly comprehensive roster with some scarce regional variations.',
+    tags:['European Issue'] },
+  { year:1993, name:'Coliseum Video WWF',           promo:'wwf', major:false,
+    desc:'Mail-in premium cards. Lex Luger, Shawn Michaels, Bret Hart. Video rental era collectibles.',
+    tags:['Mail-In'] },
+  { year:1994, name:'Action Packed WWF',            promo:'wwf', major:true,
+    desc:'Embossed premium cards unlike anything before. On-card autographs. Bret Hart, HBK, Diesel, Razor Ramon. Wildly undervalued.',
+    tags:['First On-Card Autos','Diesel RC','Razor Ramon RC'], link:'golden-age.html' },
+  { year:1995, name:'Cardz WCW Main Event',         promo:'wcw', major:true,
+    desc:'WCW\'s first standalone set. Steve Austin #13 RC buried in this set is one of the most important cards in the hobby. Hogan, Sting, Flair.',
+    tags:['Steve Austin RC','MAJOR RC'], link:'golden-age.html' },
+  { year:1996, name:'Topps Finest WCW/nWo',        promo:'wcw', major:true,
+    desc:'The nWo had just been formed. Hogan heel turn. Refractor technology applied to wrestling for the first time.',
+    tags:['nWo','First Refractors'] },
+  { year:1997, name:'Cardz ECW Hardcore Heaven',    promo:'ecw', major:true,
+    desc:'The only real ECW card set. Sandman, Tommy Dreamer, Taz, Sabu, RVD RC. Legitimately rare and the hobby is waking up to it.',
+    tags:['RVD RC','Sandman','Scarce'], link:'golden-age.html' },
+  { year:1998, name:'Topps WCW/nWo',               promo:'wcw', major:false,
+    desc:'Peak Monday Night Wars. Goldberg on his streak. Rey Mysterio and Eddie Guerrero getting cards.',
+    tags:['Goldberg RC','Rey Mysterio RC'] },
+  { year:1999, name:'Topps WCW/nWo Nitro',         promo:'wcw', major:true,
+    desc:'Goldberg #1 anchors this set. The nWo at its peak. Eddie Guerrero, Rey Mysterio, Bret Hart WCW cards.',
+    tags:['Goldberg #1','Eddie Guerrero'], link:'golden-age.html' },
+  { year:2000, name:'Fleer WWF WrestleMania',       promo:'wwf', major:true,
+    desc:'The Attitude Era on cardboard. Kurt Angle, Edge, Christian, Hardy Boyz, Lita, Trish Stratus all in one set. The most star-studded set of the era.',
+    tags:['Edge RC','Kurt Angle RC','Trish Stratus RC','Lita RC'], link:'golden-age.html' },
+
+  // ── FLEER ERA ───────────────────────────────────
+  { year:2001, name:'Fleer WWF WrestleMania',       promo:'wwf', major:true,
+    desc:'Last year of the WWF name. Chris Jericho, Chris Benoit, Jeff Hardy, Rob Van Dam early cards. Stacy Keibler RC.',
+    tags:['Stacy Keibler RC','Final WWF Set'], link:'fleer-era.html' },
+  { year:2002, name:'Fleer WWE',                    promo:'wwe', major:true,
+    desc:'The WWE name debuts on cardboard. Brock Lesnar RC in his first year. John Cena RC. Randy Orton RC. Batista RC. Four legends, one checklist.',
+    tags:['Brock Lesnar RC','John Cena RC','Randy Orton RC','Batista RC'], link:'fleer-era.html' },
+  { year:2003, name:'Fleer WWE',                    promo:'wwe', major:false,
+    desc:'Ruthless Aggression era coverage. Rey Mysterio arriving from WCW. Strong mid-card checklist.',
+    tags:[], link:'fleer-era.html' },
+  { year:2004, name:'Fleer WWE',                    promo:'wwe', major:true,
+    desc:'Fleer\'s final WWE set before they lost the license. Collector demand has grown for this short-run product.',
+    tags:['Final Fleer WWE','Short Run'], link:'fleer-era.html' },
+
+  // ── FIRST TOPPS ERA ─────────────────────────────
+  { year:2005, name:'Topps WWE Heritage',           promo:'wwe', major:true,
+    desc:'Topps returns to WWE with a Heritage-style set. Classic Topps design language applied to modern wrestlers. A love letter to 1985.',
+    tags:['Topps Returns'], link:'first-topps.html' },
+  { year:2006, name:'Topps WWE',                    promo:'wwe', major:false,
+    desc:'Annual Topps flagship. Edge, Rey Mysterio, John Cena, Batista, Triple H. Covers the full brand split era.',
+    tags:[] },
+  { year:2006, name:'Pacific TNA',                  promo:'tna', major:true,
+    desc:'The only major TNA card set ever produced. AJ Styles RC, Samoa Joe RC, Christopher Daniels RC, Christian Cage. Scarce and under-the-radar.',
+    tags:['AJ Styles RC','Samoa Joe RC','Only TNA Set','Scarce'] },
+  { year:2007, name:'Topps WWE',                    promo:'wwe', major:false,
+    desc:'Jeff Hardy\'s resurgence year. Batista vs. Undertaker era. CM Punk on ECW. Clean mid-period checklist.',
+    tags:[] },
+  { year:2008, name:'Topps WWE',                    promo:'wwe', major:false,
+    desc:'Shawn Michaels, Batista, Rey Mysterio, Edge. The transition from Ruthless Aggression to PG era.',
+    tags:[] },
+  { year:2009, name:'Topps WWE',                    promo:'wwe', major:false,
+    desc:'Randy Orton becomes The Viper. John Cena runs. Legacy faction. Kofi Kingston early cards.',
+    tags:[] },
+  { year:2010, name:'Topps WWE',                    promo:'wwe', major:false,
+    desc:'Sheamus\'s breakthrough year. Wade Barrett NXT debut. The Nexus forms.',
+    tags:['Sheamus RC','Wade Barrett RC'] },
+  { year:2011, name:'Topps WWE',                    promo:'wwe', major:false,
+    desc:'CM Punk\'s pipebomb era begins. Del Rio arrives. Zack Ryder goes viral. The IWC era of WWE.',
+    tags:[] },
+  { year:2012, name:'Topps WWE',                    promo:'wwe', major:true,
+    desc:'CM Punk on top. Daniel Bryan emerging. The Shield debuting at year\'s end. Best value buy for mid-period modern cards.',
+    tags:['CM Punk Key','Shield RC','Best Value Buy'], link:'first-topps.html' },
+  { year:2013, name:'Topps WWE',                    promo:'wwe', major:false,
+    desc:'The Shield. CM Punk vs. The Undertaker. Paul Heyman managing Punk. Fan-favorite era.',
+    tags:['Dean Ambrose RC','Roman Reigns RC','Seth Rollins RC'] },
+  { year:2014, name:'Topps WWE',                    promo:'wwe', major:false,
+    desc:'Daniel Bryan wins at WrestleMania. Bray Wyatt breaks out. The Authority dominates.',
+    tags:[] },
+  { year:2015, name:'Topps WWE',                    promo:'wwe', major:true,
+    desc:'The NXT insert set defines this year. Sasha Banks, Becky Lynch, Charlotte Flair, Bayley, Finn Bálor, Kevin Owens — first Topps cards for all of them.',
+    tags:['Sasha Banks RC','Becky Lynch RC','Charlotte RC','Bayley RC','Finn Balor RC'], link:'first-topps.html' },
+  { year:2016, name:'Topps WWE',                    promo:'wwe', major:false,
+    desc:'Brand split returns. Smackdown becomes must-see TV. AJ Styles arrives to WWE from TNA.',
+    tags:['AJ Styles WWE RC'] },
+  { year:2017, name:'Topps WWE',                    promo:'wwe', major:false,
+    desc:'Jinder Mahal title reign. Asuka undefeated. Aleister Black in NXT.',
+    tags:[] },
+  { year:2018, name:'Topps WWE',                    promo:'wwe', major:false,
+    desc:'Ronda Rousey arrives. Daniel Bryan returns. The tag team division peaks.',
+    tags:['Ronda Rousey RC'] },
+  { year:2019, name:'Topps WWE',                    promo:'wwe', major:false,
+    desc:'Kofi Mania. The Fiend debuts. Seth Rollins becomes the Monday Night Messiah.',
+    tags:['The Fiend RC','Kofi Kingston Key'] },
+  { year:2020, name:'Topps WWE',                    promo:'wwe', major:false,
+    desc:'Thunderdome era. Bianca Belair arrives on main roster. Keith Lee breakthrough.',
+    tags:[] },
+  { year:2021, name:'Topps Chrome WWE',             promo:'wwe', major:true,
+    desc:'Topps Chrome technology applied to WWE. Refractors, superfractors, atomic refractors. Bianca Belair RC. Final Topps Chrome WWE before the Panini era.',
+    tags:['Bianca Belair RC','Final Chrome','Refractors'], link:'first-topps.html' },
+
+  // ── AEW ─────────────────────────────────────────
+  { year:2021, name:'Upper Deck AEW Series 1',      promo:'aew', major:true,
+    desc:'The first AEW card set ever made. CM Punk RC and Bryan Danielson RC in the same product. MJF, Darby, Sting, Kenny Omega, Jade Cargill. AEW at its absolute peak.',
+    tags:['CM Punk RC','Bryan Danielson RC','MJF RC','Jade Cargill RC'], link:'aew-cards.html' },
+  { year:2022, name:'Upper Deck AEW Series 2',      promo:'aew', major:false,
+    desc:'Hook gets his first card. Ricky Starks, Wardlow, and FTR continue their AEW runs.',
+    tags:['Hook RC'], link:'aew-cards.html' },
+  { year:2023, name:'Upper Deck AEW',               promo:'aew', major:false,
+    desc:'MJF title run coverage. Samoa Joe and Jay Lethal arriving. Expanded roster.',
+    tags:[], link:'aew-cards.html' },
+
+  // ── PANINI ERA ──────────────────────────────────
+  { year:2022, name:'Panini Prizm WWE',             promo:'wwe', major:true,
+    desc:'The hobby-changing release. Panini brings the Prizm treatment to wrestling. Silver Prizms, numbered parallels, the full rainbow. Cody Rhodes RC, Gunther RC, Rhea Ripley key.',
+    tags:['Cody Rhodes RC','Gunther RC','MAJOR RELEASE'], link:'panini-era.html' },
+  { year:2022, name:'Panini Select WWE',            promo:'wwe', major:false,
+    desc:'Panini\'s tiered Select brand. Concourse, Premier Level, and Field Level parallels create distinct tiers within the same set.',
+    tags:['Tiered Parallels'], link:'panini-era.html' },
+  { year:2023, name:'Panini Prizm WWE',             promo:'wwe', major:true,
+    desc:'Second Prizm WWE release. CM Punk\'s first WWE Prizm card in nearly a decade. LA Knight breakout. Trick Williams RC.',
+    tags:['CM Punk Prizm','LA Knight RC','Trick Williams RC'], link:'panini-era.html' },
+  { year:2023, name:'Panini Undisputed WWE',        promo:'wwe', major:false,
+    desc:'Panini\'s premium WWE brand. Higher price point, shorter print runs throughout, on-card autos. Trophy for the serious collector.',
+    tags:['Premium Product','On-Card Autos'], link:'panini-era.html' },
+  { year:2023, name:'Panini Mosaic WWE',            promo:'wwe', major:false,
+    desc:'Mosaic\'s fusion parallel structure applied to WWE. A parallel adjacent to Prizm with its own distinct look.',
+    tags:['Mosaic Parallels'], link:'panini-era.html' },
+  { year:2024, name:'Panini Prizm WWE',             promo:'wwe', major:true,
+    desc:'Third and final Panini Prizm WWE before the Topps era returns. Cody Rhodes as champion. Jacob Fatu arrives late. Strong closing chapter for Panini.',
+    tags:['Final Panini WWE','Jacob Fatu RC'], link:'panini-era.html' },
+  { year:2024, name:'Panini Select WWE',            promo:'wwe', major:false,
+    desc:'Panini Select\'s second WWE release. Gunther\'s championship run covered. CM Punk\'s return.',
+    tags:[], link:'panini-era.html' },
+
+  // ── CURRENT TOPPS ───────────────────────────────
+  { year:2025, name:'Topps WWE Series 1',           promo:'wwe', major:true,
+    desc:'Topps returns to WWE for the first time since 2021. Cody Rhodes as champion. Jacob Fatu, Jade Cargill, Lyra Valkyria RCs. Colored parallel borders replace Prizm refractors.',
+    tags:['Topps Returns','Jacob Fatu RC','New Parallel Structure'], link:'current-topps.html' },
+  { year:2025, name:'Topps WWE Chrome',             promo:'wwe', major:false,
+    desc:'Chrome refractor technology returns to WWE. Expected mid-2025 release. Refractor, Gold Refractor, Superfractor parallels.',
+    tags:['Refractors','Upcoming'] },
+
+  // ── INDEPENDENT ─────────────────────────────────
+  { year:2007, name:'Leaf Best of ROH',             promo:'indie', major:true,
+    desc:'Ring of Honor coverage from Leaf. CM Punk, Bryan Danielson (before WWE), Samoa Joe, AJ Styles as indie stars. One of the most important independent wrestling sets.',
+    tags:['CM Punk Indie RC','Bryan Danielson Indie RC','Samoa Joe Indie'], link:'independent.html' },
+  { year:2012, name:'Leaf Wrestling',               promo:'indie', major:false,
+    desc:'Leaf\'s independent wrestling series covers talent not accessible in the WWE license.',
+    tags:[], link:'independent.html' },
+  { year:2015, name:'Highspots Cards',              promo:'indie', major:false,
+    desc:'Small print run independent cards sold at shows and online. Extremely scarce, genuine fan market.',
+    tags:['Scarce','Show Exclusive'] },
+  { year:2019, name:'NJPW / Lion\'s Gate',         promo:'indie', major:true,
+    desc:'New Japan Pro-Wrestling crosses into the US market. Kazuchika Okada, Hiroshi Tanahashi, Kenny Omega (pre-AEW) cards.',
+    tags:['Okada RC','Tanahashi RC','NJPW'], link:'independent.html' },
+  { year:2020, name:'Leaf Metal Wrestling',         promo:'indie', major:false,
+    desc:'Metal parallel cards for independent talent. Chrome-style treatment on a small budget.',
+    tags:[] },
+  { year:2021, name:'Pro Wrestling Tees Cards',    promo:'indie', major:false,
+    desc:'Wrestling merchandise giant adds trading cards to their roster of indie merch. Limited print runs.',
+    tags:['Limited Print'], link:'independent.html' },
+  { year:2022, name:'Leaf Pop Century Wrestling',  promo:'indie', major:false,
+    desc:'Leaf\'s cross-over pop culture set with wrestling talent mixed in. Auto-heavy.',
+    tags:['On-Card Autos'] },
+  { year:2023, name:'Upper Deck PWG',              promo:'indie', major:true,
+    desc:'Pro Wrestling Guerrilla gets the Upper Deck treatment. Deonna Purrazzo, HOOK (pre-AEW), Daniel Garcia cards.',
+    tags:['PWG','Limited'], link:'independent.html' },
+];
+
+/* ═══════════════════════════════════════════════════
+   RENDER
+═══════════════════════════════════════════════════ */
+let activeFilter = 'all';
+
+function getPromoLabel(promo) {
+  return { wwf:'WWF', wwe:'WWE', wcw:'WCW', ecw:'ECW', aew:'AEW', tna:'TNA', indie:'Indie', vintage:'Vintage' }[promo] || promo.toUpperCase();
+}
+
+function render() {
+  const body = document.getElementById('tlBody');
+  const noRes = document.getElementById('noResults');
+
+  // Filter
+  let filtered = RELEASES.filter(r => {
+    if (activeFilter === 'all')   return true;
+    if (activeFilter === 'major') return r.major;
+    return r.promo === activeFilter;
+  });
+
+  // Group by year
+  const byYear = {};
+  filtered.forEach(r => {
+    if (!byYear[r.year]) byYear[r.year] = [];
+    byYear[r.year].push(r);
+  });
+
+  const years = Object.keys(byYear).sort((a, b) => a - b);
+
+  if (years.length === 0) {
+    body.innerHTML = '';
+    noRes.style.display = 'block';
+    document.getElementById('statVisible').textContent = '0';
+    return;
+  }
+  noRes.style.display = 'none';
+
+  let html = '';
+  years.forEach(year => {
+    html += `<div class="tl-year-group">
+      <div class="tl-year-label">${year}</div>
+      <div class="tl-entries">`;
+
+    byYear[year].forEach(r => {
+      const badgeClass = `badge-${r.promo}`;
+      const linkEl = r.link
+        ? `<a class="tl-entry-link" href="${r.link}">View Set →</a>`
+        : '';
+      const tagHtml = r.tags.length
+        ? `<div class="tl-entry-tags">${r.tags.map(t => {
+            const isMajor = t.toUpperCase().includes('MAJOR') || t.includes('RC');
+            return `<span class="tl-entry-tag ${isMajor ? 'tag-rc' : ''}">${t}</span>`;
+          }).join('')}</div>`
+        : '';
+
+      html += `
+        <div class="tl-entry ${r.major ? 'major' : ''}" data-promo="${r.promo}">
+          <span class="tl-promo-badge ${badgeClass}">${getPromoLabel(r.promo)}</span>
+          <div class="tl-entry-body">
+            <div class="tl-entry-name">${r.name}${r.major ? ' ★' : ''}</div>
+            <div class="tl-entry-desc">${r.desc}</div>
+            ${tagHtml}
+          </div>
+          ${linkEl}
+        </div>`;
+    });
+
+    html += `</div></div>`;
+  });
+
+  body.innerHTML = html;
+  document.getElementById('statVisible').textContent = filtered.length;
+}
+
+// Filter pills
+document.querySelectorAll('.tl-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.tl-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    activeFilter = pill.dataset.filter;
+    render();
+  });
+});
+
+document.getElementById('statSets').textContent = RELEASES.length;
+render();
+</script>
+</body>
+</html>

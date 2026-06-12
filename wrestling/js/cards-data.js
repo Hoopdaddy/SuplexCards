@@ -1,0 +1,286 @@
+/* ===================================================
+   SUPLEX TRADING CARDS — Master Card Database
+   All entries: { id, w (wrestler), num, set, year, era, promo, rc, auto, key, relic, note, page }
+   =================================================== */
+window.CARDS_DB = [
+
+  // ── 1985 TOPPS WWF ─────────────────────────────────────────────────────────
+  {id:'t85-1',   w:'Hulk Hogan',           num:'1',   set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:false, auto:false, key:true,  relic:false, note:"The hobby's most iconic wrestling card", page:'early-wwf.html'},
+  {id:'t85-2',   w:'Randy Savage',          num:'2',   set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Macho Man Randy Savage rookie card', page:'early-wwf.html'},
+  {id:'t85-3',   w:'Roddy Piper',           num:'3',   set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:false, auto:false, key:false, relic:false, note:'Hot Rod in his debut card year', page:'early-wwf.html'},
+  {id:'t85-4',   w:'Andre the Giant',       num:'4',   set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Andre the Giant rookie card', page:'early-wwf.html'},
+  {id:'t85-5',   w:'Iron Sheik',            num:'5',   set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:false, auto:false, key:false, relic:false, note:'', page:'early-wwf.html'},
+  {id:'t85-6',   w:'Nikolai Volkoff',       num:'6',   set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:false, auto:false, key:false, relic:false, note:'', page:'early-wwf.html'},
+  {id:'t85-7',   w:'Big John Studd',        num:'7',   set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:false, auto:false, key:false, relic:false, note:'', page:'early-wwf.html'},
+  {id:'t85-8',   w:'Greg Valentine',        num:'8',   set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:false, auto:false, key:false, relic:false, note:'', page:'early-wwf.html'},
+  {id:'t85-9',   w:'Junkyard Dog',          num:'9',   set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'JYD rookie card', page:'early-wwf.html'},
+  {id:'t85-10',  w:'Tito Santana',          num:'10',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:false, auto:false, key:false, relic:false, note:'', page:'early-wwf.html'},
+  {id:'t85-11',  w:'Brutus Beefcake',       num:'11',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'', page:'early-wwf.html'},
+  {id:'t85-12',  w:'Jim Duggan',            num:'12',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Hacksaw Jim Duggan RC', page:'early-wwf.html'},
+  {id:'t85-13',  w:'Hillbilly Jim',         num:'13',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'', page:'early-wwf.html'},
+  {id:'t85-14',  w:'Paul Orndorff',         num:'14',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:false, auto:false, key:false, relic:false, note:'', page:'early-wwf.html'},
+  {id:'t85-15',  w:'Don Muraco',            num:'15',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:false, auto:false, key:false, relic:false, note:'', page:'early-wwf.html'},
+  {id:'t85-16',  w:'Ricky Steamboat',       num:'16',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Dragon rookie card', page:'early-wwf.html'},
+  {id:'t85-18',  w:'British Bulldogs',      num:'18',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:false, auto:false, key:false, relic:false, note:'Davey Boy Smith & Dynamite Kid tag card', page:'early-wwf.html'},
+  {id:'t85-19',  w:'Hart Foundation',       num:'19',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Hart Foundation tag team RC', page:'early-wwf.html'},
+  {id:'t85-23',  w:'King Kong Bundy',       num:'23',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'', page:'early-wwf.html'},
+  {id:'t85-25',  w:'Jim Neidhart',          num:'25',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Anvil RC - part of Hart Foundation', page:'early-wwf.html'},
+  {id:'t85-26',  w:'Bret Hart',             num:'26',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Hitman Bret Hart rookie card - key card', page:'early-wwf.html'},
+  {id:'t85-27',  w:'Jesse Ventura',         num:'27',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Body Ventura rookie card', page:'early-wwf.html'},
+  {id:'t85-29',  w:'Wendi Richter',         num:'29',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'First women\'s wrestler in the 1985 set', page:'early-wwf.html'},
+  {id:'t85-30',  w:'Jimmy Snuka',           num:'30',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:false, auto:false, key:false, relic:false, note:'Superfly Jimmy Snuka', page:'early-wwf.html'},
+  {id:'t85-33',  w:'Adrian Adonis',         num:'33',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'', page:'early-wwf.html'},
+  {id:'t85-36',  w:'Mr. T',                 num:'36',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:false, auto:false, key:true,  relic:false, note:'Celebrity crossover — from WrestleMania I', page:'early-wwf.html'},
+  {id:'t85-38',  w:'Bobby Heenan',          num:'38',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'The Brain rookie card', page:'early-wwf.html'},
+  {id:'t85-40',  w:'Jimmy Hart',            num:'40',  set:'1985 Topps WWF', year:1985, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Mouth of the South RC', page:'early-wwf.html'},
+
+  // ── 1986 TOPPS WWF ─────────────────────────────────────────────────────────
+  {id:'t86-9',   w:'Jake Roberts',          num:'9',   set:'1986 Topps WWF', year:1986, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Jake the Snake Roberts rookie card', page:'early-wwf.html'},
+  {id:'t86-20',  w:'Killer Bees',           num:'20',  set:'1986 Topps WWF', year:1986, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Blair & Brunzell tag team RC', page:'early-wwf.html'},
+  {id:'t86-29',  w:'Honky Tonk Man',        num:'29',  set:'1986 Topps WWF', year:1986, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Longest IC Champ ever - rookie card', page:'early-wwf.html'},
+  {id:'t86-32',  w:'Miss Elizabeth',        num:'32',  set:'1986 Topps WWF', year:1986, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Miss Elizabeth RC', page:'early-wwf.html'},
+
+  // ── 1987 TOPPS WWF ─────────────────────────────────────────────────────────
+  {id:'t87-7',   w:'Demolition Ax',         num:'7',   set:'1987 Topps WWF', year:1987, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Demolition tag team RC', page:'early-wwf.html'},
+  {id:'t87-8',   w:'Demolition Smash',      num:'8',   set:'1987 Topps WWF', year:1987, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'', page:'early-wwf.html'},
+  {id:'t87-11',  w:'Rick Rude',             num:'11',  set:'1987 Topps WWF', year:1987, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Ravishing Rick Rude RC', page:'early-wwf.html'},
+  {id:'t87-12',  w:'Dino Bravo',            num:'12',  set:'1987 Topps WWF', year:1987, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'', page:'early-wwf.html'},
+  {id:'t87-17',  w:'Koko B. Ware',          num:'17',  set:'1987 Topps WWF', year:1987, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'', page:'early-wwf.html'},
+
+  // ── 1989 TOPPS WWF ─────────────────────────────────────────────────────────
+  {id:'t89-5',   w:'Big Boss Man',          num:'5',   set:'1989 Topps WWF', year:1989, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Cobb County Corrections RC', page:'early-wwf.html'},
+  {id:'t89-10',  w:'Mr. Perfect',           num:'10',  set:'1989 Topps WWF', year:1989, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Curt Hennig Mr. Perfect RC', page:'early-wwf.html'},
+  {id:'t89-15',  w:'The Rockers',           num:'15',  set:'1989 Topps WWF', year:1989, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Rockers tag team RC — Shawn Michaels + Marty Jannetty', page:'early-wwf.html'},
+  {id:'t89-16',  w:'Shawn Michaels',        num:'16',  set:'1989 Topps WWF', year:1989, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'HBK Shawn Michaels rookie card (The Rockers)', page:'early-wwf.html'},
+  {id:'t89-7',   w:'Brain Busters',         num:'7',   set:'1989 Topps WWF', year:1989, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Arn Anderson & Tully Blanchard WWF tag RC', page:'early-wwf.html'},
+  {id:'t89-8',   w:'Arn Anderson',          num:'8',   set:'1989 Topps WWF', year:1989, era:'Early WWF', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'', page:'early-wwf.html'},
+
+  // ── 1990 CLASSIC WWF ──────────────────────────────────────────────────────
+  {id:'cl90-1',  w:'Hulk Hogan',            num:'1',   set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:false, auto:false, key:false, relic:false, note:'', page:'golden-age.html'},
+  {id:'cl90-2',  w:'Randy Savage',          num:'2',   set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:false, auto:false, key:false, relic:false, note:'', page:'golden-age.html'},
+  {id:'cl90-3',  w:'Ultimate Warrior',      num:'3',   set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Ultimate Warrior rookie card — massive demand', page:'golden-age.html'},
+  {id:'cl90-5',  w:'Ted DiBiase',           num:'5',   set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Million Dollar Man RC', page:'golden-age.html'},
+  {id:'cl90-10', w:'Big Boss Man',          num:'10',  set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'', page:'golden-age.html'},
+  {id:'cl90-13', w:'Dusty Rhodes',          num:'13',  set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'American Dream WWF RC', page:'golden-age.html'},
+  {id:'cl90-14', w:'Mr. Perfect',           num:'14',  set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Mr. Perfect first major card', page:'golden-age.html'},
+  {id:'cl90-15', w:'Jake Roberts',          num:'15',  set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:false, auto:false, key:false, relic:false, note:'', page:'golden-age.html'},
+  {id:'cl90-16', w:'Rick Rude',             num:'16',  set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:false, auto:false, key:false, relic:false, note:'', page:'golden-age.html'},
+  {id:'cl90-25', w:'Shawn Michaels',        num:'25',  set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'HBK first solo card in major set', page:'golden-age.html'},
+  {id:'cl90-31', w:'Sgt. Slaughter',        num:'31',  set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'', page:'golden-age.html'},
+  {id:'cl90-32', w:'Legion of Doom',        num:'32',  set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'LOD Road Warriors WWF tag RC', page:'golden-age.html'},
+  {id:'cl90-33', w:'Hawk',                  num:'33',  set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Road Warrior Hawk RC', page:'golden-age.html'},
+  {id:'cl90-34', w:'Animal',                num:'34',  set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Road Warrior Animal RC', page:'golden-age.html'},
+  {id:'cl90-35', w:'Undertaker',            num:'35',  set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Undertaker rookie card — highly sought', page:'golden-age.html'},
+  {id:'cl90-36', w:'Paul Bearer',           num:'36',  set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Paul Bearer manager RC', page:'golden-age.html'},
+  {id:'cl90-38', w:'Nasty Boys',            num:'38',  set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Nasty Boys tag RC', page:'golden-age.html'},
+  {id:'cl90-40', w:'IRS',                   num:'40',  set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'IRS Irwin R. Schyster RC', page:'golden-age.html'},
+  {id:'cl90-41', w:'Sid Justice',           num:'41',  set:'1990 Classic WWF', year:1990, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Sycho Sid RC', page:'golden-age.html'},
+
+  // ── 1994–95 ACTION PACKED WWF ─────────────────────────────────────────────
+  {id:'ap94-1',  w:'Bret Hart',             num:'1',   set:'1994–95 Action Packed WWF', year:1994, era:'Golden Age', promo:'WWF', rc:false, auto:false, key:true,  relic:false, note:'Premium embossed Hitman card', page:'golden-age.html'},
+  {id:'ap94-2',  w:'Shawn Michaels',        num:'2',   set:'1994–95 Action Packed WWF', year:1994, era:'Golden Age', promo:'WWF', rc:false, auto:false, key:true,  relic:false, note:'HBK premium embossed', page:'golden-age.html'},
+  {id:'ap94-3',  w:'Diesel',                num:'3',   set:'1994–95 Action Packed WWF', year:1994, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Kevin Nash Diesel RC', page:'golden-age.html'},
+  {id:'ap94-4',  w:'Razor Ramon',           num:'4',   set:'1994–95 Action Packed WWF', year:1994, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Razor Ramon RC', page:'golden-age.html'},
+  {id:'ap94-5',  w:'Undertaker',            num:'5',   set:'1994–95 Action Packed WWF', year:1994, era:'Golden Age', promo:'WWF', rc:false, auto:false, key:false, relic:false, note:'', page:'golden-age.html'},
+  {id:'ap94-7',  w:'Owen Hart',             num:'7',   set:'1994–95 Action Packed WWF', year:1994, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Owen Hart RC', page:'golden-age.html'},
+  {id:'ap94-8',  w:'Yokozuna',              num:'8',   set:'1994–95 Action Packed WWF', year:1994, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'', page:'golden-age.html'},
+  {id:'ap94-19', w:'Bret Hart',             num:'19',  set:'1994–95 Action Packed WWF', year:1994, era:'Golden Age', promo:'WWF', rc:false, auto:true,  key:true,  relic:false, note:'Bret Hart on-card autograph — earliest certified Hitman auto', page:'golden-age.html'},
+  {id:'ap94-20', w:'Shawn Michaels',        num:'20',  set:'1994–95 Action Packed WWF', year:1994, era:'Golden Age', promo:'WWF', rc:false, auto:true,  key:true,  relic:false, note:'HBK on-card autograph — very scarce', page:'golden-age.html'},
+  {id:'ap94-21', w:'Undertaker',            num:'21',  set:'1994–95 Action Packed WWF', year:1994, era:'Golden Age', promo:'WWF', rc:false, auto:true,  key:true,  relic:false, note:'Undertaker on-card auto from 1994', page:'golden-age.html'},
+  {id:'ap94-22', w:'Diesel',                num:'22',  set:'1994–95 Action Packed WWF', year:1994, era:'Golden Age', promo:'WWF', rc:false, auto:true,  key:false, relic:false, note:'Kevin Nash on-card auto', page:'golden-age.html'},
+  {id:'ap94-23', w:'Razor Ramon',           num:'23',  set:'1994–95 Action Packed WWF', year:1994, era:'Golden Age', promo:'WWF', rc:false, auto:true,  key:false, relic:false, note:'Bad Guy on-card auto', page:'golden-age.html'},
+  {id:'ap94-25', w:'Owen Hart',             num:'25',  set:'1994–95 Action Packed WWF', year:1994, era:'Golden Age', promo:'WWF', rc:false, auto:true,  key:true,  relic:false, note:'Owen Hart on-card auto — one of very few Owen certified autos', page:'golden-age.html'},
+
+  // ── 1995 CARDZ WCW ────────────────────────────────────────────────────────
+  {id:'cz95-1',  w:'Hulk Hogan',            num:'1',   set:'1995 Cardz WCW', year:1995, era:'Golden Age', promo:'WCW', rc:false, auto:false, key:true,  relic:false, note:'Hulk Hogan WCW debut card', page:'golden-age.html'},
+  {id:'cz95-2',  w:'Ric Flair',             num:'2',   set:'1995 Cardz WCW', year:1995, era:'Golden Age', promo:'WCW', rc:false, auto:false, key:true,  relic:false, note:'Nature Boy WCW card', page:'golden-age.html'},
+  {id:'cz95-3',  w:'Sting',                 num:'3',   set:'1995 Cardz WCW', year:1995, era:'Golden Age', promo:'WCW', rc:false, auto:false, key:true,  relic:false, note:'', page:'golden-age.html'},
+  {id:'cz95-4',  w:'Randy Savage',          num:'4',   set:'1995 Cardz WCW', year:1995, era:'Golden Age', promo:'WCW', rc:false, auto:false, key:false, relic:false, note:'Macho Man WCW card', page:'golden-age.html'},
+  {id:'cz95-9',  w:'Brian Pillman',         num:'9',   set:'1995 Cardz WCW', year:1995, era:'Golden Age', promo:'WCW', rc:false, auto:false, key:true,  relic:false, note:'Loose Cannon Brian Pillman', page:'golden-age.html'},
+  {id:'cz95-10', w:'Steve Austin',          num:'10',  set:'1995 Cardz WCW', year:1995, era:'Golden Age', promo:'WCW', rc:true,  auto:false, key:true,  relic:false, note:'Stunning Steve Austin WCW RC — rarest Austin card', page:'golden-age.html'},
+  {id:'cz95-11', w:'Booker T',              num:'11',  set:'1995 Cardz WCW', year:1995, era:'Golden Age', promo:'WCW', rc:true,  auto:false, key:true,  relic:false, note:'Booker T Harlem Heat rookie card', page:'golden-age.html'},
+
+  // ── 1997 CARDZ ECW ─────────────────────────────────────────────────────────
+  {id:'ecw-1',   w:'The Sandman',           num:'1',   set:'1997 Cardz ECW Hardcore Heaven', year:1997, era:'Golden Age', promo:'ECW', rc:true, auto:false, key:true,  relic:false, note:'Sandman ECW RC — extremely rare set', page:'golden-age.html'},
+  {id:'ecw-2',   w:'Tommy Dreamer',         num:'2',   set:'1997 Cardz ECW Hardcore Heaven', year:1997, era:'Golden Age', promo:'ECW', rc:true, auto:false, key:true,  relic:false, note:'Tommy Dreamer ECW RC', page:'golden-age.html'},
+  {id:'ecw-3',   w:'Rob Van Dam',           num:'3',   set:'1997 Cardz ECW Hardcore Heaven', year:1997, era:'Golden Age', promo:'ECW', rc:true, auto:false, key:true,  relic:false, note:'RVD Mr. Monday Night RC — historically significant', page:'golden-age.html'},
+  {id:'ecw-4',   w:'Sabu',                  num:'4',   set:'1997 Cardz ECW Hardcore Heaven', year:1997, era:'Golden Age', promo:'ECW', rc:true, auto:false, key:true,  relic:false, note:'', page:'golden-age.html'},
+  {id:'ecw-5',   w:'Shane Douglas',         num:'5',   set:'1997 Cardz ECW Hardcore Heaven', year:1997, era:'Golden Age', promo:'ECW', rc:true, auto:false, key:false, relic:false, note:'', page:'golden-age.html'},
+  {id:'ecw-6',   w:'Raven',                 num:'6',   set:'1997 Cardz ECW Hardcore Heaven', year:1997, era:'Golden Age', promo:'ECW', rc:true, auto:false, key:true,  relic:false, note:'Raven ECW RC', page:'golden-age.html'},
+  {id:'ecw-7',   w:'Taz',                   num:'7',   set:'1997 Cardz ECW Hardcore Heaven', year:1997, era:'Golden Age', promo:'ECW', rc:true, auto:false, key:true,  relic:false, note:'Taz Human Suplex Machine RC', page:'golden-age.html'},
+  {id:'ecw-10',  w:'D-Von Dudley',          num:'10',  set:'1997 Cardz ECW Hardcore Heaven', year:1997, era:'Golden Age', promo:'ECW', rc:true, auto:false, key:false, relic:false, note:'ECW Dudley Boyz RC', page:'golden-age.html'},
+  {id:'ecw-11',  w:'Bubba Ray Dudley',      num:'11',  set:'1997 Cardz ECW Hardcore Heaven', year:1997, era:'Golden Age', promo:'ECW', rc:true, auto:false, key:false, relic:false, note:'', page:'golden-age.html'},
+
+  // ── 1999 TOPPS WCW/NWO NITRO ─────────────────────────────────────────────
+  {id:'tn99-1',  w:'Goldberg',              num:'1',   set:'1999 Topps WCW/nWo Nitro', year:1999, era:'Golden Age', promo:'WCW', rc:true, auto:false, key:true,  relic:false, note:'Goldberg #1 — 173-0 era RC', page:'golden-age.html'},
+  {id:'tn99-2',  w:'Hollywood Hogan',       num:'2',   set:'1999 Topps WCW/nWo Nitro', year:1999, era:'Golden Age', promo:'WCW', rc:false, auto:false, key:true,  relic:false, note:'Hollywood nWo Hogan', page:'golden-age.html'},
+  {id:'tn99-3',  w:'Sting',                 num:'3',   set:'1999 Topps WCW/nWo Nitro', year:1999, era:'Golden Age', promo:'WCW', rc:false, auto:false, key:false, relic:false, note:'', page:'golden-age.html'},
+  {id:'tn99-5',  w:'Kevin Nash',            num:'5',   set:'1999 Topps WCW/nWo Nitro', year:1999, era:'Golden Age', promo:'WCW', rc:false, auto:false, key:false, relic:false, note:'Big Sexy nWo Nash', page:'golden-age.html'},
+  {id:'tn99-6',  w:'Scott Hall',            num:'6',   set:'1999 Topps WCW/nWo Nitro', year:1999, era:'Golden Age', promo:'WCW', rc:false, auto:false, key:false, relic:false, note:'Razor Ramon / Scott Hall nWo', page:'golden-age.html'},
+  {id:'tn99-8',  w:'Bret Hart',             num:'8',   set:'1999 Topps WCW/nWo Nitro', year:1999, era:'Golden Age', promo:'WCW', rc:false, auto:false, key:true,  relic:false, note:'Hitman WCW era card', page:'golden-age.html'},
+  {id:'tn99-9',  w:'DDP',                   num:'9',   set:'1999 Topps WCW/nWo Nitro', year:1999, era:'Golden Age', promo:'WCW', rc:false, auto:false, key:false, relic:false, note:'Diamond Dallas Page Self High Five', page:'golden-age.html'},
+  {id:'tn99-12', w:'Rey Mysterio Jr.',      num:'12',  set:'1999 Topps WCW/nWo Nitro', year:1999, era:'Golden Age', promo:'WCW', rc:true,  auto:false, key:true,  relic:false, note:'Rey Mysterio Jr. WCW RC — first major card', page:'golden-age.html'},
+  {id:'tn99-13', w:'Eddie Guerrero',        num:'13',  set:'1999 Topps WCW/nWo Nitro', year:1999, era:'Golden Age', promo:'WCW', rc:true,  auto:false, key:true,  relic:false, note:'Latino Heat Eddie Guerrero WCW RC', page:'golden-age.html'},
+
+  // ── 2000 FLEER WWF WRESTLEMANIA ────────────────────────────────────────────
+  {id:'fl00-1',  w:'Steve Austin',          num:'1',   set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:false, auto:false, key:true,  relic:false, note:'Stone Cold Steve Austin Attitude Era', page:'golden-age.html'},
+  {id:'fl00-2',  w:'The Rock',              num:'2',   set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:false, auto:false, key:true,  relic:false, note:'Most Electrifying Man in Sports Entertainment', page:'golden-age.html'},
+  {id:'fl00-3',  w:'Triple H',              num:'3',   set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:false, auto:false, key:true,  relic:false, note:'The Game HHH', page:'golden-age.html'},
+  {id:'fl00-5',  w:'Mankind',               num:'5',   set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:false, auto:false, key:false, relic:false, note:'Mankind Mick Foley', page:'golden-age.html'},
+  {id:'fl00-7',  w:'Kurt Angle',            num:'7',   set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Kurt Angle Olympic Hero RC', page:'golden-age.html'},
+  {id:'fl00-8',  w:'Chris Jericho',         num:'8',   set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Y2J Chris Jericho RC', page:'golden-age.html'},
+  {id:'fl00-9',  w:'Edge',                  num:'9',   set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Edge Rated-R Superstar RC', page:'golden-age.html'},
+  {id:'fl00-10', w:'Christian',             num:'10',  set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Christian RC', page:'golden-age.html'},
+  {id:'fl00-12', w:'Hardy Boyz',            num:'12',  set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Hardy Boyz tag RC — Matt & Jeff first major cards', page:'golden-age.html'},
+  {id:'fl00-13', w:'Matt Hardy',            num:'13',  set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Matt Hardy Version 1 RC', page:'golden-age.html'},
+  {id:'fl00-14', w:'Jeff Hardy',            num:'14',  set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Jeff Hardy Charismatic Enigma RC', page:'golden-age.html'},
+  {id:'fl00-15', w:'Lita',                  num:'15',  set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Lita RC — with Hardy Boyz', page:'golden-age.html'},
+  {id:'fl00-16', w:'Trish Stratus',         num:'16',  set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:true,  relic:false, note:'Trish Stratus RC', page:'golden-age.html'},
+  {id:'fl00-18', w:'Vince McMahon',         num:'18',  set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Mr. McMahon RC', page:'golden-age.html'},
+  {id:'fl00-19', w:'Big Show',              num:'19',  set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Giant Big Show RC', page:'golden-age.html'},
+  {id:'fl00-21', w:'Dudley Boyz',           num:'21',  set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Dudley Boyz tag RC — D-Von & Bubba Ray', page:'golden-age.html'},
+  {id:'fl00-27', w:'Chyna',                 num:'27',  set:'2000 Fleer WWF WrestleMania', year:2000, era:'Golden Age', promo:'WWF', rc:true,  auto:false, key:false, relic:false, note:'Ninth Wonder of the World RC', page:'golden-age.html'},
+
+  // ── 2002 FLEER WWE ─────────────────────────────────────────────────────────
+  {id:'fw02-5',  w:'Brock Lesnar',          num:'—',   set:'2002 Fleer WWE', year:2002, era:'Fleer', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Brock Lesnar first WWE RC — Beast Incarnate debut', page:'fleer-era.html'},
+  {id:'fw02-6',  w:'John Cena',             num:'—',   set:'2002 Fleer WWE', year:2002, era:'Fleer', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'John Cena first WWE card — major key', page:'fleer-era.html'},
+  {id:'fw02-7',  w:'Randy Orton',           num:'—',   set:'2002 Fleer WWE', year:2002, era:'Fleer', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Randy Orton Viper first WWE RC — undervalued', page:'fleer-era.html'},
+  {id:'fw02-8',  w:'Batista',               num:'—',   set:'2002 Fleer WWE', year:2002, era:'Fleer', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Batista Animal first WWE RC', page:'fleer-era.html'},
+  {id:'fw02-9',  w:'Rey Mysterio',          num:'—',   set:'2002 Fleer WWE', year:2002, era:'Fleer', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Rey Mysterio WWE debut RC', page:'fleer-era.html'},
+  {id:'fw02-14', w:'Rob Van Dam',           num:'—',   set:'2002 Fleer WWE', year:2002, era:'Fleer', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'RVD Mr. Monday Night WWE RC', page:'fleer-era.html'},
+  {id:'fw02-31', w:'Ric Flair',             num:'—',   set:'2002 Fleer WWE', year:2002, era:'Fleer', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Nature Boy Ric Flair first WWE-licensed card', page:'fleer-era.html'},
+  {id:'fw02-38', w:'Eddie Guerrero',        num:'—',   set:'2002 Fleer WWE', year:2002, era:'Fleer', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Latino Heat Eddie Guerrero WWE RC', page:'fleer-era.html'},
+  {id:'fw03-6',  w:'Goldberg',              num:'—',   set:'2003 Fleer WWE', year:2003, era:'Fleer', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Goldberg WWE debut card', page:'fleer-era.html'},
+
+  // ── 2012 TOPPS WWE ─────────────────────────────────────────────────────────
+  {id:'t12-1',   w:'CM Punk',               num:'1',   set:'2012 Topps WWE', year:2012, era:'First Topps', promo:'WWE', rc:false, auto:false, key:true,  relic:false, note:'CM Punk longest-reigning champion card', page:'first-topps.html'},
+  {id:'t12-7',   w:'Daniel Bryan',          num:'7',   set:'2012 Topps WWE', year:2012, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'YES Movement Daniel Bryan RC', page:'first-topps.html'},
+  {id:'t12-21',  w:'AJ Lee',                num:'21',  set:'2012 Topps WWE', year:2012, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Crazy Sexy Dangerous AJ Lee RC', page:'first-topps.html'},
+  {id:'t12-26',  w:'The Usos',              num:'26',  set:'2012 Topps WWE', year:2012, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Usos Jimmy & Jey tag team RC', page:'first-topps.html'},
+  {id:'t12-27',  w:'Jimmy Uso',             num:'27',  set:'2012 Topps WWE', year:2012, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:false, relic:false, note:'', page:'first-topps.html'},
+  {id:'t12-28',  w:'Jey Uso',               num:'28',  set:'2012 Topps WWE', year:2012, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:false, relic:false, note:'', page:'first-topps.html'},
+  {id:'t12-30',  w:'Ryback',                num:'30',  set:'2012 Topps WWE', year:2012, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:false, relic:false, note:'', page:'first-topps.html'},
+
+  // ── 2015 TOPPS WWE + NXT INSERTS ───────────────────────────────────────────
+  {id:'t15-6',   w:'Bray Wyatt',            num:'6',   set:'2015 Topps WWE', year:2015, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Eater of Worlds Bray Wyatt RC', page:'first-topps.html'},
+  {id:'t15-11',  w:'Sting',                 num:'11',  set:'2015 Topps WWE', year:2015, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Sting WWE debut card RC', page:'first-topps.html'},
+  {id:'t15-13',  w:'Rusev',                 num:'13',  set:'2015 Topps WWE', year:2015, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:false, relic:false, note:'', page:'first-topps.html'},
+  {id:'t15-18',  w:'Paige',                 num:'18',  set:'2015 Topps WWE', year:2015, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Anti-Diva Paige RC', page:'first-topps.html'},
+  {id:'t15-20',  w:'The New Day',           num:'20',  set:'2015 Topps WWE', year:2015, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'New Day tag RC — Big E, Kofi, Xavier', page:'first-topps.html'},
+  {id:'t15-NXT-SB', w:'Sasha Banks',        num:'NXT', set:'2015 Topps WWE NXT Inserts', year:2015, era:'First Topps', promo:'WWE', rc:true, auto:false, key:true, relic:false, note:'Sasha Banks The Boss NXT RC — key card', page:'first-topps.html'},
+  {id:'t15-NXT-BL', w:'Becky Lynch',        num:'NXT', set:'2015 Topps WWE NXT Inserts', year:2015, era:'First Topps', promo:'WWE', rc:true, auto:false, key:true, relic:false, note:'Becky Lynch The Man NXT RC — key card', page:'first-topps.html'},
+  {id:'t15-NXT-CF', w:'Charlotte Flair',    num:'NXT', set:'2015 Topps WWE NXT Inserts', year:2015, era:'First Topps', promo:'WWE', rc:true, auto:false, key:true, relic:false, note:'Charlotte Flair Queen NXT RC — key card', page:'first-topps.html'},
+  {id:'t15-NXT-BA', w:'Bayley',             num:'NXT', set:'2015 Topps WWE NXT Inserts', year:2015, era:'First Topps', promo:'WWE', rc:true, auto:false, key:true, relic:false, note:'Bayley Role Model NXT RC — key card', page:'first-topps.html'},
+  {id:'t15-NXT-FB', w:'Finn Bálor',         num:'NXT', set:'2015 Topps WWE NXT Inserts', year:2015, era:'First Topps', promo:'WWE', rc:true, auto:false, key:true, relic:false, note:'Finn Balor Demon King NXT RC — key card', page:'first-topps.html'},
+  {id:'t15-NXT-KO', w:'Kevin Owens',        num:'NXT', set:'2015 Topps WWE NXT Inserts', year:2015, era:'First Topps', promo:'WWE', rc:true, auto:false, key:true, relic:false, note:'Kevin Owens Prize Fighter NXT RC — key card', page:'first-topps.html'},
+  {id:'t15-NXT-SZ', w:'Sami Zayn',          num:'NXT', set:'2015 Topps WWE NXT Inserts', year:2015, era:'First Topps', promo:'WWE', rc:true, auto:false, key:false, relic:false, note:'Sami Zayn Honorary Uce NXT RC', page:'first-topps.html'},
+  {id:'t15-NXT-AD', w:'Adam Cole',          num:'NXT', set:'2015 Topps WWE NXT Inserts', year:2015, era:'First Topps', promo:'WWE', rc:true, auto:false, key:false, relic:false, note:'Adam Cole Bay Bay NXT RC', page:'first-topps.html'},
+
+  // ── 2016 TOPPS WWE WOMEN'S DIVISION ────────────────────────────────────────
+  {id:'wd16-1',  w:'Charlotte Flair',       num:'1',   set:'2016 Topps WWE Women\'s Division', year:2016, era:'First Topps', promo:'WWE', rc:false, auto:false, key:true,  relic:false, note:'First dedicated women\'s set in decades', page:'first-topps.html'},
+  {id:'wd16-2',  w:'Sasha Banks',           num:'2',   set:'2016 Topps WWE Women\'s Division', year:2016, era:'First Topps', promo:'WWE', rc:false, auto:false, key:true,  relic:false, note:'', page:'first-topps.html'},
+  {id:'wd16-6',  w:'Alexa Bliss',           num:'6',   set:'2016 Topps WWE Women\'s Division', year:2016, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Goddess Alexa Bliss RC', page:'first-topps.html'},
+  {id:'wd16-14', w:'Asuka',                 num:'14',  set:'2016 Topps WWE Women\'s Division', year:2016, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Empress of Tomorrow Asuka RC', page:'first-topps.html'},
+  {id:'wd16-A1', w:'Charlotte Flair',       num:'A-CF',set:'2016 Topps WWE Women\'s Division', year:2016, era:'First Topps', promo:'WWE', rc:false, auto:true,  key:true,  relic:false, note:'Charlotte Flair on-card auto', page:'first-topps.html'},
+  {id:'wd16-A2', w:'Sasha Banks',           num:'A-SB',set:'2016 Topps WWE Women\'s Division', year:2016, era:'First Topps', promo:'WWE', rc:false, auto:true,  key:true,  relic:false, note:'Sasha Banks on-card auto', page:'first-topps.html'},
+  {id:'wd16-A3', w:'Becky Lynch',           num:'A-BL',set:'2016 Topps WWE Women\'s Division', year:2016, era:'First Topps', promo:'WWE', rc:false, auto:true,  key:false, relic:false, note:'Becky Lynch on-card auto', page:'first-topps.html'},
+
+  // ── 2019 TOPPS WWE ─────────────────────────────────────────────────────────
+  {id:'t19-4',   w:'Becky Lynch',           num:'4',   set:'2019 Topps WWE', year:2019, era:'First Topps', promo:'WWE', rc:false, auto:false, key:true,  relic:false, note:'The Man Becky Lynch key card', page:'first-topps.html'},
+  {id:'t19-6',   w:'Ronda Rousey',          num:'6',   set:'2019 Topps WWE', year:2019, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Baddest Woman on the Planet RC', page:'first-topps.html'},
+  {id:'t19-9',   w:'Kofi Kingston',         num:'9',   set:'2019 Topps WWE', year:2019, era:'First Topps', promo:'WWE', rc:false, auto:false, key:true,  relic:false, note:'New Day Kofi Kingston champion card', page:'first-topps.html'},
+  {id:'t19-30',  w:'Shinsuke Nakamura',     num:'30',  set:'2019 Topps WWE', year:2019, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'King of Strong Style WWE debut RC', page:'first-topps.html'},
+  {id:'t19-NXT-RR', w:'Rhea Ripley',        num:'—',   set:'2019 Topps WWE NXT', year:2019, era:'First Topps', promo:'WWE', rc:true, auto:true, key:true, relic:false, note:'Rhea Ripley Eradicator auto RC — the key modern women\'s auto', page:'first-topps.html'},
+
+  // ── 2020 TOPPS WWE UNDISPUTED ──────────────────────────────────────────────
+  {id:'un20-1',  w:'Roman Reigns',          num:'UA-RR',set:'2020 Topps WWE Undisputed', year:2020, era:'First Topps', promo:'WWE', rc:false, auto:true, key:true, relic:false, note:'Tribal Chief Roman Reigns premium on-card auto', page:'first-topps.html'},
+  {id:'un20-5',  w:'Sasha Banks',           num:'UA-SB',set:'2020 Topps WWE Undisputed', year:2020, era:'First Topps', promo:'WWE', rc:false, auto:true, key:true, relic:false, note:'Boss Sasha Banks on-card auto', page:'first-topps.html'},
+  {id:'un20-6',  w:'Becky Lynch',           num:'UA-BL',set:'2020 Topps WWE Undisputed', year:2020, era:'First Topps', promo:'WWE', rc:false, auto:true, key:false, relic:false, note:'', page:'first-topps.html'},
+  {id:'un20-9',  w:'Bianca Belair',         num:'UA-BB',set:'2020 Topps WWE Undisputed', year:2020, era:'First Topps', promo:'WWE', rc:true,  auto:true, key:true,  relic:false, note:'EST of WWE Bianca Belair auto RC — Undisputed debut', page:'first-topps.html'},
+  {id:'un20-12', w:'Undertaker',            num:'UR-UT',set:'2020 Topps WWE Undisputed', year:2020, era:'First Topps', promo:'WWE', rc:false, auto:false, key:true, relic:true,  note:'Undertaker relic card — memorabilia', page:'first-topps.html'},
+
+  // ── 2021 TOPPS CHROME WWE ──────────────────────────────────────────────────
+  {id:'ch21-4',  w:'Bianca Belair',         num:'4',   set:'2021 Topps Chrome WWE', year:2021, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'EST of WWE Chrome RC', page:'first-topps.html'},
+  {id:'ch21-5',  w:'Rhea Ripley',           num:'5',   set:'2021 Topps Chrome WWE', year:2021, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Eradicator Rhea Ripley Chrome RC', page:'first-topps.html'},
+  {id:'ch21-12', w:'Big E',                 num:'12',  set:'2021 Topps Chrome WWE', year:2021, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:false, relic:false, note:'Big E New Day champion Chrome RC', page:'first-topps.html'},
+  {id:'ch21-20', w:'Damian Priest',         num:'20',  set:'2021 Topps Chrome WWE', year:2021, era:'First Topps', promo:'WWE', rc:true,  auto:false, key:false, relic:false, note:'Judgment Day Damian Priest Chrome RC', page:'first-topps.html'},
+
+  // ── 2022 PANINI PRIZM WWE ──────────────────────────────────────────────────
+  {id:'pz22-1',  w:'Roman Reigns',          num:'1',   set:'2022 Panini Prizm WWE', year:2022, era:'Panini', promo:'WWE', rc:false, auto:false, key:true,  relic:false, note:'Tribal Chief Prizm key card', page:'panini-era.html'},
+  {id:'pz22-6',  w:'Rhea Ripley',           num:'6',   set:'2022 Panini Prizm WWE', year:2022, era:'Panini', promo:'WWE', rc:false, auto:false, key:true,  relic:false, note:'Eradicator Rhea Ripley Prizm key', page:'panini-era.html'},
+  {id:'pz22-17', w:'Cody Rhodes',           num:'17',  set:'2022 Panini Prizm WWE', year:2022, era:'Panini', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'American Nightmare Cody Rhodes WWE return RC — key card', page:'panini-era.html'},
+  {id:'pz22-19', w:'Gunther',               num:'19',  set:'2022 Panini Prizm WWE', year:2022, era:'Panini', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Ring General Gunther WWE debut RC', page:'panini-era.html'},
+  {id:'pz22-22', w:'Damian Priest',         num:'22',  set:'2022 Panini Prizm WWE', year:2022, era:'Panini', promo:'WWE', rc:true,  auto:false, key:false, relic:false, note:'Judgment Day Damian Priest RC', page:'panini-era.html'},
+  {id:'pz22-34', w:'IYO SKY',               num:'34',  set:'2022 Panini Prizm WWE', year:2022, era:'Panini', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Damage CTRL IYO SKY RC', page:'panini-era.html'},
+  {id:'pz22-35', w:'Damage CTRL',           num:'35',  set:'2022 Panini Prizm WWE', year:2022, era:'Panini', promo:'WWE', rc:false, auto:false, key:false, relic:false, note:'Damage CTRL faction card', page:'panini-era.html'},
+
+  // ── 2023 PANINI PRIZM WWE ──────────────────────────────────────────────────
+  {id:'pz23-6',  w:'Sami Zayn',             num:'6',   set:'2023 Panini Prizm WWE', year:2023, era:'Panini', promo:'WWE', rc:false, auto:false, key:true,  relic:false, note:'Honorary Uce Sami Zayn Prizm key card', page:'panini-era.html'},
+  {id:'pz23-11', w:'LA Knight',             num:'11',  set:'2023 Panini Prizm WWE', year:2023, era:'Panini', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'YEAH! LA Knight Prizm RC', page:'panini-era.html'},
+  {id:'pz23-12', w:'Logan Paul',            num:'12',  set:'2023 Panini Prizm WWE', year:2023, era:'Panini', promo:'WWE', rc:true,  auto:false, key:false, relic:false, note:'', page:'panini-era.html'},
+  {id:'pz23-13', w:'CM Punk',               num:'13',  set:'2023 Panini Prizm WWE', year:2023, era:'Panini', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Best in the World CM Punk return RC', page:'panini-era.html'},
+  {id:'pz23-18', w:'Jey Uso',               num:'18',  set:'2023 Panini Prizm WWE', year:2023, era:'Panini', promo:'WWE', rc:false, auto:false, key:true,  relic:false, note:'Main Event Jey Uso breakout key card', page:'panini-era.html'},
+  {id:'pz23-20', w:'Solo Sikoa',            num:'20',  set:'2023 Panini Prizm WWE', year:2023, era:'Panini', promo:'WWE', rc:true,  auto:false, key:false, relic:false, note:'Tribal Chief Solo Sikoa RC', page:'panini-era.html'},
+
+  // ── 2024 PANINI PRIZM WWE ──────────────────────────────────────────────────
+  {id:'pz24-1',  w:'Cody Rhodes',           num:'1',   set:'2024 Panini Prizm WWE', year:2024, era:'Panini', promo:'WWE', rc:false, auto:false, key:true,  relic:false, note:'Undisputed WWE Champion Cody Rhodes', page:'panini-era.html'},
+  {id:'pz24-9',  w:'The Rock',              num:'9',   set:'2024 Panini Prizm WWE', year:2024, era:'Panini', promo:'WWE', rc:false, auto:false, key:true,  relic:false, note:'Final Boss The Rock WrestleMania XL card', page:'panini-era.html'},
+  {id:'pz24-23', w:'Jacob Fatu',            num:'23',  set:'2024 Panini Prizm WWE', year:2024, era:'Panini', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Jacob Fatu Samoan Werewolf debut RC', page:'panini-era.html'},
+  {id:'pz24-26', w:'Trick Williams',        num:'26',  set:'2024 Panini Prizm WWE', year:2024, era:'Panini', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Trick Williams NXT Champion RC', page:'panini-era.html'},
+  {id:'pz24-29', w:'Jade Cargill',          num:'29',  set:'2024 Panini Prizm WWE', year:2024, era:'Panini', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Jade Cargill WWE debut RC', page:'panini-era.html'},
+  {id:'pz24-27', w:'Lyra Valkyria',         num:'27',  set:'2024 Panini Prizm WWE', year:2024, era:'Panini', promo:'WWE', rc:true,  auto:false, key:false, relic:false, note:'IC Champion Lyra Valkyria RC', page:'panini-era.html'},
+
+  // ── 2025 TOPPS WWE ─────────────────────────────────────────────────────────
+  {id:'t25-1',   w:'Cody Rhodes',           num:'1',   set:'2025 Topps WWE', year:2025, era:'Current Topps', promo:'WWE', rc:false, auto:false, key:true,  relic:false, note:'Topps return era Cody Rhodes key card', page:'current-topps.html'},
+  {id:'t25-4',   w:'Gunther',               num:'4',   set:'2025 Topps WWE', year:2025, era:'Current Topps', promo:'WWE', rc:false, auto:false, key:true,  relic:false, note:'Ring General Gunther World Heavyweight Champion', page:'current-topps.html'},
+  {id:'t25-3',   w:'CM Punk',               num:'3',   set:'2025 Topps WWE', year:2025, era:'Current Topps', promo:'WWE', rc:false, auto:false, key:true,  relic:false, note:'Best in the World CM Punk Topps return card', page:'current-topps.html'},
+  {id:'t25-11',  w:'Jacob Fatu',            num:'11',  set:'2025 Topps WWE', year:2025, era:'Current Topps', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Jacob Fatu Topps debut RC', page:'current-topps.html'},
+  {id:'t25-30',  w:'Trick Williams',        num:'30',  set:'2025 Topps WWE', year:2025, era:'Current Topps', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Trick Williams Topps debut RC', page:'current-topps.html'},
+  {id:'t25-28',  w:'Jade Cargill',          num:'28',  set:'2025 Topps WWE', year:2025, era:'Current Topps', promo:'WWE', rc:true,  auto:false, key:true,  relic:false, note:'Jade Cargill Topps debut RC', page:'current-topps.html'},
+  {id:'t25-29',  w:'Lyra Valkyria',         num:'29',  set:'2025 Topps WWE', year:2025, era:'Current Topps', promo:'WWE', rc:true,  auto:false, key:false, relic:false, note:'IC Champion Lyra Valkyria Topps debut', page:'current-topps.html'},
+
+  // ── 2021 UPPER DECK AEW SERIES 1 ──────────────────────────────────────────
+  {id:'ud21-1',  w:'CM Punk',               num:'1',   set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:true, auto:false, key:true, relic:false, note:'CM Punk AEW return RC — Best in the World', page:'aew-cards.html'},
+  {id:'ud21-2',  w:'Bryan Danielson',       num:'2',   set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:true, auto:false, key:true, relic:false, note:'American Dragon Bryan Danielson post-WWE RC', page:'aew-cards.html'},
+  {id:'ud21-3',  w:'Kenny Omega',           num:'3',   set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:false, auto:false, key:true, relic:false, note:'Best Bout Machine Kenny Omega AEW card', page:'aew-cards.html'},
+  {id:'ud21-4',  w:'Chris Jericho',         num:'4',   set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:false, auto:false, key:false, relic:false, note:'', page:'aew-cards.html'},
+  {id:'ud21-5',  w:'MJF',                   num:'5',   set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:false, auto:false, key:true, relic:false, note:'Salt of the Earth MJF RC debut auto', page:'aew-cards.html'},
+  {id:'ud21-6',  w:'Hangman Adam Page',     num:'6',   set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:false, auto:false, key:false, relic:false, note:'Cowboy Hangman Adam Page', page:'aew-cards.html'},
+  {id:'ud21-7',  w:'Jon Moxley',            num:'7',   set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:false, auto:false, key:false, relic:false, note:'Wildcard Jon Moxley AEW card', page:'aew-cards.html'},
+  {id:'ud21-8',  w:'Cody Rhodes',           num:'8',   set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:true,  auto:false, key:true, relic:false, note:'American Nightmare Cody Rhodes AEW RC', page:'aew-cards.html'},
+  {id:'ud21-12', w:'Sting',                 num:'12',  set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:true,  auto:false, key:true, relic:false, note:'Icon Sting AEW debut RC', page:'aew-cards.html'},
+  {id:'ud21-13', w:'Darby Allin',           num:'13',  set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:true,  auto:false, key:true, relic:false, note:'Darby Allin Coffin Drop RC', page:'aew-cards.html'},
+  {id:'ud21-14', w:'Jungle Boy',            num:'14',  set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:true,  auto:false, key:false, relic:false, note:'', page:'aew-cards.html'},
+  {id:'ud21-17', w:'Miro',                  num:'17',  set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:true,  auto:false, key:false, relic:false, note:'Miro Redeemer RC', page:'aew-cards.html'},
+  {id:'ud21-18', w:'Sammy Guevara',         num:'18',  set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:true,  auto:false, key:false, relic:false, note:'', page:'aew-cards.html'},
+  {id:'ud21-24', w:'Britt Baker',           num:'24',  set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:true,  auto:false, key:true, relic:false, note:'Dr. Britt Baker DMD RC', page:'aew-cards.html'},
+  {id:'ud21-35', w:'Ricky Starks',          num:'35',  set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:true,  auto:false, key:false, relic:false, note:'Absolute Ricky Starks RC', page:'aew-cards.html'},
+  {id:'ud21-37', w:'Hook',                  num:'37',  set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:true,  auto:false, key:true, relic:false, note:'Cold as HOOK — debut RC', page:'aew-cards.html'},
+  {id:'ud21-38', w:'Wardlow',               num:'38',  set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:true,  auto:false, key:false, relic:false, note:'', page:'aew-cards.html'},
+  {id:'ud21-42', w:'Christian Cage',        num:'42',  set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:true,  auto:false, key:false, relic:false, note:'Christian Cage AEW debut RC', page:'aew-cards.html'},
+  {id:'ud21-A1', w:'CM Punk',               num:'—',   set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:true,  auto:true,  key:true, relic:false, note:'CM Punk AEW on-card autograph RC', page:'aew-cards.html'},
+  {id:'ud21-A2', w:'Bryan Danielson',       num:'—',   set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:true,  auto:true,  key:true, relic:false, note:'Bryan Danielson AEW on-card auto RC', page:'aew-cards.html'},
+  {id:'ud21-A3', w:'MJF',                   num:'—',   set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:false, auto:true,  key:true, relic:false, note:'MJF AEW on-card auto', page:'aew-cards.html'},
+  {id:'ud21-A4', w:'Sting',                 num:'—',   set:'2021 Upper Deck AEW', year:2021, era:'AEW', promo:'AEW', rc:false, auto:true,  key:true, relic:false, note:'Icon Sting AEW on-card auto', page:'aew-cards.html'},
+  {id:'ud22-12', w:'Jade Cargill',          num:'—',   set:'2021 Upper Deck AEW S2', year:2021, era:'AEW', promo:'AEW', rc:true, auto:false, key:true, relic:false, note:'Jade Cargill TBS Champion RC — undefeated streak era', page:'aew-cards.html'},
+  {id:'ud22-3',  w:'Claudio Castagnoli',    num:'—',   set:'2022 Upper Deck AEW', year:2022, era:'AEW', promo:'AEW', rc:true, auto:false, key:false, relic:false, note:'Claudio Castagnoli ROH/AEW RC', page:'aew-cards.html'},
+  {id:'ud22-10', w:'Swerve Strickland',     num:'—',   set:'2022 Upper Deck AEW', year:2022, era:'AEW', promo:'AEW', rc:true, auto:false, key:true, relic:false, note:'Swerve Strickland AEW debut RC — future champion', page:'aew-cards.html'},
+  {id:'ud22-16', w:'Toni Storm',            num:'—',   set:'2022 Upper Deck AEW', year:2022, era:'AEW', promo:'AEW', rc:true, auto:false, key:false, relic:false, note:'', page:'aew-cards.html'},
+  {id:'ud22-17', w:'Saraya',                num:'—',   set:'2022 Upper Deck AEW', year:2022, era:'AEW', promo:'AEW', rc:true, auto:false, key:false, relic:false, note:'Paige/Saraya AEW debut RC', page:'aew-cards.html'},
+
+  // ── ROH INDEPENDENT ────────────────────────────────────────────────────────
+  {id:'roh-1',   w:'CM Punk',               num:'—',   set:'2003–2005 ROH Cards', year:2003, era:'Independent', promo:'ROH', rc:true, auto:false, key:true, relic:false, note:'CM Punk ROH card — pre-WWE, extraordinarily rare', page:'independent.html'},
+  {id:'roh-2',   w:'Bryan Danielson',       num:'—',   set:'2003–2005 ROH Cards', year:2003, era:'Independent', promo:'ROH', rc:true, auto:false, key:true, relic:false, note:'Bryan Danielson American Dragon ROH card — pre-WWE, extremely rare', page:'independent.html'},
+  {id:'roh-3',   w:'Samoa Joe',             num:'—',   set:'2003–2005 ROH Cards', year:2003, era:'Independent', promo:'ROH', rc:true, auto:false, key:true, relic:false, note:'Samoa Joe ROH card — pre-TNA/WWE', page:'independent.html'},
+  {id:'roh-4',   w:'AJ Styles',             num:'—',   set:'2003–2005 ROH Cards', year:2003, era:'Independent', promo:'ROH', rc:true, auto:false, key:true, relic:false, note:'Phenomenal AJ Styles ROH/TNA era card', page:'independent.html'},
+  {id:'roh-5',   w:'Kevin Steen',           num:'—',   set:'ROH Cards', year:2008, era:'Independent', promo:'ROH', rc:true, auto:false, key:true, relic:false, note:'Kevin Steen / Kevin Owens ROH card — pre-WWE', page:'independent.html'},
+  {id:'roh-6',   w:'El Generico',           num:'—',   set:'ROH Cards', year:2008, era:'Independent', promo:'ROH', rc:true, auto:false, key:true, relic:false, note:'El Generico / Sami Zayn ROH card — pre-WWE', page:'independent.html'},
+  {id:'roh-7',   w:'Tyler Black',           num:'—',   set:'ROH Cards', year:2008, era:'Independent', promo:'ROH', rc:true, auto:false, key:true, relic:false, note:'Tyler Black / Seth Rollins ROH card — pre-WWE', page:'independent.html'},
+  {id:'roh-8',   w:'Claudio Castagnoli',    num:'—',   set:'ROH Cards', year:2006, era:'Independent', promo:'ROH', rc:true, auto:false, key:false, relic:false, note:'', page:'independent.html'},
+  {id:'roh-9',   w:'Jay Briscoe',           num:'—',   set:'ROH Cards', year:2004, era:'Independent', promo:'ROH', rc:true, auto:false, key:false, relic:false, note:'', page:'independent.html'},
+  {id:'roh-10',  w:'Mark Briscoe',          num:'—',   set:'ROH Cards', year:2004, era:'Independent', promo:'ROH', rc:true, auto:false, key:false, relic:false, note:'', page:'independent.html'},
+
+];
+
+// Helper: dedupe and expose total count
+console.log(`Cards DB loaded: ${window.CARDS_DB.length} cards`);

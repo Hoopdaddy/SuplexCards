@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hall of Fame Rookie Cards — Suplex Trading Cards</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .hof-filter-bar {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.8rem;
+      align-items: center;
+    }
+    .filter-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-right: 0.3rem;
+    }
+    .filter-btn {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .filter-btn:hover  { border-color: var(--gold); color: var(--gold); }
+    .filter-btn.active { border-color: var(--red); background: var(--red); color: #fff; }
+
+    .hof-table { width: 100%; border-collapse: collapse; }
+    .hof-table thead th {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: 0.5rem 0.9rem;
+      border-bottom: 2px solid var(--border);
+      cursor: pointer;
+      white-space: nowrap;
+      user-select: none;
+    }
+    .hof-table thead th:hover { color: var(--gold); }
+    .hof-table thead th .sort-arrow { opacity: 0.4; margin-left: 0.2rem; font-size: 0.6rem; }
+    .hof-table thead th.sorted { color: var(--gold); }
+    .hof-table thead th.sorted .sort-arrow { opacity: 1; }
+
+    .hof-table tbody tr { transition: background 0.1s; }
+    .hof-table tbody tr:hover td { background: rgba(255,255,255,0.03); }
+    .hof-table tbody tr.hidden { display: none; }
+
+    .hof-table td {
+      padding: 0.6rem 0.9rem;
+      font-size: 0.86rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .col-check  { width: 36px; text-align: center; }
+    .col-check input { accent-color: var(--green); cursor: pointer; transform: scale(1.15); }
+    .col-name   { font-weight: 500; color: var(--text); }
+    .col-year   { font-family: 'Oswald', sans-serif; font-weight: 600; color: var(--red); font-size: 0.82rem; }
+    .col-card   { color: var(--gold); font-family: 'Oswald', sans-serif; font-size: 0.82rem; }
+    .col-set    { color: var(--muted); font-size: 0.81rem; }
+    .col-num    { font-family: 'Oswald', sans-serif; font-size: 0.78rem; color: var(--muted); }
+    .col-note   { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+    .era-pill   { display: inline-block; font-family: 'Oswald', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.1rem 0.45rem; border-radius: 2px; }
+
+    .progress-summary {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .prog-stat .val { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--gold); line-height: 1; }
+    .prog-stat .lbl { font-family: 'Oswald', sans-serif; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+    .prog-bar-big { flex: 1; min-width: 200px; }
+    .prog-bar-big .bar-wrap { background: var(--dark); border-radius: 99px; height: 10px; overflow: hidden; margin-top: 0.3rem; }
+    .prog-bar-big .bar-fill { height: 100%; background: linear-gradient(90deg, var(--red), var(--gold)); border-radius: 99px; transition: width 0.4s; }
+    .prog-bar-big .bar-lbl { font-family: 'Oswald', sans-serif; font-size: 0.75rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-placeholder">YOUR<br>LOGO</div>
+      <div class="nav-logo-text">Suplex <span>Trading</span> Cards</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <span class="nav-drop-trigger">Card Eras</span>
+        <ul class="dropdown-menu">
+          <li><a href="pre1980.html"><span class="era-dot" style="background:#888"></span>Vintage Pre-1980</a></li>
+          <li><a href="early-wwf.html"><span class="era-dot" style="background:#e8c84a"></span>Early WWF (1981–1989)</a></li>
+          <li><a href="golden-age.html"><span class="era-dot" style="background:#cc1f1f"></span>Golden Age (1990–2000)</a></li>
+          <li><a href="fleer-era.html"><span class="era-dot" style="background:#3498db"></span>Fleer Years (2001–2004)</a></li>
+          <li><a href="first-topps.html"><span class="era-dot" style="background:#2ecc71"></span>First Topps Era (2005–2021)</a></li>
+          <li><a href="panini-era.html"><span class="era-dot" style="background:#9b59b6"></span>Panini Era (2022–2024)</a></li>
+          <li><a href="current-topps.html"><span class="era-dot" style="background:#e67e22"></span>Current Topps Era (2025+)</a></li>
+          <li><a href="timeline.html"><span class="era-dot" style="background:#e8c84a"></span>Release Timeline</a></li>
+        </ul>
+      </li>
+      <li><a href="aew-cards.html">AEW Cards</a></li>
+      <li><a href="independent.html">Independent</a></li>
+      <li><a href="wrestlers.html">Wrestlers</a></li>
+      <li><a href="parallels.html">Parallels</a></li>
+      <li><a href="search.html">Search</a></li>
+      <li><a href="shows.html">Card Shows</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="hero hero-era" style="border-bottom-color:var(--gold);">
+  <div class="era-years">Curated Checklist · WWE Hall of Fame</div>
+  <h1>Hall of Fame Rookie Cards</h1>
+  <p class="hero-sub">The first major trading card of every WWE Hall of Famer — track what you own across 70+ years of wrestling card history</p>
+</div>
+
+<div class="section">
+
+  <div class="progress-summary" id="hofProgress">
+    <div class="prog-stat">
+      <div class="val" id="ownedCount">0</div>
+      <div class="lbl">Cards Owned</div>
+    </div>
+    <div class="prog-stat">
+      <div class="val" id="totalCount">0</div>
+      <div class="lbl">Total HOFers</div>
+    </div>
+    <div class="prog-bar-big">
+      <div class="bar-lbl" id="progLabel">0 / 0 (0%)</div>
+      <div class="bar-wrap"><div class="bar-fill" id="hofBar" style="width:0%"></div></div>
+    </div>
+    <button class="btn-small btn-uncheck-all" onclick="clearAllHOF()" style="align-self:center;">Clear All</button>
+  </div>
+
+  <div class="hof-filter-bar">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" data-filter="all">All HOFers</button>
+    <button class="filter-btn" data-filter="golden">Golden Era</button>
+    <button class="filter-btn" data-filter="attitude">Attitude Era</button>
+    <button class="filter-btn" data-filter="modern">Modern Era</button>
+    <button class="filter-btn" data-filter="women">Women</button>
+    <button class="filter-btn" data-filter="tag">Tag Teams</button>
+    <button class="filter-btn" data-filter="owned">Owned Only</button>
+  </div>
+
+  <table class="hof-table" id="hofTable">
+    <thead>
+      <tr>
+        <th class="col-check">?</th>
+        <th data-col="name">Wrestler <span class="sort-arrow">?</span></th>
+        <th data-col="hof">HOF Class <span class="sort-arrow">?</span></th>
+        <th data-col="cardyear">Card Year <span class="sort-arrow">?</span></th>
+        <th>First Key Card</th>
+        <th>Set</th>
+        <th>#</th>
+        <th>Era</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody id="hofBody">
+      <!-- Rows injected by JS from data below -->
+    </tbody>
+  </table>
+
+</div>
+
+<footer>
+  <div class="footer-logo-text">Suplex <span>Trading</span> Cards</div>
+  <p>The complete history of professional wrestling trading cards</p>
+  <nav class="footer-nav">
+    <a href="index.html">? Home</a>
+    <a href="first-autos.html">First Autographs ?</a>
+  </nav>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+// -- HOF DATA ----------------------------------------
+// columns: name, hof (class year), cardYear, card, set, num, era, tags, note
+const hofData = [
+  // GOLDEN ERA
+  { name:"Hulk Hogan",          hof:2005, cardYear:1985, card:"Hulk Hogan",           set:"1985 Topps WWF",            num:"#1",   era:"Early WWF", tags:["golden"], note:"The hobby's most iconic card." },
+  { name:"Randy Savage",        hof:2015, cardYear:1985, card:"Randy Savage RC",       set:"1985 Topps WWF",            num:"#2",   era:"Early WWF", tags:["golden"], note:"Macho Man's first ever card." },
+  { name:"Andre the Giant",     hof:1993, cardYear:1985, card:"Andre the Giant RC",    set:"1985 Topps WWF",            num:"#4",   era:"Early WWF", tags:["golden","tag"], note:"One of the most recognizable sports cards." },
+  { name:"Roddy Piper",         hof:2005, cardYear:1985, card:"Roddy Piper",           set:"1985 Topps WWF",            num:"#3",   era:"Early WWF", tags:["golden"], note:"Hot Rod in his debut card year." },
+  { name:"Iron Sheik",          hof:2005, cardYear:1985, card:"Iron Sheik",            set:"1985 Topps WWF",            num:"#5",   era:"Early WWF", tags:["golden"], note:"" },
+  { name:"Nikolai Volkoff",     hof:2005, cardYear:1985, card:"Nikolai Volkoff",       set:"1985 Topps WWF",            num:"#6",   era:"Early WWF", tags:["golden"], note:"" },
+  { name:"Greg Valentine",      hof:2004, cardYear:1985, card:"Greg Valentine",        set:"1985 Topps WWF",            num:"#8",   era:"Early WWF", tags:["golden"], note:"" },
+  { name:"Junkyard Dog",        hof:2004, cardYear:1985, card:"Junkyard Dog RC",       set:"1985 Topps WWF",            num:"#9",   era:"Early WWF", tags:["golden"], note:"" },
+  { name:"Tito Santana",        hof:2004, cardYear:1985, card:"Tito Santana",          set:"1985 Topps WWF",            num:"#10",  era:"Early WWF", tags:["golden"], note:"" },
+  { name:"Ricky Steamboat",     hof:2009, cardYear:1985, card:"Ricky Steamboat RC",    set:"1985 Topps WWF",            num:"#16",  era:"Early WWF", tags:["golden"], note:"" },
+  { name:"Bret Hart",           hof:2006, cardYear:1985, card:"Bret Hart RC",          set:"1985 Topps WWF",            num:"#26",  era:"Early WWF", tags:["golden"], note:"Key card — early Hitman." },
+  { name:"Jesse Ventura",       hof:2004, cardYear:1985, card:"Jesse Ventura RC",      set:"1985 Topps WWF",            num:"#27",  era:"Early WWF", tags:["golden"], note:"" },
+  { name:"Bobby Heenan",        hof:2004, cardYear:1985, card:"Bobby Heenan RC",       set:"1985 Topps WWF",            num:"#38",  era:"Early WWF", tags:["golden"], note:"Brain's first card." },
+  { name:"Jimmy Hart",          hof:2005, cardYear:1985, card:"Jimmy Hart RC",         set:"1985 Topps WWF",            num:"#40",  era:"Early WWF", tags:["golden"], note:"Mouth of the South." },
+  { name:"Jake Roberts",        hof:2014, cardYear:1986, card:"Jake Roberts RC",       set:"1986 Topps WWF",            num:"#9",   era:"Early WWF", tags:["golden"], note:"DDT Jake's debut card." },
+  { name:"Superstar Billy Graham",hof:2004,cardYear:1985,card:"Billy Graham",          set:"Pre-1980 Regional",         num:"—",    era:"Pre-1980",  tags:["golden"], note:"Territory-era regional card." },
+  { name:"Harley Race",         hof:2004, cardYear:1985, card:"Harley Race",           set:"Pre-1980 NWA Regional",     num:"—",    era:"Pre-1980",  tags:["golden"], note:"NWA era promotional card." },
+  { name:"Jimmy Snuka",         hof:1996, cardYear:1985, card:"Jimmy Snuka",           set:"1985 Topps WWF",            num:"#30",  era:"Early WWF", tags:["golden"], note:"" },
+  { name:"Koko B. Ware",        hof:2009, cardYear:1987, card:"Koko B. Ware RC",       set:"1987 Topps WWF",            num:"#17",  era:"Early WWF", tags:["golden"], note:"" },
+  { name:"Jim Duggan",          hof:2011, cardYear:1985, card:"Jim Duggan RC",         set:"1985 Topps WWF",            num:"#12",  era:"Early WWF", tags:["golden"], note:"HOOOOOO!" },
+  { name:"Hillbilly Jim",       hof:2018, cardYear:1985, card:"Hillbilly Jim RC",      set:"1985 Topps WWF",            num:"#13",  era:"Early WWF", tags:["golden"], note:"" },
+  { name:"Brutus Beefcake",     hof:2019, cardYear:1985, card:"Brutus Beefcake RC",    set:"1985 Topps WWF",            num:"#11",  era:"Early WWF", tags:["golden"], note:"" },
+  { name:"Honky Tonk Man",      hof:2019, cardYear:1986, card:"Honky Tonk Man RC",     set:"1986 Topps WWF",            num:"#29",  era:"Early WWF", tags:["golden"], note:"Longest-reigning IC Champ." },
+  { name:"Mr. Perfect",         hof:2007, cardYear:1990, card:"Mr. Perfect RC",        set:"1990 Classic WWF",          num:"#14",  era:"Golden Age", tags:["golden"], note:"Hennig's first major card." },
+  { name:"The Ultimate Warrior", hof:2014, cardYear:1990, card:"Ultimate Warrior RC",  set:"1990 Classic WWF",          num:"#3",   era:"Golden Age", tags:["golden"], note:"Key card — massive demand." },
+  { name:"The Undertaker",      hof:2022, cardYear:1990, card:"Undertaker RC",         set:"1990 Classic WWF",          num:"#57",  era:"Golden Age", tags:["modern"], note:"Taker's debut card. Highly sought." },
+  { name:"Shawn Michaels",      hof:2011, cardYear:1990, card:"Shawn Michaels RC",     set:"1990 Classic WWF",          num:"#25",  era:"Golden Age", tags:["golden"], note:"The Rockers era first card." },
+  { name:"Ted DiBiase",         hof:2010, cardYear:1990, card:"Ted DiBiase RC",        set:"1990 Classic WWF",          num:"#5",   era:"Golden Age", tags:["golden"], note:"Million Dollar Man." },
+  { name:"Big Boss Man",        hof:2016, cardYear:1990, card:"Big Boss Man RC",       set:"1990 Classic WWF",          num:"#10",  era:"Golden Age", tags:["golden"], note:"" },
+  { name:"Dusty Rhodes",        hof:2007, cardYear:1990, card:"Dusty Rhodes RC",       set:"1990 Classic WWF",          num:"#13",  era:"Golden Age", tags:["golden"], note:"American Dream's first WWF card." },
+  { name:"Sgt. Slaughter",      hof:2004, cardYear:1990, card:"Sgt. Slaughter RC",     set:"1990 Classic WWF",          num:"#31",  era:"Golden Age", tags:["golden"], note:"" },
+  { name:"Hawk (LOD)",          hof:2011, cardYear:1990, card:"Hawk RC",               set:"1990 Classic WWF",          num:"#33",  era:"Golden Age", tags:["golden","tag"], note:"LOD debuted in WWF set." },
+  { name:"Animal (LOD)",        hof:2011, cardYear:1990, card:"Animal RC",             set:"1990 Classic WWF",          num:"#34",  era:"Golden Age", tags:["golden","tag"], note:"Road Warriors first WWF cards." },
+  { name:"Ric Flair",           hof:2008, cardYear:1995, card:"Ric Flair",             set:"1995 Cardz WCW",            num:"#2",   era:"Golden Age", tags:["golden"], note:"Nature Boy's mainstream card debut." },
+  { name:"Sting",               hof:2016, cardYear:1995, card:"Sting",                 set:"1995 Cardz WCW",            num:"#3",   era:"Golden Age", tags:["golden"], note:"" },
+  { name:"Steve Austin",        hof:2009, cardYear:1995, card:"Steve Austin WCW RC",   set:"1995 Cardz WCW",            num:"#13",  era:"Golden Age", tags:["golden"], note:"Stunning Steve — rarest Austin card." },
+  { name:"Goldberg",            hof:2018, cardYear:1999, card:"Goldberg RC",           set:"1999 Topps WCW/nWo Nitro",  num:"#1",   era:"Golden Age", tags:["modern"], note:"173-0. Card #1. Perfect symmetry." },
+  { name:"Booker T",            hof:2013, cardYear:1995, card:"Booker T RC",           set:"1995 Cardz WCW",            num:"#15",  era:"Golden Age", tags:["modern"], note:"Harlem Heat era first card." },
+  { name:"Rey Mysterio",        hof:2023, cardYear:1999, card:"Rey Mysterio Jr. RC",   set:"1999 Topps WCW/nWo Nitro",  num:"#12",  era:"Golden Age", tags:["modern"], note:"619's first major card." },
+  { name:"Eddie Guerrero",      hof:2006, cardYear:1999, card:"Eddie Guerrero RC",     set:"1999 Topps WCW/nWo Nitro",  num:"#13",  era:"Golden Age", tags:["golden"], note:"Lie, Cheat & Steal — posthumous HOF." },
+  { name:"Kurt Angle",          hof:2017, cardYear:2000, card:"Kurt Angle RC",         set:"2000 Fleer WWF WrestleMania",num:"#7",  era:"Golden Age", tags:["golden"], note:"Olympic Gold Medalist — Attitude RC." },
+  { name:"Edge",                hof:2012, cardYear:2000, card:"Edge RC",               set:"2000 Fleer WWF WrestleMania",num:"#9",  era:"Golden Age", tags:["attitude"], note:"Edge's first WWE-licensed card." },
+  { name:"Chris Jericho",       hof:2025, cardYear:2000, card:"Chris Jericho RC",      set:"2000 Fleer WWF WrestleMania",num:"#8",  era:"Golden Age", tags:["attitude"], note:"Y2J's first WWF card." },
+  { name:"Lita",                hof:2014, cardYear:2000, card:"Lita RC",               set:"2000 Fleer WWF WrestleMania",num:"#15", era:"Golden Age", tags:["attitude","women"], note:"First Lita card alongside Hardy Boyz." },
+  { name:"Trish Stratus",       hof:2013, cardYear:2000, card:"Trish Stratus RC",      set:"2000 Fleer WWF WrestleMania",num:"#16", era:"Golden Age", tags:["attitude","women"], note:"Hall of Famer's debut card." },
+  { name:"Matt Hardy",          hof:2020, cardYear:2000, card:"Matt Hardy RC",         set:"2000 Fleer WWF WrestleMania",num:"#13", era:"Golden Age", tags:["attitude","tag"], note:"" },
+  { name:"Jeff Hardy",          hof:2025, cardYear:2000, card:"Jeff Hardy RC",         set:"2000 Fleer WWF WrestleMania",num:"#14", era:"Golden Age", tags:["attitude","tag"], note:"Charismatic Enigma's debut card." },
+  { name:"Bubba Ray Dudley",    hof:2024, cardYear:2000, card:"Bubba Ray Dudley RC",   set:"2000 Fleer WWF WrestleMania",num:"#23", era:"Golden Age", tags:["attitude","tag"], note:"" },
+  { name:"D-Von Dudley",        hof:2024, cardYear:2000, card:"D-Von Dudley RC",       set:"2000 Fleer WWF WrestleMania",num:"#22", era:"Golden Age", tags:["attitude","tag"], note:"Testify! Dudley Boyz debut." },
+  { name:"Rikishi",             hof:2015, cardYear:2000, card:"Rikishi RC",            set:"2000 Fleer WWF WrestleMania",num:"#11", era:"Golden Age", tags:["attitude"], note:"" },
+  // ATTITUDE ERA
+  { name:"The Rock",            hof:2008, cardYear:2000, card:"The Rock",              set:"2000 Fleer WWF WrestleMania",num:"#2",  era:"Golden Age", tags:["attitude"], note:"Most electrifying in sports entertainment." },
+  { name:"Mick Foley",          hof:2013, cardYear:2000, card:"Mankind / Mick Foley",  set:"2000 Fleer WWF WrestleMania",num:"#5",  era:"Golden Age", tags:["attitude"], note:"Have a Nice Day!" },
+  { name:"Triple H",            hof:2019, cardYear:2000, card:"Triple H",              set:"2000 Fleer WWF WrestleMania",num:"#3",  era:"Golden Age", tags:["attitude"], note:"The Game's debut card in Fleer." },
+  { name:"Rob Van Dam",         hof:2021, cardYear:1997, card:"Rob Van Dam RC",        set:"1997 Cardz ECW Hardcore Heaven",num:"#3",era:"Golden Age",tags:["attitude"], note:"Mr. Monday Night's rarest RC." },
+  { name:"Tazz",                hof:2024, cardYear:1997, card:"Tazz RC",              set:"1997 Cardz ECW Hardcore Heaven",num:"#7",era:"Golden Age",tags:["attitude"], note:"ECW Human Suplex Machine." },
+  { name:"Tommy Dreamer",       hof:2016, cardYear:1997, card:"Tommy Dreamer RC",      set:"1997 Cardz ECW Hardcore Heaven",num:"#2",era:"Golden Age",tags:["attitude"], note:"ECW original — extremely rare." },
+  { name:"DDP",                 hof:2017, cardYear:1995, card:"Diamond Dallas Page",   set:"1995 Cardz WCW",            num:"—",    era:"Golden Age", tags:["attitude"], note:"Self High Five!" },
+  { name:"Chyna",               hof:2019, cardYear:2000, card:"Chyna RC",              set:"2000 Fleer WWF WrestleMania",num:"—",   era:"Golden Age", tags:["attitude","women"], note:"Ninth Wonder of the World." },
+  // RUTHLESS AGGRESSION / FLEER ERA
+  { name:"John Cena",           hof:2025, cardYear:2002, card:"John Cena RC",          set:"2002 Fleer WWE",            num:"—",    era:"Fleer",     tags:["modern"], note:"First Cena card. Major key." },
+  { name:"Brock Lesnar",        hof:2025, cardYear:2002, card:"Brock Lesnar RC",       set:"2002 Fleer WWE",            num:"—",    era:"Fleer",     tags:["modern"], note:"Beast Incarnate's debut card." },
+  { name:"Batista",             hof:2020, cardYear:2002, card:"Batista RC",            set:"2002 Fleer WWE",            num:"—",    era:"Fleer",     tags:["modern"], note:"Animal's first card." },
+  { name:"Randy Orton",         hof:2025, cardYear:2002, card:"Randy Orton RC",        set:"2002 Fleer WWE",            num:"—",    era:"Fleer",     tags:["modern"], note:"Viper's debut — undervalued." },
+  // FIRST TOPPS ERA
+  { name:"Daniel Bryan",        hof:2023, cardYear:2012, card:"Daniel Bryan RC",       set:"2012 Topps WWE",            num:"#7",   era:"First Topps",tags:["modern"], note:"YES! Movement — key RC." },
+  { name:"CM Punk",             hof:2025, cardYear:2012, card:"CM Punk",               set:"2012 Topps WWE",            num:"#1",   era:"First Topps",tags:["modern"], note:"Longest-reigning modern champ card." },
+  { name:"Sasha Banks",         hof:2023, cardYear:2015, card:"Sasha Banks RC",        set:"2015 Topps WWE NXT insert",  num:"NXT",  era:"First Topps",tags:["modern","women"], note:"The Boss — key Women's RC." },
+  { name:"Becky Lynch",         hof:2023, cardYear:2015, card:"Becky Lynch RC",        set:"2015 Topps WWE NXT insert",  num:"NXT",  era:"First Topps",tags:["modern","women"], note:"The Man's first card." },
+  { name:"Charlotte Flair",     hof:2023, cardYear:2015, card:"Charlotte Flair RC",    set:"2015 Topps WWE NXT insert",  num:"NXT",  era:"First Topps",tags:["modern","women"], note:"Queen's debut insert." },
+  { name:"Bayley",              hof:2023, cardYear:2015, card:"Bayley RC",             set:"2015 Topps WWE NXT insert",  num:"NXT",  era:"First Topps",tags:["modern","women"], note:"Role Model's first card." },
+  { name:"Kevin Owens",         hof:2025, cardYear:2015, card:"Kevin Owens RC",        set:"2015 Topps WWE NXT insert",  num:"NXT",  era:"First Topps",tags:["modern"], note:"Prize Fighter's debut." },
+  { name:"Finn Bálor",          hof:2025, cardYear:2015, card:"Finn Bálor RC",         set:"2015 Topps WWE NXT insert",  num:"NXT",  era:"First Topps",tags:["modern"], note:"Demon King's debut card." },
+  { name:"Sami Zayn",           hof:2025, cardYear:2015, card:"Sami Zayn RC",          set:"2015 Topps WWE NXT insert",  num:"NXT",  era:"First Topps",tags:["modern"], note:"Honorary Uce before it was cool." },
+  { name:"Rhea Ripley",         hof:2025, cardYear:2019, card:"Rhea Ripley Auto RC",   set:"2019 Topps WWE NXT",         num:"—",    era:"First Topps",tags:["modern","women"], note:"Eradicator — on-card auto RC. Key." },
+  { name:"Bianca Belair",       hof:2025, cardYear:2021, card:"Bianca Belair RC",      set:"2021 Topps Chrome WWE",      num:"#4",   era:"First Topps",tags:["modern","women"], note:"EST of WWE's flagship Chrome RC." },
+  { name:"Shinsuke Nakamura",   hof:2025, cardYear:2019, card:"Nakamura RC",           set:"2019 Topps WWE",             num:"—",    era:"First Topps",tags:["modern"], note:"King of Strong Style WWE debut." },
+  // PANINI ERA
+  { name:"Cody Rhodes",         hof:2025, cardYear:2022, card:"Cody Rhodes RC",        set:"2022 Panini Prizm WWE",      num:"#17",  era:"Panini",    tags:["modern"], note:"American Nightmare WWE return RC." },
+  { name:"Gunther",             hof:2025, cardYear:2022, card:"Gunther RC",            set:"2022 Panini Prizm WWE",      num:"#19",  era:"Panini",    tags:["modern"], note:"Ring General's debut WWE card." },
+  // WOMEN'S DIVISION SPECIFIC
+  { name:"Alundra Blayze",      hof:2015, cardYear:1985, card:"Regional / German card",set:"International release",      num:"—",    era:"Pre-1980",  tags:["women"], note:"Pre-WWF career international cards." },
+  { name:"Wendi Richter",       hof:2010, cardYear:1985, card:"Wendi Richter RC",      set:"1985 Topps WWF",             num:"#29",  era:"Early WWF", tags:["women"], note:"First women's wrestler in 1985 Topps." },
+  { name:"Sensational Sherri",  hof:2006, cardYear:1990, card:"Sensational Sherri RC", set:"1990 Classic WWF",           num:"—",    era:"Golden Age",tags:["women"], note:"" },
+  { name:"Mae Young",           hof:2008, cardYear:1990, card:"Mae Young",             set:"1990 Classic WWF",           num:"—",    era:"Golden Age",tags:["women"], note:"" },
+];
+
+// -- RENDER & FILTER ---------------------------------
+const setId = 'hof-rookie';
+
+function getEraTag(era) {
+  const map = {
+    'Pre-1980':    { bg:'rgba(136,136,136,0.15)', color:'#aaa' },
+    'Early WWF':   { bg:'rgba(232,200,74,0.15)',  color:'#e8c84a' },
+    'Golden Age':  { bg:'rgba(204,31,31,0.15)',   color:'#ff6b6b' },
+    'Fleer':       { bg:'rgba(52,152,219,0.12)',  color:'#3498db' },
+    'First Topps': { bg:'rgba(46,204,113,0.12)',  color:'#2ecc71' },
+    'Panini':      { bg:'rgba(155,89,182,0.15)',  color:'#9b59b6' },
+  };
+  const s = map[era] || { bg:'rgba(255,255,255,0.08)', color:'#aaa' };
+  return `<span class="era-pill" style="background:${s.bg};color:${s.color}">${era}</span>`;
+}
+
+function renderTable(data) {
+  const tbody = document.getElementById('hofBody');
+  tbody.innerHTML = '';
+  data.forEach((w, i) => {
+    const key = `${setId}-${i}`;
+    const checked = localStorage.getItem(key) === '1';
+    const tr = document.createElement('tr');
+    tr.dataset.tags = w.tags.join(' ');
+    tr.dataset.idx  = i;
+    if (checked) tr.classList.add('owned');
+    tr.innerHTML = `
+      <td class="col-check"><input type="checkbox" id="${key}" value="${i}" ${checked ? 'checked' : ''}></td>
+      <td class="col-name">${w.name}</td>
+      <td class="col-year">${w.hof}</td>
+      <td class="col-year" style="color:var(--muted)">${w.cardYear}</td>
+      <td class="col-card">${w.card}</td>
+      <td class="col-set">${w.set}</td>
+      <td class="col-num">${w.num}</td>
+      <td>${getEraTag(w.era)}</td>
+      <td class="col-note">${w.note}</td>
+    `;
+    tbody.appendChild(tr);
+    document.getElementById(key).addEventListener('change', function() {
+      localStorage.setItem(key, this.checked ? '1' : '0');
+      this.closest('tr').classList.toggle('owned', this.checked);
+      updateProgress();
+    });
+  });
+  updateProgress();
+  document.getElementById('totalCount').textContent = hofData.length;
+}
+
+function updateProgress() {
+  const all = document.querySelectorAll('#hofBody input[type="checkbox"]');
+  const checked = document.querySelectorAll('#hofBody input[type="checkbox"]:checked');
+  const total = hofData.length;
+  const owned = document.querySelectorAll(`#hofBody tr:not(.hidden) input:checked`).length;
+  const visibleTotal = document.querySelectorAll('#hofBody tr:not(.hidden)').length;
+  const globalOwned = Array.from({length: hofData.length}, (_, i) => localStorage.getItem(`${setId}-${i}`) === '1').filter(Boolean).length;
+  document.getElementById('ownedCount').textContent = globalOwned;
+  document.getElementById('totalCount').textContent = total;
+  const pct = total ? Math.round((globalOwned / total) * 100) : 0;
+  document.getElementById('hofBar').style.width = pct + '%';
+  document.getElementById('progLabel').textContent = `${globalOwned} / ${total} (${pct}%)`;
+}
+
+function clearAllHOF() {
+  for (let i = 0; i < hofData.length; i++) {
+    localStorage.removeItem(`${setId}-${i}`);
+  }
+  renderTable(hofData);
+}
+
+// Filter
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('#hofBody tr').forEach(tr => {
+      if (f === 'all') {
+        tr.classList.remove('hidden');
+      } else if (f === 'owned') {
+        const cb = tr.querySelector('input');
+        tr.classList.toggle('hidden', !cb.checked);
+      } else {
+        const tags = (tr.dataset.tags || '').split(' ');
+        tr.classList.toggle('hidden', !tags.includes(f));
+      }
+    });
+    updateProgress();
+  });
+});
+
+// Sort
+let sortCol = null, sortDir = 1;
+document.querySelectorAll('.hof-table thead th[data-col]').forEach(th => {
+  th.addEventListener('click', () => {
+    const col = th.dataset.col;
+    sortDir = (sortCol === col) ? -sortDir : 1;
+    sortCol = col;
+    document.querySelectorAll('.hof-table thead th').forEach(t => t.classList.remove('sorted'));
+    th.classList.add('sorted');
+    th.querySelector('.sort-arrow').textContent = sortDir === 1 ? '?' : '?';
+    const colMap = { name: 'name', hof: 'hof', cardyear: 'cardYear' };
+    const key = colMap[col];
+    const sorted = [...hofData].sort((a, b) => {
+      const av = a[key], bv = b[key];
+      return typeof av === 'string' ? av.localeCompare(bv) * sortDir : (av - bv) * sortDir;
+    });
+    renderTable(sorted);
+  });
+});
+
+// Init
+renderTable(hofData);
+</script>
+</body>
+</html>
