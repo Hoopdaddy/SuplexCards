@@ -14,8 +14,21 @@ function initNav() {
   const hamburger = document.querySelector('.hamburger');
   const navLinks  = document.querySelector('.nav-links');
   if (hamburger) {
-    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open');
+    });
   }
+
+  // Close nav when a non-dropdown link is tapped on mobile
+  navLinks?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      if (window.innerWidth <= 900) {
+        navLinks.classList.remove('open');
+        hamburger?.classList.remove('open');
+      }
+    });
+  });
 
   // Mobile: tap dropdown trigger to expand submenu
   document.querySelectorAll('.dropdown .nav-drop-trigger').forEach(trigger => {

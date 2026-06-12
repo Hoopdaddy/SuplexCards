@@ -156,8 +156,11 @@ nav {
 }
 
 /* Hamburger */
-.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-.hamburger span { width: 25px; height: 2px; background: var(--gold); display: block; }
+.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; border-radius: 3px; }
+.hamburger span { width: 25px; height: 2px; background: var(--gold); display: block; transition: transform 0.2s, opacity 0.2s; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ── TICKER ──────────────────────────────────────── */
 .ticker-wrap {
@@ -635,14 +638,112 @@ footer .footer-nav a:hover { color: var(--gold); }
 
 /* ── RESPONSIVE ──────────────────────────────────── */
 @media (max-width: 900px) {
+  /* Nav */
   .nav-links { display: none; flex-direction: column; position: fixed; top: 65px; left: 0; right: 0; bottom: 0; background: var(--darker); padding: 1rem; overflow-y: auto; z-index: 999; }
   .nav-links.open { display: flex; }
+  .nav-links > li > a,
+  .nav-links > li > .nav-drop-trigger { padding: 0.65rem 0.9rem; font-size: 0.85rem; }
   .dropdown-menu { position: static; border: none; border-left: 3px solid var(--border); margin-left: 1rem; box-shadow: none; display: none; }
+  .dropdown-menu li a { font-size: 0.82rem; padding: 0.55rem 1rem; }
   .dropdown.open .dropdown-menu { display: block; }
   .hamburger { display: flex; }
+  .hamburger span { width: 28px; height: 3px; }
+
+  /* Layout */
   .two-col { grid-template-columns: 1fr; }
+  .section { padding: 2rem 1.1rem; }
+  .hero { padding: 3.5rem 1.1rem 3rem; }
+  .hero-era { padding: 2.5rem 1.1rem 2rem; }
+
+  /* Wrestlers layout: stack sidebar above detail */
+  .wl-layout { grid-template-columns: 1fr; }
+  .wl-roster { position: static; max-height: 240px; border-right: none; border-bottom: 1px solid var(--border); }
+
+  /* HOF table: horizontal scroll */
+  .hof-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  /* Hide low-priority columns */
+  .hof-table .col-note,
+  .hof-table th:nth-child(9),
+  .hof-table td:nth-child(9) { display: none; }
+  .hof-table th:nth-child(3),
+  .hof-table td:nth-child(3) { display: none; }
+
+  /* Era stats */
+  .era-stats { gap: 1.2rem; justify-content: center; }
+
+  /* Data table: horizontal scroll wrapper */
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .data-table { min-width: 500px; }
 }
+
+@media (max-width: 640px) {
+  /* Hero CTAs: 2-col */
+  .hero-ctas { grid-template-columns: repeat(2, 1fr); }
+
+  /* Checklist controls: stack progress bar to full width */
+  .checklist-controls { gap: 0.4rem; }
+  .progress-bar-wrap { min-width: unset; flex-basis: 100%; order: 3; }
+  .progress-label { order: 4; }
+
+  /* HOF table: hide more columns on small screens */
+  .hof-table th:nth-child(7),
+  .hof-table td:nth-child(7),
+  .hof-table th:nth-child(8),
+  .hof-table td:nth-child(8) { display: none; }
+
+  /* Progress summary */
+  .progress-summary { gap: 1rem; }
+  .prog-bar-big { min-width: unset; flex-basis: 100%; }
+
+  /* Set header: allow title to wrap */
+  .set-header { flex-wrap: wrap; gap: 0.4rem; }
+  .set-header h3 { font-size: 0.88rem; }
+  .set-header .set-sub { font-size: 0.73rem; }
+
+  /* Search results padding */
+  .search-results-wrap { padding: 1.5rem 0.9rem 2rem; }
+  .search-hero { padding: 2.5rem 1rem 2rem; }
+}
+
 @media (max-width: 480px) {
+  /* Single column grids */
   .card-list { grid-template-columns: 1fr; }
   .era-grid { grid-template-columns: 1fr; }
+  .hero-ctas { grid-template-columns: 1fr; }
+  .card-grid { grid-template-columns: 1fr; }
+
+  /* Section + hero */
+  .section { padding: 1.5rem 0.9rem; }
+  .hero { padding: 2.5rem 0.9rem 2rem; }
+  .hero .hero-sub { font-size: 0.95rem; }
+
+  /* HOF table: hide Set column too */
+  .hof-table th:nth-child(6),
+  .hof-table td:nth-child(6) { display: none; }
+
+  /* Progress summary stack */
+  .progress-summary { flex-direction: column; align-items: stretch; }
+  .prog-bar-big { min-width: unset; }
+
+  /* Era stats row */
+  .era-stats { flex-wrap: wrap; gap: 1rem; }
+  .era-stat { min-width: 80px; }
+
+  /* Footer */
+  footer { padding: 2rem 1rem; margin-top: 2rem; }
+  footer .footer-logo-text { font-size: 1.6rem; }
+
+  /* Tab buttons: smaller */
+  .tab-btn { font-size: 0.75rem; padding: 0.38rem 0.75rem; }
+
+  /* Touch targets: bigger minimum */
+  .btn-small { padding: 0.45rem 0.8rem; }
+  .filter-btn { padding: 0.45rem 0.8rem; min-height: 36px; }
+
+  /* Card items: slightly more padding for touch */
+  .card-item { padding: 0.38rem 0.4rem; }
+
+  /* Wl-search: stacked */
+  .wl-search-wrap { flex-direction: column; }
+  .wl-roster { max-height: 180px; }
 }
