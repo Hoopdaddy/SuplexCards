@@ -490,6 +490,18 @@ nav {
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
 }
+.card-item.card-divider {
+  grid-column: 1 / -1;
+  background: none;
+  padding: 0.35rem 0.4rem 0.2rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--border);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--gold);
+}
 .card-item {
   display: flex;
   align-items: center;
