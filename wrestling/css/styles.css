@@ -527,6 +527,18 @@ nav {
   letter-spacing: 0.04em;
   flex-shrink: 0;
 }
+.hof-badge {
+  font-size: 0.58rem;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  background: #1a0800;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 0.05rem 0.3rem;
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
 
 /* ── ERA INFO BLOCK ──────────────────────────────── */
 .era-intro {
