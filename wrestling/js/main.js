@@ -135,6 +135,11 @@ function initCardFilters() {
           item.style.display = (filter === 'all' || item.dataset.type === filter) ? '' : 'none';
         });
 
+        // Parallel callout only makes sense under All / Parallel views
+        cardList.querySelectorAll('.parallel-note').forEach(note => {
+          note.style.display = (filter === 'all' || filter === 'parallel') ? '' : 'none';
+        });
+
         // Hide dividers whose entire section is filtered out
         cardList.querySelectorAll('.card-item.card-divider').forEach(div => {
           let sib = div.nextElementSibling;
