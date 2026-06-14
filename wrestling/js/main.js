@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTabs();
   initSetAccordions();
   initChecklists();
+  initCardFilters();
 });
 
 // ── NAV ──────────────────────────────────────────────
@@ -112,6 +113,40 @@ function initChecklists() {
     });
 
     updateProgress(body);
+  });
+}
+
+// ── CARD TYPE FILTERS ─────────────────────────────
+function initCardFilters() {
+  document.querySelectorAll('.card-filter-strip').forEach(strip => {
+    const body     = strip.closest('.checklist-body');
+    if (!body) return;
+    const cardList = body.querySelector('.card-list');
+    const buttons  = strip.querySelectorAll('.filter-btn');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        if (!cardList) return;
+
+        cardList.querySelectorAll('.card-item:not(.card-divider)').forEach(item => {
+          item.style.display = (filter === 'all' || item.dataset.type === filter) ? '' : 'none';
+        });
+
+        // Hide dividers whose entire section is filtered out
+        cardList.querySelectorAll('.card-item.card-divider').forEach(div => {
+          let sib = div.nextElementSibling;
+          let visible = false;
+          while (sib && !sib.classList.contains('card-divider')) {
+            if (sib.style.display !== 'none') { visible = true; break; }
+            sib = sib.nextElementSibling;
+          }
+          div.style.display = visible ? '' : 'none';
+        });
+      });
+    });
   });
 }
 

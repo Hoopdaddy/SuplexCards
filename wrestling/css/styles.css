@@ -552,6 +552,63 @@ nav {
   flex-shrink: 0;
 }
 
+/* ── YEAR BREAK ─────────────────────────────────── */
+.year-break {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2.5rem 0 1.8rem;
+}
+.year-break-line { flex: 1; height: 1px; background: var(--border); }
+.year-break-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: 0.1em;
+}
+/* ── CARD TYPE FILTER ────────────────────────────── */
+.card-filter-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  padding: 0.55rem 0.8rem;
+  border-top: 1px solid var(--border);
+}
+.filter-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.67rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-right: 0.2rem;
+}
+.filter-btn {
+  padding: 0.18rem 0.65rem;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.67rem;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.filter-btn:hover { border-color: var(--text); color: var(--text); }
+.filter-btn.active[data-filter="all"]    { background: var(--mid);    border-color: var(--text);  color: var(--text); }
+.filter-btn.active[data-filter="base"]   { background: var(--border); border-color: var(--muted); color: var(--text); }
+.filter-btn.active[data-filter="insert"] { background: var(--blue);   border-color: var(--blue);  color: #fff; }
+.filter-btn.active[data-filter="relic"]  { background: var(--red);    border-color: var(--red);   color: #fff; }
+.filter-btn.active[data-filter="auto"]   { background: #9b59b6;       border-color: #9b59b6;      color: #fff; }
+/* ── ADDITIONAL TAGS ─────────────────────────────── */
+.tag-relic    { background: rgba(231,76,60,0.12);  color: #e74c3c; }
+.tag-auto     { background: rgba(155,89,182,0.12); color: #9b59b6; }
+.tag-insert   { background: rgba(52,152,219,0.12); color: var(--blue); }
+.tag-parallel { background: rgba(232,200,74,0.10); color: var(--gold); }
+
 /* ── ERA INFO BLOCK ──────────────────────────────── */
 .era-intro {
   background: var(--panel);
