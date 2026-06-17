@@ -5,6 +5,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initTabs();
+  initYearFilter();
   initSetAccordions();
   initChecklists();
   initCardFilters();
@@ -60,6 +61,46 @@ function initTabs() {
         document.querySelectorAll('.checklist-panel').forEach(p => {
           p.classList.toggle('active', p.dataset.panel === target);
         });
+        // Clear year filter when a tab is clicked
+        const section = tabGroup.closest('.section');
+        if (section) {
+          section.classList.remove('year-filter-active');
+          section.querySelectorAll('.set-header').forEach(h => h.classList.remove('year-match'));
+          const yearBar = section.querySelector('.year-filter-bar');
+          if (yearBar) yearBar.querySelectorAll('.year-btn').forEach(b => b.classList.toggle('active', b.dataset.year === 'all'));
+        }
+      });
+    });
+  });
+}
+
+// ── YEAR FILTER ───────────────────────────────────────
+function initYearFilter() {
+  document.querySelectorAll('.year-filter-bar').forEach(bar => {
+    const section = bar.closest('.section');
+    const tabBtns = section.querySelectorAll('.tab-btn');
+    bar.querySelectorAll('.year-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        bar.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const yr = btn.dataset.year;
+        if (yr === 'all') {
+          section.classList.remove('year-filter-active');
+          section.querySelectorAll('.set-header').forEach(h => h.classList.remove('year-match'));
+        } else {
+          section.classList.add('year-filter-active');
+          section.querySelectorAll('.set-header[data-year]').forEach(h => {
+            const match = h.dataset.year === yr;
+            h.classList.toggle('year-match', match);
+            // Also show/hide the adjacent checklist-body
+            const body = h.nextElementSibling;
+            if (body && body.classList.contains('checklist-body')) {
+              body.style.display = match && body.classList.contains('open') ? 'block' : '';
+            }
+          });
+          // Deactivate tab highlight since we're showing across tabs
+          tabBtns.forEach(b => b.classList.remove('active'));
+        }
       });
     });
   });

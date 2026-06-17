@@ -399,7 +399,7 @@ nav {
 .tag-key     { background: rgba(204,31,31,0.25);  color: #ff6b6b; font-style: italic; }
 
 /* ── CHECKLISTS ──────────────────────────────────── */
-.checklist-tabs { display: flex; gap: 0.4rem; margin-bottom: 1.8rem; flex-wrap: wrap; }
+.checklist-tabs { display: flex; gap: 0.4rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
 .tab-btn {
   font-family: 'Oswald', sans-serif;
   font-weight: 600;
@@ -417,7 +417,36 @@ nav {
 .tab-btn:hover  { border-color: var(--gold); color: var(--gold); }
 .tab-btn.active { border-color: var(--red); background: var(--red); color: #fff; }
 
+.year-filter-bar {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.8rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+.year-btn {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.year-btn:hover  { border-color: var(--green); color: var(--green); }
+.year-btn.active { border-color: var(--green); background: var(--green); color: #111; }
+
 .checklist-panel { display: none; }
+.year-filter-active .checklist-panel { display: block; }
+.year-filter-active .year-break { display: none; }
+.year-filter-active .set-header[data-year] { display: none; }
+.year-filter-active .set-header.year-match { display: flex; }
 .checklist-panel.active { display: block; }
 
 .set-header {
