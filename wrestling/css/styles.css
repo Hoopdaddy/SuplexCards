@@ -445,6 +445,7 @@ nav {
 .checklist-panel { display: none; }
 .year-filter-active .checklist-panel { display: block; }
 .year-filter-active .year-break { display: none; }
+.year-filter-active .era-intro { display: none; }
 .year-filter-active .set-header[data-year] { display: none; }
 .year-filter-active .set-header.year-match { display: flex; }
 .checklist-panel.active { display: block; }
