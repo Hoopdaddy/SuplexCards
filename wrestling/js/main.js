@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTabs();
   initYearFilter();
   initSetAccordions();
+  initTierTrackers();
   initChecklists();
   initCardFilters();
 });
@@ -118,6 +119,58 @@ function initSetAccordions() {
   });
 }
 
+// ── TIER TRACKERS (parallel rainbow) ─────────────────
+// A .tier-bar lets a collector switch which parallel of a section they're
+// tracking. Each tier saves to its own localStorage namespace; the section's
+// base/default tier keeps the legacy unsuffixed key for backward compatibility.
+function initTierTrackers() {
+  document.querySelectorAll('.tier-bar').forEach(bar => {
+    if (!bar.dataset.baseTier)   bar.dataset.baseTier = 'base';
+    if (!bar.dataset.activeTier) bar.dataset.activeTier = bar.dataset.baseTier;
+
+    // Controlled boxes = following card-item checkboxes until the next divider.
+    const boxes = [];
+    let sib = bar.nextElementSibling;
+    while (sib && !(sib.classList.contains('card-item') && sib.classList.contains('card-divider'))) {
+      if (sib.classList.contains('tier-bar')) break;
+      const cb = sib.querySelector && sib.querySelector('input[type="checkbox"]');
+      if (cb) { boxes.push(cb); cb._tierBar = bar; }
+      sib = sib.nextElementSibling;
+    }
+    bar._boxes = boxes;
+
+    bar.querySelectorAll('.tier-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const setId = bar.closest('.checklist-body').dataset.setId;
+        bar.dataset.activeTier = pill.dataset.tier;
+        bar.querySelectorAll('.tier-pill').forEach(p => p.classList.toggle('active', p === pill));
+        boxes.forEach(cb => {
+          const on = localStorage.getItem(keyFor(setId, cb)) === '1';
+          cb.checked = on;
+          cb.closest('.card-item').classList.toggle('checked', on);
+        });
+        updateTierCount(bar);
+        updateProgress(bar.closest('.checklist-body'));
+      });
+    });
+  });
+}
+
+// localStorage key for a checkbox, honoring its tier-bar's active tier.
+function keyFor(setId, cb) {
+  const bar = cb._tierBar;
+  if (!bar) return `${setId}-${cb.value}`;
+  const tier = bar.dataset.activeTier || bar.dataset.baseTier;
+  return tier === bar.dataset.baseTier ? `${setId}-${cb.value}` : `${setId}__${tier}-${cb.value}`;
+}
+
+function updateTierCount(bar) {
+  const boxes = bar._boxes || [];
+  const checked = boxes.filter(cb => cb.checked).length;
+  const cnt = bar.querySelector('.tier-bar-count');
+  if (cnt) cnt.textContent = `${checked}/${boxes.length}`;
+}
+
 // ── CHECKLISTS (localStorage) ────────────────────────
 function initChecklists() {
   document.querySelectorAll('.checklist-body').forEach(body => {
@@ -125,14 +178,15 @@ function initChecklists() {
     const boxes = body.querySelectorAll('input[type="checkbox"]');
 
     boxes.forEach(cb => {
-      if (localStorage.getItem(`${setId}-${cb.value}`) === '1') {
+      if (localStorage.getItem(keyFor(setId, cb)) === '1') {
         cb.checked = true;
         cb.closest('.card-item').classList.add('checked');
       }
       cb.addEventListener('change', () => {
-        localStorage.setItem(`${setId}-${cb.value}`, cb.checked ? '1' : '0');
+        localStorage.setItem(keyFor(setId, cb), cb.checked ? '1' : '0');
         cb.closest('.card-item').classList.toggle('checked', cb.checked);
         updateProgress(body);
+        if (cb._tierBar) updateTierCount(cb._tierBar);
       });
     });
 
@@ -140,20 +194,23 @@ function initChecklists() {
       boxes.forEach(cb => {
         cb.checked = true;
         cb.closest('.card-item').classList.add('checked');
-        localStorage.setItem(`${setId}-${cb.value}`, '1');
+        localStorage.setItem(keyFor(setId, cb), '1');
       });
       updateProgress(body);
+      body.querySelectorAll('.tier-bar').forEach(updateTierCount);
     });
     body.querySelector('.btn-uncheck-all')?.addEventListener('click', () => {
       boxes.forEach(cb => {
         cb.checked = false;
         cb.closest('.card-item').classList.remove('checked');
-        localStorage.setItem(`${setId}-${cb.value}`, '0');
+        localStorage.setItem(keyFor(setId, cb), '0');
       });
       updateProgress(body);
+      body.querySelectorAll('.tier-bar').forEach(updateTierCount);
     });
 
     updateProgress(body);
+    body.querySelectorAll('.tier-bar').forEach(updateTierCount);
   });
 }
 

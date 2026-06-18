@@ -680,6 +680,69 @@ nav {
 .card-item[data-type="parallel"] .card-num { color: var(--gold); }
 .card-item[data-type="parallel"]:hover { background: rgba(232,200,74,0.12); }
 
+/* ── TIER TRACKER (parallel rainbow) ──────────────── */
+.tier-bar {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.3rem 0 0.55rem;
+  padding: 0.5rem 0.7rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  border-radius: 4px;
+}
+.tier-bar-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  margin-right: 0.1rem;
+}
+.tier-pill {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.22rem 0.62rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.tier-pill:hover { color: var(--text); border-color: var(--muted); }
+.tier-pill[data-tier="blue"]  { border-color: rgba(52,152,219,0.4); }
+.tier-pill[data-tier="black"] { border-color: rgba(216,216,216,0.4); }
+.tier-pill[data-tier="gold"]  { border-color: rgba(232,200,74,0.4); }
+.tier-pill[data-tier="red"]   { border-color: rgba(204,31,31,0.5); }
+.tier-pill.active { color: #000; }
+.tier-pill[data-tier="base"].active  { background: var(--green); border-color: var(--green); }
+.tier-pill[data-tier="blue"].active  { background: var(--blue);  border-color: var(--blue); }
+.tier-pill[data-tier="black"].active { background: #d8d8d8; border-color: #d8d8d8; }
+.tier-pill[data-tier="gold"].active  { background: var(--gold);  border-color: var(--gold); }
+.tier-pill[data-tier="red"].active   { background: var(--red);   border-color: var(--red); color: #fff; }
+.tier-bar-count {
+  margin-left: auto;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+}
+.tier-bar-info {
+  flex-basis: 100%;
+  font-size: 0.7rem;
+  line-height: 1.45;
+  color: var(--muted);
+  margin-top: 0.1rem;
+}
+
 /* ── ADDITIONAL TAGS ─────────────────────────────── */
 .tag-relic    { background: rgba(231,76,60,0.12);  color: #e74c3c; }
 .tag-auto     { background: rgba(155,89,182,0.12); color: #9b59b6; }
