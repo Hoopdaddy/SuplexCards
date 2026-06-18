@@ -535,6 +535,18 @@ nav {
   letter-spacing: 0.07em;
   color: var(--gold);
 }
+.card-item.card-section-label {
+  grid-column: 1 / -1;
+  background: none;
+  padding: 0.25rem 0.4rem 0.1rem;
+  margin-top: 0.35rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
 .card-item {
   display: flex;
   align-items: center;
@@ -722,12 +734,26 @@ nav {
 .tier-pill[data-tier="black"] { border-color: rgba(216,216,216,0.4); }
 .tier-pill[data-tier="gold"]  { border-color: rgba(232,200,74,0.4); }
 .tier-pill[data-tier="red"]   { border-color: rgba(204,31,31,0.5); }
+.tier-pill[data-tier="green"] { border-color: rgba(46,204,113,0.4); }
+.tier-pill[data-tier="rnbw"]  { border-color: rgba(155,89,182,0.4); }
+.tier-pill[data-tier="plat"]  { border-color: rgba(180,180,220,0.4); }
+.tier-pill[data-tier="rfct"]  { border-color: rgba(52,152,219,0.3); }
+.tier-pill[data-tier="xfct"]  { border-color: rgba(231,76,60,0.3); }
+.tier-pill[data-tier="sfct"]  { border-color: rgba(232,200,74,0.5); }
+.tier-pill[data-tier="super"] { border-color: rgba(155,89,182,0.4); }
 .tier-pill.active { color: #000; }
-.tier-pill[data-tier="base"].active  { background: var(--green); border-color: var(--green); }
-.tier-pill[data-tier="blue"].active  { background: var(--blue);  border-color: var(--blue); }
-.tier-pill[data-tier="black"].active { background: #d8d8d8; border-color: #d8d8d8; }
-.tier-pill[data-tier="gold"].active  { background: var(--gold);  border-color: var(--gold); }
-.tier-pill[data-tier="red"].active   { background: var(--red);   border-color: var(--red); color: #fff; }
+.tier-pill[data-tier="base"].active  { background: var(--green);   border-color: var(--green); }
+.tier-pill[data-tier="blue"].active  { background: var(--blue);    border-color: var(--blue); }
+.tier-pill[data-tier="black"].active { background: #d8d8d8;        border-color: #d8d8d8; }
+.tier-pill[data-tier="gold"].active  { background: var(--gold);    border-color: var(--gold); }
+.tier-pill[data-tier="red"].active   { background: var(--red);     border-color: var(--red); color: #fff; }
+.tier-pill[data-tier="green"].active { background: #27ae60;        border-color: #27ae60; }
+.tier-pill[data-tier="rnbw"].active  { background: var(--purple);  border-color: var(--purple); color: #fff; }
+.tier-pill[data-tier="plat"].active  { background: #a8b4c8;        border-color: #a8b4c8; }
+.tier-pill[data-tier="rfct"].active  { background: #5dade2;        border-color: #5dade2; }
+.tier-pill[data-tier="xfct"].active  { background: #e74c3c;        border-color: #e74c3c; color: #fff; }
+.tier-pill[data-tier="sfct"].active  { background: var(--gold);    border-color: var(--gold); }
+.tier-pill[data-tier="super"].active { background: var(--purple);  border-color: var(--purple); color: #fff; }
 .tier-bar-count {
   margin-left: auto;
   font-family: 'Oswald', sans-serif;
