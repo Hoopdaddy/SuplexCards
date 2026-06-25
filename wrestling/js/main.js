@@ -101,22 +101,35 @@ function _applyFilters() {
     header.style.display = visible ? '' : 'none';
     const body = header.nextElementSibling;
     if (body && body.classList.contains('checklist-body')) {
-      // When hiding, close the body; when showing, restore whatever state it had
-      if (!visible) {
-        body.style.display = 'none';
-      } else {
-        body.style.display = body.classList.contains('open') ? 'block' : '';
-      }
+      body.style.display = visible ? (body.classList.contains('open') ? 'block' : '') : 'none';
     }
   });
 
-  // Hide year-breaks and era-intros when year filter is active
-  const section = _activeSection;
-  if (section) {
-    const yearActive = _activeYear !== 'all';
-    section.querySelectorAll('.year-break').forEach(el => el.style.display = yearActive ? 'none' : '');
-    section.querySelectorAll('.era-intro').forEach(el => el.style.display  = yearActive ? 'none' : '');
-  }
+  // Hide year-breaks that have no visible sets, and era-intros when year-filtered
+  _hideEmptyYearBreaks();
+}
+
+function _hideEmptyYearBreaks() {
+  // Hide each year-break that has no visible set-header following it
+  // (stops at the next year-break or end of container)
+  document.querySelectorAll('.year-break').forEach(yb => {
+    let sib = yb.nextElementSibling;
+    let hasVisible = false;
+    while (sib && !sib.classList.contains('year-break')) {
+      if (sib.classList.contains('set-header') && sib.style.display !== 'none') {
+        hasVisible = true;
+        break;
+      }
+      sib = sib.nextElementSibling;
+    }
+    yb.style.display = hasVisible ? '' : 'none';
+  });
+
+  // Hide era-intro banners when a year or tab filter is active
+  const filtered = _activeYear !== 'all' || _activeTabs.size > 0;
+  document.querySelectorAll('.era-intro').forEach(el => {
+    el.style.display = filtered ? 'none' : '';
+  });
 }
 
 function initTabs() {
