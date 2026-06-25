@@ -50,37 +50,72 @@ function initNav() {
   });
 }
 
-// ── TABS (multi-select toggle) ────────────────────────
-// Track which tab panels are currently active. Empty = show all.
+// ── TABS (multi-select, name-based filtering) ─────────
+// Rules: which set names belong to each tab.
+// "flagship" = anything not matching the other three.
+const TAB_RULES = {
+  chrome:   n => /chrome/i.test(n),
+  nxt:      n => /\bnxt\b/i.test(n),
+  premium:  n => /undisputed|transcendent/i.test(n),
+  flagship: n => !(/chrome/i.test(n) || /\bnxt\b/i.test(n) || /undisputed|transcendent/i.test(n))
+};
+
 const _activeTabs = new Set(['flagship']);
-let _activeYear = 'all';
+let _activeYear   = 'all';
 let _activeSection = null;
 
-function _applyPanels() {
-  const showAll = _activeTabs.size === 0;
-  document.querySelectorAll('.checklist-panel').forEach(p => {
-    p.classList.toggle('active', showAll || _activeTabs.has(p.dataset.panel));
-  });
+function _setName(header) {
+  const el = header.querySelector('h3') || header.querySelector('.set-name');
+  return el ? el.textContent.trim() : '';
+}
+
+function _tabVisible(name) {
+  if (_activeTabs.size === 0) return true;          // nothing selected → show all
+  for (const tab of _activeTabs) {
+    if (TAB_RULES[tab] && TAB_RULES[tab](name)) return true;
+  }
+  return false;
+}
+
+// Returns whether a set-header should be visible given BOTH tab and year filters.
+function _setVisible(header) {
+  const name = _setName(header);
+  if (!name) return true;                           // no name → always show (structural)
+  if (!_tabVisible(name)) return false;             // tab filter hides it
+  if (_activeYear === 'all') return true;           // no year filter
+  return header.dataset.year === _activeYear;       // year must match
+}
+
+function _applyFilters() {
+  // All panels always visible – filtering is per-set-header now
+  document.querySelectorAll('.checklist-panel').forEach(p => p.classList.add('active'));
+
+  // Update tab button active states
   document.querySelectorAll('.tab-btn').forEach(b => {
     b.classList.toggle('active', _activeTabs.has(b.dataset.tab));
   });
-  // Re-apply year filter so newly visible panels are filtered correctly
-  if (_activeYear !== 'all' && _activeSection) {
-    _applyYearFilter(_activeSection, _activeYear);
-  }
-}
 
-function _applyYearFilter(section, yr) {
-  if (yr === 'all') {
-    section.classList.remove('year-filter-active');
-    section.querySelectorAll('.set-header').forEach(h => h.classList.remove('year-match'));
-  } else {
-    section.classList.add('year-filter-active');
-    section.querySelectorAll('.set-header[data-year]').forEach(h => {
-      const panel = h.closest('.checklist-panel');
-      const inVisible = !panel || panel.classList.contains('active');
-      h.classList.toggle('year-match', inVisible && h.dataset.year === yr);
-    });
+  // Show/hide each set header + its body
+  document.querySelectorAll('.set-header').forEach(header => {
+    const visible = _setVisible(header);
+    header.style.display = visible ? '' : 'none';
+    const body = header.nextElementSibling;
+    if (body && body.classList.contains('checklist-body')) {
+      // When hiding, close the body; when showing, restore whatever state it had
+      if (!visible) {
+        body.style.display = 'none';
+      } else {
+        body.style.display = body.classList.contains('open') ? 'block' : '';
+      }
+    }
+  });
+
+  // Hide year-breaks and era-intros when year filter is active
+  const section = _activeSection;
+  if (section) {
+    const yearActive = _activeYear !== 'all';
+    section.querySelectorAll('.year-break').forEach(el => el.style.display = yearActive ? 'none' : '');
+    section.querySelectorAll('.era-intro').forEach(el => el.style.display  = yearActive ? 'none' : '');
   }
 }
 
@@ -94,24 +129,23 @@ function initTabs() {
         } else {
           _activeTabs.add(tab);      // toggle on
         }
-        _applyPanels();
+        _applyFilters();
       });
     });
   });
-  _applyPanels(); // apply initial state
+  _applyFilters(); // apply initial state
 }
 
 // ── YEAR FILTER ───────────────────────────────────────
 function initYearFilter() {
   document.querySelectorAll('.year-filter-bar').forEach(bar => {
-    const section = bar.closest('.section');
-    _activeSection = section;
+    _activeSection = bar.closest('.section');
     bar.querySelectorAll('.year-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         bar.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         _activeYear = btn.dataset.year;
-        _applyYearFilter(section, _activeYear);
+        _applyFilters();
       });
     });
   });

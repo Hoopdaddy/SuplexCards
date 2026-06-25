@@ -442,13 +442,8 @@ nav {
 .year-btn:hover  { border-color: var(--green); color: var(--green); }
 .year-btn.active { border-color: var(--green); background: var(--green); color: #111; }
 
-.checklist-panel { display: none; }
-.checklist-panel.active { display: block; }
-/* Year filter: scoped to visible (active) panels only */
-.year-filter-active .checklist-panel.active .year-break { display: none; }
-.year-filter-active .checklist-panel.active .era-intro { display: none; }
-.year-filter-active .checklist-panel.active .set-header[data-year] { display: none; }
-.year-filter-active .checklist-panel.active .set-header.year-match { display: flex; }
+.checklist-panel { display: block; }
+/* Filtering is handled entirely by JS — no CSS show/hide needed for panels or year */
 
 .set-header {
   display: flex;
