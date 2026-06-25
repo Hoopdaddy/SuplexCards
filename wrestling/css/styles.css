@@ -464,7 +464,8 @@ nav {
   transition: background 0.15s;
 }
 .set-header:hover { background: var(--panel); }
-.set-header h3 {
+.set-header h3,
+.set-header .set-name {
   font-family: 'Oswald', sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
@@ -472,6 +473,9 @@ nav {
   text-transform: uppercase;
 }
 .set-header .set-sub { font-size: 0.78rem; color: var(--muted); font-family: 'Oswald', sans-serif; margin-top: 0.1rem; }
+/* Title row wrapper for newer-format set headers */
+.set-header .set-title-row { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.set-header .set-count { font-size: 0.72rem; color: var(--muted); font-family: 'Oswald', sans-serif; margin-top: 0.1rem; }
 .set-chevron { color: var(--muted); font-size: 0.9rem; transition: transform 0.2s; flex-shrink: 0; }
 .set-header.open .set-chevron { transform: rotate(180deg); }
 .set-header.open { border-left-color: var(--red); }
