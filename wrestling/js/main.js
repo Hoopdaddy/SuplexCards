@@ -53,11 +53,15 @@ function initNav() {
 // ── TABS (multi-select, name-based filtering) ─────────
 // Rules: which set names belong to each tab.
 // "flagship" = anything not matching the other three.
+// Premium = Undisputed, Transcendent, Legends, Women's Division, Elite
+// — matches every set that was placed in the premium panel.
+const _PREMIUM = /undisputed|transcendent|\blegends\b|women.s.division|\belite\b/i;
+
 const TAB_RULES = {
   chrome:   n => /chrome/i.test(n),
   nxt:      n => /\bnxt\b/i.test(n),
-  premium:  n => /undisputed|transcendent/i.test(n),
-  flagship: n => !(/chrome/i.test(n) || /\bnxt\b/i.test(n) || /undisputed|transcendent/i.test(n))
+  premium:  n => _PREMIUM.test(n),
+  flagship: n => !(/chrome/i.test(n) || /\bnxt\b/i.test(n) || _PREMIUM.test(n))
 };
 
 const _activeTabs = new Set(['flagship']);
