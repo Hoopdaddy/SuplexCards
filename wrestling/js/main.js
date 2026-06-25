@@ -142,9 +142,12 @@ function initTabs() {
       btn.addEventListener('click', () => {
         const tab = btn.dataset.tab;
         if (_activeTabs.has(tab)) {
-          _activeTabs.delete(tab);   // toggle off
+          // Clicking the active tab deselects it → show all
+          _activeTabs.clear();
         } else {
-          _activeTabs.add(tab);      // toggle on
+          // Clicking a different tab → exclusive selection
+          _activeTabs.clear();
+          _activeTabs.add(tab);
         }
         _applyFilters();
       });
