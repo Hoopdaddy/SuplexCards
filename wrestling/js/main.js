@@ -52,19 +52,33 @@ function initNav() {
 
 // ── TABS (multi-select, name-based filtering) ─────────
 // Rules: which set names belong to each tab.
-// "flagship" = anything not matching the other three.
-// Premium = Undisputed, Transcendent, Legends, Women's Division, Elite
-// — matches every set that was placed in the premium panel.
-const _PREMIUM = /undisputed|transcendent|\blegends\b|women.s.division|\belite\b/i;
+// First Topps premium: Undisputed, Transcendent, Legends, Women's Division, Elite
+const _PREMIUM_TOPPS  = /undisputed|transcendent|\blegends\b|women.s.division|\belite\b/i;
+// Panini premium: National Treasures, Immaculate, Impeccable, Prizm Premium Box Set
+const _PREMIUM_PANINI = /national.treasures|immaculate|impeccable|prizm.premium.box/i;
+const _isPremium      = n => _PREMIUM_TOPPS.test(n) || _PREMIUM_PANINI.test(n);
 
 const TAB_RULES = {
+  // ── First Topps era ──────────────────────────────────
   chrome:   n => /chrome/i.test(n),
+  flagship: n => !(/chrome/i.test(n) || /\bnxt\b/i.test(n) || _isPremium(n)),
+
+  // ── Panini era ───────────────────────────────────────
+  prizm:    n => /prizm/i.test(n) && !_PREMIUM_PANINI.test(n),
+  select:   n => /select/i.test(n),
+
+  // ── Shared ───────────────────────────────────────────
   nxt:      n => /\bnxt\b/i.test(n),
-  premium:  n => _PREMIUM.test(n),
-  flagship: n => !(/chrome/i.test(n) || /\bnxt\b/i.test(n) || _PREMIUM.test(n))
+  premium:  n => _isPremium(n),
 };
 
-const _activeTabs = new Set(['flagship']);
+// Seed active tabs from whatever tab-btn has class="active" in the HTML.
+// Falls back to 'flagship' for pages that don't mark an initial tab.
+const _seedTab = (() => {
+  const btn = document.querySelector('.tab-btn.active');
+  return btn ? btn.dataset.tab : 'flagship';
+})();
+const _activeTabs = new Set([_seedTab]);
 let _activeYear   = 'all';
 let _activeSection = null;
 
