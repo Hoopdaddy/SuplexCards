@@ -50,58 +50,68 @@ function initNav() {
   });
 }
 
-// ── TABS ─────────────────────────────────────────────
+// ── TABS (multi-select toggle) ────────────────────────
+// Track which tab panels are currently active. Empty = show all.
+const _activeTabs = new Set(['flagship']);
+let _activeYear = 'all';
+let _activeSection = null;
+
+function _applyPanels() {
+  const showAll = _activeTabs.size === 0;
+  document.querySelectorAll('.checklist-panel').forEach(p => {
+    p.classList.toggle('active', showAll || _activeTabs.has(p.dataset.panel));
+  });
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.classList.toggle('active', _activeTabs.has(b.dataset.tab));
+  });
+  // Re-apply year filter so newly visible panels are filtered correctly
+  if (_activeYear !== 'all' && _activeSection) {
+    _applyYearFilter(_activeSection, _activeYear);
+  }
+}
+
+function _applyYearFilter(section, yr) {
+  if (yr === 'all') {
+    section.classList.remove('year-filter-active');
+    section.querySelectorAll('.set-header').forEach(h => h.classList.remove('year-match'));
+  } else {
+    section.classList.add('year-filter-active');
+    section.querySelectorAll('.set-header[data-year]').forEach(h => {
+      const panel = h.closest('.checklist-panel');
+      const inVisible = !panel || panel.classList.contains('active');
+      h.classList.toggle('year-match', inVisible && h.dataset.year === yr);
+    });
+  }
+}
+
 function initTabs() {
   document.querySelectorAll('.checklist-tabs').forEach(tabGroup => {
-    const buttons = tabGroup.querySelectorAll('.tab-btn');
-    buttons.forEach(btn => {
+    tabGroup.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        buttons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const target = btn.dataset.tab;
-        document.querySelectorAll('.checklist-panel').forEach(p => {
-          p.classList.toggle('active', p.dataset.panel === target);
-        });
-        // Clear year filter when a tab is clicked
-        const section = tabGroup.closest('.section');
-        if (section) {
-          section.classList.remove('year-filter-active');
-          section.querySelectorAll('.set-header').forEach(h => h.classList.remove('year-match'));
-          const yearBar = section.querySelector('.year-filter-bar');
-          if (yearBar) yearBar.querySelectorAll('.year-btn').forEach(b => b.classList.toggle('active', b.dataset.year === 'all'));
+        const tab = btn.dataset.tab;
+        if (_activeTabs.has(tab)) {
+          _activeTabs.delete(tab);   // toggle off
+        } else {
+          _activeTabs.add(tab);      // toggle on
         }
+        _applyPanels();
       });
     });
   });
+  _applyPanels(); // apply initial state
 }
 
 // ── YEAR FILTER ───────────────────────────────────────
 function initYearFilter() {
   document.querySelectorAll('.year-filter-bar').forEach(bar => {
     const section = bar.closest('.section');
-    const tabBtns = section.querySelectorAll('.tab-btn');
+    _activeSection = section;
     bar.querySelectorAll('.year-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         bar.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const yr = btn.dataset.year;
-        if (yr === 'all') {
-          section.classList.remove('year-filter-active');
-          section.querySelectorAll('.set-header').forEach(h => h.classList.remove('year-match'));
-        } else {
-          section.classList.add('year-filter-active');
-          section.querySelectorAll('.set-header[data-year]').forEach(h => {
-            const match = h.dataset.year === yr;
-            h.classList.toggle('year-match', match);
-            // Also show/hide the adjacent checklist-body
-            const body = h.nextElementSibling;
-            if (body && body.classList.contains('checklist-body')) {
-              body.style.display = match && body.classList.contains('open') ? 'block' : '';
-            }
-          });
-          // Deactivate tab highlight since we're showing across tabs
-          tabBtns.forEach(b => b.classList.remove('active'));
-        }
+        _activeYear = btn.dataset.year;
+        _applyYearFilter(section, _activeYear);
       });
     });
   });
