@@ -4,6 +4,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
+  normalizeSetStructure();  // must run before any filtering
+  rebuildYearGroups();      // sort sets by year + regenerate dividers
   initTabs();
   initYearFilter();
   initSetAccordions();
@@ -11,6 +13,126 @@ document.addEventListener('DOMContentLoaded', () => {
   initChecklists();
   initCardFilters();
 });
+
+// ── NORMALIZE SET STRUCTURE ──────────────────────────
+// Some sets were authored with the tier-bar placed either INSIDE the
+// set-header or as a stray SIBLING between the header and its body:
+//   <set-header> <tier-bar> <checklist-body>
+// Both break filtering and the accordion, which rely on the body being
+// the header's immediate nextElementSibling. Relocate every tier-bar to
+// the top of its matching checklist-body so the structure is uniform.
+function normalizeSetStructure() {
+  document.querySelectorAll('.tier-bar').forEach(tierBar => {
+    if (tierBar.closest('.checklist-body')) return;  // already in place
+
+    // Find the checklist-body this tier-bar belongs to: walk forward
+    // past the header/tier-bar siblings until we hit the body.
+    let node = tierBar.nextElementSibling;
+    while (node && !node.classList.contains('checklist-body') &&
+           !node.classList.contains('set-header')) {
+      node = node.nextElementSibling;
+    }
+    if (node && node.classList.contains('checklist-body')) {
+      node.insertBefore(tierBar, node.firstChild);
+    }
+  });
+}
+
+// ── REBUILD YEAR GROUPS ──────────────────────────────
+// The hand-authored HTML has two classes of structural damage:
+//   1. year-break dividers that are missing, duplicated, or out of order
+//   2. stray/misplaced </div> tags that let whole sets "leak" out of
+//      their <checklist-panel> and land as direct children of .section
+// Rather than hunt every bad tag in a multi-MB file, rebuild each
+// section from the source of truth — each set-header's name + data-year:
+//   • collect EVERY set (in a panel or leaked) across the whole section
+//   • re-home each set into the correct panel by matching TAB_RULES
+//   • sort each panel's sets by year and emit one fresh divider per year
+// An .era-intro banner keeps its place at the top of its panel.
+const _PANEL_PRIORITY = ['premium', 'nxt', 'chrome', 'select', 'prizm', 'flagship'];
+
+function rebuildYearGroups() {
+  const makeBreak = year => {
+    const wrap = document.createElement('div');
+    wrap.className = 'year-break';
+    wrap.innerHTML =
+      '<div class="year-break-line"></div>' +
+      '<span class="year-break-label">' + year + '</span>' +
+      '<div class="year-break-line"></div>';
+    return wrap;
+  };
+
+  document.querySelectorAll('.section').forEach(section => {
+    const panelEls = [...section.querySelectorAll('.checklist-panel')];
+    if (!panelEls.length) return;
+
+    const panels = {};
+    panelEls.forEach(p => { panels[p.dataset.panel] = p; });
+    const available = new Set(Object.keys(panels));
+
+    // Which panel does a set belong in? First matching rule by priority.
+    const panelFor = name => {
+      for (const key of _PANEL_PRIORITY) {
+        if (available.has(key) && TAB_RULES[key] && TAB_RULES[key](name)) return key;
+      }
+      return available.has('flagship') ? 'flagship' : panelEls[0].dataset.panel;
+    };
+
+    // Preserve each panel's era-intro banner(s).
+    const leads = {};
+    panelEls.forEach(p => {
+      leads[p.dataset.panel] = [...p.children].filter(c => c.classList.contains('era-intro'));
+    });
+
+    // Collect every set across the whole section (panels + leaked).
+    const buckets = {};
+    available.forEach(k => (buckets[k] = []));
+    section.querySelectorAll('.set-header').forEach(header => {
+      const nameEl = header.querySelector('h3') || header.querySelector('.set-name');
+      const name   = nameEl ? nameEl.textContent.trim() : '';
+      const year   = header.dataset.year || '';
+      const body   = header.nextElementSibling;
+      const nodes  = [header];
+      if (body && body.classList.contains('checklist-body')) nodes.push(body);
+      const target = panelFor(name);
+      buckets[target].push({ year, nodes, order: buckets[target].length });
+    });
+
+    // Drop all existing dividers; we re-emit fresh ones.
+    section.querySelectorAll('.year-break').forEach(yb => yb.remove());
+
+    // Rebuild each panel: era-intro lead, then year-sorted sets.
+    Object.keys(panels).forEach(key => {
+      const panel  = panels[key];
+      const groups = buckets[key];
+      groups.sort((a, b) => {
+        const ya = parseInt(a.year, 10) || Infinity;
+        const yb = parseInt(b.year, 10) || Infinity;
+        return ya !== yb ? ya - yb : a.order - b.order;
+      });
+
+      panel.innerHTML = '';
+      (leads[key] || []).forEach(el => panel.appendChild(el));
+      let lastYear = null;
+      groups.forEach(g => {
+        if (g.year !== lastYear) {
+          if (g.year) panel.appendChild(makeBreak(g.year));
+          lastYear = g.year;
+        }
+        g.nodes.forEach(n => panel.appendChild(n));
+      });
+    });
+
+    // Sweep up any stragglers that leaked directly into the section.
+    [...section.children].forEach(c => {
+      if (c.classList.contains('set-header') ||
+          c.classList.contains('checklist-body') ||
+          c.classList.contains('year-break')) {
+        c.remove();
+      }
+    });
+  });
+}
 
 // ── NAV ──────────────────────────────────────────────
 function initNav() {
@@ -187,18 +309,8 @@ function initYearFilter() {
 
 // ── ACCORDIONS ───────────────────────────────────────
 function initSetAccordions() {
-  // ── Step 1: Relocate tier-bars that are inside a set-header ─────
-  // They were placed there by older temp-file format.
-  // Move them to the top of the adjacent checklist-body so:
-  //   a) tier-pill clicks don't accidentally toggle the accordion
-  //   b) initTierTrackers() finds them in the right place
-  document.querySelectorAll('.set-header .tier-bar').forEach(tierBar => {
-    const header = tierBar.closest('.set-header');
-    const body   = header ? header.nextElementSibling : null;
-    if (body && body.classList.contains('checklist-body')) {
-      body.insertBefore(tierBar, body.firstChild);
-    }
-  });
+  // Tier-bar relocation is handled by normalizeSetStructure() up front,
+  // so every set-header's nextElementSibling is now its checklist-body.
 
   // ── Step 2: Ensure every expandable set-header has a chevron ────
   document.querySelectorAll('.set-header').forEach(header => {
