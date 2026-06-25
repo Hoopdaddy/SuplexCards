@@ -166,9 +166,36 @@ function initYearFilter() {
 
 // ── ACCORDIONS ───────────────────────────────────────
 function initSetAccordions() {
+  // ── Step 1: Relocate tier-bars that are inside a set-header ─────
+  // They were placed there by older temp-file format.
+  // Move them to the top of the adjacent checklist-body so:
+  //   a) tier-pill clicks don't accidentally toggle the accordion
+  //   b) initTierTrackers() finds them in the right place
+  document.querySelectorAll('.set-header .tier-bar').forEach(tierBar => {
+    const header = tierBar.closest('.set-header');
+    const body   = header ? header.nextElementSibling : null;
+    if (body && body.classList.contains('checklist-body')) {
+      body.insertBefore(tierBar, body.firstChild);
+    }
+  });
+
+  // ── Step 2: Ensure every expandable set-header has a chevron ────
   document.querySelectorAll('.set-header').forEach(header => {
-    header.addEventListener('click', () => {
+    if (!header.querySelector('.set-chevron')) {
+      const chev = document.createElement('span');
+      chev.className = 'set-chevron';
+      chev.innerHTML = '&#9662;';
+      header.appendChild(chev);
+    }
+  });
+
+  // ── Step 3: Bind accordion toggle ───────────────────────────────
+  document.querySelectorAll('.set-header').forEach(header => {
+    header.addEventListener('click', e => {
+      // Ignore clicks inside tier-bar (parallel picker)
+      if (e.target.closest('.tier-bar')) return;
       const body = header.nextElementSibling;
+      if (!body || !body.classList.contains('checklist-body')) return;
       const isOpen = body.classList.contains('open');
       header.classList.toggle('open', !isOpen);
       body.classList.toggle('open', !isOpen);
