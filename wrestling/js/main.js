@@ -50,7 +50,7 @@ function normalizeSetStructure() {
 //   • re-home each set into the correct panel by matching TAB_RULES
 //   • sort each panel's sets by year and emit one fresh divider per year
 // An .era-intro banner keeps its place at the top of its panel.
-const _PANEL_PRIORITY = ['premium', 'nxt', 'chrome', 'select', 'prizm', 'flagship', 'wcw90', 'ecw90', 'wwf90'];
+const _PANEL_PRIORITY = ['exclusive','now','finest','premium','nxt','chrome','select','prizm','flagship','wcw90','ecw90','wwf90'];
 
 function rebuildYearGroups() {
   const makeBreak = year => {
@@ -143,15 +143,18 @@ function rebuildYearGroups() {
 //   • pages with no filter tabs      → collapse to just the year tag
 // Tier-bars and chevrons are left untouched (they aren't labels).
 const _FILTER_TAG = {
-  flagship: ['Flagship', 'tag-flagship'],
-  chrome:   ['Chrome',   'tag-chrome'],
-  premium:  ['Premium',  'tag-premium'],
-  nxt:      ['NXT',      'tag-nxt'],
-  prizm:    ['Prizm',    'tag-prizm'],
-  select:   ['Select',   'tag-select'],
-  wwf90:    ['WWF',      'tag-wwf'],
-  wcw90:    ['WCW',      'tag-wcw'],
-  ecw90:    ['ECW',      'tag-ecw'],
+  flagship:  ['Flagship',  'tag-flagship'],
+  chrome:    ['Chrome',    'tag-chrome'],
+  premium:   ['Premium',   'tag-premium'],
+  nxt:       ['NXT',       'tag-nxt'],
+  prizm:     ['Prizm',     'tag-prizm'],
+  select:    ['Select',    'tag-select'],
+  finest:    ['Finest',    'tag-finest'],
+  now:       ['Topps Now', 'tag-now'],
+  exclusive: ['Exclusive', 'tag-exclusive'],
+  wwf90:     ['WWF',       'tag-wwf'],
+  wcw90:     ['WCW',       'tag-wcw'],
+  ecw90:     ['ECW',       'tag-ecw'],
 };
 
 function _setFilterTag(header, label, cls) {
@@ -244,15 +247,20 @@ function initNav() {
 // ── TABS (multi-select, name-based filtering) ─────────
 // Rules: which set names belong to each tab.
 // First Topps premium: Undisputed, Transcendent, Legends, Women's Division, Elite
-const _PREMIUM_TOPPS  = /undisputed|transcendent|\blegends\b|women.s.division|\belite\b/i;
+const _PREMIUM_TOPPS  = /undisputed|transcendent|\blegends\b|women.s.division|\belite\b|exalted|royalty/i;
 // Panini premium: National Treasures, Immaculate, Impeccable, Prizm Premium Box Set
 const _PREMIUM_PANINI = /national.treasures|immaculate|impeccable|prizm.premium.box/i;
 const _isPremium      = n => _PREMIUM_TOPPS.test(n) || _PREMIUM_PANINI.test(n);
 
 const TAB_RULES = {
+  // ── Current Topps era ────────────────────────────────
+  exclusive: n => /exclusive/i.test(n),
+  now:       n => /\bnow\b/i.test(n),
+  finest:    n => /finest/i.test(n),
+
   // ── First Topps era ──────────────────────────────────
   chrome:   n => /chrome/i.test(n),
-  flagship: n => !(/chrome/i.test(n) || /\bnxt\b/i.test(n) || _isPremium(n)),
+  flagship: n => !(/chrome/i.test(n) || /\bnxt\b/i.test(n) || _isPremium(n) || /finest/i.test(n) || /\bnow\b/i.test(n) || /exclusive/i.test(n)),
 
   // ── Panini era ───────────────────────────────────────
   prizm:    n => /prizm/i.test(n) && !_PREMIUM_PANINI.test(n),
