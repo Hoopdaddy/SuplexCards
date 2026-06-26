@@ -10692,6 +10692,424 @@ ___ 28 Rikishi (#/99)
 `],
 ]));
 
+// ── 2024 PANINI WWE PHOTOGENIC ────────────────────────────────────────────────
+setsHtml.push(makeSet('phg24', '2024', '2024 Panini PhotoGenic WWE', [
+  ['Base Set #1–100 (Horizontal) — Parallels: Silver #/99; Diamond #/75; Maze #/25; Gold #/10; Fireworks #/5; Wedges #/49; Swirl FOTL; Platinum 1/1', `
+___ 1 Braun Strowman
+___ 2 Alexa Bliss
+___ 3 Bayley
+___ 4 Sheamus
+___ 5 Rey Mysterio
+___ 6 LA Knight
+___ 7 Grayson Waller
+___ 8 Elton Prince
+___ 9 "Hollywood" Hulk Hogan
+___ 10 Zelina Vega
+___ 11 Fit Finlay
+___ 12 "Rowdy" Roddy Piper
+___ 13 "Stone Cold" Steve Austin
+___ 14 Pete Dunne
+___ 15 MVP
+___ 16 Lita
+___ 17 Brutus Creed
+___ 18 Finn Balor
+___ 19 Johnny Gargano
+___ 20 Kiana James
+___ 21 Liv Morgan
+___ 22 Rob Van Dam
+___ 23 The Honky Tonk Man
+___ 24 Sol Ruca
+___ 25 CM Punk
+___ 26 Jake Roberts
+___ 27 Austin Theory
+___ 28 Kevin Owens
+___ 29 Jaida Parker
+___ 30 Myles Borne
+___ 31 Eddy Thorpe
+___ 32 Izzi Dame
+___ 33 Lucien Price
+___ 34 Bronco Nima
+___ 35 Dani Palmer
+___ 36 Kelani Jordan
+___ 37 Bray Wyatt
+___ 38 D-Von Dudley
+___ 39 Bobby Lashley
+___ 40 Tiffany Stratton
+___ 41 Naomi
+___ 42 Jade Cargill
+___ 43 Bianca Belair
+___ 44 Carmelo Hayes
+___ 45 Asuka
+___ 46 Becky Lynch
+___ 47 Drew McIntyre
+___ 48 Ludwig Kaiser
+___ 49 Tyler Bate
+___ 50 Scarlett
+___ 51 JD McDonagh
+___ 52 Carlito
+___ 53 AJ Styles
+___ 54 Rezar
+___ 55 Roxanne Perez
+___ 56 Michael Hayes
+___ 57 Tommaso Ciampa
+___ 58 Roman Reigns
+___ 59 Bruno Sammartino
+___ 60 "Cowboy" Bob Orton
+___ 61 Faarooq
+___ 62 Ken Shamrock
+___ 63 Earthquake
+___ 64 Razor Ramon
+___ 65 Brutus "The Barber" Beefcake
+___ 66 Michelle McCool
+___ 67 Tonga Loa
+___ 68 Wade Barrett
+___ 69 Cactus Jack
+___ 70 Bret "Hit Man" Hart
+___ 71 The Boogeyman
+___ 72 Hulk Hogan
+___ 73 Big E
+___ 74 Baron Corbin
+___ 75 Rhea Ripley
+___ 76 Nikki Cross
+___ 77 Arianna Grace
+___ 78 Scott Steiner
+___ 79 Trish Stratus
+___ 80 Eve Torres
+___ 81 Alundra Blayze
+___ 82 IYO SKY
+___ 83 X-Pac
+___ 84 Brother Love
+___ 85 Ricky "The Dragon" Steamboat
+___ 86 Paul Bearer
+___ 87 Batista
+___ 88 Ridge Holland
+___ 89 Nikkita Lyons
+___ 90 Jey Uso
+___ 91 Luke Gallows
+___ 92 Kurt Angle
+___ 93 Tama Tonga
+___ 94 Chyna
+___ 95 Gigi Dolin
+___ 96 Dijak
+___ 97 Bron Breakker
+___ 98 Elektra Lopez
+___ 99 Ilja Dragunov
+___ 100 Lyra Valkyria
+`],
+  ['Base Set #101–200 (Vertical) — Parallels: Silver #/99; Diamond #/75; Maze #/25; Gold #/10; Fireworks #/5; Wedges #/49; Swirl FOTL; Platinum 1/1', `
+___ 101 Mick Foley
+___ 102 The Rock
+___ 103 Sami Zayn
+___ 104 R-Truth
+___ 105 Randy Orton
+___ 106 Michin
+___ 107 Maxxine Dupri
+___ 108 Lexis King
+___ 109 Lex Luger
+___ 110 Kevin Nash
+___ 111 "Dirty" Dominik Mysterio
+___ 112 Kairi Sane
+___ 113 Karl Anderson
+___ 114 Torrie Wilson
+___ 115 Xavier Woods
+___ 116 The Miz
+___ 117 Natalya
+___ 118 MVP
+___ 119 Otis
+___ 120 Ricochet
+___ 121 Ultimate Warrior
+___ 122 Dragon Lee
+___ 123 Undertaker
+___ 124 Umaga
+___ 125 Sycho Sid
+___ 126 Gunther
+___ 127 Karrion Kross
+___ 128 Eddie Guerrero
+___ 129 Dude Love
+___ 130 Kofi Kingston
+___ 131 Jakara Jackson
+___ 132 Adriana Rizzo
+___ 133 Karmen Petrovic
+___ 134 Brinley Reece
+___ 135 Riley Osborne
+___ 136 Tank Ledger
+___ 137 Wren Sinclair
+___ 138 Bubba Ray Dudley
+___ 139 Diamond Dallas Page
+___ 140 Candice LeRae
+___ 141 Solo Sikoa
+___ 142 Piper Niven
+___ 143 Kit Wilson
+___ 144 Andrade
+___ 145 Chelsea Green
+___ 146 Indi Hartwell
+___ 147 Alba Fyre
+___ 148 "The American Nightmare" Cody Rhodes
+___ 149 Bronson Reed
+___ 150 Chad Gable
+___ 151 Dakota Kai
+___ 152 Damian Priest
+___ 153 Seth "Freakin" Rollins
+___ 154 Shayna Baszler
+___ 155 Odyssey Jones
+___ 156 Kayden Carter
+___ 157 Katana Chance
+___ 158 Andre Chase
+___ 159 Ava
+___ 160 Booker T
+___ 161 Shawn Michaels
+___ 162 Lash Legend
+___ 163 Joe Gacy
+___ 164 Trick Williams
+___ 165 JBL
+___ 166 Carmella
+___ 167 Cora Jade
+___ 168 Jacy Jayne
+___ 169 IRS
+___ 170 The Sandman
+___ 171 Oba Femi
+___ 172 Mankind
+___ 173 "Million Dollar Man" Ted DiBiase
+___ 174 Stacy Keibler
+___ 175 Triple H
+___ 176 The Hurricane
+___ 177 Ron Simmons
+___ 178 Molly Holly
+___ 179 Blair Davenport
+___ 180 Shotzi
+___ 181 Tegan Nox
+___ 182 Tatum Paxley
+___ 183 "Ravishing" Rick Rude
+___ 184 Sid Vicious
+___ 185 John Cena
+___ 186 Miss Elizabeth
+___ 187 The Godfather
+___ 188 Rikishi
+___ 189 Vader
+___ 190 Sherri Martel
+___ 191 Big Boss Man
+___ 192 DIESEL
+___ 193 British Bulldog
+___ 194 "Mr. Perfect" Curt Hennig
+___ 195 Iron Sheik
+___ 196 Jim "The Anvil" Neidhart
+___ 197 The Great Khali
+___ 198 Jimmy Uso
+___ 199 Wes Lee
+___ 200 Yokozuna
+`],
+  ['Championship Feels — Parallels: Diamond #/75; Maze #/25; Gold #/10; Fireworks #/5; Platinum 1/1', `
+___ 1 "Stone Cold" Steve Austin
+___ 2 John Cena
+___ 3 The Rock
+___ 4 "The Fiend" Bray Wyatt
+___ 5 "The American Nightmare" Cody Rhodes
+___ 6 Sami Zayn
+___ 7 Damian Priest
+___ 8 Becky Lynch
+___ 9 Bayley
+___ 10 Roxanne Perez
+`],
+  ['Down The Ramp — Parallels: Diamond #/75; Maze #/25; Gold #/10; Fireworks #/5; Platinum 1/1', `
+___ 1 Shawn Michaels
+___ 2 John Cena
+___ 3 "Stone Cold" Steve Austin
+___ 4 The Rock
+___ 5 Shinsuke Nakamura
+___ 6 "The Demon" Finn Balor
+___ 7 Undertaker
+___ 8 Charlotte Flair
+___ 9 Becky Lynch
+___ 10 Rhea Ripley
+___ 11 Bret "Hit Man" Hart
+___ 12 Triple H
+___ 13 Randy Orton
+___ 14 LA Knight
+___ 15 "Rowdy" Roddy Piper
+`],
+  ['Dual Autographs — Serial #/25; Parallels: Gold #/10; Swirl FOTL #/5; Platinum 1/1', `
+___ 1 AJ Styles / "The American Nightmare" Cody Rhodes
+___ 2 Jade Cargill / Bianca Belair
+___ 3 CM Punk / Drew McIntyre
+___ 4 "Dirty" Dominik Mysterio / Becky Lynch
+___ 5 Undertaker / Michelle McCool
+___ 6 The Honky Tonk Man / Ricky "The Dragon" Steamboat
+___ 7 Rezar / Akam
+___ 8 William Regal / Fit Finlay
+___ 9 Booker T / The Boogeyman
+___ 10 Shinsuke Nakamura / Sami Zayn
+`],
+  ['Immortalized — Parallels: Diamond #/75; Maze #/25; Gold #/10; Fireworks #/5; Platinum 1/1', `
+___ 1 Paul Bearer
+___ 2 Booker T
+___ 3 Rey Mysterio
+___ 4 Hulk Hogan
+___ 5 Undertaker
+___ 6 "Stone Cold" Steve Austin
+___ 7 Alundra Blayze
+___ 8 Eddie Guerrero
+___ 9 Shawn Michaels
+___ 10 Razor Ramon
+___ 11 Paul Heyman
+___ 12 Lita
+___ 13 Dusty Rhodes
+___ 14 Mick Foley
+___ 15 Stacy Keibler
+`],
+  ['Photo Finish — Parallels: Diamond #/75; Maze #/25; Gold #/10; Fireworks #/5; Platinum 1/1', `
+___ 1 Randy Orton
+___ 2 The Rock
+___ 3 "Stone Cold" Steve Austin
+___ 4 Kevin Nash
+___ 5 Trish Stratus
+___ 6 Lita
+___ 7 Drew McIntyre
+___ 8 Nikkita Lyons
+___ 9 Rhea Ripley
+___ 10 Roman Reigns
+___ 11 Shawn Michaels
+___ 12 Sol Ruca
+___ 13 AJ Styles
+___ 14 CM Punk
+___ 15 Kevin Owens
+`],
+  ['Picture Perfect Signatures — Parallels: Maze #/25; Gold #/10; Fireworks #/5; Swirl FOTL; Platinum 1/1', `
+___ 1 Diamond Dallas Page
+___ 2 Dragon Lee
+___ 3 Michelle McCool
+___ 4 Karrion Kross
+___ 5 The Boogeyman
+___ 6 Nia Jax
+___ 7 Stacy Keibler
+___ 9 Sol Ruca
+___ 10 Bianca Belair
+___ 11 Grayson Waller
+___ 12 IYO SKY
+___ 14 Kurt Angle
+___ 15 The Sandman
+___ 16 Roman Reigns
+___ 18 AJ Styles
+___ 19 Trick Williams
+___ 20 Bret "Hit Man" Hart
+___ 21 Iron Sheik
+___ 22 Jey Uso
+___ 23 Rob Van Dam
+___ 24 Lita
+___ 25 William Regal
+___ 26 Seth "Freakin" Rollins
+___ 27 Lola Vice
+___ 28 Asuka
+___ 29 Austin Theory
+___ 30 Charlotte Flair
+___ 32 Kairi Sane
+___ 34 Mankind
+___ 35 John Cena
+___ 36 Shotzi
+___ 37 Oba Femi
+___ 38 Becky Lynch
+___ 39 Carmelo Hayes
+___ 40 Damian Priest
+`],
+  ['Progressions — Parallels: Diamond #/75; Maze #/25; Gold #/10; Fireworks #/5; Platinum 1/1', `
+___ 1 Seth "Freakin" Rollins
+___ 2 Drew McIntyre
+___ 3 Triple H
+___ 4 Mick Foley
+___ 5 "The American Nightmare" Cody Rhodes
+___ 6 Bray Wyatt
+___ 7 Hulk Hogan
+___ 8 John Cena
+___ 9 The Rock
+___ 10 Undertaker
+___ 11 Rey Mysterio
+___ 12 CM Punk
+___ 13 The Miz
+___ 14 Shawn Michaels
+___ 15 Roman Reigns
+`],
+  ['Step By Step — Parallels: Diamond #/75; Maze #/25; Gold #/10; Fireworks #/5; Platinum 1/1', `
+___ 1 Damian Priest
+___ 2 CM Punk
+___ 3 Kofi Kingston
+___ 4 Shawn Michaels
+___ 5 D-Von Dudley
+___ 6 Bubba Ray Dudley
+___ 7 Eddie Guerrero
+___ 8 Seth "Freakin" Rollins
+___ 9 Razor Ramon
+___ 10 IYO SKY
+___ 11 Liv Morgan
+___ 12 Alexa Bliss
+___ 13 Asuka
+___ 14 Rob Van Dam
+___ 15 Bayley
+`],
+  ['Superstar Signatures — Parallels: Maze #/25; Gold #/10; Fireworks #/5; Swirl FOTL; Platinum 1/1', `
+___ 1 "Million Dollar Man" Ted DiBiase
+___ 2 Tiffany Stratton
+___ 3 Batista
+___ 4 Hulk Hogan
+___ 5 Drew McIntyre
+___ 6 Scarlett
+___ 7 Kevin Nash
+___ 8 Booker T
+___ 9 Rey Mysterio
+___ 10 The Miz
+___ 11 "The American Nightmare" Cody Rhodes
+___ 12 "Stone Cold" Steve Austin
+___ 13 Braun Strowman
+___ 15 Gunther
+___ 16 Shawn Michaels
+___ 17 Kofi Kingston
+___ 18 Finn Balor
+___ 19 Rikishi
+___ 20 Trish Stratus
+___ 21 Alexa Bliss
+___ 22 Bron Breakker
+___ 23 Carlito
+___ 24 Maxxine Dupri
+___ 25 Jade Cargill
+___ 26 The Godfather
+___ 27 LA Knight
+___ 28 Kevin Owens
+___ 29 Sami Zayn
+___ 30 Lexis King
+___ 31 Bayley
+___ 32 Cora Jade
+___ 33 CM Punk
+___ 35 Jimmy Uso
+___ 36 Undertaker
+___ 37 Liv Morgan
+___ 38 Rhea Ripley
+___ 39 Shinsuke Nakamura
+___ 40 Nikkita Lyons
+___ 41 Iron Sheik
+___ 42 Gigi Dolin
+___ 43 "Dirty" Dominik Mysterio
+___ 45 Kane
+___ 48 Torrie Wilson
+___ 49 Solo Sikoa
+___ 50 Roxanne Perez
+`],
+  ['Zero Gravity — Parallels: Diamond #/75; Maze #/25; Gold #/10; Fireworks #/5; Platinum 1/1', `
+___ 1 Rey Mysterio
+___ 2 Dragon Lee
+___ 3 AJ Styles
+___ 4 Kofi Kingston
+___ 5 Ricochet
+___ 6 Xavier Woods
+___ 7 Charlotte Flair
+___ 8 1-2-3 Kid
+___ 9 Eddie Guerrero
+___ 10 Lita
+___ 11 Alexa Bliss
+___ 12 Kairi Sane
+___ 13 IYO SKY
+___ 14 The Hurricane
+___ 15 Shawn Michaels
+`],
+]));
+
 // ── INJECTION ─────────────────────────────────────────────────────────────────
 const htmlPath = path.join(__dirname, 'wrestling', 'panini-era.html');
 let content = fs.readFileSync(htmlPath, 'utf8');
