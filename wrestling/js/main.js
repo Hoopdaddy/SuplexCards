@@ -272,9 +272,9 @@ const TAB_RULES = {
 // Falls back to 'flagship' for pages that don't mark an initial tab.
 const _seedTab = (() => {
   const btn = document.querySelector('.tab-btn.active');
-  return btn ? btn.dataset.tab : 'flagship';
+  return btn ? btn.dataset.tab : null;
 })();
-const _activeTabs = new Set([_seedTab]);
+const _activeTabs = _seedTab ? new Set([_seedTab]) : new Set();
 let _activeYear   = 'all';
 let _activeSection = null;
 
