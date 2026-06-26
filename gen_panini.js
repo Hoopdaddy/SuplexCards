@@ -11638,6 +11638,830 @@ ___ 5 "The Fiend" Bray Wyatt
 `],
 ]));
 
+// ── 2024 PANINI WWE SELECT ────────────────────────────────────────────────────
+setsHtml.push(makeSet('sel24', '2024', '2024 Panini WWE Select', [
+  ['Base Set - Concourse #1–100 — Parallels: Silver; Red; Light Blue; Red Wave; Gold Wave; Silver Die-Cut; Orange Flash; Green Flash; Tiger; Zebra; Tri-Color; Black & Blue; Neon Green; White; Tie-Dye; Gold Ice; Gold Flash; Gold; Lucky Envelopes; Mojo FOTL', `
+___ 1 Dusty Rhodes
+___ 2 Maxxine Dupri
+___ 3 John "Bradshaw" Layfield
+___ 4 Blair Davenport
+___ 5 Rob Van Dam
+___ 6 Piper Niven
+___ 7 Ultimate Warrior
+___ 8 Karmen Petrovic
+___ 9 Adriana Rizzo
+___ 10 Carlito
+___ 11 Eddie Guerrero
+___ 12 Otis
+___ 13 Jimmy Garvin
+___ 14 Carmelo Hayes
+___ 15 Ron Simmons
+___ 16 Randy Orton
+___ 17 Undertaker
+___ 18 Lola Vice
+___ 19 AJ Styles
+___ 20 CM Punk
+___ 21 Eve Torres
+___ 22 Rey Mysterio
+___ 23 John Cena
+___ 24 "The American Nightmare" Cody Rhodes
+___ 25 Shawn Michaels
+___ 26 Solo Sikoa
+___ 27 Vader
+___ 28 Luca Crusifino
+___ 29 Batista
+___ 30 Dakota Kai
+___ 31 Freddie Blassie
+___ 32 Rhea Ripley
+___ 33 Kane
+___ 34 Elton Prince
+___ 35 Sid Vicious
+___ 36 Tiffany Stratton
+___ 37 X-Pac
+___ 38 Oba Femi
+___ 39 Bobby "The Brain" Heenan
+___ 40 Dragon Lee
+___ 41 Gerald Brisco
+___ 42 R-Truth
+___ 43 Kurt Angle
+___ 44 Grayson Waller
+___ 45 "Stone Cold" Steve Austin
+___ 46 Tommaso Ciampa
+___ 47 Jimmy Hart
+___ 48 Shawn Spears
+___ 49 Bray Wyatt
+___ 50 Gunther
+___ 51 The Great Khali
+___ 52 Seth "Freakin" Rollins
+___ 53 Michelle McCool
+___ 54 Jade Cargill
+___ 55 Tatanka
+___ 56 Alexa Bliss
+___ 57 Arianna Grace
+___ 58 Thea Hail
+___ 59 Bret "Hit Man" Hart
+___ 60 JD McDonagh
+___ 61 Harley Race
+___ 62 Sonya Deville
+___ 63 Molly Holly
+___ 64 Karl Anderson
+___ 65 Dude Love
+___ 66 Charlotte Flair
+___ 67 Cora Jade
+___ 68 Tyson Dupont
+___ 69 British Bulldog
+___ 70 Julius Creed
+___ 71 Howard Finkel
+___ 72 Xavier Woods
+___ 73 Nikolai Volkoff
+___ 74 LA Knight
+___ 75 Torrie Wilson
+___ 76 Jimmy Uso
+___ 77 Channing "Stacks" Lorenzo
+___ 78 Alba Fyre
+___ 79 Bubba Ray Dudley
+___ 80 Katana Chance
+___ 81 Hulk Hogan
+___ 82 Angelo Dawkins
+___ 83 Razor Ramon
+___ 84 Michin
+___ 85 Triple H
+___ 86 Roman Reigns
+___ 87 Eddy Thorpe
+___ 88 Becky Lynch
+___ 89 Diamond Dallas Page
+___ 90 Kofi Kingston
+___ 91 IRS
+___ 92 Austin Theory
+___ 93 Ricky "The Dragon" Steamboat
+___ 94 Nia Jax
+___ 95 Tyler Breeze
+___ 96 Shotzi
+___ 97 Jazmyn Nyx
+___ 98 Bron Breakker
+___ 99 Bam Bam Bigelow
+___ 100 Liv Morgan
+`],
+  ['Base Set - Premier Level #101–200 — Parallels: Silver; Blue; Red Wave; Blue Wave; Silver Die-Cut; Orange Flash; Green Flash; Tiger; Zebra; Tri-Color; Black & Blue; Maroon; Purple; Orange; Tie-Dye; Gold Ice; Gold Flash; Gold Wave; Gold; Lucky Envelopes; Mojo FOTL', `
+___ 101 "Million Dollar Man" Ted DiBiase
+___ 102 Mankind
+___ 103 Uncle Howdy
+___ 104 Randy Orton
+___ 105 Carmella
+___ 106 Sol Ruca
+___ 107 Damian Priest
+___ 108 Trick Williams
+___ 109 Gene Okerlund
+___ 110 Jerry Lawler
+___ 111 1-2-3 Kid
+___ 112 Montez Ford
+___ 113 Bianca Belair
+___ 114 Rhea Ripley
+___ 115 Chad Gable
+___ 116 Stacy Keibler
+___ 117 DIESEL
+___ 118 Triple H
+___ 119 Gigi Dolin
+___ 120 Jey Uso
+___ 121 Alexa Bliss
+___ 122 Naomi
+___ 123 "The All Mighty" Bobby Lashley
+___ 124 Rikishi
+___ 125 Charlie Dempsey
+___ 126 "Stone Cold" Steve Austin
+___ 127 Don Muraco
+___ 128 Trish Stratus
+___ 129 The Godfather
+___ 130 John Cena
+___ 131 Alundra Blayze
+___ 132 Nick Aldis
+___ 133 The Boogeyman
+___ 134 Riley Osborne
+___ 135 Charlotte Flair
+___ 136 "Superstar" Billy Graham
+___ 137 Drew McIntyre
+___ 138 Typhoon
+___ 139 Greg "The Hammer" Valentine
+___ 140 Kairi Sane
+___ 141 Andrade
+___ 142 Nikkita Lyons
+___ 143 Booker T
+___ 144 Rocky Johnson
+___ 145 Chelsea Green
+___ 146 Tama Tonga
+___ 147 Brian Pillman
+___ 148 Ultimate Warrior
+___ 149 Hulk Hogan
+___ 150 Ken Shamrock
+___ 151 Asuka
+___ 152 Norman Smiley
+___ 153 Bray Wyatt
+___ 154 Roman Reigns
+___ 155 "Chief" Jay Strongbow
+___ 156 Theodore Long
+___ 157 D-Von Dudley
+___ 158 Undertaker
+___ 159 The Hurricane
+___ 160 Kevin Owens
+___ 161 Ava
+___ 162 Omos
+___ 163 Bret "Hit Man" Hart
+___ 164 Sami Zayn
+___ 165 CM Punk
+___ 166 The Miz
+___ 167 Great Muta
+___ 168 Wendi Richter
+___ 169 Ilja Dragunov
+___ 170 LA Knight
+___ 171 Baron Corbin
+___ 172 Oro Mensah
+___ 173 Brother Love
+___ 174 Scott Hall
+___ 175 "The American Nightmare" Cody Rhodes
+___ 176 The Rock
+___ 177 Miss Elizabeth
+___ 178 Wes Lee
+___ 179 Ivy Nile
+___ 180 Lex Luger
+___ 181 Bayley
+___ 182 Paul Bearer
+___ 183 Bruno Sammartino
+___ 184 Scott Steiner
+___ 185 "Cowboy" Bob Orton
+___ 186 Tiffany Stratton
+___ 187 Faarooq
+___ 188 Yokozuna
+___ 189 Jade Cargill
+___ 190 Lexis King
+___ 191 Becky Lynch
+___ 192 Paul Ellering
+___ 193 Cactus Jack
+___ 194 Shawn Michaels
+___ 195 "Mr. Perfect" Curt Hennig
+___ 196 Tonga Loa
+___ 197 Finn Balor
+___ 198 Zelina Vega
+___ 199 Jake Roberts
+___ 200 Liv Morgan
+`],
+  ['Base Set - Ringside #201–300 — Parallels: Silver; Red Wave; Blue Wave; Silver Die-Cut; Orange Flash; Green Flash; Tiger; Zebra; Tie-Dye; Gold Ice; Gold Flash; Gold Wave; Gold; Lucky Envelopes; Mojo FOTL', `
+___ 201 Rhea Ripley
+___ 202 Chyna
+___ 203 Sherri Martel
+___ 204 Fit Finlay
+___ 205 Triple H
+___ 206 Jacy Jayne
+___ 207 Johnny Gargano
+___ 208 "Dirty" Dominik Mysterio
+___ 209 Lyra Valkyria
+___ 210 Booker T
+___ 211 Rick Steiner
+___ 212 CM Punk
+___ 213 Shinsuke Nakamura
+___ 214 "The Demon" Finn Balor
+___ 215 Stephanie Vaquer
+___ 216 Jade Cargill
+___ 217 Karrion Kross
+___ 218 Adam Pearce
+___ 219 Myles Borne
+___ 220 Braun Strowman
+___ 221 Road Dogg
+___ 222 "The American Nightmare" Cody Rhodes
+___ 223 "Stone Cold" Steve Austin
+___ 224 George "The Animal" Steele
+___ 225 Tyler Bate
+___ 226 Jaida Parker
+___ 227 Kelani Jordan
+___ 228 Alexa Bliss
+___ 229 Naomi
+___ 230 "The Fiend" Bray Wyatt
+___ 231 "Rowdy" Roddy Piper
+___ 232 Dani Palmer
+___ 233 Sycho Sid
+___ 234 Gorilla Monsoon
+___ 235 Tyriek Igwe
+___ 236 Jakara Jackson
+___ 237 Kevin Nash
+___ 238 Axiom
+___ 239 Noam Dar
+___ 240 Bret "Hit Man" Hart
+___ 241 Roman Reigns
+___ 242 Jacob Fatu
+___ 243 Tank Ledger
+___ 244 The Honky Tonk Man
+___ 245 Ultimate Warrior
+___ 246 Javier Bernal
+___ 247 Kiana James
+___ 248 Bayley
+___ 249 Giulia
+___ 250 Brinley Reece
+___ 251 Roxanne Perez
+___ 252 D-Lo Brown
+___ 253 Tegan Nox
+___ 254 "Hollywood" Hulk Hogan
+___ 255 Umaga
+___ 256 Je'Von Evans
+___ 257 LA Knight
+___ 258 Becky Lynch
+___ 259 Paul Heyman
+___ 260 Bronco Nima
+___ 261 The Sandman
+___ 262 Dok Hendrix
+___ 263 Terry Funk
+___ 264 Iron Sheik
+___ 265 Undertaker
+___ 266 Jim "The Anvil" Neidhart
+___ 267 Lita
+___ 268 Bianca Belair
+___ 269 Pete Dunne
+___ 270 Brutus "The Barber" Beefcake
+___ 271 Scarlett
+___ 272 Earthquake
+___ 273 The Rock
+___ 274 Isla Dawn
+___ 275 William Regal
+___ 276 Joaquin Wilde
+___ 277 Liv Morgan
+___ 278 Big Boss Man
+___ 279 Randy Orton
+___ 280 Candice LeRae
+___ 281 Shawn Michaels
+___ 282 Eric Bischoff
+___ 283 Tiffany Stratton
+___ 284 IYO SKY
+___ 285 Wren Sinclair
+___ 286 Joe Gacy
+___ 287 Lucien Price
+___ 288 Big E
+___ 289 Raquel Rodriguez
+___ 290 Carlee Bright
+___ 291 Sheamus
+___ 292 Charlotte Flair
+___ 293 Tony D'Angelo
+___ 294 Izzi Dame
+___ 295 Zoey Stark
+___ 296 John Cena
+___ 297 Luke Gallows
+___ 298 Billy Gunn
+___ 299 "Ravishing" Rick Rude
+___ 300 Ethan Page
+`],
+  ['Autographed Memorabilia — Base #/99; Parallels: Red; Blue; Tie-Dye; Gold; Vinyl 1/1', `
+___ 3 Gunther (#/99)
+___ 4 Naomi (#/99)
+___ 5 Liv Morgan (#/99)
+___ 6 Drew McIntyre (#/99)
+___ 7 Alexa Bliss (#/99)
+___ 8 AJ Styles (#/99)
+___ 9 Rey Mysterio (#/99)
+___ 11 Braun Strowman (#/99)
+___ 12 Thea Hail (#/99)
+___ 13 Jey Uso (#/99)
+___ 14 Rhea Ripley (#/99)
+___ 16 LA Knight (#/99)
+___ 17 Asuka (#/99)
+___ 18 Sami Zayn (#/99)
+___ 19 Becky Lynch (#/99)
+___ 20 Candice LeRae (#/75)
+___ 21 Damian Priest (#/99)
+___ 22 Lash Legend (#/99)
+___ 23 Kevin Owens (#/99)
+___ 24 The Miz (#/99)
+___ 25 Roman Reigns (#/99)
+___ 26 "Dirty" Dominik Mysterio (#/99)
+___ 27 Bayley (#/75)
+___ 28 IYO SKY (#/99)
+___ 29 Bianca Belair (#/99)
+___ 30 Johnny Gargano (#/99)
+`],
+  ['Legendary Signatures — Parallels: Flash; Red Wave; Ice; Purple; Blue; Red; Tie-Dye; Gold Ice; Gold Wave; Gold Flash; Gold; Vinyl 1/1', `
+___ 1 Eric Bischoff
+___ 2 Undertaker
+___ 3 DIESEL
+___ 4 The Honky Tonk Man
+___ 5 Booker T
+___ 6 "Million Dollar Man" Ted DiBiase
+___ 7 Cactus Jack
+___ 8 "Stone Cold" Steve Austin
+___ 9 Stacy Keibler
+___ 10 Big E
+___ 11 Bret "Hit Man" Hart
+___ 12 Shawn Michaels
+___ 14 Trish Stratus
+___ 15 Kurt Angle
+___ 16 Diamond Dallas Page
+___ 17 Rikishi
+___ 18 Hulk Hogan
+___ 19 Torrie Wilson
+___ 20 John Cena
+`],
+  ['Ringside Action Signatures — Parallels: Flash; Red Wave; Ice; Purple; Blue; Red; Tie-Dye; Gold Ice; Gold Wave; Gold Flash; Gold; Vinyl 1/1', `
+___ 1 Bayley
+___ 2 Ilja Dragunov
+___ 3 Dragon Lee
+___ 4 Lola Vice
+___ 5 Jey Uso
+___ 6 Roxanne Perez
+___ 7 LA Knight
+___ 8 Rhea Ripley
+___ 9 "The American Nightmare" Cody Rhodes
+___ 10 Shotzi
+___ 11 Carlito
+___ 13 Finn Balor
+___ 14 Nikkita Lyons
+___ 15 Kairi Sane
+___ 16 Sol Ruca
+___ 17 Naomi
+___ 18 Sami Zayn
+___ 19 Akam
+___ 20 The Miz
+___ 21 CM Punk
+___ 22 Lexis King
+___ 24 Oba Femi
+___ 25 Kevin Owens
+___ 26 Tiffany Stratton
+___ 27 Rey Mysterio
+___ 29 Andrade
+___ 30 Bianca Belair
+`],
+  ['Signature Selections — Parallels: Flash; Ice; Blue; Red; Tie-Dye; Gold Ice; Gold Flash; Gold; Vinyl 1/1', `
+___ 2 Malik Blade
+___ 3 MVP
+___ 4 Elektra Lopez
+___ 5 B-Fab
+___ 6 Bronco Nima
+___ 7 Katana Chance
+___ 8 Dakota Kai
+___ 9 "Cowboy" Bob Orton
+___ 10 Tony D'Angelo
+___ 12 Lyra Valkyria
+___ 14 Edris Enofe
+___ 15 Cedric Alexander
+___ 16 Blair Davenport
+___ 17 Ludwig Kaiser
+___ 18 Dexter Lumis
+___ 19 Albert
+___ 20 Thea Hail
+___ 21 Red Rooster
+___ 22 Lucien Price
+___ 23 Ridge Holland
+___ 24 Eddy Thorpe
+___ 25 Cruz Del Toro
+___ 26 Arianna Grace
+___ 27 Michin
+___ 29 D-Lo Brown
+___ 30 Tatum Paxley
+___ 31 The Hurricane
+___ 32 Lash Legend
+___ 33 Shayna Baszler
+___ 34 Duke Hudson
+___ 35 Elton Prince
+___ 37 Sonya Deville
+___ 39 Faarooq
+___ 40 Tank Ledger
+___ 41 Tyler Breeze
+___ 42 Josh Briggs
+___ 44 Dante Chen
+___ 45 Kit Wilson
+___ 46 Iron Sheik
+___ 48 Jakara Jackson
+___ 49 Fit Finlay
+___ 50 Oro Mensah
+___ 51 Typhoon
+___ 53 Akira Tozawa
+___ 54 Damon Kemp
+___ 55 Giovanni Vinci
+___ 56 Don Muraco
+___ 57 Adam Pearce
+___ 58 Karmen Petrovic
+___ 59 IRS
+___ 60 Noam Dar
+___ 61 Wade Barrett
+___ 62 Jaida Parker
+___ 63 Alba Fyre
+___ 64 Dani Palmer
+___ 65 Isla Dawn
+___ 66 Jason Jordan
+___ 67 Brutus Creed
+___ 68 Kelani Jordan
+___ 69 Jimmy Garvin
+___ 70 Nathan Frazer
+___ 71 Wendi Richter
+___ 72 Izzi Dame
+___ 73 Angel
+___ 74 Charlie Dempsey
+___ 75 Ivy Nile
+___ 76 Bronson Reed
+___ 77 Julius Creed
+___ 78 Wolfgang
+___ 79 Ken Shamrock
+___ 80 Mr. Stone
+___ 82 Hank Walker
+___ 83 Humberto
+___ 84 Channing "Stacks" Lorenzo
+___ 85 JD McDonagh
+___ 86 Nikki Cross
+___ 87 Pete Dunne
+___ 88 Wendy Choo
+___ 89 Lex Luger
+___ 90 Meiko Satomura
+___ 91 The Boogeyman
+___ 92 Fallon Henley
+___ 93 Ashante Adonis
+___ 94 Brooks Jensen
+___ 95 Joaquin Wilde
+___ 97 Candice LeRae
+___ 98 Tyler Bate
+___ 99 Norman Smiley
+___ 100 Mark Coffey
+`],
+  ['Signatures — Parallels: Flash; Red Wave; Ice; Purple; Blue; Red; Tie-Dye; Gold Wave; Gold Ice; Gold Flash; Gold; Vinyl 1/1', `
+___ 1 Becky Lynch
+___ 2 Shinsuke Nakamura
+___ 3 Damian Priest
+___ 4 Otis
+___ 5 Jade Cargill
+___ 6 Kofi Kingston
+___ 7 "Dirty" Dominik Mysterio
+___ 8 Nia Jax
+___ 9 Alexa Bliss
+___ 10 Roman Reigns
+___ 11 Braun Strowman
+___ 12 Solo Sikoa
+___ 13 Drew McIntyre
+___ 14 R-Truth
+___ 15 Jimmy Uso
+___ 16 Liv Morgan
+___ 17 AJ Styles
+___ 18 Rezar
+___ 19 Asuka
+___ 20 Seth "Freakin" Rollins
+___ 21 Charlotte Flair
+___ 23 Gunther
+___ 24 Zoey Stark
+`],
+  ['Selective Swatches — Parallels: Red; Blue; Tie-Dye; Gold; Vinyl 1/1', `
+___ 1 AJ Styles
+___ 2 Joe Gacy
+___ 4 "The All Mighty" Bobby Lashley
+___ 5 Bayley
+___ 6 Alba Fyre
+___ 7 Asuka
+___ 8 Grayson Waller
+___ 9 Johnny Gargano
+___ 10 Cora Jade
+___ 11 Becky Lynch
+___ 12 Omos
+___ 13 Naomi
+___ 14 Jey Uso
+___ 15 Pete Dunne
+___ 16 Sheamus
+___ 17 Xavier Woods
+___ 18 Roman Reigns
+___ 19 Damian Priest
+___ 20 LA Knight
+___ 21 Baron Corbin
+___ 22 Ivar
+___ 23 Piper Niven
+___ 24 Braun Strowman
+___ 25 Big E
+___ 26 The Miz
+___ 27 Zoey Stark
+___ 28 Kofi Kingston
+___ 29 Rhea Ripley
+___ 30 Carmelo Hayes
+___ 31 "Dirty" Dominik Mysterio
+___ 32 IYO SKY
+___ 33 Lash Legend
+___ 34 Raquel Rodriguez
+___ 35 Sami Zayn
+`],
+  ['Sparks — Parallels: Red; Blue; Tie-Dye; Gold; Vinyl 1/1', `
+___ 1 Bron Breakker
+___ 2 Bianca Belair
+___ 3 Ridge Holland
+___ 4 Tommaso Ciampa
+___ 5 Dakota Kai
+___ 6 Nikki Cross
+___ 7 Gigi Dolin
+___ 8 Zelina Vega
+___ 9 Santos Escobar
+___ 10 Carmella
+___ 11 Austin Theory
+___ 12 Brutus Creed
+___ 13 Candice LeRae
+___ 14 Giovanni Vinci
+___ 15 Sonya Deville
+___ 16 Tyler Bate
+___ 17 Katana Chance
+___ 18 Wes Lee
+___ 19 Rey Mysterio
+___ 20 Gunther
+___ 21 Indi Hartwell
+___ 22 Jacy Jayne
+___ 23 Drew McIntyre
+___ 24 Alexa Bliss
+___ 25 Kevin Owens
+___ 26 Thea Hail
+___ 27 Ludwig Kaiser
+___ 28 Liv Morgan
+___ 29 Seth "Freakin" Rollins
+___ 30 Julius Creed
+___ 31 Otis
+___ 32 Meiko Satomura
+___ 33 Kayden Carter
+___ 34 Natalya
+___ 35 Ilja Dragunov
+`],
+  ['Icons — Parallels: Red; Blue; Tie-Dye; Gold; Vinyl 1/1', `
+___ 1 Hulk Hogan
+___ 2 Dusty Rhodes
+___ 3 "Mr. Perfect" Curt Hennig
+___ 4 "Stone Cold" Steve Austin
+___ 5 Batista
+___ 6 Shawn Michaels
+___ 7 Bret "Hit Man" Hart
+___ 8 Undertaker
+___ 9 DIESEL
+___ 10 Trish Stratus
+___ 11 Jerry Lawler
+___ 12 Rob Van Dam
+___ 13 "Ravishing" Rick Rude
+___ 14 The Rock
+___ 15 Booker T
+___ 16 Terry Funk
+___ 17 Dude Love
+___ 18 Ultimate Warrior
+___ 19 Eddie Guerrero
+___ 20 Lita
+___ 21 Kurt Angle
+___ 22 Harley Race
+___ 23 "Rowdy" Roddy Piper
+___ 24 Triple H
+___ 25 Bray Wyatt
+`],
+  ['NXT Alumni — Parallels: Red; Blue; Tie-Dye; Gold; Vinyl 1/1', `
+___ 1 Drew McIntyre
+___ 2 Johnny Gargano
+___ 3 Charlotte Flair
+___ 4 Seth "Freakin" Rollins
+___ 5 Rhea Ripley
+___ 6 Kevin Owens
+___ 7 Becky Lynch
+___ 8 Shinsuke Nakamura
+___ 9 Tyler Bate
+___ 10 Andrade
+___ 11 Bayley
+___ 12 Shayna Baszler
+___ 13 Big E
+___ 14 Asuka
+___ 15 Finn Balor
+___ 16 Bianca Belair
+___ 17 Karrion Kross
+___ 18 Pete Dunne
+___ 19 Tommaso Ciampa
+___ 20 Alexa Bliss
+___ 21 Kairi Sane
+___ 22 Sami Zayn
+___ 23 IYO SKY
+___ 24 Gunther
+___ 25 Roman Reigns
+`],
+  ['Phenomenon — Parallels: Red; Blue; Red Wave; Gold Wave; Tie-Dye; Gold; Vinyl 1/1', `
+___ 1 AJ Styles
+___ 2 Mankind
+___ 3 Bianca Belair
+___ 4 Sami Zayn
+___ 5 Carmelo Hayes
+___ 6 "Stone Cold" Steve Austin
+___ 7 Drew McIntyre
+___ 8 Triple H
+___ 9 IYO SKY
+___ 10 Karrion Kross
+___ 11 Asuka
+___ 12 Randy Orton
+___ 13 Braun Strowman
+___ 14 Seth "Freakin" Rollins
+___ 15 CM Punk
+___ 16 Tama Tonga
+___ 17 Finn Balor
+___ 18 Ultimate Warrior
+___ 19 "Rowdy" Roddy Piper
+___ 20 Kurt Angle
+___ 21 Bayley
+___ 22 Rhea Ripley
+___ 23 Bret "Hit Man" Hart
+___ 24 Shinsuke Nakamura
+___ 25 Damian Priest
+___ 26 The Rock
+___ 27 Gunther
+___ 28 Yokozuna
+___ 29 John Cena
+___ 30 Lita
+`],
+  ['Select Future — Parallels: Red; Blue; Tie-Dye; Gold; Vinyl 1/1', `
+___ 1 Tiffany Stratton
+___ 2 Lexis King
+___ 3 Shawn Spears
+___ 4 Cora Jade
+___ 5 Wes Lee
+___ 6 Lola Vice
+___ 7 Carmelo Hayes
+___ 8 Roxanne Perez
+___ 9 Blair Davenport
+___ 10 Thea Hail
+___ 11 Kiana James
+___ 12 Nathan Frazer
+___ 13 Tony D'Angelo
+___ 14 Gigi Dolin
+___ 15 Axiom
+___ 16 Nikkita Lyons
+___ 17 Lyra Valkyria
+___ 18 Sol Ruca
+___ 19 Jade Cargill
+___ 20 Joe Gacy
+___ 21 Ilja Dragunov
+___ 22 Oba Femi
+___ 23 Trick Williams
+___ 24 Jacy Jayne
+___ 25 Bron Breakker
+`],
+  ['Select Throwback — Parallels: Red; Blue; Tie-Dye; Gold; Vinyl 1/1', `
+___ 1 Drew McIntyre
+___ 2 "Stone Cold" Steve Austin
+___ 3 Charlotte Flair
+___ 4 Triple H
+___ 5 Asuka
+___ 6 Ultimate Warrior
+___ 7 Roman Reigns
+___ 8 Shawn Michaels
+___ 9 Jade Cargill
+___ 10 "The American Nightmare" Cody Rhodes
+___ 11 Randy Orton
+___ 12 The Rock
+___ 13 Alexa Bliss
+___ 14 Mankind
+___ 15 Liv Morgan
+___ 16 Bret "Hit Man" Hart
+___ 17 Bianca Belair
+___ 18 Seth "Freakin" Rollins
+___ 19 Tiffany Stratton
+___ 20 CM Punk
+___ 21 Becky Lynch
+___ 22 Undertaker
+___ 23 Bayley
+___ 24 "Hollywood" Hulk Hogan
+___ 25 Scarlett
+`],
+  ['Sensations — Parallels: Red; Blue; Red Wave; Gold Wave; Tie-Dye; Gold; Vinyl 1/1', `
+___ 1 Rhea Ripley
+___ 2 Ilja Dragunov
+___ 3 Nikkita Lyons
+___ 4 Bron Breakker
+___ 5 Lola Vice
+___ 6 "Dirty" Dominik Mysterio
+___ 7 Thea Hail
+___ 8 Dragon Lee
+___ 9 Tiffany Stratton
+___ 10 Cora Jade
+___ 11 Liv Morgan
+___ 12 Solo Sikoa
+___ 13 Roxanne Perez
+___ 14 Austin Theory
+___ 15 Sol Ruca
+___ 16 Tyler Bate
+___ 17 Trick Williams
+___ 18 Carmelo Hayes
+___ 19 Lyra Valkyria
+___ 20 Gigi Dolin
+`],
+  ['Turbo Charged — Parallels: Red; Blue; Red Wave; Gold Wave; Tie-Dye; Gold; Vinyl 1/1', `
+___ 1 Becky Lynch
+___ 2 Roman Reigns
+___ 3 Bron Breakker
+___ 4 Solo Sikoa
+___ 5 Dragon Lee
+___ 6 Tonga Loa
+___ 7 Hulk Hogan
+___ 8 Kairi Sane
+___ 9 "Dirty" Dominik Mysterio
+___ 10 Liv Morgan
+___ 11 "The All Mighty" Bobby Lashley
+___ 12 Scarlett
+___ 13 Charlotte Flair
+___ 14 Sycho Sid
+___ 15 Eddie Guerrero
+___ 16 Trish Stratus
+___ 17 Jade Cargill
+___ 18 Kevin Owens
+___ 19 Alexa Bliss
+___ 20 Nia Jax
+___ 21 Bray Wyatt
+___ 22 Shawn Michaels
+___ 23 "The American Nightmare" Cody Rhodes
+___ 24 The Miz
+___ 25 Grayson Waller
+___ 26 Undertaker
+___ 27 Jey Uso
+___ 28 LA Knight
+___ 29 Austin Theory
+___ 30 Rey Mysterio
+`],
+  ['And NEW! — Parallels: Red; Blue; Red Wave; Gold Wave; Tie-Dye; Gold; Vinyl 1/1', `
+___ 1 Liv Morgan
+___ 2 Chyna
+___ 3 Ilja Dragunov
+___ 4 Lyra Valkyria
+___ 5 Oba Femi
+___ 6 Eddie Guerrero
+___ 7 Sami Zayn
+___ 8 Bret "Hit Man" Hart
+___ 9 Roxanne Perez
+___ 10 Triple H
+___ 11 Damian Priest
+___ 12 Ricky "The Dragon" Steamboat
+___ 13 Dragon Lee
+___ 14 Ultimate Warrior
+___ 15 "The American Nightmare" Cody Rhodes
+___ 16 Randy Orton
+___ 17 Trick Williams
+___ 18 Sycho Sid
+___ 19 Bayley
+___ 20 Rob Van Dam
+`],
+  ['Artistic Selections', `
+___ 1 Charlotte Flair
+___ 2 Hulk Hogan
+___ 3 John Cena
+___ 4 Seth "Freakin" Rollins
+___ 5 Shawn Michaels
+`],
+  ['Color Wheel', `
+___ 1 Bray Wyatt
+___ 2 "The American Nightmare" Cody Rhodes
+___ 3 Triple H
+___ 4 Jade Cargill
+___ 5 Jacob Fatu
+___ 6 Randy Orton
+___ 7 Roxanne Perez
+___ 8 Becky Lynch
+___ 9 "Stone Cold" Steve Austin
+___ 10 CM Punk
+`],
+  ['Firestorm', `
+___ 1 Drew McIntyre
+___ 2 LA Knight
+___ 3 Liv Morgan
+___ 4 Rhea Ripley
+___ 5 Bianca Belair
+___ 6 Roman Reigns
+___ 7 Batista
+___ 8 Undertaker
+___ 9 Jey Uso
+___ 10 The Rock
+`],
+]));
+
 // ── INJECTION ─────────────────────────────────────────────────────────────────
 const htmlPath = path.join(__dirname, 'wrestling', 'panini-era.html');
 let content = fs.readFileSync(htmlPath, 'utf8');
