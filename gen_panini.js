@@ -21,7 +21,9 @@ const HOF_RE = new RegExp(
   'Stan Hansen|Ivan Putski|Dory Funk|Terry Funk|Gerald Brisco|Al Snow|' +
   'The Sandman|Teddy Long|Leilani Kai|Brian Knobbs|Jerry Sags|Brutus Beefcake|' +
   'The Boogeyman|The Hurricane\\b|Brother Love|Typhoon\\b|\\bKama\\b|' +
-  'Cowboy Bob Orton|Vader\\b',
+  'Cowboy Bob Orton|Vader\\b|Bubba Ray Dudley|William Regal|Ken Shamrock|' +
+  'Sherri Martel|Miss Elizabeth|Tito Santana|Bob Backlund|Wendi Richter|' +
+  'Scott Hall|Madusa|Dok Hendrix|Scott Steiner|Rick Steiner',
   'i'
 );
 
@@ -36,8 +38,8 @@ function parseCards(setId, raw) {
     const rest = line.slice(3).trim();
     const sp = rest.indexOf(' ');
     if (sp === -1) return [];
-    const n = rest.slice(0, sp);
-    const nm = rest.slice(sp + 1).trim();
+    const n = rest.slice(0, sp).replace(/^-/, ''); // handle "-1" style numbers
+    const nm = rest.slice(sp + 1).trim().replace(/^[–\-]\s*/, ''); // strip leading dash
     const cid = `${setId}-${n}`;
     return [
       `      <div class="card-item"><input type="checkbox" id="${cid}" value="${n}">` +
@@ -4680,6 +4682,1521 @@ ___ AM-MIZ The Miz (#/199)
 ___ AM-CFL Charlotte Flair (#/199)
 ___ AM-DPS Damian Priest (#/199)
 ___ AM-EDG Edge (#/199)
+`],
+]));
+
+// ── 2023 WWE PANINI CHRONICLES ────────────────────────────────────────────────
+setsHtml.push(makeSet('chr23', '2023', '2023 WWE Panini Chronicles', [
+  ['Chronicles Set — Parallels: Bronze; Pink #/349; Red #/199; Blue #/99; Green #/75; Purple #/49; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 1 – Johnny Gargano – Raw
+___ 2 – Baron Corbin – NXT
+___ 3 – Apollo Crews – Raw
+___ 4 – Becky Lynch – Raw
+___ 5 – Alexa Bliss – WWE
+___ 6 – Ludwig Kaiser – Raw
+___ 7 – "Dirty" Dominik Mysterio – Raw
+___ 8 – Dijak – NXT
+___ 9 – Dakota Kai – SmackDown
+___ 10 – Piper Niven – Raw
+___ 11 – Raquel Rodriguez – Raw
+___ 12 – Blair Davenport – NXT
+___ 13 – B-Fab – SmackDown
+___ 15 – Bianca Belair – SmackDown
+___ 16 – Jey Uso – Raw
+___ 17 – Finn Balor – Raw
+___ 18 – Dragon Lee – SmackDown
+___ 19 – Lyra Valkyria – NXT
+___ 20 – Santos Escobar – SmackDown
+___ 21 – Scarlett – SmackDown
+___ 22 – Butch – SmackDown
+___ 23 – Bronson Reed – Raw
+___ 24 – "The American Nightmare" Cody Rhodes – Raw
+___ 25 – Charlotte Flair – SmackDown
+___ 26 – Kevin Owens – SmackDown
+___ 27 – Jimmy Uso – SmackDown
+___ 28 – Lola Vice – NXT
+___ 29 – Drew McIntyre – Raw
+___ 30 – Shayna Baszler – Raw
+___ 31 – Sheamus – SmackDown
+___ 32 – Chad Gable – Raw
+___ 33 – Cameron Grimes – SmackDown
+___ 34 – Randy Orton – SmackDown
+___ 35 – Liv Morgan – Raw
+___ 36 – Rey Mysterio – SmackDown
+___ 37 – Julius Creed – Raw
+___ 38 – Grayson Waller – SmackDown
+___ 39 – Gigi Dolin – NXT
+___ 40 – Shinsuke Nakamura – Raw
+___ 41 – Shotzi – SmackDown
+___ 42 – Chelsea Green – Raw
+___ 43 – Channing "Stacks" Lorenzo – NXT
+___ 44 – Roman Reigns – SmackDown
+___ 45 – Rhea Ripley – Raw
+___ 46 – Sami Zayn – Raw
+___ 47 – Roxanne Perez – NXT
+___ 48 – Ivy Nile – Raw
+___ 49 – Gunther – Raw
+___ 50 – Sol Ruca – NXT
+___ 51 – Solo Sikoa – SmackDown
+___ 52 – Dexter Lumis – Raw
+___ 53 – Carlito – Legend
+___ 54 – AJ Styles – SmackDown
+___ 55 – Valhalla – Raw
+___ 56 – The Miz – Raw
+___ 57 – Seth "Freakin" Rollins – Raw
+___ 58 – Jacy Jayne – NXT
+___ 59 – IYO SKY – SmackDown
+___ 60 – Sonya Deville – SmackDown
+___ 61 – Thea Hail – NXT
+___ 62 – CM Punk – WWE
+___ 63 – Brutus Creed – Raw
+___ 64 – Austin Theory – SmackDown
+___ 65 – Asuka – SmackDown
+___ 66 – Alba Fyre – SmackDown
+___ 67 – Tiffany Stratton – NXT
+___ 68 – Katana Chance – Raw
+___ 69 – Karrion Kross – SmackDown
+___ 70 – Tony D'Angelo – NXT
+___ 71 – Wes Lee – NXT
+___ 72 – Ilja Dragunov – NXT
+___ 73 – Fallon Henley – NXT
+___ 74 – Bray Wyatt – WWE
+___ 75 – Bayley – SmackDown
+___ 76 – Big E – WWE
+___ 77 – Ava – NXT
+___ 78 – LA Knight – SmackDown
+___ 79 – Kofi Kingston – Raw
+___ 80 – Xavier Woods – Raw
+___ 81 – Xia Li – Raw
+___ 82 – Isla Dawn – SmackDown
+___ 83 – Indi Hartwell – Raw
+___ 84 – Carmelo Hayes – NXT
+___ 85 – Bron Breakker – NXT
+___ 86 – Braun Strowman – Raw
+___ 87 – "The All Mighty" Bobby Lashley – SmackDown
+___ 88 – Montez Ford – SmackDown
+___ 89 – Maxxine Dupri – Raw
+___ 90 – Zelina Vega – SmackDown
+___ 91 – Zoey Stark – Raw
+___ 92 – Joe Gacy – NXT
+___ 93 – JD McDonagh – Raw
+___ 94 – Damian Priest – Raw
+___ 95 – Cora Jade – NXT
+___ 96 – Carmella – WWE
+___ 97 – Candice LeRae – Raw
+___ 98 – Nikkita Lyons – NXT
+___ 99 – Natalya – Raw
+___ 100 – Paul Heyman – SmackDown
+`],
+  ['Contenders Season Ticket — Parallels: Bronze; Pink #/349; Red #/199; Blue #/99; Green #/75; Purple #/49; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 101 – Bron Breakker – NXT
+___ 102 – Rhea Ripley – Raw
+___ 103 – The Miz – Raw
+___ 104 – Finn Balor – Raw
+___ 105 – Austin Theory – SmackDown
+___ 106 – Jacy Jayne – NXT
+___ 107 – Becky Lynch – Raw
+___ 108 – Kevin Owens – SmackDown
+___ 109 – Bianca Belair – SmackDown
+___ 110 – Randy Orton – SmackDown
+___ 111 – Carmella – WWE
+___ 112 – Roxanne Perez – NXT
+___ 113 – Damian Priest – Raw
+___ 114 – Gigi Dolin – NXT
+___ 115 – Ava – NXT
+`],
+  ['Ring Royalty — Parallels: Bronze; Pink #/349; Red #/199; Blue #/99; Green #/75; Purple #/49; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 116 – Batista – Legend
+___ 117 – The Rock – Legend
+___ 118 – Chyna – Legend
+___ 119 – Triple H – Legend
+___ 120 – Eddie Guerrero – Legend
+___ 121 – Trish Stratus – Legend
+___ 122 – Jerry Lawler – Legend
+___ 123 – Lita – Legend
+___ 124 – Mankind – Legend
+___ 125 – Rob Van Dam – Legend
+___ 126 – Booker T – Legend
+___ 127 – "Stone Cold" Steve Austin – Legend
+___ 128 – Diamond Dallas Page – Legend
+___ 129 – Undertaker – Legend
+___ 130 – The Godfather – Legend
+`],
+  ['Origins — Parallels: Bronze; Pink #/349; Red #/199; Green #/75; Purple #/49; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 131 – Asuka – SmackDown
+___ 132 – LA Knight – SmackDown
+___ 133 – Bray Wyatt – WWE
+___ 134 – Rey Mysterio – SmackDown
+___ 135 – Charlotte Flair – SmackDown
+___ 136 – Gigi Dolin – NXT
+___ 137 – Finn Balor – Raw
+___ 138 – Seth "Freakin" Rollins – Raw
+___ 139 – Gunther – Raw
+___ 140 – Jimmy Uso – SmackDown
+___ 141 – "The All Mighty" Bobby Lashley – SmackDown
+___ 142 – Raquel Rodriguez – Raw
+___ 144 – Roman Reigns – SmackDown
+___ 145 – Cora Jade – NXT
+`],
+  ['Classics — Parallels: Bronze; Pink #/349; Red #/199; Green #/75; Purple #/49; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 146 – Alundra Blayze – Legend
+___ 147 – Shawn Michaels – Legend
+___ 148 – Big Boss Man – Legend
+___ 149 – "Million Dollar Man" Ted DiBiase – Legend
+___ 150 – "Mr. Perfect" Curt Hennig – Legend
+___ 151 – Yokozuna – Legend
+___ 152 – Ultimate Warrior – Legend
+___ 153 – Razor Ramon – Legend
+___ 154 – Lex Luger – Legend
+___ 155 – "Ravishing" Rick Rude – Legend
+___ 156 – Bam Bam Bigelow – Legend
+___ 157 – Sycho Sid – Legend
+___ 158 – Bret "Hit Man" Hart – Legend
+___ 159 – Vader – Legend
+___ 160 – Diesel – Legend
+`],
+  ['Luminance — Parallels: Bronze; Pink #/349; Red #/199; Green #/75; Purple #/49; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 161 – AJ Styles – SmackDown
+___ 162 – Jey Uso – Raw
+___ 163 – Bayley – SmackDown
+___ 164 – Grayson Waller – SmackDown
+___ 165 – Carmelo Hayes – NXT
+___ 166 – Sami Zayn – Raw
+___ 167 – "Dirty" Dominik Mysterio – Raw
+___ 168 – Tiffany Stratton – NXT
+___ 169 – Drew McIntyre – Raw
+___ 170 – IYO SKY – SmackDown
+___ 171 – Alexa Bliss – WWE
+___ 172 – Liv Morgan – Raw
+___ 173 – Braun Strowman – Raw
+___ 174 – Nikkita Lyons – NXT
+___ 175 – "The American Nightmare" Cody Rhodes – Raw
+`],
+  ['Golden Age — Parallels: Bronze; Pink #/349; Red #/199; Green #/75; Purple #/49; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 176 – Andre The Giant – Legend
+___ 177 – "Rowdy" Roddy Piper – Legend
+___ 178 – "Chief" Jay Strongbow – Legend
+___ 179 – Hulk Hogan – Legend
+___ 180 – Gene Okerlund – Legend
+___ 181 – "Cowboy" Bob Orton – Legend
+___ 182 – George "The Animal" Steele – Legend
+___ 183 – "Superstar" Billy Graham – Legend
+___ 184 – Gorilla Monsoon – Legend
+___ 185 – Howard Finkel – Legend
+___ 186 – Bruno Sammartino – Legend
+___ 187 – The Honky Tonk Man – Legend
+___ 188 – Freddie Blassie – Legend
+___ 189 – Iron Sheik – Legend
+___ 190 – Wendi Richter – Legend
+`],
+  ['Voices of the Ring — Parallels: Bronze; Pink #/349; Red #/199; Green #/75; Purple #/49; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 192 – Gorilla Monsoon – Legend
+___ 193 – Kayla Braxton – SmackDown
+___ 194 – Michael Cole – SmackDown
+___ 195 – Alicia Taylor – NXT
+___ 196 – Sarah Schreiber – WWE
+___ 197 – Byron Saxton – Raw
+___ 198 – Jerry Lawler – Legend
+___ 199 – Booker T – Legend
+___ 200 – Bobby "The Brain" Heenan – Legend
+`],
+  ['Certified — Parallels: Bronze; Pink #/349; Red #/199; Green #/75; Purple #/49; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 201 – Austin Theory – SmackDown
+___ 202 – Rhea Ripley – Raw
+___ 204 – Shawn Michaels – Legend
+___ 205 – Diamond Dallas Page – Legend
+___ 206 – Hulk Hogan – Legend
+___ 207 – "Million Dollar Man" Ted DiBiase – Legend
+___ 208 – Jimmy Uso – SmackDown
+___ 209 – AJ Styles – SmackDown
+___ 210 – Liv Morgan – Raw
+___ 211 – Becky Lynch – Raw
+___ 212 – Kayden Carter – Raw
+___ 213 – Bubba Ray Dudley – Legend
+___ 214 – Torrie Wilson – Legend
+___ 215 – "Dirty" Dominik Mysterio – Raw
+___ 216 – Iron Sheik – Legend
+___ 217 – "Stone Cold" Steve Austin – Legend
+___ 218 – Kane – Legend
+___ 219 – Alexa Bliss – WWE
+___ 220 – Randy Orton – SmackDown
+___ 221 – Bret "Hit Man" Hart – Legend
+___ 222 – Seth "Freakin" Rollins – Raw
+___ 223 – "The American Nightmare" Cody Rhodes – Raw
+___ 224 – Undertaker – Legend
+___ 225 – Finn Balor – Raw
+`],
+  ['Limited — Parallels: Bronze; Pink #/349; Red #/199; Green #/75; Purple #/49; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 226 – Alba Fyre – SmackDown
+___ 227 – John Cena – Legend
+___ 228 – Bianca Belair – SmackDown
+___ 229 – Kurt Angle – Legend
+___ 230 – Bron Breakker – NXT
+___ 231 – Roman Reigns – SmackDown
+___ 232 – Charlotte Flair – SmackDown
+___ 233 – Triple H – Legend
+___ 234 – Kevin Nash – Legend
+___ 235 – Scott Hall – Legend
+___ 236 – Batista – Legend
+___ 237 – Grayson Waller – SmackDown
+___ 238 – "The All Mighty" Bobby Lashley – SmackDown
+___ 239 – Nikkita Lyons – NXT
+___ 240 – Mankind – Legend
+___ 241 – Solo Sikoa – SmackDown
+___ 242 – Damian Priest – Raw
+___ 243 – Zelina Vega – SmackDown
+___ 244 – Drew McIntyre – Raw
+___ 245 – IYO SKY – SmackDown
+___ 246 – Bayley – SmackDown
+___ 247 – Kevin Owens – SmackDown
+___ 248 – Booker T – Legend
+___ 249 – Raquel Rodriguez – Raw
+___ 250 – Carmelo Hayes – NXT
+`],
+  ['Illusions — Parallels: Bronze; Pink #/349; Red #/199; Green #/75; Purple #/49; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 251 – LA Knight – SmackDown
+___ 253 – Rey Mysterio – SmackDown
+___ 254 – Maxxine Dupri – Raw
+___ 255 – "The American Nightmare" Cody Rhodes – Raw
+___ 256 – Tiffany Stratton – NXT
+___ 257 – Jerry Lawler – Legend
+___ 258 – William Regal – Legend
+___ 259 – Bradshaw – Legend
+___ 260 – Becky Lynch – Raw
+___ 261 – Lita – Legend
+___ 262 – Bray Wyatt – WWE
+___ 263 – Road Dogg – Legend
+___ 264 – Sami Zayn – Raw
+___ 265 – Dragon Lee – SmackDown
+___ 266 – Trish Stratus – Legend
+___ 267 – Jey Uso – Raw
+___ 268 – 1-2-3 Kid – Legend
+___ 269 – Papa Shango – Legend
+___ 270 – Alexa Bliss – WWE
+___ 271 – Liv Morgan – Raw
+___ 272 – Asuka – SmackDown
+___ 273 – Razor Ramon – Legend
+___ 274 – The Great Khali – Legend
+___ 275 – Ron Simmons – Legend
+`],
+  ['XR — Parallels: Bronze; Pink #/349; Red #/199; Green #/75; Purple #/49; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 276 – Roxanne Perez – NXT
+___ 277 – "Dirty" Dominik Mysterio – Raw
+___ 278 – Gigi Dolin – NXT
+___ 279 – AJ Styles – SmackDown
+___ 280 – Jimmy Uso – SmackDown
+___ 281 – Bayley – SmackDown
+___ 282 – Paul Heyman – SmackDown
+___ 283 – Braun Strowman – Raw
+___ 284 – Rhea Ripley – Raw
+___ 285 – Charlotte Flair – SmackDown
+___ 286 – Seth "Freakin" Rollins – Raw
+___ 287 – Dragon Lee – SmackDown
+___ 288 – Gunther – Raw
+___ 289 – Austin Theory – SmackDown
+___ 290 – John Cena – Legend
+___ 291 – Bianca Belair – SmackDown
+___ 292 – Randy Orton – SmackDown
+___ 293 – Carmella – WWE
+___ 294 – Roman Reigns – SmackDown
+___ 295 – Cora Jade – NXT
+___ 296 – The Miz – Raw
+___ 297 – Finn Balor – Raw
+___ 298 – Jacy Jayne – NXT
+___ 299 – Ava – NXT
+___ 300 – LA Knight – SmackDown
+`],
+  ['Phoenix — Parallels: Silver; Silver Wave; Pink #/199; Red #/199; Blue #/99; Green #/75; Purple #/49; Mojo #/25; Gold #/10; Gold Vinyl 1/1', `
+___ 301 – Bray Wyatt – WWE
+___ 302 – Paul Heyman – SmackDown
+___ 303 – LA Knight – SmackDown
+___ 304 – Tiffany Stratton – NXT
+___ 305 – Alexa Bliss – WWE
+___ 306 – Carmella – WWE
+___ 307 – "The American Nightmare" Cody Rhodes – Raw
+___ 308 – Gigi Dolin – NXT
+___ 309 – Bayley – SmackDown
+___ 310 – Jacy Jayne – NXT
+___ 311 – Chad Gable – Raw
+___ 312 – Roxanne Perez – NXT
+___ 313 – Rey Mysterio – SmackDown
+___ 314 – Ava – NXT
+___ 315 – Becky Lynch – Raw
+___ 316 – Dragon Lee – SmackDown
+___ 317 – Liv Morgan – Raw
+___ 318 – Gunther – Raw
+___ 319 – Asuka – SmackDown
+___ 320 – Solo Sikoa – SmackDown
+___ 321 – Jey Uso – Raw
+___ 322 – Cora Jade – NXT
+___ 323 – Sami Zayn – Raw
+___ 324 – Braun Strowman – Raw
+`],
+  ['Honors — Parallels: Silver; Silver Wave; Pink #/199; Red #/199; Blue #/99; Green #/75; Purple #/49; Mojo #/25; Gold #/10; Gold Vinyl 1/1', `
+___ 326 – Bayley – SmackDown
+___ 327 – The Godfather – Legend
+___ 328 – John Cena – Legend
+___ 329 – John "Bradshaw" Layfield – Legend
+___ 330 – Austin Theory – SmackDown
+___ 331 – Lita – Legend
+___ 332 – Jimmy Uso – SmackDown
+___ 333 – The Rock – Legend
+___ 334 – Rhea Ripley – Raw
+___ 335 – The Miz – Raw
+___ 336 – Bianca Belair – SmackDown
+___ 337 – Trish Stratus – Legend
+___ 338 – Roman Reigns – SmackDown
+___ 339 – Faarooq – Legend
+___ 340 – "Dirty" Dominik Mysterio – Raw
+___ 341 – Road Dogg – Legend
+___ 342 – Randy Orton – SmackDown
+___ 343 – Bob Backlund – Legend
+___ 344 – Seth "Freakin" Rollins – Raw
+___ 345 – Rob Van Dam – Legend
+___ 346 – Charlotte Flair – SmackDown
+___ 347 – X-Pac – Legend
+___ 348 – AJ Styles – SmackDown
+___ 349 – Jerry Lawler – Legend
+___ 350 – Finn Balor – Raw
+`],
+  ['Donruss Optic — Parallels: Silver; Silver Wave; Pink #/199; Red #/199; Blue #/99; Green #/75; Purple #/49; Mojo #/25; Gold #/10; Gold Vinyl 1/1', `
+___ 351 – Raquel Rodriguez – Raw
+___ 352 – Liv Morgan – Raw
+___ 353 – Batista – Legend
+___ 354 – "The All Mighty" Bobby Lashley – SmackDown
+___ 355 – Booker T – Legend
+___ 356 – Damian Priest – Raw
+___ 357 – Grayson Waller – SmackDown
+___ 358 – Alexa Bliss – WWE
+___ 359 – Kevin Owens – SmackDown
+___ 361 – Solo Sikoa – SmackDown
+___ 362 – Hulk Hogan – Legend
+___ 363 – John Cena – Legend
+___ 364 – Bron Breakker – NXT
+___ 365 – Cactus Jack – Legend
+___ 366 – Drew McIntyre – Raw
+___ 367 – IYO SKY – SmackDown
+___ 368 – Becky Lynch – Raw
+___ 369 – Nikkita Lyons – NXT
+___ 370 – "The American Nightmare" Cody Rhodes – Raw
+___ 371 – Zelina Vega – SmackDown
+___ 372 – Alba Fyre – SmackDown
+___ 373 – Triple H – Legend
+___ 374 – Carmelo Hayes – NXT
+___ 375 – Diesel – Legend
+`],
+  ['Spectra — Parallels: Silver; Silver Wave; Pink #/199; Red #/199; Blue #/99; Green #/75; Purple #/49; Mojo #/25; Gold #/10; Gold Vinyl 1/1', `
+___ 376 – "Million Dollar Man" Ted DiBiase – Legend
+___ 377 – LA Knight – SmackDown
+___ 378 – Tiffany Stratton – NXT
+___ 379 – Bayley – SmackDown
+___ 380 – Shawn Michaels – Legend
+___ 381 – John Cena – Legend
+___ 382 – Diamond Dallas Page – Legend
+___ 383 – Asuka – SmackDown
+___ 384 – Kurt Angle – Legend
+___ 385 – "The American Nightmare" Cody Rhodes – WWE
+___ 386 – Bubba Ray Dudley – Legend
+___ 387 – Rey Mysterio – SmackDown
+___ 388 – "Stone Cold" Steve Austin – Legend
+___ 389 – Bianca Belair – SmackDown
+___ 390 – Undertaker – Legend
+___ 391 – Roman Reigns – SmackDown
+___ 392 – Kane – Legend
+___ 393 – Bray Wyatt – WWE
+___ 394 – Torrie Wilson – Legend
+___ 395 – Jey Uso – Raw
+___ 396 – Iron Sheik – Legend
+___ 397 – Sami Zayn – Raw
+___ 398 – Hulk Hogan – Legend
+___ 399 – Charlotte Flair – SmackDown
+___ 400 – Bret "Hit Man" Hart – Legend
+`],
+  ['Hall of Fame Autographs — Parallels: Blue #/46; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 1 – Torrie Wilson – Legend
+___ 2 – Rey Mysterio – SmackDown
+___ 3 – Stacy Keibler – Legend
+___ 4 – Hulk Hogan – Legend
+___ 5 – Kane – Legend
+___ 6 – Jimmy Hart – Legend
+___ 7 – Molly Holly – Legend
+___ 8 – Kurt Angle – Legend
+___ 9 – Brutus Beefcake – Legend
+___ 10 – Rikishi – Legend
+`],
+  ['National Pride Signatures — Parallels: Blue #/49; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 1 – Zelina Vega – SmackDown
+___ 2 – Tyler Bate – NXT
+___ 3 – Finn Balor – Raw
+___ 4 – Kofi Kingston – Raw
+___ 5 – Hulk Hogan – Legend
+___ 6 – Rey Mysterio – SmackDown
+___ 7 – Rhea Ripley – Raw
+___ 8 – JD McDonagh – Raw
+___ 9 – Alba Fyre – SmackDown
+___ 10 – Noam Dar – NXT
+___ 11 – Drew McIntyre – Raw
+___ 12 – Becky Lynch – Raw
+___ 13 – Santos Escobar – SmackDown
+___ 14 – Butch – SmackDown
+___ 15 – Meiko Satomura – NXT
+`],
+  ['National Treasures Memorabilia Autographs — Parallels: Gold #/10; Platinum 1/1', `
+___ 1 – "Stone Cold" Steve Austin – Legend
+___ 2 – Roman Reigns – SmackDown
+___ 3 – Sami Zayn – Raw
+___ 4 – Sheamus – SmackDown
+___ 5 – Rhea Ripley – Raw
+___ 6 – "The American Nightmare" Cody Rhodes – Raw
+___ 7 – Becky Lynch – Raw
+___ 8 – Bianca Belair – SmackDown
+___ 9 – Charlotte Flair – SmackDown
+___ 10 – Drew McIntyre – Raw
+___ 11 – Finn Balor – Raw
+___ 12 – Rey Mysterio – SmackDown
+___ 13 – Seth "Freakin" Rollins
+___ 14 – Kevin Owens – SmackDown
+___ 15 – AJ Styles – SmackDown
+___ 16 – Asuka – SmackDown
+___ 17 – The Miz – Raw
+___ 18 – Jey Uso – Raw
+___ 19 – Jimmy Uso – SmackDown
+`],
+  ['Origins Autographs — Parallels: Blue #/49; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 1 – Otis – Raw
+___ 2 – Big E – WWE
+___ 3 – Shotzi – SmackDown
+___ 4 – Charlotte Flair – SmackDown
+___ 5 – Torrie Wilson – Legend
+___ 6 – Grayson Waller – SmackDown
+___ 7 – John Cena – Legend
+___ 8 – "Hacksaw" Jim Duggan – Legend
+___ 9 – Malik Blade – NXT
+___ 10 – Apollo Crews – Raw
+___ 11 – Rey Mysterio – SmackDown
+___ 12 – Baron Corbin – NXT
+___ 13 – Stevie Ray – Legend
+___ 14 – Dante Chen – NXT
+___ 15 – Tyler Breeze – NXT
+___ 16 – Ilja Dragunov – NXT
+___ 17 – Karl Anderson – SmackDown
+___ 18 – "The American Nightmare" Cody Rhodes – Raw
+___ 19 – Meiko Satomura – NXT
+___ 20 – Asuka – SmackDown
+___ 21 – Rikishi – Legend
+___ 22 – Brooks Jensen – NXT
+___ 23 – The Honky Tonk Man – Legend
+___ 24 – Duke Hudson – NXT
+___ 25 – Ricky "The Dragon" Steamboat – Legend
+___ 26 – Jerry Lawler – Legend
+___ 27 – Kevin Owens – SmackDown
+___ 28 – Adam Pearce – WWE
+___ 29 – Molly Holly – Legend
+___ 30 – Austin Theory – SmackDown
+___ 31 – Scarlett – SmackDown
+___ 32 – Candice LeRae – Raw
+___ 33 – Tiffany Stratton – NXT
+___ 34 – Bronson Reed – Raw
+___ 35 – Zelina Vega – SmackDown
+___ 36 – Jimmy Uso – SmackDown
+___ 37 – Liv Morgan – Raw
+___ 38 – Alexa Bliss – WWE
+___ 39 – Nikkita Lyons – NXT
+___ 40 – Becky Lynch – Raw
+`],
+  ['Chronicles Signatures — Parallels: Blue #/49; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 1 – Johnny Gargano – Raw
+___ 2 – "Million Dollar Man" Ted DiBiase – Legend
+___ 3 – Maryse – Raw
+___ 4 – Arianna Grace – NXT
+___ 5 – Piper Niven – Raw
+___ 6 – Wendy Choo – NXT
+___ 7 – Sol Ruca – NXT
+___ 8 – Dakota Kai – SmackDown
+___ 9 – Trick Williams – NXT
+___ 10 – Faarooq – Legend
+___ 11 – Karrion Kross – SmackDown
+___ 12 – AJ Styles – SmackDown
+___ 13 – Michin – SmackDown
+___ 14 – Baron Corbin – NXT
+___ 15 – Rhea Ripley – Raw
+___ 16 – Bret "Hit Man" Hart – Legend
+___ 17 – Tatanka – Legend
+___ 18 – Shinsuke Nakamura – Raw
+___ 19 – Tyson Kidd – Legend
+___ 20 – Iyo Sky – SmackDown
+___ 21 – Kiana James – NXT
+___ 22 – Tensai – WWE
+___ 23 – Montez Ford – SmackDown
+___ 24 – Bayley – SmackDown
+___ 25 – Road Dogg – Legend
+___ 26 – Brutus Beefcake – Legend
+___ 27 – The Hurricane – Legend
+___ 28 – Ricochet – Raw
+___ 29 – Xavier Woods – Raw
+___ 30 – Jey Uso – Raw
+___ 31 – Lita – Legend
+___ 32 – Madusa – Legend
+___ 33 – Noam Dar – NXT
+___ 34 – Beth Phoenix – Legend
+___ 35 – Seth "Freakin" Rollins – Raw
+___ 36 – Carmella – WWE
+___ 37 – Tommaso Ciampa – Raw
+___ 38 – Greg "The Hammer" Valentine – Legend
+___ 39 – Zoey Stark – Raw
+___ 40 – Jinder Mahal – Raw
+`],
+  ['Donruss Optic Signature Series — Parallels: Blue #/49; Mojo #/25; Gold #/10; Gold Vinyl 1/1', `
+___ 1 – The Shockmaster – Legend
+___ 2 – Jey Uso – Raw
+___ 3 – Booker T – Legend
+___ 4 – "Million Dollar Man" Ted DiBiase – Legend
+___ 5 – Karrion Kross – SmackDown
+___ 6 – Zelina Vega – SmackDown
+___ 7 – Shotzi – SmackDown
+___ 8 – "Hacksaw" Jim Duggan – Legend
+___ 9 – Ricochet – Raw
+___ 10 – Maryse – Raw
+___ 11 – Liv Morgan – Raw
+___ 12 – Rhea Ripley – Raw
+___ 13 – Montez Ford – SmackDown
+___ 14 – Apollo Crews – Raw
+___ 15 – Xavier Woods – Raw
+___ 16 – Brutus Beefcake – Legend
+___ 17 – X-Pac – Legend
+___ 18 – Alundra Blayze – Legend
+___ 19 – Butch – SmackDown
+___ 20 – Dakota Kai – SmackDown
+___ 21 – "The American Nightmare" Cody Rhodes – Raw
+___ 22 – Sonya Deville – SmackDown
+___ 23 – Wendi Richter – Legend
+___ 24 – Bron Breakker – NXT
+___ 25 – JD McDonagh – Raw
+___ 26 – Katana Chance – Raw
+___ 27 – Tensai – WWE
+___ 28 – Tyler Breeze – Legend
+___ 29 – Tyler Bate – NXT
+___ 30 – Kiana James – NXT
+`],
+  ['Silhouettes — Parallels: Gold #/10; Platinum 1/1', `
+___ 1 – Apollo Crews – Raw
+___ 2 – Baron Corbin – NXT
+___ 3 – Damian Priest – Raw
+___ 4 – Dexter Lumis – Raw
+___ 5 – Shinsuke Nakamura – Raw
+___ 6 – Gunther – Raw
+___ 7 – Jinder Mahal – Raw
+___ 9 – Kofi Kingston – Raw
+___ 10 – Liv Morgan – Raw
+___ 11 – Ilja Dragunov – NXT
+___ 12 – Cameron Grimes – SmackDown
+___ 13 – Montez Ford – SmackDown
+___ 14 – MVP – Raw
+___ 15 – Nikki Cross – Raw
+___ 16 – Otis – Raw
+___ 17 – Rhea Ripley – Raw
+___ 18 – Ricochet – Raw
+___ 20 – Shayna Baszler – Raw
+___ 21 – Shotzi – SmackDown
+___ 22 – Veer – Raw
+___ 23 – Zelina Vega – SmackDown
+___ 25 – Butch – SmackDown
+___ 26 – Candice LeRae – Raw
+___ 28 – Iyo Sky – SmackDown
+___ 29 – LA Knight – SmackDown
+___ 31 – Santos Escobar – SmackDown
+___ 32 – Sonya Deville – SmackDown
+___ 33 – Tyler Bate – NXT
+___ 34 – Carmelo Hayes – NXT
+___ 35 – Grayson Waller – SmackDown
+___ 36 – Jacy Jayne – NXT
+___ 40 – Tony D'Angelo – NXT
+`],
+  ['Phoenix Autographs — Parallels: Blue #/49; Mojo #/25; Gold #/10; Platinum 1/1', `
+___ 1 – "The American Nightmare" Cody Rhodes – Raw
+___ 2 – Tommaso Ciampa – Raw
+___ 3 – Luke Gallows – SmackDown
+___ 4 – Michin – SmackDown
+___ 5 – Sol Ruca – NXT
+___ 6 – Damian Priest – Raw
+___ 7 – Santos Escobar – SmackDown
+___ 8 – Jimmy Hart – Legend
+___ 9 – Kurt Angle – Legend
+___ 10 – Noam Dar – NXT
+___ 11 – Adam Pearce – WWE
+___ 12 – Road Dogg – Legend
+___ 13 – Becky Lynch – Raw
+___ 14 – Greg "The Hammer" Valentine – Legend
+___ 15 – Austin Theory – SmackDown
+___ 16 – Bayley – SmackDown
+___ 17 – Jerry Lawler – Legend
+___ 18 – Zoey Stark – Raw
+___ 19 – Otis – Raw
+___ 20 – The Godfather – Legend
+___ 21 – Torrie Wilson – Legend
+___ 22 – Charlotte Flair – SmackDown
+___ 23 – Carmella – WWE
+___ 24 – Karrion Kross – SmackDown
+___ 25 – B-Fab – SmackDown
+___ 26 – Joe Gacy – NXT
+___ 27 – Gable Steveson – Raw
+___ 28 – Cameron Grimes – SmackDown
+___ 29 – Baron Corbin – NXT
+___ 30 – Grayson Waller – SmackDown
+___ 31 – Lita – Legend
+___ 32 – Channing "Stacks" Lorenzo – NXT
+___ 33 – Tony D'Angelo – NXT
+___ 34 – Raquel Rodriguez – Raw
+___ 35 – Sami Zayn – Raw
+___ 36 – Norman Smiley – Legend
+___ 37 – Mankind – Legend
+___ 38 – Tiffany Stratton – NXT
+___ 39 – Beth Phoenix – Legend
+___ 40 – Tatanka – Legend
+`],
+  ['Contenders Optic Season Ticket Signatures', `
+___ 1 – Batista – Legend
+___ 2 – Undertaker – Legend
+___ 3 – Shawn Michaels – Legend
+___ 4 – Hulk Hogan – Legend
+___ 5 – Booker T – Legend
+___ 6 – John Cena – Legend
+___ 7 – Lita – Legend
+___ 8 – "Stone Cold" Steve Austin – Legend
+___ 9 – Torrie Wilson – Legend
+`],
+  ['Tools of the Trade Signatures — Parallels: Gold #/10; Platinum 1/1', `
+___ 1 – Angelo Dawkins – SmackDown
+___ 2 – Austin Theory – SmackDown
+___ 3 – Chad Gable – Raw
+___ 4 – Zelina Vega – SmackDown
+___ 5 – "Dirty" Dominik Mysterio – Raw
+___ 6 – Erik – Raw
+___ 7 – Ivar – Raw
+___ 8 – Karl Anderson – SmackDown
+___ 9 – Kevin Owens – SmackDown
+___ 10 – Liv Morgan – Raw
+___ 13 – Joaquin Wilde – SmackDown
+___ 14 – Nikki Cross – Raw
+___ 15 – Natalya – Raw
+___ 16 – Omos – WWE
+___ 17 – Piper Niven – Raw
+___ 18 – Otis – Raw
+___ 19 – Ridge Holland – SmackDown
+___ 20 – Scrypts – NXT
+___ 21 – Shinsuke Nakamura – Raw
+___ 22 – Solo Sikoa – SmackDown
+___ 23 – Xavier Woods – Raw
+___ 26 – Cameron Grimes – SmackDown
+___ 27 – Dakota Kai – SmackDown
+___ 28 – Santos Escobar – SmackDown
+___ 29 – Johnny Gargano – Raw
+___ 31 – Raquel Rodriguez – Raw
+___ 33 – Tommaso Ciampa – Raw
+___ 34 – Bron Breakker – NXT
+___ 35 – Cora Jade – NXT
+___ 36 – Ivy Nile – Raw
+___ 37 – JD McDonagh – Raw
+___ 38 – Kayden Carter – Raw
+`],
+  ['Voices of the Ring Signatures — Parallels: Blue #/45; Holo Silver #/25; Gold #/10; Platinum 1/1', `
+___ 1 – Jerry Lawler – Legend
+___ 2 – Dok Hendrix – Legend
+___ 3 – Corey Graves – SmackDown
+___ 4 – Kayla Braxton – SmackDown
+___ 5 – Wade Barrett – Legend
+___ 6 – Michael Cole – SmackDown
+___ 7 – Alicia Taylor – NXT
+___ 8 – John "Bradshaw" Layfield – Legend
+___ 9 – Byron Saxton – Raw
+___ 10 – Sarah Schreiber – WWE
+`],
+  ['National Treasures Insert Set — Parallels: Holo Silver #/25; Holo Gold #/10; Platinum 1/1', `
+___ 1 – Jey Uso – Raw
+___ 2 – "Stone Cold" Steve Austin – Legend
+___ 3 – Kofi Kingston – Raw
+___ 4 – Bayley – SmackDown
+___ 5 – Paul Heyman – SmackDown
+___ 7 – Roxanne Perez – NXT
+___ 8 – Damian Priest – Raw
+___ 9 – Thea Hail – NXT
+___ 10 – Finn Balor – Raw
+___ 11 – John Cena – Legend
+___ 12 – Alba Fyre – SmackDown
+___ 13 – Lita – Legend
+___ 14 – Bob Backlund – Legend
+___ 15 – Rey Mysterio – SmackDown
+___ 16 – Dude Love – Legend
+___ 17 – Seth "Freakin" Rollins – Raw
+___ 18 – Randy Orton – SmackDown
+___ 19 – Triple H – Legend
+___ 20 – Gunther – Raw
+___ 21 – Kane – Legend
+___ 22 – Austin Theory – SmackDown
+___ 23 – Maxxine Dupri – Raw
+___ 24 – Braun Strowman – Raw
+___ 25 – Sycho Sid – Legend
+___ 26 – Charlotte Flair – SmackDown
+___ 27 – Solo Sikoa – SmackDown
+___ 28 – Drew McIntyre – Raw
+___ 29 – William Regal – Legend
+___ 30 – Iyo Sky – SmackDown
+`],
+  ['The Biggest Little Man Insert Set', `
+___ 1 – Rey Mysterio – SmackDown
+___ 2 – Rey Mysterio – SmackDown
+___ 3 – Rey Mysterio – SmackDown
+___ 4 – Rey Mysterio – SmackDown
+___ 5 – Rey Mysterio – SmackDown
+___ 6 – Rey Mysterio – SmackDown
+___ 7 – Rey Mysterio – SmackDown
+___ 8 – Rey Mysterio – SmackDown
+___ 9 – Rey Mysterio – SmackDown
+___ 10 – Rey Mysterio – SmackDown
+___ 11 – Rey Mysterio – SmackDown
+___ 12 – Rey Mysterio – SmackDown
+___ 13 – Rey Mysterio – SmackDown
+___ 14 – Rey Mysterio – SmackDown
+___ 15 – Rey Mysterio – SmackDown
+___ 16 – Rey Mysterio – SmackDown
+___ 17 – Rey Mysterio – SmackDown
+___ 18 – Rey Mysterio – SmackDown
+___ 19 – Rey Mysterio – SmackDown
+___ 20 – Rey Mysterio – SmackDown
+___ 21 – Rey Mysterio – SmackDown
+___ 22 – Rey Mysterio – SmackDown
+___ 23 – Rey Mysterio – SmackDown
+___ 24 – Rey Mysterio – SmackDown
+___ 25 – Rey Mysterio – SmackDown
+___ 26 – Rey Mysterio – SmackDown
+___ 27 – Rey Mysterio – SmackDown
+___ 28 – Rey Mysterio – SmackDown
+___ 29 – Rey Mysterio – SmackDown
+___ 30 – Rey Mysterio – SmackDown
+___ 31 – Rey Mysterio – SmackDown
+___ 32 – Rey Mysterio – SmackDown
+___ 33 – Rey Mysterio – SmackDown
+___ 34 – Rey Mysterio – SmackDown
+___ 35 – Rey Mysterio – SmackDown
+___ 36 – Rey Mysterio – SmackDown
+___ 37 – Rey Mysterio – SmackDown
+___ 38 – Rey Mysterio – SmackDown
+___ 39 – Rey Mysterio – SmackDown
+___ 40 – Rey Mysterio – SmackDown
+___ 41 – Rey Mysterio – SmackDown
+___ 42 – Rey Mysterio – SmackDown
+___ 43 – Rey Mysterio – SmackDown
+___ 44 – Rey Mysterio – SmackDown
+`],
+  ['Action Packed — Parallels: 24kt Gold', `
+___ 1 – Batista – Legend
+___ 2 – Charlotte Flair – SmackDown
+___ 3 – Triple H – Legend
+___ 4 – Roman Reigns – SmackDown
+___ 5 – Mankind – Legend
+___ 6 – The Miz – Raw
+___ 7 – Sami Zayn – Raw
+___ 8 – Alexa Bliss – WWE
+___ 9 – Rhea Ripley – Raw
+___ 10 – Bianca Belair – SmackDown
+___ 11 – Hulk Hogan – Legend
+___ 12 – "The American Nightmare" Cody Rhodes – Raw
+___ 13 – The Rock – Legend
+___ 14 – Natalya – Raw
+___ 15 – Trish Stratus – Legend
+___ 16 – Finn Balor – Raw
+___ 17 – Seth "Freakin" Rollins – Raw
+___ 18 – Becky Lynch – Raw
+___ 19 – "Stone Cold" Steve Austin – Legend
+___ 21 – Shawn Michaels – Legend
+___ 22 – John Cena – Legend
+___ 23 – Undertaker – Legend
+___ 24 – Liv Morgan – Raw
+___ 25 – Kurt Angle – Legend
+`],
+  ['Main Event Insert Set', `
+___ 1 – Roman Reigns – SmackDown
+___ 2 – The Rock – Legend
+___ 3 – John Cena – Legend
+___ 4 – Rhea Ripley – Raw
+___ 5 – Hulk Hogan – Legend
+`],
+  ['Timeless Treasures Insert Set — Parallels: Holo Silver #/25; Holo Gold #/10; Platinum 1/1', `
+___ 1 – Diamond Dallas Page – Legend
+___ 2 – Tiffany Stratton – NXT
+___ 3 – Gigi Dolin – NXT
+___ 4 – Jimmy Uso – SmackDown
+___ 5 – X-Pac – Legend
+___ 6 – Kurt Angle – Legend
+___ 7 – Becky Lynch – Raw
+___ 8 – Randy Orton – SmackDown
+___ 9 – Bron Breakker – NXT
+___ 10 – Sami Zayn – Raw
+___ 11 – "Dirty" Dominik Mysterio – Raw
+___ 12 – Trish Stratus – Legend
+___ 13 – "Hollywood" Hulk Hogan – Legend
+___ 14 – Red Rooster – Legend
+___ 15 – Alexa Bliss – WWE
+___ 16 – Liv Morgan – Raw
+___ 17 – "The All Mighty" Bobby Lashley – SmackDown
+___ 18 – Rhea Ripley – Raw
+___ 19 – Carmella – WWE
+___ 20 – Shawn Michaels – Legend
+___ 21 – Kevin Owens – SmackDown
+___ 22 – Zelina Vega – SmackDown
+___ 23 – Jacy Jayne – NXT
+___ 24 – Karrion Kross – SmackDown
+___ 25 – The Rock – Legend
+___ 26 – Montez Ford – SmackDown
+___ 27 – Bray Wyatt – WWE
+___ 28 – Roman Reigns – SmackDown
+___ 29 – "The American Nightmare" Cody Rhodes – Raw
+___ 30 – The Great Khali – Legend
+`],
+  ['Noir Insert Set — Parallels: Holo Silver #/25; Holo Gold #/10; Platinum 1/1', `
+___ 1 – Cora Jade – NXT
+___ 2 – Torrie Wilson – Legend
+___ 3 – Faarooq – Legend
+___ 4 – Jerry Lawler – Legend
+___ 5 – "The Million Dollar Man" Ted DiBiase – Legend
+___ 6 – Kevin Owens – SmackDown
+___ 7 – Batista – Legend
+___ 8 – Nikkita Lyons – NXT
+___ 9 – Bret "Hit Man" Hart – Legend
+___ 10 – Iyo Sky – SmackDown
+___ 11 – Diesel – Legend
+___ 12 – Undertaker – Legend
+___ 13 – Grayson Waller – SmackDown
+___ 14 – John "Bradshaw" Layfield – Legend
+___ 15 – AJ Styles – SmackDown
+___ 16 – LA Knight – SmackDown
+___ 17 – Bianca Belair – Raw
+___ 18 – Raquel Rodriguez – Raw
+___ 19 – Bubba Ray Dudley – Legend
+___ 20 – Shotzi – SmackDown
+___ 21 – Dragon Lee – SmackDown
+___ 22 – Scarlett – SmackDown
+___ 23 – Iron Sheik – Legend
+___ 24 – Kama – Legend
+___ 25 – Asuka – SmackDown
+___ 26 – "The American Nightmare" Cody Rhodes – WWE
+___ 27 – Booker T – Legend
+___ 28 – Road Dogg – Legend
+___ 29 – Carmelo Hayes – NXT
+___ 30 – The Miz – Raw
+`],
+  ['Gala Rookies Insert Set', `
+___ 1 – Lola Vice – NXT
+___ 2 – Hank Walker – NXT
+___ 3 – Ava – NXT
+___ 4 – Thea Hail – NXT
+___ 5 – Maxxine Dupri – Raw
+___ 6 – Sol Ruca – NXT
+___ 7 – Kiana James – NXT
+___ 8 – Channing "Stacks" Lorenzo – NXT
+___ 9 – Tatum Paxley – NXT
+___ 10 – Dragon Lee – SmackDown
+`],
+]));
+
+// ── 2023 PANINI WWE DONRUSS ELITE ─────────────────────────────────────────────
+setsHtml.push(makeSet('eli23', '2023', '2023 Panini WWE Donruss Elite', [
+  ['Base Set — Parallels: Green; Pink; Razzle Dazzle; Red; Status Explosion #/275; Blue #/149; Purple #/99; Status #/80; Aspirations #/53; Orange #/49; Teal #/25; Gold #/10; Black 1/1', `
+___ 1 – Tony D'Angelo
+___ 2 – Liv Morgan
+___ 3 – Quincy Elliott
+___ 4 – Andre Chase
+___ 5 – Dolph Ziggler
+___ 6 – Alexa Bliss
+___ 7 – Joe Gacy
+___ 8 – Sami Zayn
+___ 9 – Piper Niven
+___ 10 – Damian Priest
+___ 11 – Tyler Bate
+___ 12 – Matt Riddle
+___ 13 – Tatum Paxley
+___ 14 – Ava
+___ 15 – Dragon Lee
+___ 16 – Becky Lynch
+___ 17 – Karrion Kross
+___ 18 – AJ Styles
+___ 19 – Ricochet
+___ 20 – "Dirty" Dominik Mysterio
+___ 21 – Wes Lee
+___ 22 – Nathan Frazer
+___ 23 – Top Dolla
+___ 24 – Braun Strowman
+___ 25 – Elektra Lopez
+___ 26 – Bianca Belair
+___ 27 – Kofi Kingston
+___ 28 – Asuka
+___ 29 – Riddick Moss
+___ 30 – Drew McIntyre
+___ 31 – Xavier Woods
+___ 32 – Paul Heyman
+___ 33 – B-Fab
+___ 34 – Bronson Reed
+___ 35 – Elias
+___ 36 – Brock Lesnar
+___ 37 – LA Knight
+___ 38 – "The All Mighty" Bobby Lashley
+___ 39 – Sheamus
+___ 40 – Edge
+___ 41 – Zelina Vega
+___ 42 – Raquel Rodriguez
+___ 43 – Alba Fyre
+___ 44 – Candice LeRae
+___ 45 – Gigi Dolin
+___ 46 – Charlotte Flair
+___ 47 – Montez Ford
+___ 48 – Bayley
+___ 49 – Shinsuke Nakamura
+___ 50 – Finn Balor
+___ 51 – Arianna Grace
+___ 52 – Rey Mysterio
+___ 53 – Butch
+___ 54 – Carmella
+___ 55 – Grayson Waller
+___ 56 – "The American Nightmare" Cody Rhodes
+___ 57 – Natalya
+___ 58 – Austin Theory
+___ 59 – Shotzi
+___ 60 – Gunther
+___ 61 – Channing "Stacks" Lorenzo
+___ 62 – Roxanne Perez
+___ 63 – Johnny Gargano
+___ 64 – Chad Gable
+___ 65 – Ilja Dragunov
+___ 66 – Randy Orton
+___ 67 – Nikki Cross
+___ 68 – Bray Wyatt
+___ 69 – Sol Ruca
+___ 70 – Iyo Sky
+___ 71 – Hank Walker
+___ 72 – Scarlett
+___ 73 – Santos Escobar
+___ 74 – Chelsea Green
+___ 75 – Jacy Jayne
+___ 76 – Rhea Ripley
+___ 77 – Nikkita Lyons
+___ 78 – Bron Breakker
+___ 79 – Sonya Deville
+___ 80 – Jey Uso
+___ 81 – Kiana James
+___ 82 – Seth "Freakin" Rollins
+___ 83 – Rick Boogs
+___ 84 – Dakota Kai
+___ 85 – Ivy Nile
+___ 86 – Roman Reigns
+___ 87 – Omos
+___ 88 – Carmelo Hayes
+___ 89 – The Miz
+___ 90 – Jimmy Uso
+___ 91 – Maxxine Dupri
+___ 92 – Solo Sikoa
+___ 93 – Xia Li
+___ 94 – Dijak
+___ 95 – JD McDonagh
+___ 96 – Lola Vice
+___ 97 – Otis
+___ 98 – Cora Jade
+___ 99 – Tiffany Stratton
+___ 100 – Kevin Owens
+`],
+  ['Legends — Parallels: Green; Pink; Razzle Dazzle; Red; Status Explosion #/275; Blue #/149; Purple #/99; Status #/80; Aspirations #/53; Orange #/49; Teal #/25; Gold #/10; Black 1/1', `
+___ 101 – Mankind
+___ 102 – "Rowdy" Roddy Piper
+___ 103 – Stacy Keibler
+___ 104 – Undertaker
+___ 105 – "Stone Cold" Steve Austin
+___ 106 – Iron Sheik
+___ 107 – Diesel
+___ 108 – Tito Santana
+___ 109 – Kane
+___ 110 – Dusty Rhodes
+___ 111 – Ricky "The Dragon" Steamboat
+___ 112 – Sherri Martel
+___ 113 – The Godfather
+___ 114 – 1-2-3 Kid
+___ 115 – Batista
+___ 116 – Miss Elizabeth
+___ 117 – Eric Bischoff
+___ 118 – William Regal
+___ 119 – Ken Shamrock
+___ 120 – Eddie Guerrero
+___ 121 – Rob Van Dam
+___ 122 – Ultimate Warrior
+___ 123 – Torrie Wilson
+___ 124 – "Million Dollar Man" Ted DiBiase
+___ 125 – Booker T
+___ 126 – Rikishi
+___ 127 – Hulk Hogan
+___ 128 – Andre The Giant
+___ 129 – Kurt Angle
+___ 130 – "Mr. Perfect" Curt Hennig
+___ 131 – Scott Steiner
+___ 132 – Red Rooster
+___ 133 – Triple H
+___ 134 – Bob Backlund
+___ 135 – Bret "Hit Man" Hart
+___ 136 – Road Dogg
+___ 137 – Jerry Lawler
+___ 138 – British Bulldog
+___ 139 – Lex Luger
+___ 140 – Razor Ramon
+___ 141 – Shawn Michaels
+___ 142 – The Rock
+___ 143 – Trish Stratus
+___ 144 – Bubba Ray Dudley
+___ 145 – Diamond Dallas Page
+___ 146 – The Honky Tonk Man
+___ 147 – John Cena
+___ 148 – Bruno Sammartino
+___ 149 – Lita
+___ 150 – "Ravishing" Rick Rude
+`],
+  ['Elite Deck Insert Set — Parallels: Green; Red #/99; Orange #/49; Teal #/25; Gold #/10; Black 1/1', `
+___ 1 – Roman Reigns
+___ 2 – Edge
+___ 3 – John Cena
+___ 4 – Bianca Belair
+___ 5 – "Stone Cold" Steve Austin
+___ 6 – Trish Stratus
+___ 7 – Hulk Hogan
+___ 8 – Bron Breakker
+___ 9 – Randy Orton
+___ 10 – Triple H
+___ 11 – Brock Lesnar
+___ 12 – Becky Lynch
+___ 13 – The Rock
+___ 14 – Charlotte Flair
+___ 15 – Undertaker
+`],
+  ['Family Lineage Insert Set — Parallels: Green; Red #/99; Orange #/49; Teal #/25; Gold #/10; Black 1/1', `
+___ 1 – Rikishi / Jimmy Uso
+___ 2 – Jim "The Anvil" Neidhart / Natalya
+___ 3 – Sika / Roman Reigns
+___ 4 – "Cowboy" Bob Orton / Randy Orton
+___ 5 – Solo Sikoa / Rikishi
+___ 6 – Rick Steiner / Bron Breakker
+___ 7 – "Dirty" Dominik Mysterio / Rey Mysterio
+___ 8 – Charlie Dempsey / William Regal
+___ 9 – The Rock / Rocky Johnson
+___ 10 – Dusty Rhodes / "The American Nightmare" Cody Rhodes
+`],
+  ['Full Throttle Insert Set — Parallels: Green; Red #/99; Orange #/49; Teal #/25; Gold #/10; Black 1/1', `
+___ 1 – Kofi Kingston
+___ 2 – Carmelo Hayes
+___ 3 – Shawn Michaels
+___ 4 – X-Pac
+___ 5 – Seth "Freakin" Rollins
+___ 6 – Matt Riddle
+___ 7 – Jey Uso
+___ 8 – Dolph Ziggler
+___ 9 – Jimmy Uso
+___ 10 – Montez Ford
+___ 11 – AJ Styles
+___ 12 – Austin Theory
+___ 13 – Xavier Woods
+___ 14 – Finn Balor
+___ 15 – Rob Van Dam
+`],
+  ['Powerhouse Insert Set — Parallels: Green; Red #/99; Orange #/49; Teal #/25; Gold #/10; Black 1/1', `
+___ 1 – Andre The Giant
+___ 2 – Bianca Belair
+___ 3 – Chyna
+___ 4 – Braun Strowman
+___ 5 – John Cena
+`],
+  ['Spellbound Insert Set — Parallels: Green; Red #/99; Orange #/49; Teal #/25; Gold #/10; Black 1/1', `
+___ 1 – Roman Reigns
+___ 2 – Roman Reigns
+___ 3 – Roman Reigns
+___ 4 – Roman Reigns
+___ 5 – Roman Reigns
+___ 6 – Brock Lesnar
+___ 7 – Brock Lesnar
+___ 8 – Brock Lesnar
+___ 9 – Brock Lesnar
+___ 10 – Brock Lesnar
+___ 11 – John Cena
+___ 12 – John Cena
+___ 13 – John Cena
+___ 14 – John Cena
+___ 15 – "Stone Cold" Steve Austin
+___ 16 – "Stone Cold" Steve Austin
+___ 17 – "Stone Cold" Steve Austin
+___ 18 – "Stone Cold" Steve Austin
+___ 19 – "Stone Cold" Steve Austin
+___ 20 – "Stone Cold" Steve Austin
+___ 21 – "Stone Cold" Steve Austin
+___ 22 – "Stone Cold" Steve Austin
+___ 23 – "Stone Cold" Steve Austin
+___ 24 – Lita
+___ 25 – Lita
+___ 26 – Lita
+___ 27 – Lita
+___ 28 – Rey Mysterio
+___ 29 – Rey Mysterio
+___ 30 – Rey Mysterio
+`],
+  ['Star Status Insert Set — Parallels: Green; Red #/99; Orange #/49; Teal #/25; Gold #/10; Black 1/1', `
+___ 1 – Undertaker
+___ 2 – "Stone Cold" Steve Austin
+___ 3 – Lita
+___ 4 – Hulk Hogan
+___ 5 – Bray Wyatt
+___ 6 – Randy Orton
+___ 7 – Brock Lesnar
+___ 8 – Roman Reigns
+___ 9 – The Rock
+___ 10 – John Cena
+___ 11 – Bayley
+___ 12 – Trish Stratus
+___ 13 – "The All Mighty" Bobby Lashley
+___ 14 – Sami Zayn
+___ 15 – "The American Nightmare" Cody Rhodes
+___ 16 – Triple H
+___ 17 – Becky Lynch
+___ 18 – Edge
+___ 19 – Charlotte Flair
+___ 20 – Bianca Belair
+`],
+  ['Title Waves Insert Set — Parallels: Green; Red #/99; Orange #/49; Teal #/25; Gold #/10; Black 1/1', `
+___ 1 – John Cena
+___ 2 – Charlotte Flair
+___ 3 – Triple H
+___ 4 – Becky Lynch
+___ 5 – Randy Orton
+`],
+  ['Elite Impressions Autographs — Parallels: Gold #/10; Black 1/1', `
+___ 1 – Oro Mensah
+___ 2 – Edris Enofe
+___ 3 – Booker T
+___ 4 – Wendy Choo
+___ 5 – "Hacksaw" Jim Duggan
+___ 6 – Rick Boogs
+___ 7 – Axiom
+___ 9 – Rip Fowler
+___ 10 – Mace
+___ 11 – Wolfgang
+___ 12 – Elektra Lopez
+___ 14 – Yulisa Leon
+___ 15 – Rob Van Dam
+___ 16 – Ridge Holland
+___ 17 – Boa
+___ 19 – "Stone Cold" Steve Austin
+___ 20 – Shelton Benjamin
+___ 21 – Dijak
+___ 22 – Fallon Henley
+___ 23 – Kane
+___ 24 – Angelo Dawkins
+___ 25 – Sika
+___ 27 – Brutus Creed
+___ 28 – Angel
+___ 29 – Von Wagner
+___ 31 – Batista
+___ 33 – Bret "Hit Man" Hart
+___ 34 – Chad Gable
+___ 35 – Afa
+___ 36 – R-Truth
+___ 38 – Cedric Alexander
+___ 39 – Wes Lee
+___ 41 – Hulk Hogan
+___ 42 – Josh Briggs
+___ 43 – Don Muraco
+___ 44 – Dana Brooke
+___ 45 – Simon Dean
+___ 48 – Cruz Del Toro
+___ 49 – Blair Davenport
+___ 50 – Amari Miller
+___ 51 – Ivan Putski
+___ 52 – Malik Blade
+___ 53 – "Cowboy" Bob Orton
+___ 54 – Erik
+___ 55 – Jerry Lawler
+___ 56 – Emma
+___ 57 – Ivy Nile
+___ 58 – Dexter Lumis
+___ 59 – Charlie Dempsey
+___ 60 – Andre Chase
+___ 61 – Torrie Wilson
+___ 62 – Mr. Stone
+___ 63 – Alundra Blayze
+___ 64 – Ivar
+___ 65 – The Boogeyman
+___ 66 – Joaquin Wilde
+___ 67 – Jagger Reid
+___ 68 – Giovanni Vinci
+___ 70 – Brooks Jensen
+___ 71 – Paul Heyman
+___ 72 – Nathan Frazer
+___ 73 – Gerald Brisco
+___ 74 – Mustafa Ali
+___ 75 – Alba Fyre
+___ 76 – Valhalla
+___ 77 – Julius Creed
+___ 78 – Humberto
+___ 79 – Joe Coffey
+___ 80 – Damon Kemp
+___ 81 – Kevin Nash
+___ 82 – Trick Williams
+___ 83 – Michael Hayes
+___ 84 – MVP
+___ 85 – Bron Breakker
+___ 86 – The Honky Tonk Man
+___ 87 – Kayden Carter
+___ 88 – LA Knight
+___ 89 – Lyra Valkyria
+___ 90 – Dante Chen
+___ 91 – Diamond Dallas Page
+___ 92 – Valentina Feroz
+___ 94 – Nikki Cross
+___ 95 – Cora Jade
+___ 96 – Scrypts
+___ 98 – Ludwig Kaiser
+___ 99 – Mark Coffey
+___ 100 – Duke Hudson
+`],
+  ['Elite Signatures — Parallels: Green; Red #/99; Blue #/25; Gold #/10; Black 1/1', `
+___ 1 – Grayson Waller
+___ 2 – John Cena
+___ 3 – "Stone Cold" Steve Austin
+___ 5 – Baron Corbin
+___ 6 – Rey Mysterio
+___ 8 – Shinsuke Nakamura
+___ 9 – Damian Priest
+___ 11 – Gunther
+___ 13 – "The American Nightmare" Cody Rhodes
+___ 14 – Liv Morgan
+___ 15 – Batista
+___ 16 – Rhea Ripley
+___ 17 – Bret "Hit Man" Hart
+___ 18 – Shotzi
+___ 19 – Dolph Ziggler
+___ 20 – Trish Stratus
+___ 21 – Hulk Hogan
+___ 22 – Karrion Kross
+___ 23 – Alba Fyre
+___ 24 – Luke Gallows
+___ 25 – Bayley
+___ 26 – Sami Zayn
+___ 28 – Solo Sikoa
+___ 29 – "Dirty" Dominik Mysterio
+___ 30 – Undertaker
+___ 31 – Jimmy Uso
+___ 32 – Katana Chance
+___ 33 – Alexa Bliss
+___ 35 – Bianca Belair
+___ 36 – Shawn Michaels
+___ 37 – Carmella
+___ 38 – The Miz
+___ 39 – Drew McIntyre
+___ 40 – Xavier Woods
+___ 41 – Joe Gacy
+___ 42 – Kofi Kingston
+___ 43 – Austin Theory
+___ 44 – Natalya
+___ 45 – Big E
+___ 46 – Shayna Baszler
+___ 47 – Carmelo Hayes
+___ ES-TST – Tiffany Stratton
+___ 50 – Zelina Vega
+`],
+  ['New Breed — Parallels: Green; Red #/49; Blue #/25; Gold #/10; Black 1/1', `
+___ 1 – JD McDonagh
+___ 3 – Sol Ruca
+___ 5 – Arianna Grace
+___ 6 – Blair Davenport
+___ 7 – Tatum Paxley
+___ 8 – Dijak
+___ 9 – Bron Breakker
+___ 10 – Noam Dar
+___ 11 – Joe Gacy
+___ 12 – Ivy Nile
+___ 13 – Tyler Bate
+___ 14 – Rip Fowler
+___ 15 – Channing "Stacks" Lorenzo
+___ 16 – Charlie Dempsey
+___ 17 – Thea Hail
+___ 18 – Gigi Dolin
+___ 19 – Alba Fyre
+___ 20 – Scrypts
+___ 21 – Katana Chance
+___ 22 – Jagger Reid
+___ 23 – Zoey Stark
+___ 24 – Von Wagner
+___ 25 – Kiana James
+___ 26 – Fallon Henley
+___ 27 – Tiffany Stratton
+___ 28 – Jacy Jayne
+___ 29 – Carmelo Hayes
+___ 30 – Axiom
+___ 31 – Quincy Elliott
+___ 32 – Julius Creed
+___ 33 – Cameron Grimes
+___ 34 – Wes Lee
+___ 35 – Nikkita Lyons
+___ 36 – Nathan Frazer
+___ 37 – Tony D'Angelo
+___ 38 – Ava
+___ 39 – Grayson Waller
+___ 40 – Brutus Creed
+`],
+  ['Passing the Torch — Serial #/25; Parallels: Gold #/10; Black 1/1', `
+___ 1 – "Stone Cold" Steve Austin / Shawn Michaels
+___ 2 – Seth "Freakin" Rollins / Triple H
+___ 3 – John "Bradshaw" Layfield / Baron Corbin
+___ 4 – John Cena / Roman Reigns
+___ 5 – Kurt Angle / Baron Corbin
+___ 6 – Kurt Angle / John Cena
+___ 7 – Roman Reigns / Undertaker
+___ 8 – Cactus Jack / Don Muraco
+___ 9 – "Dirty" Dominik Mysterio / Rey Mysterio
+___ 10 – Bron Breakker / Rick Steiner
+`],
+  ['Pen Pals — Parallels: Red #/49; Blue #/25; Gold #/10; Black 1/1', `
+___ 1 – Charlotte Flair
+___ 2 – Jey Uso
+___ 4 – Cora Jade
+___ 5 – Asuka
+___ 6 – Quincy Elliott
+___ 7 – Montez Ford
+___ 8 – Dakota Kai
+___ 9 – Roman Reigns
+___ 10 – Scarlett
+___ 11 – Finn Balor
+___ 12 – Michin
+___ 13 – Sheamus
+___ 14 – Gigi Dolin
+___ 15 – Kevin Owens
+___ 16 – Roxanne Perez
+___ 17 – B-Fab
+___ 18 – Iyo Sky
+___ 20 – Raquel Rodriguez
+___ 21 – Seth "Freakin" Rollins
+___ 22 – Santos Escobar
+___ 23 – Braun Strowman
+___ 24 – Ava
+___ 25 – Apollo Crews
+___ 26 – Thea Hail
+___ 27 – Butch
+___ 28 – Johnny Gargano
+___ 30 – Sonya Deville
+___ 31 – "The All Mighty" Bobby Lashley
+___ 32 – Bron Breakker
+___ 33 – AJ Styles
+___ 34 – Nikkita Lyons
+___ 35 – Gable Steveson
+___ 36 – Jacy Jayne
+___ 37 – Candice LeRae
+___ 38 – Maxxine Dupri
+___ 39 – Becky Lynch
+___ 40 – Top Dolla
+`],
+  ['Turn of the Century — Parallels: Blue #/25; Gold #/10; Black 1/1', `
+___ 1 – Road Dogg
+___ 2 – Diamond Dallas Page
+___ 4 – John "Bradshaw" Layfield
+___ 5 – Kurt Angle
+___ 7 – "Hacksaw" Jim Duggan
+___ 8 – Michael Hayes
+___ 9 – Beth Phoenix
+___ 10 – Rob Van Dam
+___ 11 – Don Muraco
+___ 12 – Tatanka
+___ 13 – Madusa
+___ 14 – Bradshaw
+___ 15 – "The Million Dollar Man" Ted DiBiase
+___ 16 – Dok Hendrix
+___ 17 – Terry Taylor
+___ 18 – Papa Shango
+___ 19 – Faarooq
+___ 20 – Jerry Lawler
+___ 21 – Kane
+___ 22 – The Shockmaster
+___ 23 – Bad News Brown
+___ 24 – Booker T
+___ 25 – Greg "The Hammer" Valentine
+___ 26 – The Godfather
+___ 27 – D-Lo Brown
+___ 28 – Wade Barrett
+___ 29 – Ivan Putski
+___ 30 – 1-2-3 Kid
+___ 31 – Torrie Wilson
+___ 32 – Jimmy Hart
+___ 33 – Johnny Rodz
+___ 34 – Wendi Richter
+___ 35 – Scotty 2 Hotty
+___ 36 – Brutus Beefcake
+___ 37 – Stevie Ray
+___ 38 – Hulk Hogan
+___ 39 – Tyson Kidd
+___ 40 – Eric Bischoff
+___ 41 – The Honky Tonk Man
+___ 43 – X-Pac
+___ 44 – Jason Jordan
+___ 45 – Rikishi
+___ 46 – Eve Torres
+___ 47 – Fit Finlay
+___ 48 – Scott Steiner
+___ 49 – Red Rooster
+___ 50 – Rick Steiner
+___ 51 – Mighty Molly
+___ 52 – "Cowboy" Bob Orton
+___ 53 – Jimmy Garvin
+___ 54 – Lex Luger
+___ 55 – Albert
+___ 56 – Undertaker
+___ 57 – Tyler Breeze
+___ 58 – The Boogeyman
+___ 59 – Norman Smiley
+___ 60 – Mike Rotunda
+`],
+  ['Turn of the Century Red Parallel — All serial #/49', `
+___ 1 – Road Dogg
+___ 6 – IRS
+___ 7 – "Hacksaw" Jim Duggan
+___ 8 – Michael Hayes
+___ 10 – Rob Van Dam
+___ 11 – Don Muraco
+___ 12 – Tatanka
+___ 13 – Madusa
+___ 16 – Dok Hendrix
+___ 17 – Terry Taylor
+___ 18 – Papa Shango
+___ 19 – Faarooq
+___ 20 – Jerry Lawler
+___ 22 – The Shockmaster
+___ 23 – Bad News Barrett
+___ 25 – Greg "The Hammer" Valentine
+___ 26 – The Godfather
+___ 27 – D-Lo Brown
+___ 28 – Wade Barrett
+___ 30 – 1-2-3 Kid
+___ 32 – Jimmy Hart
+___ 33 – Johnny Rodz
+___ 34 – Wendi Richter
+___ 35 – Scotty 2 Hotty
+___ 36 – Brutus Beefcake
+___ 37 – Stevie Ray
+___ 39 – Tyson Kidd
+___ 43 – X-Pac
+___ 44 – Jason Jordan
+___ 46 – Eve Torres
+___ 47 – Fit Finlay
+___ 48 – Scott Steiner
+___ 49 – Red Rooster
+___ 50 – Rick Steiner
+___ 51 – Mighty Molly
+___ 52 – "Cowboy" Bob Orton
+___ 53 – Jimmy Garvin
+___ 54 – Lex Luger
+___ 55 – Albert
+___ 57 – Tyler Breeze
+___ 58 – The Boogeyman
+___ 59 – Norman Smiley
+___ 60 – Mike Rotunda
 `],
 ]));
 
