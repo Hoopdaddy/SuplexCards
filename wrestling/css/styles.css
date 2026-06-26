@@ -398,6 +398,14 @@ nav {
 .tag-panini  { background: rgba(155,89,182,0.15); color: var(--purple); }
 .tag-key     { background: rgba(204,31,31,0.25);  color: #ff6b6b; font-style: italic; }
 
+/* Filter-category tags (one per set, matches the page's filter tabs) */
+.tag-flagship { background: rgba(46,204,113,0.14); color: var(--green); }
+.tag-chrome   { background: rgba(174,182,191,0.18); color: #c3ccd6; }
+.tag-premium  { background: rgba(232,200,74,0.16);  color: var(--gold); }
+.tag-nxt      { background: rgba(0,188,212,0.15);   color: #2fd0e0; }
+.tag-prizm    { background: rgba(155,89,182,0.18);  color: var(--purple); }
+.tag-select   { background: rgba(52,152,219,0.16);  color: var(--blue); }
+
 /* ── CHECKLISTS ──────────────────────────────────── */
 .checklist-tabs { display: flex; gap: 0.4rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
 .tab-btn {

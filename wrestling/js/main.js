@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNav();
   normalizeSetStructure();  // must run before any filtering
   rebuildYearGroups();      // sort sets by year + regenerate dividers
+  normalizeSetLabels();     // one consistent filter-category tag per set
   initTabs();
   initYearFilter();
   initSetAccordions();
@@ -49,7 +50,7 @@ function normalizeSetStructure() {
 //   • re-home each set into the correct panel by matching TAB_RULES
 //   • sort each panel's sets by year and emit one fresh divider per year
 // An .era-intro banner keeps its place at the top of its panel.
-const _PANEL_PRIORITY = ['premium', 'nxt', 'chrome', 'select', 'prizm', 'flagship'];
+const _PANEL_PRIORITY = ['premium', 'nxt', 'chrome', 'select', 'prizm', 'flagship', 'wcw90', 'ecw90', 'wwf90'];
 
 function rebuildYearGroups() {
   const makeBreak = year => {
@@ -134,6 +135,74 @@ function rebuildYearGroups() {
   });
 }
 
+// ── NORMALIZE SET LABELS ─────────────────────────────
+// Every set row shows exactly ONE tag = the filter category it belongs to,
+// so labels are consistent instead of a mix of year / brand / sub-brand tags.
+//   • physical panels (data-panel)  → that panel IS the category
+//   • single name-filtered panel    → first matching TAB_RULES category
+//   • pages with no filter tabs      → collapse to just the year tag
+// Tier-bars and chevrons are left untouched (they aren't labels).
+const _FILTER_TAG = {
+  flagship: ['Flagship', 'tag-flagship'],
+  chrome:   ['Chrome',   'tag-chrome'],
+  premium:  ['Premium',  'tag-premium'],
+  nxt:      ['NXT',      'tag-nxt'],
+  prizm:    ['Prizm',    'tag-prizm'],
+  select:   ['Select',   'tag-select'],
+  wwf90:    ['WWF',      'tag-wwf'],
+  wcw90:    ['WCW',      'tag-wcw'],
+  ecw90:    ['ECW',      'tag-ecw'],
+};
+
+function _setFilterTag(header, label, cls) {
+  header.querySelectorAll('.tag').forEach(t => t.remove());
+  const tag = document.createElement('span');
+  tag.className = 'tag ' + cls;
+  tag.textContent = label;
+  // Old style: a flex container holding the chevron sits as a header child.
+  const flex = [...header.children].find(c => c.querySelector && c.querySelector('.set-chevron'));
+  if (flex) {
+    flex.insertBefore(tag, flex.querySelector('.set-chevron'));
+  } else {
+    (header.querySelector('.set-title-row') || header).appendChild(tag);
+  }
+}
+
+function normalizeSetLabels() {
+  // Only categories that are actual filter tabs ON THIS PAGE are valid labels.
+  const pageTabs = new Set([...document.querySelectorAll('.tab-btn')].map(b => b.dataset.tab));
+  const hasTabs = pageTabs.size > 0;
+  const nameOrder = _PANEL_PRIORITY.filter(k => pageTabs.has(k) && TAB_RULES[k] && _FILTER_TAG[k]);
+
+  document.querySelectorAll('.set-header').forEach(header => {
+    const panel = header.closest('.checklist-panel');
+    const panelKey = panel && panel.dataset.panel;
+
+    // 1. Physical panel → use the panel as the category (most accurate).
+    if (panelKey && _FILTER_TAG[panelKey]) {
+      _setFilterTag(header, _FILTER_TAG[panelKey][0], _FILTER_TAG[panelKey][1]);
+      return;
+    }
+
+    // 2. Single name-filtered panel (e.g. Panini) → match by set name.
+    if (hasTabs) {
+      const name = _setName(header);
+      const key = nameOrder.find(k => TAB_RULES[k](name));
+      if (key) {
+        _setFilterTag(header, _FILTER_TAG[key][0], _FILTER_TAG[key][1]);
+      } else {
+        header.querySelectorAll('.tag').forEach(t => t.remove()); // belongs to no filter
+      }
+      return;
+    }
+
+    // 3. No filter tabs on this page → keep only the year tag for consistency.
+    const tags = [...header.querySelectorAll('.tag')];
+    const yearTag = tags.find(t => /^\d{4}/.test(t.textContent.trim()));
+    if (yearTag) tags.forEach(t => { if (t !== yearTag) t.remove(); });
+  });
+}
+
 // ── NAV ──────────────────────────────────────────────
 function initNav() {
   const hamburger = document.querySelector('.hamburger');
@@ -192,6 +261,11 @@ const TAB_RULES = {
   // ── Shared ───────────────────────────────────────────
   nxt:      n => /\bnxt\b/i.test(n),
   premium:  n => _isPremium(n),
+
+  // ── Golden Age era (by promotion) ────────────────────
+  wcw90:    n => /\bwcw\b/i.test(n),
+  ecw90:    n => /\becw\b/i.test(n),
+  wwf90:    n => /\bwwf\b/i.test(n),
 };
 
 // Seed active tabs from whatever tab-btn has class="active" in the HTML.
@@ -209,8 +283,14 @@ function _setName(header) {
   return el ? el.textContent.trim() : '';
 }
 
-function _tabVisible(name) {
+function _tabVisible(header, name) {
   if (_activeTabs.size === 0) return true;          // nothing selected → show all
+  // Physical-panel pages (First Topps, Golden Age): a set's category is the
+  // panel it physically lives in — match that, not its name.
+  const panel = header.closest('.checklist-panel');
+  const panelKey = panel && panel.dataset.panel;
+  if (panelKey) return _activeTabs.has(panelKey);
+  // Single-panel pages (Panini): match the set name against the tab rules.
   for (const tab of _activeTabs) {
     if (TAB_RULES[tab] && TAB_RULES[tab](name)) return true;
   }
@@ -221,7 +301,7 @@ function _tabVisible(name) {
 function _setVisible(header) {
   const name = _setName(header);
   if (!name) return true;                           // no name → always show (structural)
-  if (!_tabVisible(name)) return false;             // tab filter hides it
+  if (!_tabVisible(header, name)) return false;     // tab filter hides it
   if (_activeYear === 'all') return true;           // no year filter
   return header.dataset.year === _activeYear;       // year must match
 }
