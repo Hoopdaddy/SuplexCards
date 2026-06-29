@@ -66,14 +66,81 @@
     .pe-era-pill.active   { border-color: var(--gold); background: rgba(232,200,74,0.15); color: var(--gold); }
     .pe-filter-pill.active { border-color: var(--purple); background: var(--purple); color: #fff; }
 
+    /* Step numbers */
+    .pe-step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: rgba(255,255,255,0.08); color: var(--muted);
+      font-size: 0.6rem; font-weight: 700; margin-right: 0.3rem; flex-shrink: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .pe-filter-row.step-done .pe-step-num { background: var(--gold); color: #000; }
+
+    /* Pulse on era pills until clicked */
+    @keyframes pe-pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(232,200,74,0); }
+      55%      { box-shadow: 0 0 0 5px rgba(232,200,74,0.2); }
+    }
+    .pe-era-pulse .pe-era-pill          { animation: pe-pulse 2.2s ease-in-out infinite; }
+    .pe-era-pulse .pe-era-pill:nth-child(2) { animation-delay:0.15s; }
+    .pe-era-pulse .pe-era-pill:nth-child(3) { animation-delay:0.3s; }
+    .pe-era-pulse .pe-era-pill:nth-child(4) { animation-delay:0.45s; }
+
+    /* "Start here" callout */
+    .pe-start-callout {
+      text-align: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+      transition: opacity 0.4s;
+    }
+    .pe-start-callout.hidden { opacity: 0; pointer-events: none; }
+
+    /* Parallel preview chips (shown when set picked, no card yet) */
+    .par-preview-header {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      padding: 1rem 0 0.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.8rem;
+    }
+    .par-preview-grid { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .par-preview-chip {
+      display: flex; align-items: center; gap: 0.4rem;
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 4px; padding: 0.3rem 0.65rem;
+      font-family: 'Oswald', sans-serif; font-size: 0.72rem;
+      font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase;
+      color: var(--text);
+    }
+    .par-preview-chip .chip-swatch {
+      width: 13px; height: 13px; border-radius: 2px; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .par-preview-chip .chip-print { color: var(--muted); font-size: 0.63rem; margin-left: 0.15rem; }
+    .par-preview-chip.is-1of1 { border-color: rgba(255,51,51,0.3); }
+    .pe-pick-hint {
+      margin-top: 1.5rem; text-align: center;
+      font-family: 'Oswald', sans-serif; font-size: 0.75rem;
+      letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted);
+      border-top: 1px solid var(--border); padding-top: 1.2rem;
+    }
+    .pe-pick-hint strong { color: var(--gold); display: block; font-size: 0.95rem; margin-bottom: 0.3rem; }
+
     /* ── EMPTY / LANDING STATES ── */
     .pe-empty-state {
       text-align: center;
-      padding: 3rem 1rem;
+      padding: 2.5rem 1rem;
       color: var(--muted);
     }
-    .pe-empty-state .pe-empty-icon { font-size: 2rem; margin-bottom: 0.5rem; }
-    .pe-empty-state p { font-family: 'Oswald', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .pe-empty-state .pe-empty-icon { font-size: 1.6rem; margin-bottom: 0.6rem; color: var(--gold); }
+    .pe-empty-state p { font-family: 'Oswald', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.6; }
 
     /* Main layout */
     .pe-layout {
@@ -315,10 +382,11 @@
   <p>Pick an era, year, and set — then select a card to see every parallel from base to 1/1, with print runs, colors, and collection tracking.</p>
 
   <div class="pe-filter-section">
+    <div class="pe-start-callout" id="startCallout">&#9660; Start here — pick a card era</div>
     <!-- Row 1: Era -->
-    <div class="pe-filter-row" id="eraRow">
-      <span class="pe-filter-label">Era</span>
-      <div class="pe-filter-pills">
+    <div class="pe-filter-row step-done" id="eraRow">
+      <span class="pe-filter-label"><span class="pe-step-num">1</span>Era</span>
+      <div class="pe-filter-pills pe-era-pulse" id="eraPills">
         <button class="pe-era-pill" data-era="fleer"   onclick="selectEra('fleer')">Fleer (2001–2004)</button>
         <button class="pe-era-pill" data-era="topps"   onclick="selectEra('topps')">First Topps (2005–2021)</button>
         <button class="pe-era-pill" data-era="panini"  onclick="selectEra('panini')">Panini (2022–2024)</button>
@@ -327,12 +395,12 @@
     </div>
     <!-- Row 2: Year (hidden until era selected) -->
     <div class="pe-filter-row" id="yearRow" style="display:none">
-      <span class="pe-filter-label">Year</span>
+      <span class="pe-filter-label"><span class="pe-step-num">2</span>Year</span>
       <div class="pe-filter-pills" id="yearPills"></div>
     </div>
     <!-- Row 3: Set (hidden until year selected) -->
     <div class="pe-filter-row" id="setRow" style="display:none">
-      <span class="pe-filter-label">Set</span>
+      <span class="pe-filter-label"><span class="pe-step-num">3</span>Set</span>
       <div class="pe-filter-pills" id="setPills"></div>
     </div>
   </div>
@@ -349,8 +417,8 @@
       </div>
       <div class="pe-card-list" id="cardList">
         <div class="pe-empty-state">
-          <div class="pe-empty-icon">🎴</div>
-          <p>Select an era above<br>to explore parallel rainbows</p>
+          <div class="pe-empty-icon">&#8593;</div>
+          <p>Step 1: Pick an era<br>Step 2: Pick a year<br>Step 3: Pick a set</p>
         </div>
       </div>
     </div>
@@ -1402,6 +1470,12 @@ function selectEra(era) {
   document.querySelectorAll('.pe-era-pill').forEach(p =>
     p.classList.toggle('active', p.dataset.era === era));
 
+  // Stop pulsing, hide "start here" callout, mark step 1 done
+  document.getElementById('eraPills').classList.remove('pe-era-pulse');
+  document.getElementById('startCallout').classList.add('hidden');
+  document.getElementById('eraRow').classList.add('step-done');
+  document.getElementById('yearRow').classList.remove('step-done');
+
   // Populate year pills
   const years = getYearsForEra(era);
   const yearPills = document.getElementById('yearPills');
@@ -1411,7 +1485,7 @@ function selectEra(era) {
   document.getElementById('yearRow').style.display = '';
   document.getElementById('setRow').style.display  = 'none';
 
-  showEmptyCardList('Select a year above');
+  showEmptyCardList('Now pick a year ↗');
   showEmptyPanel();
 }
 
@@ -1421,6 +1495,9 @@ function selectYear(year) {
   document.querySelectorAll('#yearPills .pe-filter-pill').forEach(p =>
     p.classList.toggle('active', +p.dataset.year === year));
 
+  document.getElementById('yearRow').classList.add('step-done');
+  document.getElementById('setRow').classList.remove('step-done');
+
   // Populate set pills
   const sets = getSetsForEraYear(activeEra, year);
   const setPills = document.getElementById('setPills');
@@ -1429,7 +1506,7 @@ function selectYear(year) {
   ).join('');
   document.getElementById('setRow').style.display = '';
 
-  showEmptyCardList('Select a set above');
+  showEmptyCardList('Now pick a set ↗');
   showEmptyPanel();
 }
 
@@ -1438,6 +1515,8 @@ function selectSet(key) {
 
   document.querySelectorAll('#setPills .pe-filter-pill').forEach(p =>
     p.classList.toggle('active', p.dataset.set === key));
+
+  document.getElementById('setRow').classList.add('step-done');
 
   renderCardList();
   renderPanel();
@@ -1509,7 +1588,21 @@ function renderPanel() {
     </div>`;
 
   if (!activeCard) {
-    html += `<div class="pe-no-selection"><h3>Pick a Card</h3><p>Select any card from the list on the left to see its full parallel rainbow.</p></div>`;
+    // Show the parallel rainbow for this set as a preview
+    const chips = set.parallels.map(p => {
+      const is1of1 = p.type === '1/1';
+      return `<div class="par-preview-chip ${is1of1 ? 'is-1of1' : ''}">
+        <span class="chip-swatch" style="background:${p.swatch}"></span>
+        ${p.name}<span class="chip-print">${p.print}</span>
+      </div>`;
+    }).join('');
+    html += `
+      <div class="par-preview-header">${set.parallels.length} parallels in this set</div>
+      <div class="par-preview-grid">${chips}</div>
+      <div class="pe-pick-hint">
+        <strong>&#8592; Select a card</strong>
+        to track which parallels you own
+      </div>`;
     panel.innerHTML = html;
     return;
   }
