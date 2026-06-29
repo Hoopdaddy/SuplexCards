@@ -130,6 +130,7 @@
       </li>
       <li><a href="search.html">Search</a></li>
       <li><a href="hof-rookies.html">HOF Rookies</a></li>
+      <li><a href="first-autos.html">HOF Autos</a></li>
       <li><a href="wrestlers.html">Wrestlers</a></li>
       <li><a href="parallels.html">Parallels</a></li>
       <li><a href="shows.html">Card Shows</a></li>
@@ -182,7 +183,8 @@
       <tr>
         <th class="col-check">✓</th>
         <th data-col="name">Wrestler <span class="sort-arrow">↕</span></th>
-        <th data-col="year">Year <span class="sort-arrow">↕</span></th>
+        <th data-col="hof">HOF Class <span class="sort-arrow">↕</span></th>
+        <th data-col="year">Auto Year <span class="sort-arrow">↕</span></th>
         <th>First Certified Auto</th>
         <th>Set</th>
         <th>Type</th>
@@ -206,86 +208,83 @@
 
 <script src="js/main.js"></script>
 <script>
-// -- AUTO DATA ---------------------------------------
-// name, year, autoCard, set, type (on-card/sticker), tags, note
+// -- AUTO DATA (WWE Hall of Famers only) -------------
+// name, hof (induction year), year (first auto year), autoCard, set, type, tags, note
 const autoData = [
-  // VINTAGE ON-CARD (1994 Action Packed)
-  { name:"Bret Hart",          year:1994, autoCard:"Bret Hart Autograph",        set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"One of the earliest certified WWF autos in existence." },
-  { name:"Shawn Michaels",     year:1994, autoCard:"HBK Autograph",              set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"Degenerate signature from the New Generation era." },
-  { name:"Undertaker",         year:1994, autoCard:"Undertaker Autograph",       set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"Taker autos are scarce in any era — this is the first." },
-  { name:"Diesel (Kevin Nash)", year:1994, autoCard:"Diesel Autograph",          set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"Big Daddy Cool's certified debut." },
-  { name:"Razor Ramon",        year:1994, autoCard:"Razor Ramon Autograph",      set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"Bad Guy — scarce on-card from this era." },
-  { name:"Lex Luger",          year:1994, autoCard:"Lex Luger Autograph",        set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"" },
-  { name:"Owen Hart",          year:1994, autoCard:"Owen Hart Autograph",        set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"One of very few certified Owen autos. Deeply significant." },
-  { name:"Yokozuna",           year:1994, autoCard:"Yokozuna Autograph",         set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"Rare — Yokozuna autographs are extraordinarily scarce." },
-  { name:"1-2-3 Kid (X-Pac)", year:1994, autoCard:"1-2-3 Kid Autograph",        set:"1994–95 Action Packed WWF",       type:"On-Card", tags:["vintage","on-card"],  note:"Pre-DX X-Pac — early on-card auto." },
-  // MODERN (Fleer Authentic era)
-  { name:"The Rock",           year:2001, autoCard:"The Rock Autograph",         set:"2001 Fleer WWF Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"The Great One's first certified auto. Major key." },
-  { name:"Stone Cold Steve Austin",year:2001,autoCard:"Steve Austin Autograph",  set:"2001 Fleer WWF Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"Austin autos from any era command premiums." },
-  { name:"Triple H",           year:2001, autoCard:"Triple H Autograph",         set:"2001 Fleer WWF Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"" },
-  { name:"Mick Foley",         year:2001, autoCard:"Mankind / Foley Auto",       set:"2001 Fleer WWF Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"" },
-  { name:"Kurt Angle",         year:2001, autoCard:"Kurt Angle Autograph",       set:"2001 Fleer WWF Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"It's true, it's damn true." },
-  { name:"Edge",               year:2001, autoCard:"Edge Autograph",             set:"2001 Fleer WWF Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"The Rated-R Superstar's debut certified auto." },
-  { name:"Lita",               year:2001, autoCard:"Lita Autograph",             set:"2001 Fleer WWF Authentic",        type:"On-Card", tags:["vintage","on-card","women"], note:"Early women's auto — historically significant." },
-  { name:"Trish Stratus",      year:2001, autoCard:"Trish Stratus Autograph",    set:"2001 Fleer WWF Authentic",        type:"On-Card", tags:["vintage","on-card","women"], note:"Hall of Famer's debut certified auto." },
-  { name:"Rob Van Dam",        year:2002, autoCard:"Rob Van Dam Autograph",      set:"2002 Fleer WWE",                  type:"Sticker", tags:["vintage"],            note:"First certified RVD auto after ECW cards had no autos." },
-  { name:"Brock Lesnar",       year:2002, autoCard:"Brock Lesnar Autograph RC",  set:"2002 Fleer WWE Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"Beast Incarnate's first auto — very hard to find." },
-  { name:"Rey Mysterio",       year:2002, autoCard:"Rey Mysterio Autograph",     set:"2002 Fleer WWE",                  type:"Sticker", tags:["vintage"],            note:"619's first certified WWE auto." },
-  { name:"John Cena",          year:2003, autoCard:"John Cena Autograph",        set:"2003 Fleer WWE Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"First Cena certified auto. Low print run. Key card." },
-  { name:"Randy Orton",        year:2003, autoCard:"Randy Orton Autograph RC",   set:"2003 Fleer WWE Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"Viper's debut auto — Fleer era, very undervalued." },
-  { name:"Batista",            year:2003, autoCard:"Batista Autograph",          set:"2003 Fleer WWE Authentic",        type:"Sticker", tags:["vintage"],            note:"Animal's first certified auto." },
-  { name:"Eddie Guerrero",     year:2003, autoCard:"Eddie Guerrero Autograph",   set:"2003 Fleer WWE Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"Viva La Raza — posthumous demand makes this a key card." },
-  { name:"Ric Flair",          year:2003, autoCard:"Ric Flair Autograph",        set:"2003 Fleer WWE Authentic",        type:"On-Card", tags:["vintage","on-card"],  note:"Nature Boy's first WWE-licensed certified auto." },
-  // FIRST TOPPS ERA AUTOS
-  { name:"CM Punk",            year:2010, autoCard:"CM Punk Autograph",          set:"2010 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"Best in the World — early Topps era auto. Very sought." },
-  { name:"Daniel Bryan",       year:2012, autoCard:"Daniel Bryan Auto RC",       set:"2012 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"YES! First certified auto in Topps era." },
-  { name:"Dolph Ziggler",      year:2010, autoCard:"Dolph Ziggler Autograph",    set:"2010 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"" },
-  { name:"The Miz",            year:2010, autoCard:"The Miz Autograph",          set:"2010 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"Awesome!" },
-  { name:"AJ Lee",             year:2012, autoCard:"AJ Lee Auto RC",             set:"2012 Topps WWE",                  type:"Sticker", tags:["modern","women"],     note:"Crazy, Sexy, Dangerous — debut auto." },
-  { name:"Paige",              year:2014, autoCard:"Paige Autograph RC",         set:"2014 Topps WWE",                  type:"Sticker", tags:["modern","women"],     note:"Anti-Diva's first certified auto." },
-  { name:"Charlotte Flair",    year:2015, autoCard:"Charlotte Auto RC",          set:"2015 Topps WWE Undisputed",        type:"On-Card", tags:["modern","on-card","women"], note:"Queen's first on-card auto. Key card." },
-  { name:"Sasha Banks",        year:2015, autoCard:"Sasha Banks Auto RC",        set:"2015 Topps WWE Undisputed",        type:"On-Card", tags:["modern","on-card","women"], note:"Boss's debut on-card auto from Undisputed." },
-  { name:"Becky Lynch",        year:2015, autoCard:"Becky Lynch Auto RC",        set:"2015 Topps WWE",                  type:"Sticker", tags:["modern","women"],     note:"The Man's first certified auto." },
-  { name:"Bayley",             year:2015, autoCard:"Bayley Auto RC",             set:"2015 Topps WWE Undisputed",        type:"On-Card", tags:["modern","on-card","women"], note:"Role Model — Undisputed on-card debut." },
-  { name:"Kevin Owens",        year:2015, autoCard:"Kevin Owens Auto RC",        set:"2015 Topps WWE Undisputed",        type:"On-Card", tags:["modern","on-card"],   note:"KO's first on-card certified auto." },
-  { name:"Finn Bálor",         year:2015, autoCard:"Finn Bálor Auto RC",         set:"2015 Topps WWE Undisputed",        type:"On-Card", tags:["modern","on-card"],   note:"Demon King's debut on-card auto." },
-  { name:"Seth Rollins",       year:2013, autoCard:"Seth Rollins Auto",          set:"2013 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"Architect's first certified auto." },
-  { name:"Dean Ambrose",       year:2013, autoCard:"Dean Ambrose Auto",          set:"2013 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"Lunatic Fringe debut auto." },
-  { name:"Roman Reigns",       year:2013, autoCard:"Roman Reigns Auto",          set:"2013 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"Tribal Chief's first certified auto — widely available." },
-  { name:"Bray Wyatt",         year:2014, autoCard:"Bray Wyatt Auto RC",         set:"2014 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"Eater of Worlds — first auto. Emotional card for fans." },
-  { name:"Luke Harper",        year:2015, autoCard:"Luke Harper Auto RC",        set:"2015 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"" },
-  { name:"AJ Styles",          year:2016, autoCard:"AJ Styles Auto RC",          set:"2016 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"Phenomenal One's first WWE-licensed certified auto." },
-  { name:"Shinsuke Nakamura",  year:2016, autoCard:"Nakamura Auto RC",           set:"2016 Topps WWE",                  type:"Sticker", tags:["modern"],             note:"King of Strong Style's WWE auto debut." },
-  { name:"Alexa Bliss",        year:2016, autoCard:"Alexa Bliss Auto RC",        set:"2016 Topps WWE Women's Division",  type:"On-Card", tags:["modern","on-card","women"], note:"Goddess's debut certified auto." },
-  { name:"Asuka",              year:2016, autoCard:"Asuka Auto RC",              set:"2016 Topps WWE Women's Division",  type:"On-Card", tags:["modern","on-card","women"], note:"Empress of Tomorrow's first auto." },
-  { name:"Ember Moon",         year:2016, autoCard:"Ember Moon Auto RC",         set:"2016 Topps WWE Women's Division",  type:"On-Card", tags:["modern","on-card","women"], note:"" },
-  { name:"Naomi",              year:2016, autoCard:"Naomi Autograph",            set:"2016 Topps WWE",                  type:"Sticker", tags:["modern","women"],     note:"" },
-  { name:"Rhea Ripley",        year:2019, autoCard:"Rhea Ripley Auto RC",        set:"2019 Topps WWE NXT",               type:"On-Card", tags:["modern","on-card","women"], note:"Eradicator — on-card auto RC. The key modern women's auto." },
-  { name:"Bianca Belair",      year:2020, autoCard:"Bianca Belair Auto RC",      set:"2020 Topps WWE Undisputed",        type:"On-Card", tags:["modern","on-card","women"], note:"EST of WWE — Undisputed debut auto." },
-  { name:"Mandy Rose",         year:2019, autoCard:"Mandy Rose Auto",            set:"2019 Topps WWE",                  type:"Sticker", tags:["modern","women"],     note:"" },
-  { name:"Sonya Deville",      year:2019, autoCard:"Sonya Deville Auto",         set:"2019 Topps WWE",                  type:"Sticker", tags:["modern","women"],     note:"" },
-  { name:"Aleister Black",     year:2019, autoCard:"Aleister Black Auto RC",     set:"2019 Topps WWE NXT",               type:"On-Card", tags:["modern","on-card"],   note:"Tommy End — NXT era debut on-card auto." },
-  { name:"Adam Cole",          year:2019, autoCard:"Adam Cole Auto RC",          set:"2019 Topps WWE NXT",               type:"On-Card", tags:["modern","on-card"],   note:"Bay Bay — NXT championship era auto." },
-  { name:"Io Shirai",          year:2019, autoCard:"Io Shirai Auto RC",          set:"2019 Topps WWE NXT",               type:"On-Card", tags:["modern","on-card","women"], note:"Genius of the Sky NXT debut auto." },
-  { name:"Matt Riddle",        year:2019, autoCard:"Matt Riddle Auto RC",        set:"2019 Topps WWE NXT",               type:"On-Card", tags:["modern","on-card"],   note:"Original Bro — debut auto." },
-  { name:"Damian Priest",      year:2021, autoCard:"Damian Priest Auto RC",      set:"2021 Topps Chrome WWE",            type:"Sticker", tags:["modern"],             note:"" },
-  { name:"Gunther",            year:2022, autoCard:"Gunther Auto RC",            set:"2022 Panini Prizm WWE",            type:"On-Card", tags:["modern","on-card"],   note:"Ring General's debut certified auto. Key card." },
-  { name:"Cody Rhodes",        year:2022, autoCard:"Cody Rhodes Auto RC",        set:"2022 Panini Prizm WWE",            type:"On-Card", tags:["modern","on-card"],   note:"American Nightmare return — most in-demand modern wrestling auto." },
-  { name:"Sami Zayn",          year:2022, autoCard:"Sami Zayn Auto",             set:"2022 Panini Prizm WWE",            type:"On-Card", tags:["modern","on-card"],   note:"Honorary Uce — Prizm era first on-card." },
-  { name:"IYO SKY",            year:2022, autoCard:"IYO SKY Auto RC",            set:"2022 Panini Prizm WWE",            type:"On-Card", tags:["modern","on-card","women"], note:"Damage CTRL — debut certified auto." },
-  { name:"LA Knight",          year:2023, autoCard:"LA Knight Auto RC",          set:"2023 Panini Prizm WWE",            type:"On-Card", tags:["modern","on-card"],   note:"YEAH! — Prizm debut. Undervalued at current prices." },
-  { name:"CM Punk (AEW/Return)",year:2021,autoCard:"CM Punk Auto RC",            set:"2021 Upper Deck AEW",             type:"On-Card", tags:["modern","on-card","aew"], note:"Punk's AEW return first auto. Best in the World certified." },
-  { name:"Bryan Danielson",    year:2021, autoCard:"Bryan Danielson Auto RC",    set:"2021 Upper Deck AEW",             type:"On-Card", tags:["modern","on-card","aew"], note:"American Dragon's post-WWE debut auto." },
-  { name:"MJF",                year:2021, autoCard:"MJF Auto RC",                set:"2021 Upper Deck AEW",             type:"On-Card", tags:["modern","on-card","aew"], note:"Salt of the Earth — debut auto. Watch this one long-term." },
-  { name:"Sting (AEW)",        year:2021, autoCard:"Sting AEW Auto",             set:"2021 Upper Deck AEW",             type:"On-Card", tags:["modern","on-card","aew"], note:"Final chapter — Sting's AEW era debut auto." },
-  { name:"Jon Moxley",         year:2021, autoCard:"Jon Moxley Auto",            set:"2021 Upper Deck AEW",             type:"On-Card", tags:["modern","on-card","aew"], note:"Wildcard — AEW debut on-card auto." },
-  { name:"Jade Cargill",       year:2021, autoCard:"Jade Cargill Auto RC",       set:"2021 Upper Deck AEW S2",          type:"On-Card", tags:["modern","on-card","aew","women"], note:"99-0. Undefeated streak era debut auto." },
-  { name:"Britt Baker",        year:2021, autoCard:"Britt Baker Auto RC",        set:"2021 Upper Deck AEW",             type:"On-Card", tags:["modern","on-card","aew","women"], note:"DMD — debut certified auto." },
-  { name:"Hook",               year:2021, autoCard:"Hook Auto RC",               set:"2021 Upper Deck AEW",             type:"On-Card", tags:["modern","on-card","aew"], note:"Cold as HOOK — most anticipated young AEW auto." },
-  { name:"Darby Allin",        year:2021, autoCard:"Darby Allin Auto RC",        set:"2021 Upper Deck AEW",             type:"On-Card", tags:["modern","on-card","aew"], note:"Coffin Drop into cardboard immortality." },
-  { name:"Trick Williams",     year:2025, autoCard:"Trick Williams Auto RC",     set:"2025 Topps WWE",                  type:"On-Card", tags:["modern","on-card"],   note:"First auto — buy now before he blows up." },
-  { name:"Jacob Fatu",         year:2025, autoCard:"Jacob Fatu Auto RC",         set:"2025 Topps WWE",                  type:"On-Card", tags:["modern","on-card"],   note:"New Bloodline monster — debut auto to watch." },
-  { name:"Lyra Valkyria",      year:2025, autoCard:"Lyra Valkyria Auto RC",      set:"2025 Topps WWE",                  type:"On-Card", tags:["modern","on-card","women"], note:"IC Champion — first certified auto." },
+  // ── 1994–95 ACTION PACKED WWF (first certified WWE auto set) ──────────────
+  { name:"Shawn Michaels",          hof:2011, year:1994, autoCard:"HBK Autograph",               set:"1994–95 Action Packed WWF",         type:"On-Card", tags:["vintage","on-card"],         note:"The first certified HBK auto — New Generation era." },
+  { name:"Bret Hart",               hof:2006, year:1994, autoCard:"Bret Hart Autograph",          set:"1994–95 Action Packed WWF",         type:"On-Card", tags:["vintage","on-card"],         note:"One of the earliest certified WWF autos in existence." },
+  { name:"The Undertaker",          hof:2022, year:1994, autoCard:"Undertaker Autograph",         set:"1994–95 Action Packed WWF",         type:"On-Card", tags:["vintage","on-card"],         note:"Taker autos are scarce in any era — this is the first." },
+  { name:"Kevin Nash (as Diesel)",  hof:2015, year:1994, autoCard:"Diesel Autograph",             set:"1994–95 Action Packed WWF",         type:"On-Card", tags:["vintage","on-card"],         note:"Big Daddy Cool — on-card debut. HOF 2015." },
+  { name:"Scott Hall (as Razor Ramon)", hof:2014, year:1994, autoCard:"Razor Ramon Autograph",   set:"1994–95 Action Packed WWF",         type:"On-Card", tags:["vintage","on-card"],         note:"Bad Guy — scarce on-card from this era. HOF 2014." },
+  { name:"Yokozuna",                hof:2012, year:1994, autoCard:"Yokozuna Autograph",           set:"1994–95 Action Packed WWF",         type:"On-Card", tags:["vintage","on-card"],         note:"Among the rarest autos in wrestling card history." },
+  { name:"X-Pac (as 1-2-3 Kid)",    hof:2019, year:1994, autoCard:"1-2-3 Kid Autograph",         set:"1994–95 Action Packed WWF",         type:"On-Card", tags:["vintage","on-card"],         note:"Pre-DX — first certified auto as the 1-2-3 Kid." },
+
+  // ── 2001 FLEER WWF AUTHENTIC ──────────────────────────────────────────────
+  { name:"The Rock",                hof:2008, year:2001, autoCard:"The Rock Autograph",           set:"2001 Fleer WWF Authentic",          type:"On-Card", tags:["vintage","on-card"],         note:"The Great One's first certified licensed auto. Major key." },
+  { name:"Stone Cold Steve Austin", hof:2009, year:2001, autoCard:"Steve Austin Autograph",       set:"2001 Fleer WWF Authentic",          type:"On-Card", tags:["vintage","on-card"],         note:"Austin autos from any era command premiums." },
+  { name:"Triple H",                hof:2019, year:2001, autoCard:"Triple H Autograph",           set:"2001 Fleer WWF Authentic",          type:"On-Card", tags:["vintage","on-card"],         note:"The Game's debut certified auto." },
+  { name:"Mick Foley",              hof:2013, year:2001, autoCard:"Mankind Autograph",            set:"2001 Fleer WWF Authentic",          type:"On-Card", tags:["vintage","on-card"],         note:"Have a Nice Day! Also signed as Cactus Jack in later sets." },
+  { name:"Kurt Angle",              hof:2017, year:2001, autoCard:"Kurt Angle Autograph",         set:"2001 Fleer WWF Authentic",          type:"On-Card", tags:["vintage","on-card"],         note:"It's true, it's damn true — debut certified auto." },
+  { name:"Edge",                    hof:2012, year:2001, autoCard:"Edge Autograph",               set:"2001 Fleer WWF Authentic",          type:"On-Card", tags:["vintage","on-card"],         note:"Rated-R Superstar's debut certified auto." },
+  { name:"Chris Jericho",           hof:2025, year:2001, autoCard:"Chris Jericho Autograph",      set:"2001 Fleer WWF Authentic",          type:"On-Card", tags:["vintage","on-card"],         note:"Y2J's first certified WWF auto." },
+  { name:"Lita",                    hof:2014, year:2001, autoCard:"Lita Autograph",               set:"2001 Fleer WWF Authentic",          type:"On-Card", tags:["vintage","on-card","women"],  note:"One of the earliest certified women's wrestling autos." },
+  { name:"Trish Stratus",           hof:2013, year:2001, autoCard:"Trish Stratus Autograph",      set:"2001 Fleer WWF Authentic",          type:"On-Card", tags:["vintage","on-card","women"],  note:"7-time Women's Champion — debut certified auto." },
+  { name:"Matt Hardy",              hof:2020, year:2001, autoCard:"Matt Hardy Autograph",         set:"2001 Fleer WWF Authentic",          type:"On-Card", tags:["vintage","on-card","tag"],    note:"V1's first certified auto." },
+  { name:"Jeff Hardy",              hof:2025, year:2001, autoCard:"Jeff Hardy Autograph",         set:"2001 Fleer WWF Authentic",          type:"On-Card", tags:["vintage","on-card","tag"],    note:"Charismatic Enigma's debut certified auto." },
+  { name:"Bubba Ray Dudley",        hof:2024, year:2001, autoCard:"Bubba Ray Dudley Autograph",   set:"2001 Fleer WWF Authentic",          type:"On-Card", tags:["vintage","on-card","tag"],    note:"3D — debut certified auto. HOF 2024." },
+  { name:"D-Von Dudley",            hof:2024, year:2001, autoCard:"D-Von Dudley Autograph",       set:"2001 Fleer WWF Authentic",          type:"On-Card", tags:["vintage","on-card","tag"],    note:"Testify! HOF 2024 inductee." },
+  { name:"Rikishi",                 hof:2015, year:2001, autoCard:"Rikishi Autograph",            set:"2001 Fleer WWF Authentic",          type:"On-Card", tags:["vintage","on-card"],         note:"" },
+
+  // ── 2002–2003 FLEER WWE ───────────────────────────────────────────────────
+  { name:"Brock Lesnar",            hof:2025, year:2002, autoCard:"Brock Lesnar Autograph RC",    set:"2002 Fleer WWE Authentic",          type:"On-Card", tags:["vintage","on-card"],         note:"Beast Incarnate's debut certified auto — very hard to find." },
+  { name:"Rob Van Dam",             hof:2021, year:2002, autoCard:"Rob Van Dam Autograph",        set:"2002 Fleer WWE",                    type:"Sticker", tags:["vintage"],                   note:"Mr. Monday Night's first certified WWE auto." },
+  { name:"Rey Mysterio",            hof:2023, year:2002, autoCard:"Rey Mysterio Autograph",       set:"2002 Fleer WWE",                    type:"Sticker", tags:["vintage"],                   note:"619's first certified WWE auto." },
+  { name:"John Cena",               hof:2025, year:2003, autoCard:"John Cena Autograph RC",       set:"2003 Fleer WWE Authentic",          type:"On-Card", tags:["vintage","on-card"],         note:"First Cena certified auto. Low print run. Key card." },
+  { name:"Randy Orton",             hof:2025, year:2003, autoCard:"Randy Orton Autograph RC",     set:"2003 Fleer WWE Authentic",          type:"On-Card", tags:["vintage","on-card"],         note:"Viper's debut auto — Fleer era, criminally undervalued." },
+  { name:"Batista",                 hof:2020, year:2003, autoCard:"Batista Autograph",            set:"2003 Fleer WWE Authentic",          type:"Sticker", tags:["vintage"],                   note:"Animal's first certified auto." },
+  { name:"Eddie Guerrero",          hof:2006, year:2003, autoCard:"Eddie Guerrero Autograph",     set:"2003 Fleer WWE Authentic",          type:"On-Card", tags:["vintage","on-card"],         note:"Viva La Raza — posthumous demand makes this iconic." },
+  { name:"Ric Flair",               hof:2008, year:2003, autoCard:"Ric Flair Autograph",          set:"2003 Fleer WWE Authentic",          type:"On-Card", tags:["vintage","on-card"],         note:"Nature Boy's first WWE-licensed certified auto." },
+  { name:"Booker T",                hof:2013, year:2003, autoCard:"Booker T Autograph",           set:"2003 Fleer WWE Authentic",          type:"On-Card", tags:["vintage","on-card"],         note:"Can you dig it — debut certified auto." },
+  { name:"Goldberg",                hof:2018, year:2003, autoCard:"Goldberg Autograph",           set:"2003 Fleer WWE Authentic",          type:"On-Card", tags:["vintage","on-card"],         note:"173-0 — debut certified auto in his first WWE run." },
+
+  // ── 2006–2013 TOPPS WWE HERITAGE / LEGENDS ────────────────────────────────
+  { name:"Roddy Piper",             hof:2005, year:2006, autoCard:"Roddy Piper Autograph",        set:"2006 Topps WWE Heritage",           type:"On-Card", tags:["vintage","on-card"],         note:"Hot Rod's first certified auto in the Topps era." },
+  { name:"Dusty Rhodes",            hof:2007, year:2007, autoCard:"Dusty Rhodes Autograph",       set:"2007 Topps WWE Heritage",           type:"On-Card", tags:["vintage","on-card"],         note:"American Dream — first certified auto." },
+  { name:"Ricky Steamboat",         hof:2009, year:2007, autoCard:"Ricky Steamboat Autograph",    set:"2007 Topps WWE Heritage",           type:"On-Card", tags:["vintage","on-card"],         note:"Dragon's first certified auto." },
+  { name:"Jim Duggan",              hof:2011, year:2008, autoCard:"Jim Duggan Autograph",         set:"2008 Topps WWE",                    type:"Sticker", tags:["vintage"],                   note:"Hoooooo! — first certified auto." },
+  { name:"Jake Roberts",            hof:2014, year:2008, autoCard:"Jake Roberts Autograph",       set:"2008 Topps WWE Heritage",           type:"On-Card", tags:["vintage","on-card"],         note:"DDT Jake's first certified auto." },
+  { name:"Ted DiBiase",             hof:2010, year:2008, autoCard:"Ted DiBiase Autograph",        set:"2008 Topps WWE Heritage",           type:"On-Card", tags:["vintage","on-card"],         note:"Million Dollar Man — debut certified auto." },
+  { name:"Sgt. Slaughter",          hof:2004, year:2009, autoCard:"Sgt. Slaughter Autograph",     set:"2009 Topps WWE Heritage",           type:"On-Card", tags:["vintage","on-card"],         note:"Cobra Clutch — first certified Topps auto." },
+  { name:"Koko B. Ware",            hof:2009, year:2009, autoCard:"Koko B. Ware Autograph",       set:"2009 Topps WWE Heritage",           type:"On-Card", tags:["vintage","on-card"],         note:"Bird Man — debut certified auto." },
+  { name:"Jimmy Hart",              hof:2005, year:2009, autoCard:"Jimmy Hart Autograph",         set:"2009 Topps WWE Heritage",           type:"On-Card", tags:["vintage","on-card"],         note:"Mouth of the South — first certified auto." },
+  { name:"Iron Sheik",              hof:2005, year:2010, autoCard:"Iron Sheik Autograph",         set:"2010 Topps WWE",                    type:"Sticker", tags:["vintage"],                   note:"You will humble! First certified auto." },
+  { name:"Daniel Bryan",            hof:2023, year:2012, autoCard:"Daniel Bryan Auto RC",         set:"2012 Topps WWE Heritage",           type:"On-Card", tags:["modern","on-card"],          note:"YES! — first certified on-card auto." },
+  { name:"Tazz",                    hof:2024, year:2012, autoCard:"Tazz Autograph",               set:"2012 Topps WWE Heritage",           type:"On-Card", tags:["vintage","on-card"],         note:"Human Suplex Machine — debut certified auto. HOF 2024." },
+  { name:"Tommy Dreamer",           hof:2016, year:2012, autoCard:"Tommy Dreamer Autograph",      set:"2012 Topps WWE Heritage",           type:"On-Card", tags:["vintage","on-card"],         note:"ECW original's first major certified auto." },
+  { name:"Sting",                   hof:2016, year:2013, autoCard:"Sting Autograph",              set:"2013 Topps TNA Impact",             type:"On-Card", tags:["vintage","on-card"],         note:"Icon's first certified auto came in TNA cards before WWE HOF." },
+
+  // ── 2015–2019 (UNDISPUTED / WOMEN'S DIVISION / NXT) ──────────────────────
+  { name:"Alundra Blayze",          hof:2015, year:2015, autoCard:"Alundra Blayze Autograph",     set:"2015 Topps WWE Undisputed",         type:"On-Card", tags:["modern","on-card","women"],  note:"Madusa — debut certified auto in the modern era." },
+  { name:"Wendi Richter",           hof:2010, year:2015, autoCard:"Wendi Richter Autograph",      set:"2015 Topps WWE Undisputed",         type:"On-Card", tags:["vintage","on-card","women"], note:"First certified Wendi Richter auto — very limited." },
+  { name:"Chyna",                   hof:2019, year:2015, autoCard:"Chyna Autograph",              set:"2015 Topps WWE Undisputed",         type:"On-Card", tags:["modern","on-card","women"],  note:"Ninth Wonder — died 2016. One of very few certified Chyna autos." },
+  { name:"Diamond Dallas Page",     hof:2017, year:2015, autoCard:"DDP Autograph",                set:"2015 Topps WWE Undisputed",         type:"On-Card", tags:["modern","on-card"],          note:"Self High Five! First certified DDP auto in WWE products." },
+  { name:"Hillbilly Jim",           hof:2018, year:2016, autoCard:"Hillbilly Jim Autograph",      set:"2016 Topps WWE Undisputed",         type:"On-Card", tags:["vintage","on-card"],         note:"HOF 2018 — first certified auto." },
+  { name:"Brutus Beefcake",         hof:2019, year:2017, autoCard:"Brutus Beefcake Autograph",    set:"2017 Topps WWE Undisputed",         type:"On-Card", tags:["vintage","on-card"],         note:"The Barber's first certified auto." },
+  { name:"Honky Tonk Man",          hof:2019, year:2017, autoCard:"Honky Tonk Man Autograph",     set:"2017 Topps WWE Undisputed",         type:"On-Card", tags:["vintage","on-card"],         note:"Greatest IC Champ of all time — debut certified auto." },
+
+  // ── 2019–2025 (NXT & MODERN HOF INDUCTEES) ───────────────────────────────
+  { name:"Batista (HOF year)",      hof:2020, year:2020, autoCard:"Batista Autograph",            set:"2020 Topps WWE Undisputed",         type:"On-Card", tags:["modern","on-card"],          note:"Animal's first on-card auto in the Topps era." },
+  { name:"Rob Van Dam (HOF)",       hof:2021, year:2021, autoCard:"RVD Autograph",                set:"2021 Topps WWE",                    type:"Sticker", tags:["modern"],                    note:"HOF 2021 — accessible auto vs rare 2002 debut." },
+  { name:"Rey Mysterio (HOF)",      hof:2023, year:2023, autoCard:"Rey Mysterio Autograph",       set:"2023 Panini Prizm WWE",             type:"On-Card", tags:["modern","on-card"],          note:"619 — HOF year Prizm on-card auto." },
+  { name:"Daniel Bryan (HOF)",      hof:2023, year:2023, autoCard:"Daniel Bryan Autograph",       set:"2023 Panini Prizm WWE",             type:"On-Card", tags:["modern","on-card"],          note:"YES! — HOF year Prizm on-card auto." },
+  { name:"Tazz (HOF year)",         hof:2024, year:2024, autoCard:"Tazz Autograph",               set:"2024 Topps WWE Heritage",           type:"On-Card", tags:["vintage","on-card"],         note:"HOF 2024 inductee auto." },
+  { name:"Dudley Boyz Dual Auto",   hof:2024, year:2024, autoCard:"Bubba Ray &amp; D-Von Dual Auto", set:"2024 Topps WWE Heritage",       type:"On-Card", tags:["modern","on-card","tag"],    note:"HOF 2024 — dual auto celebrating their induction." },
+  { name:"John Cena (HOF year)",    hof:2025, year:2025, autoCard:"John Cena Auto",               set:"2025 Topps Chrome WWE",            type:"On-Card", tags:["modern","on-card"],          note:"HOF 2025 — retirement year on-card auto." },
+  { name:"Randy Orton (HOF year)",  hof:2025, year:2025, autoCard:"Randy Orton Auto",             set:"2025 Topps Chrome WWE",            type:"On-Card", tags:["modern","on-card"],          note:"HOF 2025 — Viper on-card auto in Chrome." },
+  { name:"Chris Jericho (HOF year)",hof:2025, year:2025, autoCard:"Chris Jericho Auto",           set:"2025 Topps Chrome WWE",            type:"On-Card", tags:["modern","on-card"],          note:"HOF 2025 — Y2J on-card auto." },
+  { name:"Jeff Hardy (HOF year)",   hof:2025, year:2025, autoCard:"Jeff Hardy Auto",              set:"2025 Topps Chrome WWE",            type:"On-Card", tags:["modern","on-card","tag"],    note:"HOF 2025 — Charismatic Enigma on-card auto." },
+  { name:"Brock Lesnar (HOF year)", hof:2025, year:2025, autoCard:"Brock Lesnar Auto",            set:"2025 Topps Chrome WWE",            type:"On-Card", tags:["modern","on-card"],          note:"HOF 2025 — Beast Incarnate on-card auto." },
 ];
 
 const setId = 'first-auto';
@@ -308,7 +307,8 @@ function renderTable(data) {
     tr.innerHTML = `
       <td class="col-check"><input type="checkbox" id="${key}" value="${i}" ${checked?'checked':''}></td>
       <td class="col-name">${w.name}</td>
-      <td class="col-year">${w.year}</td>
+      <td class="col-year">${w.hof}</td>
+      <td class="col-year" style="color:var(--muted)">${w.year}</td>
       <td class="col-auto">${w.autoCard}</td>
       <td class="col-set">${w.set}</td>
       <td>${getTypePill(w.type)}</td>
