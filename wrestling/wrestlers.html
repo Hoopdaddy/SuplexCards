@@ -21,8 +21,9 @@
     .wl-search-wrap {
       display: flex;
       gap: 0.5rem;
-      max-width: 500px;
+      max-width: 540px;
       margin: 0 auto;
+      position: relative;
     }
     .wl-input {
       flex: 1;
@@ -31,179 +32,175 @@
       border-radius: 4px;
       color: var(--text);
       font-family: 'Roboto', sans-serif;
-      font-size: 1rem;
-      padding: 0.65rem 1rem;
+      font-size: 1.05rem;
+      padding: 0.75rem 1.1rem;
       outline: none;
       transition: border-color 0.15s;
     }
     .wl-input:focus { border-color: var(--green); }
     .wl-input::placeholder { color: var(--muted); }
 
-    /* Filter era pills */
-    .wl-filters {
-      display: flex;
-      gap: 0.4rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 0.9rem 1.5rem;
-      background: var(--mid);
-      border-bottom: 1px solid var(--border);
-    }
-    .wl-pill {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 0.3rem 0.8rem;
-      border-radius: 99px;
-      border: 2px solid var(--border);
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-    .wl-pill:hover  { border-color: var(--green); color: var(--green); }
-    .wl-pill.active { border-color: var(--green); background: var(--green); color: #000; }
-
-    /* Main layout */
-    .wl-layout {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 0;
-      align-items: start;
-      min-height: 60vh;
-    }
-
-    /* ── LEFT: roster list ── */
-    .wl-roster {
-      border-right: 1px solid var(--border);
-      position: sticky;
-      top: 72px;
-      max-height: calc(100vh - 72px);
+    /* Search results dropdown */
+    .wl-search-results {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0; right: 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      max-height: 280px;
       overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: var(--border) transparent;
+      display: none;
     }
-    .wl-roster-header {
-      padding: 0.7rem 1rem;
-      background: var(--mid);
-      border-bottom: 1px solid var(--border);
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-    }
-    .wl-wrestler-btn {
+    .wl-search-results.open { display: block; }
+    .wl-result-item {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
       width: 100%;
       text-align: left;
       background: transparent;
       border: none;
       border-bottom: 1px solid var(--border);
-      padding: 0.5rem 1rem;
+      padding: 0.55rem 1rem;
       cursor: pointer;
       color: var(--text);
       font-family: 'Roboto', sans-serif;
-      font-size: 0.84rem;
-      transition: background 0.12s;
+      font-size: 0.88rem;
+      transition: background 0.1s;
     }
-    .wl-wrestler-btn:hover  { background: rgba(255,255,255,0.04); }
-    .wl-wrestler-btn.active { background: rgba(46,204,113,0.12); border-left: 3px solid var(--green); }
-    .wl-wrestler-btn.hidden { display: none; }
-    .wl-era-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .wl-card-count {
-      margin-left: auto;
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.65rem;
-      color: var(--muted);
-      background: var(--dark);
-      padding: 0.1rem 0.4rem;
-      border-radius: 3px;
-    }
+    .wl-result-item:last-child { border-bottom: none; }
+    .wl-result-item:hover { background: rgba(46,204,113,0.1); }
+    .wl-result-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .wl-result-count { margin-left: auto; font-family: 'Oswald', sans-serif; font-size: 0.65rem; color: var(--muted); }
+    .wl-no-results { padding: 1rem; font-family: 'Oswald', sans-serif; font-size: 0.8rem; color: var(--muted); text-align: center; }
 
-    /* ── RIGHT: card profile ── */
-    .wl-profile {
-      padding: 1.8rem 2rem;
-    }
-    .wl-no-selection {
+    /* ── LANDING STATE ── */
+    .wl-landing {
       text-align: center;
-      padding: 5rem 1rem;
+      padding: 5rem 1rem 6rem;
       color: var(--muted);
     }
-    .wl-no-selection h3 { color: var(--gold); font-size: 1.8rem; margin-bottom: 0.6rem; }
+    .wl-landing-icon { font-size: 3.5rem; margin-bottom: 1rem; opacity: 0.25; }
+    .wl-landing h3 { font-size: 1.5rem; color: var(--gold); margin-bottom: 0.5rem; }
+    .wl-landing p { font-family: 'Oswald', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.07em; line-height: 1.7; }
+    .wl-landing-pills { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+    .wl-suggestion {
+      font-family: 'Oswald', sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 0.3rem 0.9rem; border-radius: 99px;
+      border: 1px solid var(--border); background: transparent; color: var(--muted);
+      cursor: pointer; transition: all 0.15s;
+    }
+    .wl-suggestion:hover { border-color: var(--green); color: var(--green); }
 
+    /* ── PROFILE AREA (shown after wrestler selected) ── */
+    .wl-profile-wrap { display: none; }
+    .wl-profile-wrap.visible { display: block; }
+
+    /* Card filters bar — appears after wrestler selection */
+    .wl-card-filters {
+      background: var(--mid);
+      border-bottom: 1px solid var(--border);
+      padding: 0.7rem 1.5rem;
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .wl-filter-group {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .wl-filter-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .wl-pill {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.7rem;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+    .wl-pill:hover { border-color: var(--green); color: var(--green); }
+    .wl-pill.active { border-color: var(--green); background: rgba(46,204,113,0.15); color: var(--green); }
+    .wl-pill.type-auto.active  { border-color: #9b59b6; background: rgba(155,89,182,0.15); color: #9b59b6; }
+    .wl-pill.type-relic.active { border-color: #e67e22; background: rgba(230,126,34,0.15); color: var(--orange); }
+    .wl-pill.type-insert.active{ border-color: #3498db; background: rgba(52,152,219,0.15); color: #3498db; }
+    .wl-pill.type-rc.active    { border-color: var(--green); background: rgba(46,204,113,0.15); color: var(--green); }
+
+    /* Profile */
+    .wl-profile { padding: 1.8rem 2rem; max-width: 900px; }
     .wl-profile-header {
       display: flex;
       align-items: flex-start;
       gap: 1.2rem;
-      margin-bottom: 1.6rem;
+      margin-bottom: 1.4rem;
       padding-bottom: 1.2rem;
       border-bottom: 1px solid var(--border);
       flex-wrap: wrap;
     }
     .wl-name { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: #fff; line-height: 1; }
     .wl-meta { font-family: 'Oswald', sans-serif; font-size: 0.82rem; color: var(--muted); margin-top: 0.3rem; }
-    .wl-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.5rem; }
 
     /* Stats row */
     .wl-stats {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.6rem;
-      padding: 0.9rem 1.2rem;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 4px;
+      display: flex; gap: 1.5rem; flex-wrap: wrap;
+      margin-bottom: 1.4rem; padding: 0.9rem 1.2rem;
+      background: var(--panel); border: 1px solid var(--border); border-radius: 4px;
     }
     .wl-stat .v { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--gold); line-height: 1; }
     .wl-stat .l { font-family: 'Oswald', sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
 
-    /* Section group */
+    /* Section labels */
     .wl-section-label {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      padding: 1.2rem 0 0.4rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .wl-section-label::before {
-      content: '';
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--border);
+      font-family: 'Oswald', sans-serif; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);
+      padding: 1.2rem 0 0.4rem; border-bottom: 1px solid var(--border);
+      margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;
     }
 
     /* Card entries */
     .wl-card-entry {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 0.65rem 0.9rem;
-      margin-bottom: 0.4rem;
-      transition: transform 0.1s;
+      display: flex; align-items: center; gap: 0.8rem;
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 4px; padding: 0.65rem 0.9rem;
+      margin-bottom: 0.4rem; transition: transform 0.1s;
     }
     .wl-card-entry:hover { transform: translateX(3px); }
-    .wl-card-entry.key-card { border-left: 4px solid var(--gold); background: rgba(232,200,74,0.04); }
-    .wl-card-entry.rc-card  { border-left: 4px solid var(--green); }
-    .wl-card-entry.auto-card{ border-left: 4px solid #9b59b6; }
+    .wl-card-entry.filtered-out { display: none; }
+    .wl-card-entry.key-card  { border-left: 4px solid var(--gold); background: rgba(232,200,74,0.04); }
+    .wl-card-entry.rc-card   { border-left: 4px solid var(--green); }
+    .wl-card-entry.auto-card { border-left: 4px solid #9b59b6; background: rgba(155,89,182,0.04); }
+    .wl-card-entry.relic-card{ border-left: 4px solid var(--orange); background: rgba(230,126,34,0.04); }
+    .wl-card-entry.insert-card{ border-left: 4px solid #3498db; background: rgba(52,152,219,0.04); }
+
+    .wl-card-type-badge {
+      flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.55rem; font-family: 'Oswald', sans-serif;
+      font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .badge-base   { background: rgba(255,255,255,0.06); color: var(--muted); }
+    .badge-rc     { background: rgba(46,204,113,0.2); color: var(--green); }
+    .badge-auto   { background: rgba(155,89,182,0.2); color: #9b59b6; }
+    .badge-relic  { background: rgba(230,126,34,0.2); color: var(--orange); }
+    .badge-insert { background: rgba(52,152,219,0.2); color: #3498db; }
 
     .wl-card-year { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--gold); min-width: 42px; line-height: 1; }
     .wl-card-body { flex: 1; min-width: 0; }
@@ -211,45 +208,37 @@
     .wl-card-detail { font-size: 0.78rem; color: var(--muted); margin-top: 0.1rem; }
     .wl-card-tags { display: flex; gap: 0.3rem; margin-top: 0.25rem; flex-wrap: wrap; }
     .wl-card-tag {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.58rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 0.1rem 0.4rem;
-      border-radius: 3px;
+      font-family: 'Oswald', sans-serif; font-size: 0.58rem;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 0.1rem 0.4rem; border-radius: 3px;
     }
     .wl-card-link {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #3498db;
-      text-decoration: none;
-      border: 1px solid rgba(52,152,219,0.3);
-      padding: 0.22rem 0.55rem;
-      border-radius: 3px;
-      white-space: nowrap;
-      flex-shrink: 0;
-      transition: background 0.12s;
+      font-family: 'Oswald', sans-serif; font-size: 0.65rem;
+      text-transform: uppercase; letter-spacing: 0.05em; color: #3498db;
+      text-decoration: none; border: 1px solid rgba(52,152,219,0.3);
+      padding: 0.22rem 0.55rem; border-radius: 3px;
+      white-space: nowrap; flex-shrink: 0; transition: background 0.12s;
     }
     .wl-card-link:hover { background: rgba(52,152,219,0.1); }
 
-    /* Key card callout */
+    /* Key callout */
     .wl-key-callout {
-      background: rgba(232,200,74,0.07);
-      border: 1px solid rgba(232,200,74,0.25);
-      border-left: 4px solid var(--gold);
-      border-radius: 4px;
-      padding: 0.9rem 1.1rem;
-      margin-bottom: 1.4rem;
+      background: rgba(232,200,74,0.07); border: 1px solid rgba(232,200,74,0.25);
+      border-left: 4px solid var(--gold); border-radius: 4px;
+      padding: 0.9rem 1.1rem; margin-bottom: 1.4rem;
     }
     .wl-key-callout h4 { font-family: 'Oswald', sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--gold); margin-bottom: 0.35rem; }
     .wl-key-callout p  { font-size: 0.84rem; color: var(--muted); line-height: 1.5; }
 
+    .wl-empty-filter {
+      text-align: center; padding: 3rem 1rem; color: var(--muted);
+      font-family: 'Oswald', sans-serif; font-size: 0.8rem;
+      text-transform: uppercase; letter-spacing: 0.07em;
+    }
+
     @media (max-width: 750px) {
-      .wl-layout { grid-template-columns: 1fr; }
-      .wl-roster { position: static; max-height: 280px; border-right: none; border-bottom: 1px solid var(--border); }
       .wl-profile { padding: 1.2rem; }
+      .wl-card-filters { gap: 0.7rem; }
     }
   </style>
 </head>
@@ -289,40 +278,46 @@
 <div class="wl-hero">
   <div class="era-years">Wrestler Card Lookup · All Cards · All Eras · All Promotions</div>
   <h1>Wrestler Lookup</h1>
-  <p>Pick any wrestler to see every card they appear on across all eras, promotions, and sets — from their first card to their latest Prizm.</p>
+  <p>Search any wrestler to see every card they appear on — base, autographs, relics, and inserts — across all eras and sets.</p>
   <div class="wl-search-wrap">
-    <input class="wl-input" id="wlSearch" type="text" placeholder="Search wrestlers…" autocomplete="off">
+    <input class="wl-input" id="wlSearch" type="text" placeholder="Search wrestlers… (try: Undertaker)" autocomplete="off">
+    <div class="wl-search-results" id="wlResults"></div>
   </div>
 </div>
 
-<div class="wl-filters">
-  <button class="wl-pill active" data-era="all">All</button>
-  <button class="wl-pill" data-era="vintage">Vintage</button>
-  <button class="wl-pill" data-era="golden">Golden Age</button>
-  <button class="wl-pill" data-era="attitude">Attitude Era</button>
-  <button class="wl-pill" data-era="modern">Modern WWE</button>
-  <button class="wl-pill" data-era="aew">AEW</button>
-  <button class="wl-pill" data-era="indie">Independent</button>
-  <button class="wl-pill" data-era="hof">HOF</button>
+<!-- Filters: hidden until a wrestler is selected -->
+<div class="wl-card-filters" id="wlFilters" style="display:none">
+  <div class="wl-filter-group">
+    <span class="wl-filter-label">Era</span>
+    <div id="eraFilterPills"></div>
+  </div>
+  <div class="wl-filter-group">
+    <span class="wl-filter-label">Type</span>
+    <button class="wl-pill active" data-type="all">All</button>
+    <button class="wl-pill type-rc"    data-type="rc">RC</button>
+    <button class="wl-pill type-auto"  data-type="auto">Autograph</button>
+    <button class="wl-pill type-relic" data-type="relic">Relic</button>
+    <button class="wl-pill type-insert"data-type="insert">Insert</button>
+  </div>
 </div>
 
-<div class="wl-layout">
-  <!-- Left: roster -->
-  <div class="wl-roster">
-    <div class="wl-roster-header">
-      <span>Wrestlers</span>
-      <span id="rosterCount"></span>
-    </div>
-    <div id="rosterList"></div>
+<!-- Landing state: shown when no wrestler selected -->
+<div class="wl-landing" id="wlLanding">
+  <div class="wl-landing-icon">&#9818;</div>
+  <h3>Search for a wrestler</h3>
+  <p>Type a name above to pull up their complete card history<br>across every era, promotion, and set.</p>
+  <div class="wl-landing-pills">
+    <button class="wl-suggestion" onclick="quickSearch('Undertaker')">The Undertaker</button>
+    <button class="wl-suggestion" onclick="quickSearch('Hulk Hogan')">Hulk Hogan</button>
+    <button class="wl-suggestion" onclick="quickSearch('Stone Cold')">Stone Cold</button>
+    <button class="wl-suggestion" onclick="quickSearch('Cody Rhodes')">Cody Rhodes</button>
+    <button class="wl-suggestion" onclick="quickSearch('The Rock')">The Rock</button>
   </div>
+</div>
 
-  <!-- Right: card profile -->
-  <div class="wl-profile" id="wlProfile">
-    <div class="wl-no-selection">
-      <h3>Select a Wrestler</h3>
-      <p>Choose any name from the roster on the left to see their complete card history across all eras and sets.</p>
-    </div>
-  </div>
+<!-- Profile: shown after wrestler selected -->
+<div class="wl-profile-wrap" id="wlProfileWrap">
+  <div class="wl-profile" id="wlProfile"></div>
 </div>
 
 <footer>
@@ -351,7 +346,7 @@ const WRESTLERS = [
     name: 'Hulk Hogan',
     eras: ['vintage','golden','hof'],
     dotColor: '#e8c84a',
-    keyNote: 'The most important name in wrestling card history. His 1985 Topps WWF appearances anchor the most valuable set in the hobby. Any high-grade Hogan from the \'85 set is a legitimate graded card investment.',
+    keyNote: "The most important name in wrestling card history. His 1985 Topps WWF appearances anchor the most valuable set in the hobby. Any high-grade Hogan from the \'85 set is a legitimate graded card investment.",
     cards: [
             { year:1982, set:'Wrestling All-Stars Series A', num:'#2',  promo:'wwf', type:'rc',   tags:['RC','KEY','All-Stars','True RC'], note:'True rookie card. First Hulk Hogan card ever produced.', link:'early-wwf.html' },
       { year:1985, set:'Topps WWF',          num:'#1',  promo:'wwf', type:'base',  tags:['KEY','Iconic'], note:'The defining wrestling card. Near-mint copies sell in the hundreds.', link:'early-wwf.html' },
@@ -360,7 +355,7 @@ const WRESTLERS = [
       { year:1988, set:'Topps WWF',          num:'#1',  promo:'wwf', type:'base',  tags:[] },
       { year:1989, set:'Topps WWF',          num:'#1',  promo:'wwf', type:'base',  tags:[], link:'early-wwf.html' },
       { year:1990, set:'Classic WWF Series I',num:'#68',promo:'wwf', type:'base',  tags:[], link:'golden-age.html' },
-      { year:1995, set:'Cardz WCW Main Event',num:'#1', promo:'wcw', type:'base',  tags:['WCW Turn'], note:'Hogan\'s first WCW card after the heel turn', link:'golden-age.html' },
+      { year:1995, set:'Cardz WCW Main Event',num:'#1', promo:'wcw', type:'base',  tags:['WCW Turn'], note: "Hogan\'s first WCW card after the heel turn", link:'golden-age.html' },
       { year:1996, set:'Topps WCW/nWo',      num:'—',  promo:'wcw', type:'base',  tags:['nWo','Hollywood'] },
       { year:1999, set:'Topps WCW Nitro',    num:'—',  promo:'wcw', type:'base',  tags:[], link:'golden-age.html' },
     ]
@@ -370,7 +365,7 @@ const WRESTLERS = [
     name: 'Randy "Macho Man" Savage',
     eras: ['vintage','golden','hof'],
     dotColor: '#e8c84a',
-    keyNote: 'Savage\'s 1987 Topps RC featuring Miss Elizabeth is his true rookie card — a landmark from the golden era of WWF cards.',
+    keyNote: "Savage\'s 1987 Topps RC featuring Miss Elizabeth is his true rookie card — a landmark from the golden era of WWF cards.",
     cards: [
       { year:1987, set:'1987 Topps WWF',     num:'#7',  promo:'wwf', type:'rc',   tags:['RC','KEY'], note:'True Savage RC with Miss Elizabeth. Landmark card from the 75-card set.', link:'early-wwf.html' },
       { year:1986, set:'Topps WWF',          num:'—',   promo:'wwf', type:'base', tags:[], link:'early-wwf.html' },
@@ -384,17 +379,52 @@ const WRESTLERS = [
     name: 'The Undertaker',
     eras: ['golden','attitude','modern','hof'],
     dotColor: '#cc1f1f',
-    keyNote: 'The Undertaker\'s first card is #57 in the 1990 Classic WWF Series I — a genuine RC that most collectors overlook. His career spans every era of WWE card history, and his retirement makes all early cards more significant going forward.',
+    keyNote: "The Undertaker\'s first card is #57 in the 1990 Classic WWF Series I — a genuine RC that most collectors overlook. Thirty-plus years of unbroken card history, spanning every WWE era. His retirement makes all early Taker cards significantly more important going forward.",
     cards: [
-      { year:1990, set:'Classic WWF Series I',num:'#57',promo:'wwf', type:'rc',   tags:['RC','KEY'], note:'First Undertaker card ever produced. Undervalued vs. historical importance.', link:'golden-age.html' },
-      { year:1994, set:'Action Packed WWF',  num:'—',   promo:'wwf', type:'base', tags:['Embossed'], link:'golden-age.html' },
-      { year:2000, set:'Fleer WWF WrestleMania',num:'—',promo:'wwf', type:'base', tags:[], link:'golden-age.html' },
-      { year:2001, set:'Fleer WWF WrestleMania',num:'—',promo:'wwf', type:'base', tags:[], link:'fleer-era.html' },
-      { year:2002, set:'Fleer WWE',          num:'—',   promo:'wwe', type:'base', tags:[], link:'fleer-era.html' },
-      { year:2005, set:'Topps WWE Heritage', num:'—',   promo:'wwe', type:'base', tags:[], link:'first-topps.html' },
-      { year:2012, set:'Topps WWE',          num:'—',   promo:'wwe', type:'base', tags:[], link:'first-topps.html' },
-      { year:2021, set:'Topps Chrome WWE',   num:'#20', promo:'wwe', type:'base', tags:['Legacy'], link:'first-topps.html' },
-      { year:2025, set:'Topps WWE',          num:'#44', promo:'wwe', type:'base', tags:['Legend'], link:'current-topps.html' },
+      // ── BASE / RC ────────────────────────────────────────────────────────
+      { year:1990, set:'Classic WWF Series I', num:'#57',  promo:'wwf', type:'rc',    tags:['RC','KEY'], note:'First Undertaker card ever produced. Significantly undervalued vs. his historical importance.', link:'golden-age.html' },
+      { year:1994, set:'Action Packed WWF',    num:'—',    promo:'wwf', type:'base',  tags:['Embossed'], note:'Embossed gold foil surface. One of the most visually striking 90s wrestling cards.', link:'golden-age.html' },
+      { year:2000, set:'Fleer WWF WrestleMania',num:'—',   promo:'wwf', type:'base',  tags:['Ministry'], link:'golden-age.html' },
+      { year:2001, set:'Fleer WWF WrestleMania',num:'—',   promo:'wwf', type:'base',  tags:['American Badass'], link:'fleer-era.html' },
+      { year:2002, set:'Fleer WWE',            num:'—',    promo:'wwe', type:'base',  tags:[], link:'fleer-era.html' },
+      { year:2005, set:'Topps WWE Heritage',   num:'—',    promo:'wwe', type:'base',  tags:[], link:'first-topps.html' },
+      { year:2007, set:'Topps WWE',            num:'—',    promo:'wwe', type:'base',  tags:['World Champion'], link:'first-topps.html' },
+      { year:2010, set:'Topps WWE',            num:'—',    promo:'wwe', type:'base',  tags:[], link:'first-topps.html' },
+      { year:2012, set:'Topps WWE',            num:'—',    promo:'wwe', type:'base',  tags:[], link:'first-topps.html' },
+      { year:2014, set:'Topps WWE',            num:'—',    promo:'wwe', type:'base',  tags:['WM30'], link:'first-topps.html' },
+      { year:2017, set:'Topps WWE Legends',    num:'#55',  promo:'wwe', type:'base',  tags:['Legends'], link:'first-topps.html' },
+      { year:2019, set:'Topps WWE',            num:'—',    promo:'wwe', type:'base',  tags:[], link:'first-topps.html' },
+      { year:2021, set:'Topps Chrome WWE',     num:'#20',  promo:'wwe', type:'base',  tags:['KEY','Final Farewell'], note:'Final Chrome appearance before retirement.', link:'first-topps.html' },
+      { year:2022, set:'Panini Prizm WWE',     num:'—',    promo:'wwe', type:'base',  tags:['Legend'], link:'panini-era.html' },
+      { year:2023, set:'Panini Prizm WWE',     num:'—',    promo:'wwe', type:'base',  tags:['Legend'], link:'panini-era.html' },
+      { year:2025, set:'Topps WWE',            num:'#44',  promo:'wwe', type:'base',  tags:['Legend'], link:'current-topps.html' },
+      // ── AUTOGRAPHS ───────────────────────────────────────────────────────
+      { year:2001, set:'Fleer WWF Raw Is War', num:'WBA',  promo:'wwf', type:'auto',  tags:['On-Card','KEY'], note:'War Booty Autograph — one of the earliest certified Undertaker autos. Extremely scarce.', link:'fleer-era.html' },
+      { year:2014, set:'Topps WWE',            num:'—',    promo:'wwe', type:'auto',  tags:['WrestleMania XXX Signed Mat Relic'], note:'Event-used mat relic with certified autograph — WM30.', link:'first-topps.html' },
+      { year:2017, set:'Topps WWE Legends',    num:'A-UT', promo:'wwe', type:'auto',  tags:['On-Card','/199'], note:'Legends certified auto /199. Blue /50, Silver /25, Gold /10, Red 1/1 parallels.', link:'first-topps.html' },
+      { year:2019, set:'Topps WWE',            num:'—',    promo:'wwe', type:'auto',  tags:['On-Card'], note:'Certified on-card autograph.', link:'first-topps.html' },
+      { year:2022, set:'Panini Prizm WWE',     num:'—',    promo:'wwe', type:'auto',  tags:['Prizm Auto'], note:'Prizm-era certified autograph — short-printed.', link:'panini-era.html' },
+      { year:2023, set:'Panini Impeccable WWE',num:'—',    promo:'wwe', type:'auto',  tags:['On-Card','/49'], note:'Impeccable certified auto /49.', link:'panini-era.html' },
+      // ── RELICS ───────────────────────────────────────────────────────────
+      { year:2001, set:'Fleer WWF WrestleMania',num:'—',   promo:'wwf', type:'relic', tags:['Ring Mat'], note:'One of the first WWE relic cards — event-used ring mat swatch.', link:'fleer-era.html' },
+      { year:2007, set:'Topps WWE',            num:'—',    promo:'wwe', type:'relic', tags:['Worn Relic'], note:'Event-worn or match-used memorabilia relic.', link:'first-topps.html' },
+      { year:2010, set:'Topps WWE',            num:'—',    promo:'wwe', type:'relic', tags:['Shirt Relic'], link:'first-topps.html' },
+      { year:2014, set:'Topps WWE',            num:'—',    promo:'wwe', type:'relic', tags:['WM30 Mat Relic'], note:'WrestleMania 30 event-used ring mat relic.', link:'first-topps.html' },
+      { year:2017, set:'Topps WWE Legends',    num:'—',    promo:'wwe', type:'relic', tags:['Autographed Shirt Relic'], note:'Shirt relic with certified autograph — dual hit.', link:'first-topps.html' },
+      { year:2021, set:'Topps Chrome WWE',     num:'—',    promo:'wwe', type:'relic', tags:['Chrome Relic'], link:'first-topps.html' },
+      { year:2022, set:'Panini Prizm WWE',     num:'—',    promo:'wwe', type:'relic', tags:['Prizm Relic'], link:'panini-era.html' },
+      { year:2023, set:'Panini Immaculate WWE',num:'—',    promo:'wwe', type:'relic', tags:['Patch Auto'], note:'Immaculate premium patch autograph relic.', link:'panini-era.html' },
+      // ── INSERTS ──────────────────────────────────────────────────────────
+      { year:1994, set:'Action Packed WWF',    num:'—',    promo:'wwf', type:'insert', tags:['24KT Gold','Insert'], note:'24 karat gold insert — ultra-premium for its era.', link:'golden-age.html' },
+      { year:2005, set:'Topps WWE Heritage',   num:'—',    promo:'wwe', type:'insert', tags:['Heritage Chrome','Insert'], link:'first-topps.html' },
+      { year:2007, set:'Topps WWE',            num:'—',    promo:'wwe', type:'insert', tags:['Superstar Tribute','Insert'], link:'first-topps.html' },
+      { year:2010, set:'Topps WWE',            num:'—',    promo:'wwe', type:'insert', tags:['Undertaker\'s Graveyard','Insert'], note:'Iconic insert set spanning his career highlights.', link:'first-topps.html' },
+      { year:2012, set:'Topps WWE',            num:'—',    promo:'wwe', type:'insert', tags:['WrestleMania Heritage','Insert'], link:'first-topps.html' },
+      { year:2014, set:'Topps WWE Road to WrestleMania',num:'—',promo:'wwe',type:'insert',tags:['WM Insert'], link:'first-topps.html' },
+      { year:2017, set:'Topps WWE',            num:'—',    promo:'wwe', type:'insert', tags:['Undertaker\'s Ministry','Insert'], link:'first-topps.html' },
+      { year:2019, set:'Topps WWE',            num:'—',    promo:'wwe', type:'insert', tags:['Tribute','Insert'], link:'first-topps.html' },
+      { year:2021, set:'Topps Chrome WWE',     num:'—',    promo:'wwe', type:'insert', tags:['Chrome Insert'], link:'first-topps.html' },
+      { year:2022, set:'Panini Prizm WWE',     num:'—',    promo:'wwe', type:'insert', tags:['Prizm Insert'], link:'panini-era.html' },
     ]
   },
 
@@ -402,7 +432,7 @@ const WRESTLERS = [
     name: 'Shawn Michaels',
     eras: ['golden','attitude','hof'],
     dotColor: '#e8c84a',
-    keyNote: 'HBK\'s earliest cards as part of the Rockers (1985 Topps) predate his singles run. His 1990 Classic WWF card is among the most sought-after in that set. The 1994 Action Packed version with its embossed surface is genuinely striking.',
+    keyNote: "HBK\'s earliest cards as part of the Rockers (1985 Topps) predate his singles run. His 1990 Classic WWF card is among the most sought-after in that set. The 1994 Action Packed version with its embossed surface is genuinely striking.",
     cards: [
       { year:1985, set:'Topps WWF',          num:'—',   promo:'wwf', type:'base', tags:['Rockers','Early'], note:'As part of The Rockers — earliest Michaels card', link:'early-wwf.html' },
       { year:1990, set:'Classic WWF Series I',num:'#25',promo:'wwf', type:'rc',   tags:['RC','KEY'], note:'First solo HBK card. Key card from the Classic set.', link:'golden-age.html' },
@@ -417,7 +447,7 @@ const WRESTLERS = [
     name: 'Bret "Hitman" Hart',
     eras: ['golden','attitude','hof'],
     dotColor: '#cc1f1f',
-    keyNote: 'Hart''s 1987 Topps #1 RC is his true first card — the card #1 of the landmark 75-card set. Criminally undervalued relative to other HOF RCs from the era.',
+    keyNote: "Hart's 1987 Topps #1 RC is his true first card — the card #1 of the landmark 75-card set. Criminally undervalued relative to other HOF RCs from the era.",
     cards: [
       { year:1987, set:'1987 Topps WWF',      num:'#1',  promo:'wwf', type:'rc',   tags:['RC','KEY'], note:'True Hart RC. Card #1 of the landmark 75-card Topps WWF set.', link:'early-wwf.html' },
       { year:1990, set:'Classic WWF Series I',num:'—',  promo:'wwf', type:'base', tags:['Hart Foundation'], link:'golden-age.html' },
@@ -432,7 +462,7 @@ const WRESTLERS = [
     name: 'Steve Austin',
     eras: ['golden','attitude','hof'],
     dotColor: '#cc1f1f',
-    keyNote: 'Stone Cold\'s #13 in the 1995 Cardz WCW Main Event set is one of the most important and undervalued rookie cards in the hobby — produced before anyone knew who Steve Austin would become. Get this card before the market wakes up.',
+    keyNote: "Stone Cold\'s #13 in the 1995 Cardz WCW Main Event set is one of the most important and undervalued rookie cards in the hobby — produced before anyone knew who Steve Austin would become. Get this card before the market wakes up.",
     cards: [
       { year:1995, set:'Cardz WCW Main Event',num:'#13',promo:'wcw', type:'rc',   tags:['RC','KEY','SLEEPER'], note:'The most undervalued RC in the hobby. Pre-fame Steve Austin.', link:'golden-age.html' },
       { year:1999, set:'Topps WCW/nWo Nitro',num:'—',  promo:'wcw', type:'base', tags:['WCW'], link:'golden-age.html' },
@@ -447,7 +477,7 @@ const WRESTLERS = [
     name: 'The Rock',
     eras: ['attitude','hof'],
     dotColor: '#e67e22',
-    keyNote: 'Dwayne Johnson\'s first Topps card comes in the 2000 Fleer WWF WrestleMania set during his absolute peak. A Hollywood career followed — and these cards are still cheap compared to where they\'ll be in a decade.',
+    keyNote: "Dwayne Johnson\'s first Topps card comes in the 2000 Fleer WWF WrestleMania set during his absolute peak. A Hollywood career followed — and these cards are still cheap compared to where they\'ll be in a decade.",
     cards: [
       { year:2000, set:'Fleer WWF WrestleMania',num:'—',promo:'wwf', type:'rc',   tags:['RC','KEY'], note:'First major Rock card. Attitude Era peak captured.', link:'golden-age.html' },
       { year:2002, set:'Fleer WWE',          num:'—',   promo:'wwe', type:'base', tags:[], link:'fleer-era.html' },
@@ -461,7 +491,7 @@ const WRESTLERS = [
     name: 'Goldberg',
     eras: ['golden','hof'],
     dotColor: '#cc1f1f',
-    keyNote: 'Goldberg\'s #1 in the 1999 Topps WCW/nWo Nitro set captures him during his legendary undefeated streak. One of WCW\'s only true crossover stars, and his cards are among the most undervalued in the WCW catalog.',
+    keyNote: "Goldberg\'s #1 in the 1999 Topps WCW/nWo Nitro set captures him during his legendary undefeated streak. One of WCW\'s only true crossover stars, and his cards are among the most undervalued in the WCW catalog.",
     cards: [
       { year:1998, set:'Topps WCW/nWo',      num:'#1',  promo:'wcw', type:'rc',   tags:['RC','KEY'], note:'First Goldberg card. Undefeated streak era.', link:'golden-age.html' },
       { year:1999, set:'Topps WCW/nWo Nitro',num:'#1',  promo:'wcw', type:'base', tags:['KEY'], link:'golden-age.html' },
@@ -475,7 +505,7 @@ const WRESTLERS = [
     name: 'Sting',
     eras: ['golden','aew','hof'],
     dotColor: '#3498db',
-    keyNote: 'Sting\'s WCW card history is rich and his AEW debut card from Upper Deck 2021 is a legitimate key — his first card in a new promotion after an iconic career. The retirement makes all Sting cards more significant going forward.',
+    keyNote: "Sting\'s WCW card history is rich and his AEW debut card from Upper Deck 2021 is a legitimate key — his first card in a new promotion after an iconic career. The retirement makes all Sting cards more significant going forward.",
     cards: [
       { year:1995, set:'Cardz WCW Main Event',num:'—',  promo:'wcw', type:'base', tags:[], link:'golden-age.html' },
       { year:1999, set:'Topps WCW/nWo Nitro',num:'—',  promo:'wcw', type:'base', tags:[], link:'golden-age.html' },
@@ -488,7 +518,7 @@ const WRESTLERS = [
     name: 'John Cena',
     eras: ['modern','hof'],
     dotColor: '#3498db',
-    keyNote: 'Cena\'s 2002 Fleer WWE RC is the most important rookie card from the Fleer era. As the face of WWE for over a decade, his cards span every modern product. His 2025 retirement makes early Cena cards more significant.',
+    keyNote: "Cena\'s 2002 Fleer WWE RC is the most important rookie card from the Fleer era. As the face of WWE for over a decade, his cards span every modern product. His 2025 retirement makes early Cena cards more significant.",
     cards: [
       { year:2002, set:'Fleer WWE',          num:'—',   promo:'wwe', type:'rc',   tags:['RC','KEY'], note:'The defining Fleer WWE RC. Get graded copies now.', link:'fleer-era.html' },
       { year:2003, set:'Fleer WWE',          num:'—',   promo:'wwe', type:'base', tags:[], link:'fleer-era.html' },
@@ -504,7 +534,7 @@ const WRESTLERS = [
     name: 'Randy Orton',
     eras: ['modern'],
     dotColor: '#3498db',
-    keyNote: 'Orton\'s 2002 Fleer WWE RC comes the same year as Cena and Batista — the most valuable rookie class of the Fleer era. The Viper\'s cards have quietly appreciated as his legend grows.',
+    keyNote: "Orton\'s 2002 Fleer WWE RC comes the same year as Cena and Batista — the most valuable rookie class of the Fleer era. The Viper\'s cards have quietly appreciated as his legend grows.",
     cards: [
       { year:2002, set:'Fleer WWE',          num:'—',   promo:'wwe', type:'rc',   tags:['RC','KEY'], note:'Same RC class as Cena, Batista, Brock. Fleer gold.', link:'fleer-era.html' },
       { year:2005, set:'Topps WWE Heritage', num:'—',   promo:'wwe', type:'base', tags:[], link:'first-topps.html' },
@@ -517,7 +547,7 @@ const WRESTLERS = [
     name: 'Batista',
     eras: ['modern','hof'],
     dotColor: '#3498db',
-    keyNote: 'The Animal\'s 2002 Fleer WWE RC is part of one of the greatest rookie classes in wrestling card history. Drax the Destroyer\'s crossover fame makes these cards appealing to sports AND entertainment collectors.',
+    keyNote: "The Animal\'s 2002 Fleer WWE RC is part of one of the greatest rookie classes in wrestling card history. Drax the Destroyer\'s crossover fame makes these cards appealing to sports AND entertainment collectors.",
     cards: [
       { year:2002, set:'Fleer WWE',          num:'—',   promo:'wwe', type:'rc',   tags:['RC','KEY'], note:'Part of the legendary 2002 Fleer rookie class.', link:'fleer-era.html' },
       { year:2005, set:'Topps WWE Heritage', num:'—',   promo:'wwe', type:'base', tags:[], link:'first-topps.html' },
@@ -529,7 +559,7 @@ const WRESTLERS = [
     name: 'Brock Lesnar',
     eras: ['modern'],
     dotColor: '#cc1f1f',
-    keyNote: 'Lesnar\'s 2002 Fleer WWE RC is arguably the most valuable card from that set. His Beast Incarnate mystique drives card demand — he appears infrequently, commands premium prices, and his cards have consistently appreciated.',
+    keyNote: "Lesnar\'s 2002 Fleer WWE RC is arguably the most valuable card from that set. His Beast Incarnate mystique drives card demand — he appears infrequently, commands premium prices, and his cards have consistently appreciated.",
     cards: [
       { year:2002, set:'Fleer WWE',          num:'—',   promo:'wwe', type:'rc',   tags:['RC','KEY'], note:'Most valuable RC in the 2002 Fleer set. The Beast.', link:'fleer-era.html' },
       { year:2003, set:'Fleer WWE',          num:'—',   promo:'wwe', type:'base', tags:[], link:'fleer-era.html' },
@@ -543,7 +573,7 @@ const WRESTLERS = [
     name: 'CM Punk',
     eras: ['modern','aew','indie'],
     dotColor: '#9b59b6',
-    keyNote: 'Best in the World on cardboard too. Punk\'s card history spans ROH indie cards (ultra-rare), WWE Topps cards, AEW Upper Deck RCs, and his return-era Panini Prizm. The AEW RC is a historically significant card. ROH cards are genuine rarities.',
+    keyNote: "Best in the World on cardboard too. Punk\'s card history spans ROH indie cards (ultra-rare), WWE Topps cards, AEW Upper Deck RCs, and his return-era Panini Prizm. The AEW RC is a historically significant card. ROH cards are genuine rarities.",
     cards: [
       { year:2005, set:'ROH Trading Cards',  num:'—',   promo:'indie',type:'rc',  tags:['RC','INDIE RC','RARE'], note:'Extremely rare ROH card. Pre-fame, historically important.', link:'independent.html' },
       { year:2010, set:'Topps WWE',          num:'—',   promo:'wwe', type:'base', tags:[], link:'first-topps.html' },
@@ -560,7 +590,7 @@ const WRESTLERS = [
     name: 'Roman Reigns',
     eras: ['modern'],
     dotColor: '#3498db',
-    keyNote: 'The Tribal Chief\'s heel run is an all-time great character arc and his cards reflect it. The 2022 Panini Prizm Roman Reigns in full Tribal Chief regalia is a piece of the greatest WWE character of his generation.',
+    keyNote: "The Tribal Chief\'s heel run is an all-time great character arc and his cards reflect it. The 2022 Panini Prizm Roman Reigns in full Tribal Chief regalia is a piece of the greatest WWE character of his generation.",
     cards: [
       { year:2013, set:'Topps WWE',          num:'—',   promo:'wwe', type:'rc',   tags:['RC','Shield'], note:'Shield-era RC. Reigns, Ambrose, and Rollins in same set.', link:'first-topps.html' },
       { year:2016, set:'Topps WWE',          num:'—',   promo:'wwe', type:'base', tags:[], link:'first-topps.html' },
@@ -575,7 +605,7 @@ const WRESTLERS = [
     name: 'Seth Rollins',
     eras: ['modern'],
     dotColor: '#3498db',
-    keyNote: 'The Visionary\'s card journey goes from Shield-era RC to Panini Prizm key. The 2013 Topps Shield-era RC with Ambrose and Reigns is the must-have early Rollins.',
+    keyNote: "The Visionary\'s card journey goes from Shield-era RC to Panini Prizm key. The 2013 Topps Shield-era RC with Ambrose and Reigns is the must-have early Rollins.",
     cards: [
       { year:2007, set:'ROH Trading Cards',  num:'—',   promo:'indie',type:'rc',  tags:['RC','Tyler Black','RARE'], note:'As Tyler Black in ROH. Pre-WWE, extremely rare.', link:'independent.html' },
       { year:2013, set:'Topps WWE',          num:'—',   promo:'wwe', type:'rc',   tags:['RC','Shield'], link:'first-topps.html' },
@@ -589,7 +619,7 @@ const WRESTLERS = [
     name: 'Cody Rhodes',
     eras: ['modern','aew'],
     dotColor: '#e8c84a',
-    keyNote: 'The American Nightmare\'s 2022 Panini Prizm WWE RC is the defining card of the current collecting era. His AEW Upper Deck card from 2021 predates it — get both. The story is finished, and so is the RC window.',
+    keyNote: "The American Nightmare\'s 2022 Panini Prizm WWE RC is the defining card of the current collecting era. His AEW Upper Deck card from 2021 predates it — get both. The story is finished, and so is the RC window.",
     cards: [
       { year:2008, set:'Topps WWE',          num:'—',   promo:'wwe', type:'rc',   tags:['RC'], note:'First WWE Topps appearance as Legacy member', link:'first-topps.html' },
       { year:2021, set:'Upper Deck AEW S1',  num:'#8',  promo:'aew', type:'base', tags:['AEW Chapter'], link:'aew-cards.html' },
@@ -603,7 +633,7 @@ const WRESTLERS = [
     name: 'Gunther',
     eras: ['modern'],
     dotColor: '#3498db',
-    keyNote: 'The Ring General\'s 2022 Panini Prizm WWE RC arrived right as he was beginning his historic Intercontinental Championship reign. His NXT run as WALTER had indie cards — making him one of the few with both an indie RC and a WWE Prizm RC.',
+    keyNote: "The Ring General\'s 2022 Panini Prizm WWE RC arrived right as he was beginning his historic Intercontinental Championship reign. His NXT run as WALTER had indie cards — making him one of the few with both an indie RC and a WWE Prizm RC.",
     cards: [
       { year:2019, set:'Indie/NXT Cards (WALTER)',num:'—',promo:'indie',type:'rc', tags:['RC','WALTER','Indie'], note:'As WALTER — pre-WWE indie cards are legitimately rare', link:'independent.html' },
       { year:2022, set:'Panini Prizm WWE',   num:'#19', promo:'wwe', type:'rc',   tags:['RC','KEY'], note:'WWE Prizm RC. IC title reign about to begin.', link:'panini-era.html' },
@@ -616,9 +646,9 @@ const WRESTLERS = [
     name: 'Sasha Banks / Mercedes Moné',
     eras: ['modern','aew'],
     dotColor: '#9b59b6',
-    keyNote: 'The Boss\'s 2015 Topps WWE NXT insert is one of the most important modern RCs in the hobby — a watershed card that defines the Women\'s Revolution. Her AEW and NJPW career means new cards are coming from other promotions.',
+    keyNote: "The Boss\'s 2015 Topps WWE NXT insert is one of the most important modern RCs in the hobby — a watershed card that defines the Women\'s Revolution. Her AEW and NJPW career means new cards are coming from other promotions.",
     cards: [
-      { year:2015, set:'Topps WWE (NXT Insert)',num:'NXT-SB',promo:'wwe',type:'rc',tags:['RC','KEY','Women\'s Revolution'], note:'THE card of the Women\'s Revolution era. Buy it now.', link:'first-topps.html' },
+      { year:2015, set:'Topps WWE (NXT Insert)',num:'NXT-SB',promo:'wwe',type:'rc',tags:['RC','KEY','Women\'s Revolution'], note: "THE card of the Women\'s Revolution era. Buy it now.", link:'first-topps.html' },
       { year:2016, set:'Topps WWE',          num:'—',   promo:'wwe', type:'base', tags:[], link:'first-topps.html' },
       { year:2019, set:'Topps WWE',          num:'—',   promo:'wwe', type:'base', tags:[], link:'first-topps.html' },
       { year:2021, set:'Topps Chrome WWE',   num:'#25', promo:'wwe', type:'base', tags:[], link:'first-topps.html' },
@@ -629,7 +659,7 @@ const WRESTLERS = [
     name: 'Becky Lynch',
     eras: ['modern'],
     dotColor: '#e67e22',
-    keyNote: 'The Man\'s 2015 NXT insert is a key card that defined her career before the main roster. Her WrestleMania 35 moment cemented this card\'s importance forever.',
+    keyNote: "The Man\'s 2015 NXT insert is a key card that defined her career before the main roster. Her WrestleMania 35 moment cemented this card\'s importance forever.",
     cards: [
       { year:2015, set:'Topps WWE (NXT Insert)',num:'NXT-BL',promo:'wwe',type:'rc',tags:['RC','KEY','The Man'], note:'NXT insert RC. WrestleMania 35 made this a key card.', link:'first-topps.html' },
       { year:2016, set:'Topps WWE',          num:'—',   promo:'wwe', type:'base', tags:[], link:'first-topps.html' },
@@ -642,9 +672,9 @@ const WRESTLERS = [
     name: 'Charlotte Flair',
     eras: ['modern'],
     dotColor: '#3498db',
-    keyNote: 'The Queen\'s 2015 Topps WWE NXT insert is her RC. Ric Flair\'s daughter becoming a 14-time champion makes the bloodline argument for this card\'s long-term value.',
+    keyNote: "The Queen\'s 2015 Topps WWE NXT insert is her RC. Ric Flair\'s daughter becoming a 14-time champion makes the bloodline argument for this card\'s long-term value.",
     cards: [
-      { year:2015, set:'Topps WWE (NXT Insert)',num:'NXT-CF',promo:'wwe',type:'rc',tags:['RC','KEY'], note:'NXT insert RC. Ric Flair\'s daughter, 14-time champion.', link:'first-topps.html' },
+      { year:2015, set:'Topps WWE (NXT Insert)',num:'NXT-CF',promo:'wwe',type:'rc',tags:['RC','KEY'], note: "NXT insert RC. Ric Flair\'s daughter, 14-time champion.", link:'first-topps.html' },
       { year:2016, set:'Topps WWE',          num:'—',   promo:'wwe', type:'base', tags:[], link:'first-topps.html' },
       { year:2022, set:'Panini Prizm WWE',   num:'#23', promo:'wwe', type:'base', tags:[], link:'panini-era.html' },
     ]
@@ -654,7 +684,7 @@ const WRESTLERS = [
     name: 'Bayley',
     eras: ['modern'],
     dotColor: '#e8c84a',
-    keyNote: 'The Role Model\'s 2015 NXT insert is her RC and it captures an iconic NXT TakeOver Brooklyn moment. As a long-tenured main event star her early cards are still reasonably priced.',
+    keyNote: "The Role Model\'s 2015 NXT insert is her RC and it captures an iconic NXT TakeOver Brooklyn moment. As a long-tenured main event star her early cards are still reasonably priced.",
     cards: [
       { year:2015, set:'Topps WWE (NXT Insert)',num:'NXT-BY',promo:'wwe',type:'rc',tags:['RC','KEY'], link:'first-topps.html' },
       { year:2019, set:'Topps WWE',          num:'—',   promo:'wwe', type:'base', tags:[], link:'first-topps.html' },
@@ -666,7 +696,7 @@ const WRESTLERS = [
     name: 'Rhea Ripley',
     eras: ['modern'],
     dotColor: '#cc1f1f',
-    keyNote: 'Mami\'s card trajectory is one of the fastest in modern collecting. Her early Topps NXT cards are already undervalued given where her career went. The 2022 Prizm key card is the defining Rhea piece.',
+    keyNote: "Mami\'s card trajectory is one of the fastest in modern collecting. Her early Topps NXT cards are already undervalued given where her career went. The 2022 Prizm key card is the defining Rhea piece.",
     cards: [
       { year:2019, set:'Topps WWE NXT',      num:'—',   promo:'wwe', type:'rc',   tags:['RC'], note:'NXT-era RC. Pre-main-roster, already rising in value.', link:'first-topps.html' },
       { year:2021, set:'Topps Chrome WWE',   num:'#8',  promo:'wwe', type:'base', tags:['KEY'], link:'first-topps.html' },
@@ -680,7 +710,7 @@ const WRESTLERS = [
     name: 'Bianca Belair',
     eras: ['modern'],
     dotColor: '#2ecc71',
-    keyNote: 'The EST\'s 2021 Topps Chrome WWE RC is a defining card of the modern era — a landmark moment in representation combined with a genuinely great performer at her peak. The Chrome RC is the one to own.',
+    keyNote: "The EST\'s 2021 Topps Chrome WWE RC is a defining card of the modern era — a landmark moment in representation combined with a genuinely great performer at her peak. The Chrome RC is the one to own.",
     cards: [
       { year:2019, set:'Topps WWE NXT',      num:'—',   promo:'wwe', type:'rc',   tags:['RC'], note:'NXT RC before the main roster call-up.', link:'first-topps.html' },
       { year:2021, set:'Topps Chrome WWE',   num:'#4',  promo:'wwe', type:'rc',   tags:['RC','KEY','Chrome'], note:'The Chrome RC. WrestleMania moment cemented this card.', link:'first-topps.html' },
@@ -693,7 +723,7 @@ const WRESTLERS = [
     name: 'MJF',
     eras: ['aew'],
     dotColor: '#9b59b6',
-    keyNote: 'The Salt of the Earth\'s AEW RC from Upper Deck 2021 is one of the most important AEW cards in existence. A generational heel with undeniable mic and ring skills — this is the AEW card collectors will chase in 10 years.',
+    keyNote: "The Salt of the Earth\'s AEW RC from Upper Deck 2021 is one of the most important AEW cards in existence. A generational heel with undeniable mic and ring skills — this is the AEW card collectors will chase in 10 years.",
     cards: [
       { year:2021, set:'Upper Deck AEW S1',  num:'#5',  promo:'aew', type:'rc',   tags:['RC','KEY'], note:'The AEW RC of MJF. Generational heel talent.', link:'aew-cards.html' },
       { year:2022, set:'Upper Deck AEW',     num:'#3',  promo:'aew', type:'base', tags:['Champion'], link:'aew-cards.html' },
@@ -705,7 +735,7 @@ const WRESTLERS = [
     name: 'Kenny Omega',
     eras: ['aew','indie'],
     dotColor: '#9b59b6',
-    keyNote: 'The Best Bout Machine\'s AEW RC came after one of the most celebrated runs in Japanese wrestling history. His NJPW cards are very rare in America; the Upper Deck AEW RC is the accessible key card.',
+    keyNote: "The Best Bout Machine\'s AEW RC came after one of the most celebrated runs in Japanese wrestling history. His NJPW cards are very rare in America; the Upper Deck AEW RC is the accessible key card.",
     cards: [
       { year:2015, set:'NJPW Japanese Cards', num:'—',  promo:'indie',type:'rc',  tags:['RC','NJPW','Japan Only'], note:'NJPW era cards. Rare in American market.', link:'independent.html' },
       { year:2021, set:'Upper Deck AEW S1',  num:'#3',  promo:'aew', type:'rc',   tags:['RC','KEY'], note:'AEW RC. Best Bout Machine on American cardboard.', link:'aew-cards.html' },
@@ -717,7 +747,7 @@ const WRESTLERS = [
     name: 'Jon Moxley',
     eras: ['modern','aew','indie'],
     dotColor: '#cc1f1f',
-    keyNote: 'Moxley\'s card history spans three promotions: WWE (as Dean Ambrose), AEW, and indie. The Dean Ambrose Shield-era RC from 2013 Topps is the most accessible key card. The AEW chapter is covered by Upper Deck.',
+    keyNote: "Moxley\'s card history spans three promotions: WWE (as Dean Ambrose), AEW, and indie. The Dean Ambrose Shield-era RC from 2013 Topps is the most accessible key card. The AEW chapter is covered by Upper Deck.",
     cards: [
       { year:2013, set:'Topps WWE',          num:'—',   promo:'wwe', type:'rc',   tags:['RC','Dean Ambrose','Shield'], note:'Dean Ambrose Shield-era RC. Pre-Moxley rebrand.', link:'first-topps.html' },
       { year:2021, set:'Upper Deck AEW S1',  num:'#7',  promo:'aew', type:'rc',   tags:['RC','AEW Chapter'], link:'aew-cards.html' },
@@ -729,7 +759,7 @@ const WRESTLERS = [
     name: 'Bryan Danielson',
     eras: ['modern','aew','indie'],
     dotColor: '#9b59b6',
-    keyNote: 'Daniel Bryan\'s card history is the most complex of any active wrestler — ROH indie cards (ultra-rare), WWE Topps cards as Daniel Bryan, and AEW Upper Deck cards as Bryan Danielson. Three distinct card identities for three distinct career chapters.',
+    keyNote: "Daniel Bryan\'s card history is the most complex of any active wrestler — ROH indie cards (ultra-rare), WWE Topps cards as Daniel Bryan, and AEW Upper Deck cards as Bryan Danielson. Three distinct card identities for three distinct career chapters.",
     cards: [
       { year:2005, set:'ROH Trading Cards',  num:'—',   promo:'indie',type:'rc',  tags:['RC','INDIE RC','RARE'], note:'As Bryan Danielson in ROH. Extremely rare pre-WWE cards.', link:'independent.html' },
       { year:2012, set:'Topps WWE',          num:'—',   promo:'wwe', type:'base', tags:['Daniel Bryan','YES Movement'], link:'first-topps.html' },
@@ -743,7 +773,7 @@ const WRESTLERS = [
     name: 'Darby Allin',
     eras: ['aew'],
     dotColor: '#9b59b6',
-    keyNote: 'The daredevil\'s AEW RC from Upper Deck 2021 is among the more sought-after AEW cards outside the obvious Punk/Danielson headliners. Darby\'s risk-taking persona resonates with collectors who value authenticity.',
+    keyNote: "The daredevil\'s AEW RC from Upper Deck 2021 is among the more sought-after AEW cards outside the obvious Punk/Danielson headliners. Darby\'s risk-taking persona resonates with collectors who value authenticity.",
     cards: [
       { year:2021, set:'Upper Deck AEW S1',  num:'#13', promo:'aew', type:'rc',   tags:['RC'], link:'aew-cards.html' },
       { year:2022, set:'Upper Deck AEW',     num:'#18', promo:'aew', type:'base', tags:[], link:'aew-cards.html' },
@@ -754,7 +784,7 @@ const WRESTLERS = [
     name: 'Jade Cargill',
     eras: ['aew','modern'],
     dotColor: '#2ecc71',
-    keyNote: 'Jade Cargill\'s AEW RC from Upper Deck 2021 is a key card that predates her WWE signing. The first generation of Jade Cargill cards — AEW era — will be the ones to have when the mainstream recognizes her ceiling.',
+    keyNote: "Jade Cargill\'s AEW RC from Upper Deck 2021 is a key card that predates her WWE signing. The first generation of Jade Cargill cards — AEW era — will be the ones to have when the mainstream recognizes her ceiling.",
     cards: [
       { year:2021, set:'Upper Deck AEW S1',  num:'#10', promo:'aew', type:'rc',   tags:['RC','KEY'], note:'AEW RC. Pre-WWE signing. The key Jade Cargill card.', link:'aew-cards.html' },
       { year:2022, set:'Upper Deck AEW',     num:'#13', promo:'aew', type:'base', tags:['Champion'], link:'aew-cards.html' },
@@ -766,7 +796,7 @@ const WRESTLERS = [
     name: 'AJ Styles',
     eras: ['modern','indie'],
     dotColor: '#e67e22',
-    keyNote: 'The Phenomenal One has one of the most complex card histories in wrestling — TNA cards, NJPW Japanese cards, ROH cards, and then WWE Topps from 2016 onward. His 2006 Pacific TNA RC is a key card many collectors don\'t even know exists.',
+    keyNote: "The Phenomenal One has one of the most complex card histories in wrestling — TNA cards, NJPW Japanese cards, ROH cards, and then WWE Topps from 2016 onward. His 2006 Pacific TNA RC is a key card many collectors don\'t even know exists.",
     cards: [
       { year:2003, set:'ROH Trading Cards',  num:'—',   promo:'indie',type:'rc',  tags:['RC','ROH/TNA era','RARE'], link:'independent.html' },
       { year:2006, set:'Pacific TNA',        num:'—',   promo:'tna',  type:'rc',  tags:['RC','KEY','TNA RC'], note:'The Pacific TNA RC — one of the most underrated RCs in the hobby.' },
@@ -779,7 +809,7 @@ const WRESTLERS = [
     name: 'Rey Mysterio',
     eras: ['golden','modern','hof'],
     dotColor: '#3498db',
-    keyNote: 'The Master of the 619\'s first cards appear in WCW sets in the late 1990s — when he was a young cruiserweight sensation. These WCW-era cards are the key early Mysterio pieces, often overlooked in favor of his WWE run.',
+    keyNote: "The Master of the 619\'s first cards appear in WCW sets in the late 1990s — when he was a young cruiserweight sensation. These WCW-era cards are the key early Mysterio pieces, often overlooked in favor of his WWE run.",
     cards: [
       { year:1998, set:'Topps WCW/nWo',      num:'—',   promo:'wcw', type:'rc',   tags:['RC','WCW era','KEY'], note:'First major Mysterio card. WCW cruiserweight days.', link:'golden-age.html' },
       { year:1999, set:'Topps WCW Nitro',    num:'—',   promo:'wcw', type:'base', tags:[], link:'golden-age.html' },
@@ -792,7 +822,7 @@ const WRESTLERS = [
     name: 'Edge',
     eras: ['attitude','modern','hof'],
     dotColor: '#e8c84a',
-    keyNote: 'The Rated R Superstar\'s first card appears in the 2000 Fleer WWF WrestleMania set during his breakout year — alongside Kurt Angle, the Hardy Boyz, and Lita. A career-spanning card history from Attitude Era RC through retirement and return.',
+    keyNote: "The Rated R Superstar\'s first card appears in the 2000 Fleer WWF WrestleMania set during his breakout year — alongside Kurt Angle, the Hardy Boyz, and Lita. A career-spanning card history from Attitude Era RC through retirement and return.",
     cards: [
       { year:2000, set:'Fleer WWF WrestleMania',num:'—',promo:'wwf', type:'rc',   tags:['RC','KEY','Attitude RC'], note:'Attitude Era RC alongside an iconic rookie class.', link:'golden-age.html' },
       { year:2001, set:'Fleer WWF WrestleMania',num:'—',promo:'wwf', type:'base', tags:['Champion'], link:'fleer-era.html' },
@@ -806,7 +836,7 @@ const WRESTLERS = [
     name: 'Finn Bálor',
     eras: ['modern'],
     dotColor: '#3498db',
-    keyNote: 'The Prince\'s 2015 Topps WWE NXT insert is his key RC — produced when he was still the Demon King of NXT. His cards have maintained steady value through his entire WWE run.',
+    keyNote: "The Prince\'s 2015 Topps WWE NXT insert is his key RC — produced when he was still the Demon King of NXT. His cards have maintained steady value through his entire WWE run.",
     cards: [
       { year:2015, set:'Topps WWE (NXT Insert)',num:'NXT-FB',promo:'wwe',type:'rc',tags:['RC','KEY','Demon'], note:'NXT insert RC. The Demon era.', link:'first-topps.html' },
       { year:2022, set:'Panini Prizm WWE',   num:'#8',  promo:'wwe', type:'base', tags:[], link:'panini-era.html' },
@@ -817,7 +847,7 @@ const WRESTLERS = [
     name: 'Kevin Owens',
     eras: ['modern','indie'],
     dotColor: '#cc1f1f',
-    keyNote: 'KO has a rare multi-era card history: ROH indie cards as Kevin Steen (very rare), and a full WWE Topps run. His 2015 NXT insert is the WWE key card. His Steen-era ROH cards are genuine rarities that few collectors have seen.',
+    keyNote: "KO has a rare multi-era card history: ROH indie cards as Kevin Steen (very rare), and a full WWE Topps run. His 2015 NXT insert is the WWE key card. His Steen-era ROH cards are genuine rarities that few collectors have seen.",
     cards: [
       { year:2008, set:'ROH (Kevin Steen)',  num:'—',   promo:'indie',type:'rc',  tags:['RC','Kevin Steen','RARE'], note:'As Kevin Steen in ROH. Pre-WWE, legitimately scarce.', link:'independent.html' },
       { year:2015, set:'Topps WWE (NXT Insert)',num:'NXT-KO',promo:'wwe',type:'rc',tags:['RC','KEY'], note:'NXT debut RC. Instantly became a key card.', link:'first-topps.html' },
@@ -830,7 +860,7 @@ const WRESTLERS = [
     name: 'Sami Zayn',
     eras: ['modern','indie'],
     dotColor: '#e67e22',
-    keyNote: 'Sami\'s El Generico ROH cards are among the most sought-after indie wrestling cards — a masked hero who became one of WWE\'s most beloved performers. The Honorary Uce story arc generated real card demand.',
+    keyNote: "Sami\'s El Generico ROH cards are among the most sought-after indie wrestling cards — a masked hero who became one of WWE\'s most beloved performers. The Honorary Uce story arc generated real card demand.",
     cards: [
       { year:2009, set:'ROH (El Generico)',  num:'—',   promo:'indie',type:'rc',  tags:['RC','El Generico','RARE'], note:'As El Generico in ROH. Mask-era cards are rare and important.', link:'independent.html' },
       { year:2015, set:'Topps WWE (NXT Insert)',num:'—', promo:'wwe', type:'rc',  tags:['RC'], link:'first-topps.html' },
@@ -843,7 +873,7 @@ const WRESTLERS = [
     name: 'La Knight',
     eras: ['modern'],
     dotColor: '#e8c84a',
-    keyNote: 'YEAH! The megastar\'s 2023 Panini Prizm WWE RC is one of the highest-demand modern RCs — a fan favorite who organically became a main event star. His card trajectory is one to watch closely.',
+    keyNote: "YEAH! The megastar\'s 2023 Panini Prizm WWE RC is one of the highest-demand modern RCs — a fan favorite who organically became a main event star. His card trajectory is one to watch closely.",
     cards: [
       { year:2023, set:'Panini Prizm WWE',   num:'#9',  promo:'wwe', type:'rc',   tags:['RC','KEY','MEGASTAR'], note:'The breakout RC. Organic megastar.', link:'panini-era.html' },
       { year:2025, set:'Topps WWE',          num:'#10', promo:'wwe', type:'base', tags:[], link:'current-topps.html' },
@@ -854,7 +884,7 @@ const WRESTLERS = [
     name: 'Samoa Joe',
     eras: ['modern','aew','indie'],
     dotColor: '#cc1f1f',
-    keyNote: 'Joe\'s ROH cards are among the most important indie wrestling cards ever made. His TNA cards, NXT, and AEW appearances add layers to one of the hobby\'s most complete card histories. Never as expensive as he should be.',
+    keyNote: "Joe\'s ROH cards are among the most important indie wrestling cards ever made. His TNA cards, NXT, and AEW appearances add layers to one of the hobby\'s most complete card histories. Never as expensive as he should be.",
     cards: [
       { year:2004, set:'ROH Trading Cards',  num:'—',   promo:'indie',type:'rc',  tags:['RC','INDIE RC','RARE'], note:'ROH champion era. Historically significant indie card.', link:'independent.html' },
       { year:2006, set:'Pacific TNA',        num:'—',   promo:'tna',  type:'base', tags:['TNA Champion'] },
@@ -868,7 +898,7 @@ const WRESTLERS = [
     name: 'Andre the Giant',
     eras: ['vintage','golden','hof'],
     dotColor: '#e8c84a',
-    keyNote: 'The Eighth Wonder of the World''s true rookie card is the 1974 Yamakatsu set from Japan — extremely rare. His first major American card is the 1982 Wrestling All-Stars Series A #1, a KEY card. The 1985 Topps #4 is his most iconic and accessible appearance.',
+    keyNote: "The Eighth Wonder of the World's true rookie card is the 1974 Yamakatsu set from Japan — extremely rare. His first major American card is the 1982 Wrestling All-Stars Series A #1, a KEY card. The 1985 Topps #4 is his most iconic and accessible appearance.",
     cards: [
       { year:1982, set:'Wrestling All-Stars Series A', num:'#1',  promo:'wwf', type:'base', tags:['KEY','All-Stars'], note:'KEY card — but true RC is the 1974 Yamakatsu set. Still the first major American Andre card.', link:'early-wwf.html' },
       { year:1985, set:'Topps WWF',          num:'#2',  promo:'wwf', type:'base', tags:['KEY','Iconic'], note:'The iconic 1985 Topps appearance — a KEY card, not his RC.', link:'early-wwf.html' },
@@ -881,7 +911,7 @@ const WRESTLERS = [
     name: 'Roddy Piper',
     eras: ['vintage','golden','hof'],
     dotColor: '#cc1f1f',
-    keyNote: 'Hot Rod''s true rookie card is 1985 Topps WWF #3 — he was not included in the 1982 Wrestling All-Stars sets. As one of the most charismatic performers in wrestling history, his 1985 Topps RC is a legitimate key card from the hobby''s most important vintage set.',
+    keyNote: "Hot Rod's true rookie card is 1985 Topps WWF #3 — he was not included in the 1982 Wrestling All-Stars sets. As one of the most charismatic performers in wrestling history, his 1985 Topps RC is a legitimate key card from the hobby's most important vintage set.",
     cards: [
       { year:1985, set:'Topps WWF',                    num:'#3',  promo:'wwf', type:'rc',   tags:['RC','KEY'], note:'True rookie card — Piper was not in the 1982 Wrestling All-Stars sets.', link:'early-wwf.html' },
       { year:1985, set:'Topps WWF',          num:'—',   promo:'wwf', type:'base', tags:['KEY'], note:'1985 Topps appearance — a KEY card, not his RC.', link:'early-wwf.html' },
@@ -893,7 +923,7 @@ const WRESTLERS = [
     name: 'Ric Flair',
     eras: ['vintage','golden','hof'],
     dotColor: '#3498db',
-    keyNote: 'The Nature Boy''s true rookie card is the 1982 Wrestling All-Stars #13 — produced during his NWA World Heavyweight Championship reign. One of the hobby''s great sleeper keys: a legitimate HOF RC that predates all WWE sets.',
+    keyNote: "The Nature Boy's true rookie card is the 1982 Wrestling All-Stars #13 — produced during his NWA World Heavyweight Championship reign. One of the hobby's great sleeper keys: a legitimate HOF RC that predates all WWE sets.",
     cards: [
       { year:1982, set:'Wrestling All-Stars Series A', num:'#27', promo:'wwf', type:'rc',   tags:['RC','KEY','All-Stars','True RC','NWA'], note:'True rookie card. First Ric Flair card ever produced. NWA Champion at time of issue.', link:'early-wwf.html' },
       { year:1985, set:'Topps WWF',          num:'—',   promo:'wwf', type:'base', tags:[], link:'early-wwf.html' },
@@ -907,7 +937,7 @@ const WRESTLERS = [
     name: 'Bob Backlund',
     eras: ['vintage','golden','hof'],
     dotColor: '#e8c84a',
-    keyNote: 'The all-American champion''s true rookie card is the 1982 Wrestling All-Stars #3 — produced during his historic WWF Championship reign. As the man who held the title before and after Hulk Hogan, Backlund is one of the most underappreciated names in the hobby.',
+    keyNote: "The all-American champion's true rookie card is the 1982 Wrestling All-Stars #3 — produced during his historic WWF Championship reign. As the man who held the title before and after Hulk Hogan, Backlund is one of the most underappreciated names in the hobby.",
     cards: [
       { year:1982, set:'Wrestling All-Stars Series A', num:'#12', promo:'wwf', type:'rc',   tags:['RC','KEY','All-Stars','True RC','WWF Champion'], note:'True rookie card. WWF Champion at time of issue.', link:'early-wwf.html' },
       { year:1985, set:'Topps WWF',          num:'—',   promo:'wwf', type:'base', tags:[], link:'early-wwf.html' },
@@ -919,7 +949,7 @@ const WRESTLERS = [
     name: 'Jimmy Snuka',
     eras: ['vintage','golden','hof'],
     dotColor: '#e67e22',
-    keyNote: 'Superfly Jimmy Snuka''s true rookie card is the 1982 Wrestling All-Stars #4. His leap from the top of the steel cage at Madison Square Garden is one of the defining moments in wrestling history.',
+    keyNote: "Superfly Jimmy Snuka's true rookie card is the 1982 Wrestling All-Stars #4. His leap from the top of the steel cage at Madison Square Garden is one of the defining moments in wrestling history.",
     cards: [
       { year:1983, set:'Wrestling All-Stars',          num:'#7',  promo:'wwf', type:'rc',   tags:['RC','All-Stars','True RC'], note:'True rookie card. First Snuka card ever produced.', link:'early-wwf.html' },
       { year:1985, set:'Topps WWF',          num:'—',   promo:'wwf', type:'base', tags:[], link:'early-wwf.html' },
@@ -931,7 +961,7 @@ const WRESTLERS = [
     name: 'Ricky Steamboat',
     eras: ['vintage','golden','hof'],
     dotColor: '#3498db',
-    keyNote: 'The Dragon''s true rookie card is the 1982 Wrestling All-Stars #21 — produced years before his legendary WrestleMania III match with Randy Savage. His 1985 Topps card was long considered his RC but the All-Stars card predates it by three years.',
+    keyNote: "The Dragon's true rookie card is the 1982 Wrestling All-Stars #21 — produced years before his legendary WrestleMania III match with Randy Savage. His 1985 Topps card was long considered his RC but the All-Stars card predates it by three years.",
     cards: [
       { year:1982, set:'Wrestling All-Stars Series B', num:'#11', promo:'wwf', type:'rc',   tags:['RC','KEY','All-Stars','True RC'], note:'True rookie card. First Ricky Steamboat card ever produced.', link:'early-wwf.html' },
       { year:1985, set:'Topps WWF',          num:'—',   promo:'wwf', type:'base', tags:['KEY'], note:'1985 Topps appearance. Previously misidentified as his RC.', link:'early-wwf.html' },
@@ -943,7 +973,7 @@ const WRESTLERS = [
     name: 'Jesse Ventura',
     eras: ['vintage','golden','hof'],
     dotColor: '#9b59b6',
-    keyNote: 'The Body''s true rookie card is the 1982 Wrestling All-Stars #29. Before he was a broadcaster or governor of Minnesota, Jesse Ventura was one of the most physical heels in the WWF — and his All-Stars RC is a legitimate vintage key.',
+    keyNote: "The Body's true rookie card is the 1982 Wrestling All-Stars #29. Before he was a broadcaster or governor of Minnesota, Jesse Ventura was one of the most physical heels in the WWF — and his All-Stars RC is a legitimate vintage key.",
     cards: [
       { year:1982, set:'Wrestling All-Stars Series B', num:'#20', promo:'wwf', type:'rc',   tags:['RC','All-Stars','True RC'], note:'True rookie card. First Jesse Ventura card ever produced.', link:'early-wwf.html' },
       { year:1985, set:'Topps WWF',          num:'—',   promo:'wwf', type:'base', tags:['KEY'], note:'1985 Topps appearance. Previously misidentified as his RC.', link:'early-wwf.html' },
@@ -955,7 +985,7 @@ const WRESTLERS = [
     name: 'Bobby Heenan',
     eras: ['vintage','golden','hof'],
     dotColor: '#cc1f1f',
-    keyNote: 'The Brain''s true rookie card is the 1982 Wrestling All-Stars #35. The greatest manager in wrestling history, Bobby Heenan was already a legendary figure at the time of this card''s issue. His All-Stars RC is one of the most undervalued manager cards in the hobby.',
+    keyNote: "The Brain's true rookie card is the 1982 Wrestling All-Stars #35. The greatest manager in wrestling history, Bobby Heenan was already a legendary figure at the time of this card's issue. His All-Stars RC is one of the most undervalued manager cards in the hobby.",
     cards: [
       { year:1982, set:'Wrestling All-Stars Series B', num:'#16', promo:'wwf', type:'rc',   tags:['RC','All-Stars','True RC','Manager'], note:'True rookie card. Greatest manager in wrestling history on cardboard.', link:'early-wwf.html' },
       { year:1985, set:'Topps WWF',          num:'—',   promo:'wwf', type:'base', tags:['KEY'], note:'1985 Topps appearance. Previously misidentified as his RC.', link:'early-wwf.html' },
@@ -967,7 +997,7 @@ const WRESTLERS = [
     name: 'Dusty Rhodes',
     eras: ['vintage','golden','hof'],
     dotColor: '#e8c84a',
-    keyNote: 'The American Dream''s true rookie card is the 1982 Wrestling All-Stars #14. Son of a plumber, voice of the people — Dusty Rhodes was one of the greatest promo men in wrestling history and his All-Stars RC is a legitimate sleeper key.',
+    keyNote: "The American Dream's true rookie card is the 1982 Wrestling All-Stars #14. Son of a plumber, voice of the people — Dusty Rhodes was one of the greatest promo men in wrestling history and his All-Stars RC is a legitimate sleeper key.",
     cards: [
       { year:1982, set:'Wrestling All-Stars Series A', num:'#6',  promo:'wwf', type:'rc',   tags:['RC','All-Stars','True RC','NWA'], note:'True rookie card. First Dusty Rhodes card ever produced.', link:'early-wwf.html' },
       { year:1985, set:'Topps WWF',          num:'—',   promo:'wwf', type:'base', tags:[], link:'early-wwf.html' },
@@ -979,7 +1009,7 @@ const WRESTLERS = [
     name: 'Iron Sheik',
     eras: ['vintage','golden','hof'],
     dotColor: '#cc1f1f',
-    keyNote: 'The Iron Sheik''s true rookie card is the 1983 Wrestling All-Stars Series B #4 — produced the same year he defeated Bob Backlund for the WWF Championship before losing it to Hulk Hogan. A genuinely historic card from one of wrestling''s most memorable title changes.',
+    keyNote: "The Iron Sheik's true rookie card is the 1983 Wrestling All-Stars Series B #4 — produced the same year he defeated Bob Backlund for the WWF Championship before losing it to Hulk Hogan. A genuinely historic card from one of wrestling's most memorable title changes.",
     cards: [
       { year:1982, set:'Wrestling All-Stars Series B', num:'#25', promo:'wwf', type:'rc',   tags:['RC','KEY','All-Stars','True RC','WWF Champion'], note:'True rookie card. WWF title reign came the following year — Backlund-Sheik-Hogan transition.', link:'early-wwf.html' },
       { year:1985, set:'Topps WWF',          num:'—',   promo:'wwf', type:'base', tags:[], link:'early-wwf.html' },
@@ -991,7 +1021,7 @@ const WRESTLERS = [
     name: 'Terry Funk',
     eras: ['vintage','golden','hof'],
     dotColor: '#e67e22',
-    keyNote: 'The Funker''s true rookie card is the 1982 Wrestling All-Stars #25. A legend spanning five decades of professional wrestling, Terry Funk''s All-Stars RC predates all NWA and WWF set appearances. A true vintage key for any serious collector.',
+    keyNote: "The Funker's true rookie card is the 1982 Wrestling All-Stars #25. A legend spanning five decades of professional wrestling, Terry Funk's All-Stars RC predates all NWA and WWF set appearances. A true vintage key for any serious collector.",
     cards: [
       { year:1982, set:'Wrestling All-Stars Series A', num:'#10', promo:'wwf', type:'rc',   tags:['RC','All-Stars','True RC','NWA'], note:'True rookie card. First Terry Funk card ever produced.', link:'early-wwf.html' },
       { year:1985, set:'Topps WWF',          num:'—',   promo:'wwf', type:'base', tags:[], link:'early-wwf.html' },
@@ -1003,7 +1033,7 @@ const WRESTLERS = [
     name: 'Jerry Lawler',
     eras: ['vintage','golden','hof'],
     dotColor: '#cc1f1f',
-    keyNote: 'The King''s true rookie card is the 1982 Wrestling All-Stars #31. The Memphis wrestling legend was already an institution at the time of this card — and his All-Stars RC is a legitimate vintage key that most collectors overlook.',
+    keyNote: "The King's true rookie card is the 1982 Wrestling All-Stars #31. The Memphis wrestling legend was already an institution at the time of this card — and his All-Stars RC is a legitimate vintage key that most collectors overlook.",
     cards: [
       { year:1982, set:'Wrestling All-Stars Series A', num:'#34', promo:'wwf', type:'rc',   tags:['RC','All-Stars','True RC'], note:'True rookie card. Memphis legend on cardboard.', link:'early-wwf.html' },
       { year:1985, set:'Topps WWF',          num:'—',   promo:'wwf', type:'base', tags:[], link:'early-wwf.html' },
@@ -1014,9 +1044,9 @@ const WRESTLERS = [
     name: 'Rocky Johnson',
     eras: ['vintage','hof'],
     dotColor: '#e8c84a',
-    keyNote: 'Rocky Johnson''s true rookie card is the 1982 Wrestling All-Stars #32 — a card that carries enormous historical weight as the card of The Rock''s father. A Hall of Famer and tag team champion, Johnson''s All-Stars RC is one of the hobby''s most historically significant bloodline cards.',
+    keyNote: "Rocky Johnson's true rookie card is the 1982 Wrestling All-Stars #32 — a card that carries enormous historical weight as the card of The Rock's father. A Hall of Famer and tag team champion, Johnson's All-Stars RC is one of the hobby's most historically significant bloodline cards.",
     cards: [
-      { year:1983, set:'Wrestling All-Stars',          num:'#24', promo:'wwf', type:'rc',   tags:['RC','All-Stars','True RC','The Rock Father'], note:'True rookie card. The Rock''s father — one of wrestling''s most important bloodline cards.', link:'early-wwf.html' },
+      { year:1983, set:'Wrestling All-Stars',          num:'#24', promo:'wwf', type:'rc',   tags:['RC','All-Stars','True RC','The Rock Father'], note: "True rookie card. The Rock's father — one of wrestling's most important bloodline cards.", link:'early-wwf.html' },
       { year:1985, set:'Topps WWF',          num:'—',   promo:'wwf', type:'base', tags:[], link:'early-wwf.html' },
     ]
   },
@@ -1024,165 +1054,234 @@ const WRESTLERS = [
 ];
 
 /* ══════════════════════════════════════════════════════
-   RENDER ENGINE
+   RENDER ENGINE — search-first, filters after selection
 ══════════════════════════════════════════════════════ */
-let activeEra     = 'all';
-let activeName    = null;
 
-// Colors per promo
 const PROMO_COLORS = {
   wwf:'#e8c84a', wwe:'#3498db', wcw:'#cc1f1f',
-  ecw:'#888888', aew:'#9b59b6', tna:'#e67e22',
-  indie:'#2ecc71'
+  ecw:'#888888', aew:'#9b59b6', tna:'#e67e22', indie:'#2ecc71'
 };
 const PROMO_LABELS = {
   wwf:'WWF', wwe:'WWE', wcw:'WCW',
-  ecw:'ECW', aew:'AEW', tna:'TNA',
-  indie:'Indie'
+  ecw:'ECW', aew:'AEW', tna:'TNA', indie:'Indie'
 };
 
-function eraMatch(w, era) {
-  if (era === 'all')     return true;
-  if (era === 'hof')     return w.eras.includes('hof');
-  return w.eras.includes(era);
+let activeName   = null;
+let activePromo  = 'all';
+let activeType   = 'all';
+
+// ── Search results dropdown ───────────────────────────────────────────────
+function updateSearchResults(q) {
+  const el = document.getElementById('wlResults');
+  if (!q) { el.classList.remove('open'); return; }
+  const matches = WRESTLERS.filter(w => w.name.toLowerCase().includes(q.toLowerCase()));
+  if (!matches.length) {
+    el.innerHTML = `<div class="wl-no-results">No wrestlers found for "${q}"</div>`;
+  } else {
+    el.innerHTML = matches.map(w => `
+      <button class="wl-result-item" onclick="selectWrestler('${w.name.replace(/'/g,"\\'").replace(/"/g,"&quot;")}')">
+        <span class="wl-result-dot" style="background:${w.dotColor}"></span>
+        ${w.name}
+        <span class="wl-result-count">${w.cards.length} cards</span>
+      </button>`).join('');
+  }
+  el.classList.add('open');
 }
 
-function renderRoster(searchQ) {
-  const list = document.getElementById('rosterList');
-  const q = (searchQ || '').toLowerCase();
-  let count = 0;
+// ── Wrestler selection ────────────────────────────────────────────────────
+function selectWrestler(name) {
+  activeName  = name;
+  activePromo = 'all';
+  activeType  = 'all';
 
-  const html = WRESTLERS.map(w => {
-    const visible = eraMatch(w, activeEra) && (!q || w.name.toLowerCase().includes(q));
-    count += visible ? 1 : 0;
-    return `<button class="wl-wrestler-btn ${visible ? '' : 'hidden'} ${activeName === w.name ? 'active' : ''}"
-      onclick="selectWrestler('${w.name.replace(/'/g, "\\'")}')">
-      <span class="wl-era-dot" style="background:${w.dotColor}"></span>
-      ${w.name}
-      <span class="wl-card-count">${w.cards.length}</span>
-    </button>`;
-  }).join('');
+  // Hide landing, show profile
+  document.getElementById('wlLanding').style.display   = 'none';
+  document.getElementById('wlProfileWrap').classList.add('visible');
 
-  list.innerHTML = html;
-  document.getElementById('rosterCount').textContent = count;
-}
+  // Close dropdown, clear search
+  document.getElementById('wlResults').classList.remove('open');
+  document.getElementById('wlSearch').value = name;
 
-function renderProfile(name) {
+  // Build era pills from this wrestler's promos
   const w = WRESTLERS.find(x => x.name === name);
+  if (!w) return;
+  const promos = ['all', ...new Set(w.cards.map(c => c.promo))];
+  document.getElementById('eraFilterPills').innerHTML = promos.map(p => `
+    <button class="wl-pill ${p === 'all' ? 'active' : ''}" data-promo="${p}" onclick="setPromo('${p}')">
+      ${p === 'all' ? 'All' : PROMO_LABELS[p] || p.toUpperCase()}
+    </button>`).join('');
+
+  // Reset type filters
+  document.querySelectorAll('[data-type]').forEach(b =>
+    b.classList.toggle('active', b.dataset.type === 'all'));
+
+  // Show filter bar
+  document.getElementById('wlFilters').style.display = '';
+
+  renderProfile();
+}
+
+// ── Filter handlers ───────────────────────────────────────────────────────
+function setPromo(p) {
+  activePromo = p;
+  document.querySelectorAll('#eraFilterPills .wl-pill').forEach(b =>
+    b.classList.toggle('active', b.dataset.promo === p));
+  renderProfile();
+}
+
+document.querySelectorAll('[data-type]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    activeType = btn.dataset.type;
+    document.querySelectorAll('[data-type]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProfile();
+  });
+});
+
+// ── Profile render ────────────────────────────────────────────────────────
+function renderProfile() {
+  const w     = WRESTLERS.find(x => x.name === activeName);
   const panel = document.getElementById('wlProfile');
   if (!w) return;
 
-  const totalCards = w.cards.length;
-  const eras = [...new Set(w.cards.map(c => c.promo))];
-  const autos = w.cards.filter(c => c.type === 'auto').length;
-  const rcs   = w.cards.filter(c => c.type === 'rc').length;
+  // Filtered card set
+  const visible = w.cards.filter(c => {
+    const promoOk = activePromo === 'all' || c.promo === activePromo;
+    const typeOk  = activeType  === 'all' || c.type  === activeType;
+    return promoOk && typeOk;
+  });
 
-  // Group by promo
+  const promos = [...new Set(w.cards.map(c => c.promo))];
+  const counts = {
+    total:  w.cards.length,
+    rc:     w.cards.filter(c => c.type === 'rc').length,
+    auto:   w.cards.filter(c => c.type === 'auto').length,
+    relic:  w.cards.filter(c => c.type === 'relic').length,
+    insert: w.cards.filter(c => c.type === 'insert').length,
+  };
+
+  const tagStyle = tag => {
+    if (tag === 'RC')  return 'background:rgba(46,204,113,0.15);border:1px solid rgba(46,204,113,0.3);color:#2ecc71;';
+    if (['KEY','MAJOR'].includes(tag)) return 'background:rgba(232,200,74,0.15);border:1px solid rgba(232,200,74,0.3);color:#e8c84a;';
+    if (tag.includes('Auto') || tag === 'On-Card') return 'background:rgba(155,89,182,0.15);border:1px solid rgba(155,89,182,0.3);color:#9b59b6;';
+    if (['RARE','INDIE RC','SLEEPER'].includes(tag)) return 'background:rgba(204,31,31,0.15);border:1px solid rgba(204,31,31,0.3);color:#e74c3c;';
+    return 'background:var(--mid);border:1px solid var(--border);color:var(--muted);';
+  };
+
+  const badgeHtml = type => {
+    const map = { base:'BASE', rc:'RC', auto:'AUTO', relic:'RELIC', insert:'INSERT' };
+    const cls = { base:'badge-base', rc:'badge-rc', auto:'badge-auto', relic:'badge-relic', insert:'badge-insert' };
+    return `<div class="wl-card-type-badge ${cls[type]||'badge-base'}">${map[type]||type}</div>`;
+  };
+
+  const entryCls = c => {
+    const t = { rc:'rc-card', auto:'auto-card', relic:'relic-card', insert:'insert-card' }[c.type] || '';
+    const k = (c.tags.includes('KEY') || c.tags.includes('MAJOR')) ? ' key-card' : '';
+    return t + k;
+  };
+
+  // Group visible cards by promo
   const groups = {};
-  w.cards.forEach(c => {
+  visible.forEach(c => {
     if (!groups[c.promo]) groups[c.promo] = [];
     groups[c.promo].push(c);
   });
-
-  const tagStyle = (tag) => {
-    if (tag === 'RC')  return 'background:rgba(46,204,113,0.15);border:1px solid rgba(46,204,113,0.3);color:#2ecc71;';
-    if (tag === 'KEY' || tag === 'MAJOR') return 'background:rgba(232,200,74,0.15);border:1px solid rgba(232,200,74,0.3);color:#e8c84a;';
-    if (tag === 'AUTO' || tag.includes('Auto')) return 'background:rgba(155,89,182,0.15);border:1px solid rgba(155,89,182,0.3);color:#9b59b6;';
-    if (tag === 'RARE' || tag === 'INDIE RC') return 'background:rgba(204,31,31,0.15);border:1px solid rgba(204,31,31,0.3);color:#cc5555;';
-    return 'background:var(--mid);border:1px solid var(--border);color:var(--muted);';
-  };
 
   let html = `
     <div class="wl-profile-header">
       <div>
         <div class="wl-name">${w.name}</div>
         <div class="wl-meta">
-          ${eras.map(e => `<span style="color:${PROMO_COLORS[e]}">${PROMO_LABELS[e]}</span>`).join(' · ')}
+          ${promos.map(p => `<span style="color:${PROMO_COLORS[p]}">${PROMO_LABELS[p]||p}</span>`).join(' · ')}
         </div>
       </div>
     </div>
-
     <div class="wl-stats">
-      <div class="wl-stat"><div class="v">${totalCards}</div><div class="l">Cards Listed</div></div>
-      <div class="wl-stat"><div class="v">${rcs}</div><div class="l">Rookie Cards</div></div>
-      <div class="wl-stat"><div class="v">${eras.length}</div><div class="l">Promotions</div></div>
-      ${autos ? `<div class="wl-stat"><div class="v">${autos}</div><div class="l">Autos</div></div>` : ''}
+      <div class="wl-stat"><div class="v">${counts.total}</div><div class="l">Total Cards</div></div>
+      <div class="wl-stat"><div class="v">${counts.rc}</div><div class="l">Rookie Cards</div></div>
+      <div class="wl-stat"><div class="v">${counts.auto}</div><div class="l">Autographs</div></div>
+      <div class="wl-stat"><div class="v">${counts.relic}</div><div class="l">Relics</div></div>
+      <div class="wl-stat"><div class="v">${counts.insert}</div><div class="l">Inserts</div></div>
     </div>
-
     <div class="wl-key-callout">
       <h4>Collector's Note</h4>
       <p>${w.keyNote}</p>
     </div>`;
 
-  // Cards by promo group
-  Object.keys(groups).forEach(promo => {
-    const color = PROMO_COLORS[promo] || '#888';
-    html += `<div class="wl-section-label" style="--dot-bg:${color};">
-      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${color};"></span>
-      ${PROMO_LABELS[promo]} Cards
-    </div>`;
-
-    groups[promo].sort((a,b) => a.year - b.year).forEach(c => {
-      const isKey  = c.tags.includes('KEY') || c.tags.includes('MAJOR');
-      const isRC   = c.type === 'rc';
-      const isAuto = c.type === 'auto';
-      const cls    = isKey ? 'key-card' : isRC ? 'rc-card' : isAuto ? 'auto-card' : '';
-
-      const tagsHtml = c.tags.filter(t => !['WCW Turn','nWo','Hollywood','Embossed','Champion','Shield','Rockers','Early','Tyler Black','El Generico','Kevin Steen','Dean Ambrose'].includes(t)).map(t =>
-        `<span class="wl-card-tag" style="${tagStyle(t)}">${t}</span>`
-      ).join('');
-
-      html += `<div class="wl-card-entry ${cls}">
-        <div class="wl-card-year">${c.year}</div>
-        <div class="wl-card-body">
-          <div class="wl-card-name">${c.set} ${c.num && c.num !== '—' ? '· ' + c.num : ''}</div>
-          ${c.note ? `<div class="wl-card-detail">${c.note}</div>` : ''}
-          ${tagsHtml ? `<div class="wl-card-tags">${tagsHtml}</div>` : ''}
-        </div>
-        ${c.link ? `<a class="wl-card-link" href="${c.link}">View Set →</a>` : ''}
+  if (!visible.length) {
+    html += `<div class="wl-empty-filter">No cards match the current filters</div>`;
+  } else {
+    Object.keys(groups).forEach(promo => {
+      const color = PROMO_COLORS[promo] || '#888';
+      html += `<div class="wl-section-label">
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${color};flex-shrink:0"></span>
+        ${PROMO_LABELS[promo]||promo} Cards
+        <span style="margin-left:auto;font-size:0.6rem">${groups[promo].length}</span>
       </div>`;
+
+      groups[promo].sort((a,b) => a.year - b.year).forEach(c => {
+        const NOISE = new Set(['WCW Turn','nWo','Hollywood','Embossed','Champion','Shield','Rockers','Early','Tyler Black','El Generico','Kevin Steen','Dean Ambrose','American Badass','Ministry','Legends','WM30','WM Insert','Legend','Final Farewell','Legacy','World Champion','Insert','Key','Prizm Insert','Chrome Insert','Tribute','Chrome Relic','Prizm Relic','Worn Relic','Shirt Relic','Ring Mat','Heritage Chrome']);
+        const filteredTags = c.tags.filter(t => !NOISE.has(t));
+        const tagsHtml = filteredTags.map(t =>
+          `<span class="wl-card-tag" style="${tagStyle(t)}">${t}</span>`).join('');
+
+        html += `<div class="wl-card-entry ${entryCls(c)}">
+          ${badgeHtml(c.type)}
+          <div class="wl-card-year">${c.year}</div>
+          <div class="wl-card-body">
+            <div class="wl-card-name">${c.set}${c.num && c.num !== '—' ? ' · ' + c.num : ''}</div>
+            ${c.note ? `<div class="wl-card-detail">${c.note}</div>` : ''}
+            ${tagsHtml ? `<div class="wl-card-tags">${tagsHtml}</div>` : ''}
+          </div>
+          ${c.link ? `<a class="wl-card-link" href="${c.link}">View Set →</a>` : ''}
+        </div>`;
+      });
     });
-  });
+  }
 
   panel.innerHTML = html;
 }
 
-function selectWrestler(name) {
-  activeName = name;
-  document.querySelectorAll('.wl-wrestler-btn').forEach(b => {
-    b.classList.toggle('active', b.textContent.trim().startsWith(name.slice(0,8)));
-  });
-  renderProfile(name);
+// ── Search input ──────────────────────────────────────────────────────────
+document.getElementById('wlSearch').addEventListener('input', function() {
+  updateSearchResults(this.value.trim());
+  // If cleared, go back to landing
+  if (!this.value.trim()) {
+    activeName = null;
+    document.getElementById('wlLanding').style.display = '';
+    document.getElementById('wlProfileWrap').classList.remove('visible');
+    document.getElementById('wlFilters').style.display     = 'none';
+  }
+});
+
+// Close dropdown on outside click
+document.addEventListener('click', e => {
+  if (!e.target.closest('.wl-search-wrap')) {
+    document.getElementById('wlResults').classList.remove('open');
+  }
+});
+
+// ── Quick-search suggestions ──────────────────────────────────────────────
+function quickSearch(name) {
+  document.getElementById('wlSearch').value = name;
+  updateSearchResults(name);
+  const match = WRESTLERS.find(w => w.name.toLowerCase().includes(name.toLowerCase()));
+  if (match) selectWrestler(match.name);
 }
 
-// Filters
-document.querySelectorAll('.wl-pill').forEach(pill => {
-  pill.addEventListener('click', () => {
-    document.querySelectorAll('.wl-pill').forEach(p => p.classList.remove('active'));
-    pill.classList.add('active');
-    activeEra = pill.dataset.era;
-    renderRoster(document.getElementById('wlSearch').value);
-  });
-});
-
-// Search
-document.getElementById('wlSearch').addEventListener('input', function() {
-  renderRoster(this.value.trim());
-});
-
-// URL param ?w=CMPunk
+// ── URL param ?w=Undertaker ───────────────────────────────────────────────
 const params = new URLSearchParams(window.location.search);
 const paramW = params.get('w');
-
-// Init
-renderRoster();
 if (paramW) {
   const match = WRESTLERS.find(w => w.name.toLowerCase().replace(/\s+/g,'-') === paramW.toLowerCase());
-  if (match) selectWrestler(match.name);
+  if (match) { quickSearch(match.name); }
 }
 </script>
 </body>
 </html>
+
+
+
 
 
 
