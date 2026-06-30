@@ -252,6 +252,8 @@ const WRESTLERS = [
       { year:2021, set:'2021 Topps WWE Undisputed', num:'—', promo:'wwe', type:'base', tags:[], note:'The Undertaker', link:'first-topps.html' },
       { year:2021, set:'2021 Topps WWE Undisputed', num:'—', promo:'wwe', type:'auto', tags:[], note:'The Undertaker', link:'first-topps.html' },
       { year:2021, set:'2021 Topps WWE Undisputed', num:'—', promo:'wwe', type:'base', tags:[], note:'Kane / The Undertaker', link:'first-topps.html' },
+      { year:2022, set:'2022 Panini Prizm WWE', num:'—', promo:'wwe', type:'auto', tags:['Prizm Auto'], note:'Prizm-era certified autograph — short-printed.', link:'panini-era.html' },
+      { year:2023, set:'2023 Panini Impeccable WWE', num:'—', promo:'wwe', type:'auto', tags:['On-Card','/49'], note:'Impeccable certified auto /49.', link:'panini-era.html' },
     ]
   },
 

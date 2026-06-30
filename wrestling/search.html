@@ -691,7 +691,7 @@ function getSetsKey(setName) {
 
   if (s.includes('chrome') && !s.includes('chromagraph')) {
     const map = {2015:'chr15',2016:'chr16',2017:'chr17',2018:'chr18',
-                 2019:'chr19',2020:'chr20',2021:'chr21',2025:'chr25'};
+                 2019:'chr19',2020:'chr20',2021:'chr21',2022:'chr22',2025:'chr25'};
     return (year && map[year]) || 'chr21';
   }
   if (s.includes('prizm'))       return year === 2023 ? 'prz23' : 'prz22';
