@@ -250,20 +250,12 @@
 </nav>
 
 <div class="search-hero">
-  <h1>Search All Cards</h1>
-  <p>Search by wrestler name, set name, card number, or keyword — across all eras, AEW, and Independent sections</p>
+  <h1>Wrestler Search</h1>
+  <p>Search by wrestler name — find every card across all eras and promotions</p>
   <div class="search-bar-wrap">
     <div class="search-input-row">
-      <input type="text" class="search-input" id="searchInput" placeholder="Try: Undertaker, CM Punk, 1985 Topps, rookie…" autocomplete="off">
+      <input type="text" class="search-input" id="searchInput" placeholder="Try: Undertaker, CM Punk, Hulk Hogan…" autocomplete="off">
       <button class="search-btn" onclick="doSearch()">Search</button>
-    </div>
-    <div class="search-filters">
-      <button class="sf-pill active" data-f="all">All Sections</button>
-      <button class="sf-pill" data-f="eras">Eras (WWF/WWE/WCW)</button>
-      <button class="sf-pill" data-f="aew">AEW Only</button>
-      <button class="sf-pill" data-f="indie">Independent Only</button>
-      <button class="sf-pill" data-f="rc">Rookie Cards Only</button>
-      <button class="sf-pill" data-f="auto">First Autos Only</button>
     </div>
   </div>
 </div>
@@ -272,23 +264,12 @@
   <div id="searchState">
     <!-- Initial tip state -->
     <div class="search-tip">
-      <h3>Find Any Card</h3>
-      <p>Search across 70+ years of wrestling card history — from 1955 Parkhurst to 2025 Topps WWE.</p>
-      <p>Try a wrestler name, a set year, a manufacturer, or a card type.</p>
-      <div class="popular-searches">
-        <button class="pop-search" onclick="setSearch('Undertaker')">Undertaker</button>
-        <button class="pop-search" onclick="setSearch('CM Punk')">CM Punk</button>
-        <button class="pop-search" onclick="setSearch('Goldberg')">Goldberg</button>
-        <button class="pop-search" onclick="setSearch('1985 Topps')">1985 Topps</button>
-        <button class="pop-search" onclick="setSearch('Sasha Banks')">Sasha Banks</button>
-        <button class="pop-search" onclick="setSearch('Cody Rhodes')">Cody Rhodes</button>
-        <button class="pop-search" onclick="setSearch('Prizm')">Prizm WWE</button>
-        <button class="pop-search" onclick="setSearch('rookie')">All Rookies</button>
-        <button class="pop-search" onclick="setSearch('ECW')">ECW Cards</button>
-        <button class="pop-search" onclick="setSearch('WCW')">WCW Cards</button>
-        <button class="pop-search" onclick="setSearch('Hulk Hogan')">Hulk Hogan</button>
-        <button class="pop-search" onclick="setSearch('AEW')">AEW Cards</button>
-      </div>
+      <p>Try: <button class="pop-search" onclick="setSearch('Undertaker')">Undertaker</button>
+      <button class="pop-search" onclick="setSearch('Hulk Hogan')">Hulk Hogan</button>
+      <button class="pop-search" onclick="setSearch('CM Punk')">CM Punk</button>
+      <button class="pop-search" onclick="setSearch('Cody Rhodes')">Cody Rhodes</button>
+      <button class="pop-search" onclick="setSearch('Goldberg')">Goldberg</button>
+      <button class="pop-search" onclick="setSearch('Sasha Banks')">Sasha Banks</button></p>
     </div>
   </div>
 </div>
@@ -575,8 +556,8 @@ function doSearch() {
     if (activeFilter === 'rc'    && !c.tags.includes('rc'))   return false;
     if (activeFilter === 'auto'  && !c.tags.includes('auto')) return false;
 
-    // Text match: name, set, num, tags, era, promo
-    const haystack = [c.name, c.set, c.num, c.era, c.promo, ...c.tags].join(' ').toLowerCase();
+    // Match wrestler name only
+    const haystack = c.name.toLowerCase();
     return q.split(/\s+/).every(word => haystack.includes(word));
   });
 
@@ -625,23 +606,12 @@ function renderResults(results, q, container) {
 
 function renderTip(container) {
   container.innerHTML = `<div class="search-tip">
-    <h3>Find Any Card</h3>
-    <p>Search across 70+ years of wrestling card history — from 1955 Parkhurst to 2025 Topps WWE.</p>
-    <p>Try a wrestler name, a set year, a manufacturer, or a card type.</p>
-    <div class="popular-searches">
-      <button class="pop-search" onclick="setSearch('Undertaker')">Undertaker</button>
-      <button class="pop-search" onclick="setSearch('CM Punk')">CM Punk</button>
-      <button class="pop-search" onclick="setSearch('Goldberg')">Goldberg</button>
-      <button class="pop-search" onclick="setSearch('1985 Topps')">1985 Topps</button>
-      <button class="pop-search" onclick="setSearch('Sasha Banks')">Sasha Banks</button>
-      <button class="pop-search" onclick="setSearch('Cody Rhodes')">Cody Rhodes</button>
-      <button class="pop-search" onclick="setSearch('Prizm')">Prizm WWE</button>
-      <button class="pop-search" onclick="setSearch('rookie')">All Rookies</button>
-      <button class="pop-search" onclick="setSearch('ECW')">ECW Cards</button>
-      <button class="pop-search" onclick="setSearch('WCW')">WCW Cards</button>
-      <button class="pop-search" onclick="setSearch('Hulk Hogan')">Hulk Hogan</button>
-      <button class="pop-search" onclick="setSearch('AEW')">AEW Cards</button>
-    </div>
+    <p>Try: <button class="pop-search" onclick="setSearch('Undertaker')">Undertaker</button>
+    <button class="pop-search" onclick="setSearch('Hulk Hogan')">Hulk Hogan</button>
+    <button class="pop-search" onclick="setSearch('CM Punk')">CM Punk</button>
+    <button class="pop-search" onclick="setSearch('Cody Rhodes')">Cody Rhodes</button>
+    <button class="pop-search" onclick="setSearch('Goldberg')">Goldberg</button>
+    <button class="pop-search" onclick="setSearch('Sasha Banks')">Sasha Banks</button></p>
   </div>`;
 }
 
