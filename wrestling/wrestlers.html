@@ -438,8 +438,27 @@
 ══════════════════════════════════════════════════════ */
 
 let activeName   = null;
-let activePromo  = 'all';
+let activeEra    = 'all';
 let activeType   = 'all';
+
+const YEAR_ERAS = [
+  { key: 'all',     label: 'All',       min: null, max: null  },
+  { key: 'pre2001', label: 'Pre-2001',  min: null, max: 2000  },
+  { key: 'fleer',   label: '2001–2004', min: 2001, max: 2004  },
+  { key: 'early',   label: '2005–2015', min: 2005, max: 2015  },
+  { key: 'modern',  label: '2016–2021', min: 2016, max: 2021  },
+  { key: 'panini',  label: '2022–2023', min: 2022, max: 2023  },
+  { key: 'current', label: '2024+',     min: 2024, max: null  },
+];
+
+function cardInEra(c, eraKey) {
+  if (eraKey === 'all') return true;
+  const era = YEAR_ERAS.find(e => e.key === eraKey);
+  if (!era) return true;
+  if (era.min !== null && c.year < era.min) return false;
+  if (era.max !== null && c.year > era.max) return false;
+  return true;
+}
 
 // ── Search results dropdown ───────────────────────────────────────────────
 function updateSearchResults(q) {
@@ -461,9 +480,9 @@ function updateSearchResults(q) {
 
 // ── Wrestler selection ────────────────────────────────────────────────────
 function selectWrestler(name) {
-  activeName  = name;
-  activePromo = 'all';
-  activeType  = 'all';
+  activeName = name;
+  activeEra  = 'all';
+  activeType = 'all';
 
   // Hide landing, show profile
   document.getElementById('wlLanding').style.display   = 'none';
@@ -473,14 +492,15 @@ function selectWrestler(name) {
   document.getElementById('wlResults').classList.remove('open');
   document.getElementById('wlSearch').value = name;
 
-  // Build era pills from this wrestler's promos (AEW/Indie excluded — too sparse to be useful filters)
+  // Build year-range era pills — only show eras where this wrestler has cards
   const w = WRESTLERS.find(x => x.name === name);
   if (!w) return;
-  const EXCLUDED_PROMO_FILTERS = ['aew', 'indie'];
-  const promos = ['all', ...new Set(w.cards.map(c => c.promo))].filter(p => p === 'all' || !EXCLUDED_PROMO_FILTERS.includes(p));
-  document.getElementById('eraFilterPills').innerHTML = promos.map(p => `
-    <button class="wl-pill ${p === 'all' ? 'active' : ''}" data-promo="${p}" onclick="setPromo('${p}')">
-      ${p === 'all' ? 'All' : PROMO_LABELS[p] || p.toUpperCase()}
+  const activeEras = YEAR_ERAS.filter(e =>
+    e.key === 'all' || w.cards.some(c => cardInEra(c, e.key))
+  );
+  document.getElementById('eraFilterPills').innerHTML = activeEras.map(e => `
+    <button class="wl-pill ${e.key === 'all' ? 'active' : ''}" data-era="${e.key}" onclick="setEra('${e.key}')">
+      ${e.label}
     </button>`).join('');
 
   // Reset type filters
@@ -507,10 +527,10 @@ function resetSearch() {
 }
 
 // ── Filter handlers ───────────────────────────────────────────────────────
-function setPromo(p) {
-  activePromo = p;
+function setEra(eraKey) {
+  activeEra = eraKey;
   document.querySelectorAll('#eraFilterPills .wl-pill').forEach(b =>
-    b.classList.toggle('active', b.dataset.promo === p));
+    b.classList.toggle('active', b.dataset.era === eraKey));
   updateTypeCounts();
   renderProfile();
 }
@@ -519,7 +539,7 @@ function setPromo(p) {
 function updateTypeCounts() {
   const w = WRESTLERS.find(x => x.name === activeName);
   if (!w) return;
-  const inEra = w.cards.filter(c => activePromo === 'all' || c.promo === activePromo);
+  const inEra = w.cards.filter(c => cardInEra(c, activeEra));
   const counts = { all: inEra.length };
   ['rc','auto','relic','insert'].forEach(t => {
     counts[t] = inEra.filter(c => c.type === t).length;
@@ -613,9 +633,9 @@ function renderProfile() {
 
   // Filtered card set
   const visible = w.cards.filter(c => {
-    const promoOk = activePromo === 'all' || c.promo === activePromo;
-    const typeOk  = activeType  === 'all' || c.type  === activeType;
-    return promoOk && typeOk;
+    const eraOk  = cardInEra(c, activeEra);
+    const typeOk = activeType === 'all' || c.type === activeType;
+    return eraOk && typeOk;
   });
 
   const promos = [...new Set(w.cards.map(c => c.promo))];
