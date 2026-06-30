@@ -199,6 +199,20 @@ nav {
   margin: 0 auto 1.8rem;
   letter-spacing: 0.04em;
 }
+.hero-desc {
+  font-size: 0.95rem;
+  color: var(--text);
+  max-width: 720px;
+  margin: 0 auto 1.6rem;
+  line-height: 1.75;
+  opacity: 0.85;
+}
+.hero-stats.era-stats {
+  justify-content: center;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  max-width: 700px;
+  margin: 0 auto;
+}
 .hero-badges { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
 .badge {
   font-family: 'Oswald', sans-serif;
