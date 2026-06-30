@@ -100,24 +100,35 @@
     .wl-profile-wrap { display: none; }
     .wl-profile-wrap.visible { display: block; }
 
-    /* Card filters bar — appears after wrestler selection */
+    /* Card filters bar — appears after wrestler selection, sticky while scrolling */
     .wl-card-filters {
       background: var(--mid);
       border-bottom: 1px solid var(--border);
-      padding: 0.7rem 1.5rem;
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 62px;
+      z-index: 50;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .wl-card-filters-inner {
+      max-width: 980px;
+      margin: 0 auto;
       display: flex;
-      gap: 1.2rem;
+      gap: 1.6rem;
       align-items: center;
       flex-wrap: wrap;
+      justify-content: center;
     }
     .wl-filter-group {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.55rem;
+      flex-wrap: wrap;
     }
     .wl-filter-label {
       font-family: 'Oswald', sans-serif;
-      font-size: 0.62rem;
+      font-size: 0.7rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--muted);
@@ -125,27 +136,50 @@
     }
     .wl-pill {
       font-family: 'Oswald', sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.85rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      padding: 0.25rem 0.7rem;
+      padding: 0.5rem 1.1rem;
       border-radius: 99px;
-      border: 1px solid var(--border);
+      border: 2px solid var(--border);
       background: transparent;
       color: var(--muted);
       cursor: pointer;
       transition: all 0.12s;
     }
-    .wl-pill:hover { border-color: var(--green); color: var(--green); }
+    .wl-pill:hover { border-color: var(--green); color: var(--green); transform: translateY(-1px); }
     .wl-pill.active { border-color: var(--green); background: rgba(46,204,113,0.15); color: var(--green); }
     .wl-pill.type-auto.active  { border-color: #9b59b6; background: rgba(155,89,182,0.15); color: #9b59b6; }
     .wl-pill.type-relic.active { border-color: #e67e22; background: rgba(230,126,34,0.15); color: var(--orange); }
     .wl-pill.type-insert.active{ border-color: #3498db; background: rgba(52,152,219,0.15); color: #3498db; }
     .wl-pill.type-rc.active    { border-color: var(--green); background: rgba(46,204,113,0.15); color: var(--green); }
+    .wl-pill-count { opacity: 0.65; font-weight: 600; margin-left: 0.3rem; }
 
-    /* Profile */
-    .wl-profile { padding: 1.8rem 2rem; max-width: 900px; }
+    .wl-new-search {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.5rem 1rem;
+      border-radius: 99px;
+      border: 2px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.12s;
+      white-space: nowrap;
+    }
+    .wl-new-search:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* Profile — centered on desktop */
+    .wl-profile { padding: 1.8rem 2rem 4rem; max-width: 980px; margin: 0 auto; }
+    .wl-showing-count {
+      font-family: 'Oswald', sans-serif; font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted);
+      margin-bottom: 1rem;
+    }
     .wl-profile-header {
       display: flex;
       align-items: flex-start;
@@ -287,17 +321,20 @@
 
 <!-- Filters: hidden until a wrestler is selected -->
 <div class="wl-card-filters" id="wlFilters" style="display:none">
-  <div class="wl-filter-group">
-    <span class="wl-filter-label">Era</span>
-    <div id="eraFilterPills"></div>
-  </div>
-  <div class="wl-filter-group">
-    <span class="wl-filter-label">Type</span>
-    <button class="wl-pill active" data-type="all">All</button>
-    <button class="wl-pill type-rc"    data-type="rc">RC</button>
-    <button class="wl-pill type-auto"  data-type="auto">Autograph</button>
-    <button class="wl-pill type-relic" data-type="relic">Relic</button>
-    <button class="wl-pill type-insert"data-type="insert">Insert</button>
+  <div class="wl-card-filters-inner">
+    <div class="wl-filter-group">
+      <span class="wl-filter-label">Era</span>
+      <div id="eraFilterPills"></div>
+    </div>
+    <div class="wl-filter-group">
+      <span class="wl-filter-label">Type</span>
+      <button class="wl-pill active" data-type="all">All<span class="wl-pill-count" id="cnt-all"></span></button>
+      <button class="wl-pill type-rc"    data-type="rc">RC<span class="wl-pill-count" id="cnt-rc"></span></button>
+      <button class="wl-pill type-auto"  data-type="auto">Autograph<span class="wl-pill-count" id="cnt-auto"></span></button>
+      <button class="wl-pill type-relic" data-type="relic">Relic<span class="wl-pill-count" id="cnt-relic"></span></button>
+      <button class="wl-pill type-insert"data-type="insert">Insert<span class="wl-pill-count" id="cnt-insert"></span></button>
+    </div>
+    <button class="wl-new-search" onclick="resetSearch()">&#10006; New Search</button>
   </div>
 </div>
 
@@ -1274,7 +1311,20 @@ function selectWrestler(name) {
   // Show filter bar
   document.getElementById('wlFilters').style.display = '';
 
+  updateTypeCounts();
   renderProfile();
+}
+
+// ── Reset to landing/search state ────────────────────────────────────────
+function resetSearch() {
+  activeName = null;
+  document.getElementById('wlSearch').value = '';
+  document.getElementById('wlResults').classList.remove('open');
+  document.getElementById('wlLanding').style.display = '';
+  document.getElementById('wlProfileWrap').classList.remove('visible');
+  document.getElementById('wlFilters').style.display = 'none';
+  document.getElementById('wlSearch').focus();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ── Filter handlers ───────────────────────────────────────────────────────
@@ -1282,7 +1332,23 @@ function setPromo(p) {
   activePromo = p;
   document.querySelectorAll('#eraFilterPills .wl-pill').forEach(b =>
     b.classList.toggle('active', b.dataset.promo === p));
+  updateTypeCounts();
   renderProfile();
+}
+
+// Update the small count badges on each Type pill, scoped to the active era filter
+function updateTypeCounts() {
+  const w = WRESTLERS.find(x => x.name === activeName);
+  if (!w) return;
+  const inEra = w.cards.filter(c => activePromo === 'all' || c.promo === activePromo);
+  const counts = { all: inEra.length };
+  ['rc','auto','relic','insert'].forEach(t => {
+    counts[t] = inEra.filter(c => c.type === t).length;
+  });
+  Object.keys(counts).forEach(t => {
+    const el = document.getElementById(`cnt-${t}`);
+    if (el) el.textContent = ` (${counts[t]})`;
+  });
 }
 
 document.querySelectorAll('[data-type]').forEach(btn => {
@@ -1362,7 +1428,8 @@ function renderProfile() {
     <div class="wl-key-callout">
       <h4>Collector's Note</h4>
       <p>${w.keyNote}</p>
-    </div>`;
+    </div>
+    <div class="wl-showing-count">Showing ${visible.length} of ${counts.total} cards</div>`;
 
   if (!visible.length) {
     html += `<div class="wl-empty-filter">No cards match the current filters</div>`;
