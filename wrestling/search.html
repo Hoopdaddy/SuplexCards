@@ -212,6 +212,17 @@
     .no-results { text-align: center; padding: 2rem; color: var(--muted); }
     .no-results strong { color: var(--text); }
 
+    .ri-type-badge {
+      flex-shrink: 0; padding: 0.1rem 0.45rem; border-radius: 3px;
+      font-family: 'Oswald', sans-serif; font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .badge-base   { background: rgba(255,255,255,0.06); color: var(--muted); }
+    .badge-rc     { background: rgba(46,204,113,0.2); color: var(--green); }
+    .badge-auto   { background: rgba(155,89,182,0.2); color: #9b59b6; }
+    .badge-relic  { background: rgba(230,126,34,0.2); color: var(--orange); }
+    .badge-insert { background: rgba(52,152,219,0.2); color: #3498db; }
+
     @media (max-width: 600px) {
       .ri-era { display: none; }
       .ri-set { min-width: 100px; }
@@ -256,6 +267,16 @@
     <div class="search-input-row">
       <input type="text" class="search-input" id="searchInput" placeholder="Try: Undertaker, CM Punk, Hulk Hogan…" autocomplete="off">
       <button class="search-btn" onclick="doSearch()">Search</button>
+    </div>
+    <!-- Result filters — shown only after a wrestler search returns results -->
+    <div class="search-filters" id="resultFilters" style="display:none; margin-top:0.8rem;">
+      <div id="eraFilterPills"></div>
+      <span style="width:1px;background:var(--border);align-self:stretch;margin:0 0.3rem;display:inline-block"></span>
+      <button class="sf-pill active" data-type="all" onclick="setTypeFilter('all')">All</button>
+      <button class="sf-pill" data-type="rc"     onclick="setTypeFilter('rc')">RC</button>
+      <button class="sf-pill" data-type="auto"   onclick="setTypeFilter('auto')">Autograph</button>
+      <button class="sf-pill" data-type="relic"  onclick="setTypeFilter('relic')">Relic</button>
+      <button class="sf-pill" data-type="insert" onclick="setTypeFilter('insert')">Insert</button>
     </div>
   </div>
 </div>
@@ -318,6 +339,7 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/wrestlers-data.js"></script>
 <script>
 /* ═══════════════════════════════════════════════════
    SEARCH DATABASE
@@ -522,17 +544,21 @@ const CARDS = [
 /* ═══════════════════════════════════════════════════
    SEARCH ENGINE
 ═══════════════════════════════════════════════════ */
-let activeFilter = 'all';
+let activeEraFilter  = 'all';
+let activeTypeFilter = 'all';
+let currentWrestler  = null;
 
-document.querySelectorAll('.sf-pill').forEach(pill => {
-  pill.addEventListener('click', () => {
-    document.querySelectorAll('.sf-pill').forEach(p => p.classList.remove('active'));
-    pill.classList.add('active');
-    activeFilter = pill.dataset.f;
-    const q = document.getElementById('searchInput').value.trim();
-    if (q) doSearch();
-  });
-});
+function setTypeFilter(type) {
+  activeTypeFilter = type;
+  document.querySelectorAll('[data-type]').forEach(b => b.classList.toggle('active', b.dataset.type === type));
+  if (currentWrestler) renderWrestlerCards();
+}
+
+function setEraFilter(promo) {
+  activeEraFilter = promo;
+  document.querySelectorAll('#eraFilterPills .sf-pill').forEach(b => b.classList.toggle('active', b.dataset.promo === promo));
+  if (currentWrestler) renderWrestlerCards();
+}
 
 document.getElementById('searchInput').addEventListener('keydown', e => {
   if (e.key === 'Enter') doSearch();
@@ -544,63 +570,117 @@ function setSearch(term) {
 }
 
 function doSearch() {
-  const q     = document.getElementById('searchInput').value.trim().toLowerCase();
+  const q     = document.getElementById('searchInput').value.trim();
   const state = document.getElementById('searchState');
-  if (!q) { renderTip(state); return; }
+  if (!q) { hideFilters(); renderTip(state); return; }
 
-  let results = CARDS.filter(c => {
-    // Section filter
-    if (activeFilter === 'eras'  && c.section !== 'eras')  return false;
-    if (activeFilter === 'aew'   && c.section !== 'aew')   return false;
-    if (activeFilter === 'indie' && c.section !== 'indie') return false;
-    if (activeFilter === 'rc'    && !c.tags.includes('rc'))   return false;
-    if (activeFilter === 'auto'  && !c.tags.includes('auto')) return false;
+  const ql = q.toLowerCase();
 
-    // Match wrestler name only
-    const haystack = c.name.toLowerCase();
-    return q.split(/\s+/).every(word => haystack.includes(word));
-  });
+  // 1. Try to find a wrestler in the WRESTLERS database (full card set)
+  const wrestler = (typeof WRESTLERS !== 'undefined')
+    ? WRESTLERS.find(w => w.name.toLowerCase().includes(ql))
+    : null;
 
-  renderResults(results, q, state);
-}
-
-function renderResults(results, q, container) {
-  if (!results.length) {
-    container.innerHTML = `<div class="no-results"><p>No cards found for <strong>"${escHtml(q)}"</strong></p><p style="font-size:0.85rem;color:var(--muted);margin-top:0.5rem;">Try a different spelling, or browse an era page for complete checklists.</p></div>`;
+  if (wrestler) {
+    currentWrestler = wrestler;
+    activeEraFilter  = 'all';
+    activeTypeFilter = 'all';
+    buildEraFilterPills(wrestler);
+    document.querySelectorAll('[data-type]').forEach(b => b.classList.toggle('active', b.dataset.type === 'all'));
+    document.getElementById('resultFilters').style.display = '';
+    renderWrestlerCards();
     return;
   }
 
-  // Group by section
-  const groups = { eras: [], aew: [], indie: [] };
-  results.forEach(c => groups[c.section].push(c));
+  // 2. Fallback to CARDS sparse database
+  currentWrestler = null;
+  hideFilters();
+  const results = CARDS.filter(c => {
+    const haystack = c.name.toLowerCase();
+    return ql.split(/\s+/).every(word => haystack.includes(word));
+  });
+  renderResults(results, q, state);
+}
 
-  const groupLabels = { eras: 'WWF / WWE / WCW Eras', aew: 'AEW', indie: 'Independent' };
-  const groupColors = { eras: 'var(--green)', aew: '#00bcd4', indie: '#ff9800' };
+function buildEraFilterPills(wrestler) {
+  const EXCLUDED = ['aew','indie'];
+  const promos = ['all', ...new Set(wrestler.cards.map(c => c.promo))].filter(p => p === 'all' || !EXCLUDED.includes(p));
+  document.getElementById('eraFilterPills').innerHTML = promos.map(p => `
+    <button class="sf-pill ${p === 'all' ? 'active' : ''}" data-promo="${p}" onclick="setEraFilter('${p}')">
+      ${p === 'all' ? 'All' : (PROMO_LABELS[p] || p.toUpperCase())}
+    </button>`).join('');
+}
 
-  let html = `<div class="results-header"><div class="results-count"><strong>${results.length}</strong> result${results.length !== 1 ? 's' : ''} for "${escHtml(q)}"</div></div>`;
+function hideFilters() {
+  document.getElementById('resultFilters').style.display = 'none';
+}
 
-  for (const [sec, items] of Object.entries(groups)) {
-    if (!items.length) continue;
-    html += `<div class="section-group-header" style="border-left-color:${groupColors[sec]}">${groupLabels[sec]}</div>`;
+function renderWrestlerCards() {
+  const w     = currentWrestler;
+  const state = document.getElementById('searchState');
+
+  const visible = w.cards.filter(c => {
+    const eraOk  = activeEraFilter  === 'all' || c.promo === activeEraFilter;
+    const typeOk = activeTypeFilter === 'all' || c.type  === activeTypeFilter;
+    return eraOk && typeOk;
+  });
+
+  const counts = { rc:0, auto:0, relic:0, insert:0 };
+  w.cards.forEach(c => { if (counts[c.type] !== undefined) counts[c.type]++; });
+
+  const typeBadge = type => {
+    const map = { base:'BASE', rc:'RC', auto:'AUTO', relic:'RELIC', insert:'INSERT' };
+    const cls = { base:'badge-base', rc:'badge-rc', auto:'badge-auto', relic:'badge-relic', insert:'badge-insert' };
+    return `<span class="ri-type-badge ${cls[type]||'badge-base'}">${map[type]||type}</span>`;
+  };
+
+  let html = `<div class="results-header">
+    <div class="results-count">
+      <strong>${visible.length}</strong> of <strong>${w.cards.length}</strong> cards for
+      <strong style="color:var(--gold)">${escHtml(w.name)}</strong>
+    </div>
+  </div>`;
+
+  if (!visible.length) {
+    html += `<div class="no-results"><p>No cards match the current filters.</p></div>`;
+  } else {
     html += `<div class="result-list">`;
-    items.forEach(c => {
-      const badges = [
-        c.tags.includes('rc')   ? '<span class="rc-badge">RC</span>'   : '',
-        c.tags.includes('key')  ? '<span class="key-badge">KEY</span>' : '',
-        c.tags.includes('auto') ? '<span class="tag tag-hot">AUTO</span>' : '',
-      ].join('');
+    visible.forEach(c => {
+      const typeColor = { rc:'var(--green)', auto:'#9b59b6', relic:'var(--orange)', insert:'#3498db', base:'var(--border)' }[c.type] || 'var(--border)';
       html += `
-        <div class="result-item section-${c.section}">
-          <span class="ri-num">${escHtml(c.num)}</span>
-          <span class="ri-name">${highlight(escHtml(c.name), q)}</span>
-          <span class="ri-badges">${badges}</span>
-          <span class="ri-set">${highlight(escHtml(c.set), q)}</span>
-          ${eraLink(c.era)}
+        <div class="result-item" style="border-left-color:${typeColor}">
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);min-width:38px">${c.year}</span>
+          ${typeBadge(c.type)}
+          <span class="ri-set">${escHtml(c.set)}</span>
+          ${c.note ? `<span class="ri-era" style="min-width:auto;flex:2;text-align:left">${escHtml(c.note.slice(0,80))}</span>` : ''}
+          ${c.link ? `<a href="${c.link}" class="ri-era" style="min-width:60px;text-align:right">View set →</a>` : ''}
         </div>`;
     });
     html += `</div>`;
   }
 
+  state.innerHTML = html;
+}
+
+function renderResults(results, q, container) {
+  if (!results.length) {
+    container.innerHTML = `<div class="no-results"><p>No results for <strong>"${escHtml(q)}"</strong></p><p style="font-size:0.85rem;color:var(--muted);margin-top:0.5rem;">Try a different spelling.</p></div>`;
+    return;
+  }
+  const groups = { eras: [], aew: [], indie: [] };
+  results.forEach(c => groups[c.section]?.push(c));
+  const groupLabels = { eras:'WWF / WWE / WCW Eras', aew:'AEW', indie:'Independent' };
+  const groupColors = { eras:'var(--green)', aew:'#00bcd4', indie:'#ff9800' };
+  let html = `<div class="results-header"><div class="results-count"><strong>${results.length}</strong> result${results.length !== 1 ? 's' : ''} for "${escHtml(q)}"</div></div>`;
+  for (const [sec, items] of Object.entries(groups)) {
+    if (!items.length) continue;
+    html += `<div class="section-group-header" style="border-left-color:${groupColors[sec]}">${groupLabels[sec]}</div><div class="result-list">`;
+    items.forEach(c => {
+      const badges = [c.tags.includes('rc') ? '<span class="rc-badge">RC</span>' : '', c.tags.includes('key') ? '<span class="key-badge">KEY</span>' : ''].join('');
+      html += `<div class="result-item section-${c.section}"><span class="ri-num">${escHtml(c.num)}</span><span class="ri-name">${escHtml(c.name)}</span><span class="ri-badges">${badges}</span><span class="ri-set">${escHtml(c.set)}</span>${eraLink(c.era)}</div>`;
+    });
+    html += `</div>`;
+  }
   container.innerHTML = html;
 }
 
