@@ -276,11 +276,60 @@
       border: 1px solid rgba(155,89,182,0.4);
       background: rgba(155,89,182,0.1);
       color: #9b59b6;
-      text-decoration: none;
+      cursor: pointer;
       white-space: nowrap;
       transition: background 0.12s;
     }
-    .par-badge:hover { background: rgba(155,89,182,0.22); color: #b07fd4; }
+    .par-badge:hover  { background: rgba(155,89,182,0.22); color: #b07fd4; }
+    .par-badge.open   { background: rgba(155,89,182,0.22); color: #b07fd4; }
+
+    /* Expandable parallel list */
+    .par-expand {
+      background: rgba(155,89,182,0.05);
+      border: 1px solid rgba(155,89,182,0.2);
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+      padding: 0.8rem 1rem 1rem;
+      margin-bottom: 0.4rem;
+      margin-top: -0.4rem;
+    }
+    .par-expand-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.55rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .par-chip-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .par-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 0.25rem 0.55rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .par-chip.is-1of1 { border-color: rgba(255,51,51,0.3); }
+    .par-chip-swatch {
+      width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .par-chip-print { color: var(--muted); font-size: 0.6rem; margin-left: 0.15rem; }
 
     .ri-type-badge {
       flex-shrink: 0; padding: 0.1rem 0.45rem; border-radius: 3px;
@@ -411,6 +460,7 @@
 
 <script src="js/main.js"></script>
 <script src="js/wrestlers-data.js"></script>
+<script src="js/parallels-data.js"></script>
 <script>
 /* ═══════════════════════════════════════════════════
    SEARCH DATABASE
@@ -632,48 +682,78 @@ function setEraFilter(promo) {
 }
 
 // ── PARALLEL SETS LOOKUP ─────────────────────────────────────────────────
-// Keyword-based matching — handles year-omitted and word-order variants in
-// the WRESTLERS data (e.g. "Topps Chrome WWE" vs "2021 Topps Chrome WWE").
-// Each rule: { match: fn(lower), count, label }
-// Rules are tested in order; first match wins.
-const PARALLEL_RULES = [
-  // Prizm (highest parallel count — check before generic Panini)
-  { match: s => s.includes('prizm'),                          count:20 },
-  // Chrome refractor sets
-  { match: s => s.includes('chrome'),                         count:13 },
-  // Select
-  { match: s => s.includes('select'),                         count:10 },
-  // Undisputed
-  { match: s => s.includes('undisputed'),                     count:12 },
-  // Impeccable
-  { match: s => s.includes('impeccable'),                     count:5  },
-  // Chronicles
-  { match: s => s.includes('chronicles'),                     count:9  },
-  // Flawless
-  { match: s => s.includes('flawless'),                       count:7  },
-  // National Treasures
-  { match: s => s.includes('national treasures') || (s.includes('national') && s.includes('treasure')), count:4 },
-  // Three-Count
-  { match: s => s.includes('three-count') || s.includes('three count'), count:8 },
-  // Finest
-  { match: s => s.includes('finest'),                         count:10 },
-  // Royalty
-  { match: s => s.includes('royalty'),                        count:6  },
-  // Universe
-  { match: s => s.includes('universe'),                       count:8  },
-  // Decades
-  { match: s => s.includes('decades'),                        count:7  },
-  // 2025 Topps WWE flagship (year required to avoid matching all Topps sets)
-  { match: s => s.includes('2025') && s.includes('topps') && s.includes('wwe') && !s.includes('chrome') && !s.includes('finest') && !s.includes('royalty') && !s.includes('universe'), count:14 },
-  // Fleer WWF/WWE sets with basic parallels
-  { match: s => s.includes('fleer') && (s.includes('wrestlemania') || s.includes('all access') || s.includes('championship')), count:2 },
-];
-
-function parallelBadge(setName) {
+// Maps a card's set name → the SETS key in parallels-data.js
+// Uses keyword + year matching to handle name variants in WRESTLERS data.
+function getSetsKey(setName) {
   const s = setName.toLowerCase();
-  const rule = PARALLEL_RULES.find(r => r.match(s));
-  if (!rule) return '';
-  return `<a href="parallels.html" class="par-badge" title="View parallels in the Parallel Explorer">◈ ${rule.count}+ parallels</a>`;
+  const ym = s.match(/\d{4}/);
+  const year = ym ? parseInt(ym[0]) : null;
+
+  if (s.includes('chrome') && !s.includes('chromagraph')) {
+    const map = {2015:'chr15',2016:'chr16',2017:'chr17',2018:'chr18',
+                 2019:'chr19',2020:'chr20',2021:'chr21',2025:'chr25'};
+    return (year && map[year]) || 'chr21';
+  }
+  if (s.includes('prizm'))       return year === 2023 ? 'prz23' : 'prz22';
+  if (s.includes('select'))      return year === 2023 ? 'sel23' : 'sel22';
+  if (s.includes('chronicles'))  return year === 2023 ? 'chr23' : 'chr22';
+  if (s.includes('undisputed'))  return 'und23';
+  if (s.includes('impeccable'))  return 'imp22';
+  if (s.includes('three') && (s.includes('count') || s.includes('-count'))) return 'tc24';
+  if (s.includes('flawless'))    return 'flaw24';
+  if (s.includes('national') && s.includes('treasure')) return 'nt24';
+  if (s.includes('finest'))      return 'fin25';
+  if (s.includes('royalty'))     return 'roy25';
+  if (s.includes('universe'))    return 'univ25';
+  if (s.includes('decades'))     return 'dec90';
+  if (year === 2025 && s.includes('topps') && !s.includes('chrome') && !s.includes('finest') && !s.includes('royalty') && !s.includes('universe')) return 'top25';
+  if (s.includes('fleer') && s.includes('wrestlemania')) return year === 2004 ? 'fl04wm20' : 'fl01wm';
+  if (s.includes('fleer') && s.includes('championship')) return 'fl01cc';
+  if (s.includes('fleer') && s.includes('all access'))   return 'fl02aa';
+  return null;
+}
+
+function parallelBadge(setName, rowIdx) {
+  const key = getSetsKey(setName);
+  if (!key || typeof SETS === 'undefined' || !SETS[key]) return '';
+  const count = SETS[key].parallels.length;
+  return `<button class="par-badge" data-row="${rowIdx}" onclick="toggleParallels(${rowIdx},'${key}')">◈ ${count} parallels ▾</button>`;
+}
+
+function toggleParallels(rowIdx, setsKey) {
+  const panelId = `pe-${rowIdx}`;
+  let panel = document.getElementById(panelId);
+  const btn  = document.querySelector(`.par-badge[data-row="${rowIdx}"]`);
+
+  if (panel) {
+    const open = panel.style.display !== 'none';
+    panel.style.display = open ? 'none' : '';
+    btn?.classList.toggle('open', !open);
+    if (!open) btn.textContent = `◈ ${SETS[setsKey].parallels.length} parallels ▴`;
+    else       btn.textContent = `◈ ${SETS[setsKey].parallels.length} parallels ▾`;
+    return;
+  }
+
+  // Build panel for the first time
+  const set = SETS[setsKey];
+  const chips = set.parallels.map(p => {
+    const is1 = p.type === '1/1';
+    return `<span class="par-chip ${is1 ? 'is-1of1' : ''}">
+      <span class="par-chip-swatch" style="background:${p.swatch}"></span>
+      ${p.name}<span class="par-chip-print">${p.print}</span>
+    </span>`;
+  }).join('');
+
+  panel = document.createElement('div');
+  panel.id    = panelId;
+  panel.className = 'par-expand';
+  panel.innerHTML = `<div class="par-expand-label">${set.name} — ${set.parallels.length} parallels</div>
+    <div class="par-chip-grid">${chips}</div>`;
+
+  const row = document.querySelector(`.result-item[data-row="${rowIdx}"]`);
+  if (row) row.after(panel);
+  btn?.classList.add('open');
+  btn.textContent = `◈ ${set.parallels.length} parallels ▴`;
 }
 
 // ── AUTOCOMPLETE ─────────────────────────────────────────────────────────
@@ -830,14 +910,15 @@ function renderWrestlerCards() {
     html += `<div class="no-results"><p>No cards match the current filters.</p></div>`;
   } else {
     html += `<div class="result-list">`;
-    visible.forEach(c => {
+    visible.forEach((c, ci) => {
+      const rowIdx  = ci;
       const typeColor = { rc:'var(--green)', auto:'#9b59b6', relic:'var(--orange)', insert:'#3498db', base:'var(--border)' }[c.type] || 'var(--border)';
       html += `
-        <div class="result-item" style="border-left-color:${typeColor}">
+        <div class="result-item" data-row="${rowIdx}" style="border-left-color:${typeColor};margin-bottom:0">
           <span style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);min-width:38px">${c.year}</span>
           ${typeBadge(c.type)}
           <span class="ri-set">${escHtml(c.set)}</span>
-          ${parallelBadge(c.set)}
+          ${parallelBadge(c.set, rowIdx)}
           ${c.note ? `<span class="ri-era" style="min-width:auto;flex:2;text-align:left">${escHtml(c.note.slice(0,80))}</span>` : ''}
           ${c.link ? `<a href="${c.link}" class="ri-era" style="min-width:60px;text-align:right">View set →</a>` : ''}
         </div>`;
