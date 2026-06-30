@@ -264,6 +264,24 @@
     .no-results { text-align: center; padding: 2rem; color: var(--muted); }
     .no-results strong { color: var(--text); }
 
+    .par-badge {
+      flex-shrink: 0;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.12rem 0.5rem;
+      border-radius: 3px;
+      border: 1px solid rgba(155,89,182,0.4);
+      background: rgba(155,89,182,0.1);
+      color: #9b59b6;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.12s;
+    }
+    .par-badge:hover { background: rgba(155,89,182,0.22); color: #b07fd4; }
+
     .ri-type-badge {
       flex-shrink: 0; padding: 0.1rem 0.45rem; border-radius: 3px;
       font-family: 'Oswald', sans-serif; font-size: 0.6rem; font-weight: 700;
@@ -613,6 +631,51 @@ function setEraFilter(promo) {
   if (currentWrestler) renderWrestlerCards();
 }
 
+// ── PARALLEL SETS LOOKUP ─────────────────────────────────────────────────
+// Keyword-based matching — handles year-omitted and word-order variants in
+// the WRESTLERS data (e.g. "Topps Chrome WWE" vs "2021 Topps Chrome WWE").
+// Each rule: { match: fn(lower), count, label }
+// Rules are tested in order; first match wins.
+const PARALLEL_RULES = [
+  // Prizm (highest parallel count — check before generic Panini)
+  { match: s => s.includes('prizm'),                          count:20 },
+  // Chrome refractor sets
+  { match: s => s.includes('chrome'),                         count:13 },
+  // Select
+  { match: s => s.includes('select'),                         count:10 },
+  // Undisputed
+  { match: s => s.includes('undisputed'),                     count:12 },
+  // Impeccable
+  { match: s => s.includes('impeccable'),                     count:5  },
+  // Chronicles
+  { match: s => s.includes('chronicles'),                     count:9  },
+  // Flawless
+  { match: s => s.includes('flawless'),                       count:7  },
+  // National Treasures
+  { match: s => s.includes('national treasures') || (s.includes('national') && s.includes('treasure')), count:4 },
+  // Three-Count
+  { match: s => s.includes('three-count') || s.includes('three count'), count:8 },
+  // Finest
+  { match: s => s.includes('finest'),                         count:10 },
+  // Royalty
+  { match: s => s.includes('royalty'),                        count:6  },
+  // Universe
+  { match: s => s.includes('universe'),                       count:8  },
+  // Decades
+  { match: s => s.includes('decades'),                        count:7  },
+  // 2025 Topps WWE flagship (year required to avoid matching all Topps sets)
+  { match: s => s.includes('2025') && s.includes('topps') && s.includes('wwe') && !s.includes('chrome') && !s.includes('finest') && !s.includes('royalty') && !s.includes('universe'), count:14 },
+  // Fleer WWF/WWE sets with basic parallels
+  { match: s => s.includes('fleer') && (s.includes('wrestlemania') || s.includes('all access') || s.includes('championship')), count:2 },
+];
+
+function parallelBadge(setName) {
+  const s = setName.toLowerCase();
+  const rule = PARALLEL_RULES.find(r => r.match(s));
+  if (!rule) return '';
+  return `<a href="parallels.html" class="par-badge" title="View parallels in the Parallel Explorer">◈ ${rule.count}+ parallels</a>`;
+}
+
 // ── AUTOCOMPLETE ─────────────────────────────────────────────────────────
 let focusedIdx = -1;
 
@@ -774,6 +837,7 @@ function renderWrestlerCards() {
           <span style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);min-width:38px">${c.year}</span>
           ${typeBadge(c.type)}
           <span class="ri-set">${escHtml(c.set)}</span>
+          ${parallelBadge(c.set)}
           ${c.note ? `<span class="ri-era" style="min-width:auto;flex:2;text-align:left">${escHtml(c.note.slice(0,80))}</span>` : ''}
           ${c.link ? `<a href="${c.link}" class="ri-era" style="min-width:60px;text-align:right">View set →</a>` : ''}
         </div>`;
