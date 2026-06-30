@@ -254,6 +254,18 @@ const WRESTLERS = [
       { year:2021, set:'2021 Topps WWE Undisputed', num:'—', promo:'wwe', type:'base', tags:[], note:'Kane / The Undertaker', link:'first-topps.html' },
       { year:2022, set:'2022 Panini Prizm WWE', num:'—', promo:'wwe', type:'auto', tags:['Prizm Auto'], note:'Prizm-era certified autograph — short-printed.', link:'panini-era.html' },
       { year:2023, set:'2023 Panini Impeccable WWE', num:'—', promo:'wwe', type:'auto', tags:['On-Card','/49'], note:'Impeccable certified auto /49.', link:'panini-era.html' },
+      { year:2025, set:'2025 Topps Chrome WWE', num:'CLA-TK', promo:'wwe', type:'auto', tags:['Chrome Legends Auto'], note:'Chrome Legends Autograph.', link:'current-topps.html' },
+      { year:2025, set:'2025 Topps Chrome WWE', num:'HOF-UT', promo:'wwe', type:'auto', tags:['HOF Auto'], note:'Hall of Fame Autograph.', link:'current-topps.html' },
+      { year:2025, set:'2025 Topps Chrome WWE', num:'AG-UTK', promo:'wwe', type:'auto', tags:['Allen & Ginter Auto'], note:'Allen & Ginter insert autograph.', link:'current-topps.html' },
+      { year:2025, set:'2025 Topps Chrome WWE', num:'EMB-UT', promo:'wwe', type:'auto', tags:['Embedded Auto'], note:'Embedded autograph insert.', link:'current-topps.html' },
+      { year:2025, set:'2025 Topps Chrome WWE', num:'FT-UK', promo:'wwe', type:'auto', tags:['Family Tree','Dual Auto'], note:'Family Tree dual auto — Undertaker / Kane.', link:'current-topps.html' },
+      { year:2025, set:'2025 Topps Universe WWE', num:'LGA-UND', promo:'wwe', type:'auto', tags:['Legends Auto'], note:'Legends Gold Autograph.', link:'current-topps.html' },
+      { year:2025, set:'2025 Topps Universe WWE', num:'WAU-UND', promo:'wwe', type:'relic', tags:['WWE Authentics'], note:'WWE Authentics patch card.', link:'current-topps.html' },
+      { year:2025, set:'2025 Topps Universe WWE', num:'RSR-UND', promo:'wwe', type:'relic', tags:['Ringside Relics'], note:'Ringside Relics patch card.', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'5A', promo:'wwe', type:'auto', tags:['Enter The Warzone Auto'], note:'Autographs — Enter The Warzone.', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'90A', promo:'wwe', type:'auto', tags:['Undisputed Champions Auto'], note:'Autographs — Undisputed Champions.', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'154A', promo:'wwe', type:'auto', tags:['Champion v Champion','Dual Auto'], note:'Autographs — Champion v Champion dual auto with Kane.', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'156A', promo:'wwe', type:'auto', tags:['Triple Threat','Triple Auto'], note:'Autographs — Triple Threat: Kane, Stone Cold Steve Austin, Undertaker.', link:'current-topps.html' },
     ]
   },
 

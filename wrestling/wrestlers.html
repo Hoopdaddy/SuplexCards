@@ -258,6 +258,34 @@
     }
     .wl-card-link:hover { background: rgba(52,152,219,0.1); }
 
+    /* Parallel badges */
+    .par-badge {
+      font-family: 'Oswald', sans-serif; font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 0.1rem 0.45rem; border-radius: 3px;
+      border: 1px solid rgba(155,89,182,0.4); background: rgba(155,89,182,0.1);
+      color: #9b59b6; cursor: pointer; white-space: nowrap; transition: background 0.12s;
+      flex-shrink: 0;
+    }
+    .par-badge:hover, .par-badge.open { background: rgba(155,89,182,0.22); color: #b07fd4; }
+    .par-expand {
+      background: rgba(155,89,182,0.05); border: 1px solid rgba(155,89,182,0.2);
+      border-top: none; border-radius: 0 0 4px 4px;
+      padding: 0.7rem 1rem 0.9rem; margin: -0.2rem 0 0.4rem;
+    }
+    .par-expand-label { font-family: 'Oswald', sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.5rem; }
+    .par-chip-grid { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .par-chip {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-family: 'Oswald', sans-serif; font-size: 0.65rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      padding: 0.18rem 0.55rem; border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: var(--text);
+    }
+    .par-chip.is-1of1 { border-color: rgba(255,51,51,0.35); background: rgba(255,51,51,0.07); }
+    .par-chip-swatch { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .par-chip-print { color: var(--muted); font-size: 0.58rem; margin-left: 0.15rem; }
+
     /* Key callout */
     .wl-key-callout {
       background: rgba(232,200,74,0.07); border: 1px solid rgba(232,200,74,0.25);
@@ -403,6 +431,7 @@
 
 <script src="js/main.js"></script>
 <script src="js/wrestlers-data.js"></script>
+<script src="js/parallels-data.js"></script>
 <script>
 /* ══════════════════════════════════════════════════════
    RENDER ENGINE — search-first, filters after selection
@@ -510,6 +539,72 @@ document.querySelectorAll('[data-type]').forEach(btn => {
   });
 });
 
+// ── Parallel badge helpers ────────────────────────────────────────────────
+function getSetsKey(setName) {
+  const s = setName.toLowerCase();
+  const ym = s.match(/\d{4}/);
+  const year = ym ? parseInt(ym[0]) : null;
+  if (s.includes('chrome') && !s.includes('chromagraph')) {
+    const map = {2015:'chr15',2016:'chr16',2017:'chr17',2018:'chr18',
+                 2019:'chr19',2020:'chr20',2021:'chr21',2022:'chr22',2025:'chr25'};
+    return (year && map[year]) || null;
+  }
+  if (s.includes('prizm'))       return year === 2023 ? 'prz23' : 'prz22';
+  if (s.includes('select'))      return year === 2023 ? 'sel23' : 'sel22';
+  if (s.includes('chronicles'))  return year === 2023 ? 'chr23' : 'chr22';
+  if (s.includes('undisputed'))  return 'und23';
+  if (s.includes('impeccable'))  return 'imp22';
+  if (s.includes('three') && (s.includes('count') || s.includes('-count'))) return 'tc24';
+  if (s.includes('flawless'))    return 'flaw24';
+  if (s.includes('national') && s.includes('treasure')) return 'nt24';
+  if (s.includes('finest'))      return 'fin25';
+  if (s.includes('royalty'))     return 'roy25';
+  if (s.includes('universe'))    return 'univ25';
+  if (s.includes('decades'))     return 'dec90';
+  if (year === 2025 && s.includes('topps') && !s.includes('chrome') && !s.includes('finest') && !s.includes('royalty') && !s.includes('universe')) return 'top25';
+  if (s.includes('fleer') && s.includes('wrestlemania')) return year === 2004 ? 'fl04wm20' : 'fl01wm';
+  if (s.includes('fleer') && s.includes('championship')) return 'fl01cc';
+  if (s.includes('fleer') && s.includes('all access'))   return 'fl02aa';
+  return null;
+}
+
+function parallelBadge(setName, rowIdx) {
+  const key = getSetsKey(setName);
+  if (!key || typeof SETS === 'undefined' || !SETS[key]) return '';
+  const count = SETS[key].parallels.length;
+  return `<button class="par-badge" data-row="${rowIdx}" onclick="toggleParallels('${rowIdx}','${key}')">◈ ${count} parallels ▾</button>`;
+}
+
+function toggleParallels(rowIdx, setsKey) {
+  const panelId = `wpe-${rowIdx}`;
+  let panel = document.getElementById(panelId);
+  const btn = document.querySelector(`.par-badge[data-row="${rowIdx}"]`);
+  if (panel) {
+    const open = panel.style.display !== 'none';
+    panel.style.display = open ? 'none' : '';
+    btn?.classList.toggle('open', !open);
+    btn.textContent = !open ? `◈ ${SETS[setsKey].parallels.length} parallels ▴` : `◈ ${SETS[setsKey].parallels.length} parallels ▾`;
+    return;
+  }
+  const set = SETS[setsKey];
+  const chips = set.parallels.map(p => {
+    const is1 = p.type === '1/1';
+    return `<span class="par-chip ${is1 ? 'is-1of1' : ''}">
+      <span class="par-chip-swatch" style="background:${p.swatch}"></span>
+      ${p.name}<span class="par-chip-print">${p.print}</span>
+    </span>`;
+  }).join('');
+  panel = document.createElement('div');
+  panel.id = panelId;
+  panel.className = 'par-expand';
+  panel.innerHTML = `<div class="par-expand-label">${set.name} — ${set.parallels.length} parallels</div>
+    <div class="par-chip-grid">${chips}</div>`;
+  const row = document.querySelector(`.wl-card-entry[data-row="${rowIdx}"]`);
+  if (row) row.after(panel);
+  btn?.classList.add('open');
+  btn.textContent = `◈ ${set.parallels.length} parallels ▴`;
+}
+
 // ── Profile render ────────────────────────────────────────────────────────
 function renderProfile() {
   const w     = WRESTLERS.find(x => x.name === activeName);
@@ -592,17 +687,19 @@ function renderProfile() {
         <span style="margin-left:auto;font-size:0.6rem">${groups[promo].length}</span>
       </div>`;
 
+      let rowIdx = 0;
       groups[promo].sort((a,b) => a.year - b.year).forEach(c => {
+        const ri = rowIdx++;
         const NOISE = new Set(['WCW Turn','nWo','Hollywood','Embossed','Champion','Shield','Rockers','Early','Tyler Black','El Generico','Kevin Steen','Dean Ambrose','American Badass','Ministry','Legends','WM30','WM Insert','Legend','Final Farewell','Legacy','World Champion','Insert','Key','Prizm Insert','Chrome Insert','Tribute','Chrome Relic','Prizm Relic','Worn Relic','Shirt Relic','Ring Mat','Heritage Chrome']);
         const filteredTags = c.tags.filter(t => !NOISE.has(t));
         const tagsHtml = filteredTags.map(t =>
           `<span class="wl-card-tag" style="${tagStyle(t)}">${t}</span>`).join('');
 
-        html += `<div class="wl-card-entry ${entryCls(c)}">
+        html += `<div class="wl-card-entry ${entryCls(c)}" data-row="${promo}-${ri}">
           ${badgeHtml(c.type)}
           <div class="wl-card-year">${c.year}</div>
           <div class="wl-card-body">
-            <div class="wl-card-name">${c.set}${c.num && c.num !== '—' ? ' · ' + c.num : ''}</div>
+            <div class="wl-card-name">${c.set}${c.num && c.num !== '—' ? ' · ' + c.num : ''}${parallelBadge(c.set, promo+'-'+ri)}</div>
             ${c.note ? `<div class="wl-card-detail">${c.note}</div>` : ''}
             ${tagsHtml ? `<div class="wl-card-tags">${tagsHtml}</div>` : ''}
           </div>
