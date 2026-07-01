@@ -376,7 +376,7 @@
     const val = titleEl.textContent.trim();
     const user = SB_AUTH.getUser();
     if (!val) {
-      setTitle(user ? (_allLists.find(l => l.id === _activeId)?.name || 'My Checklist') : (localStorage.getItem(NAME_KEY) || 'My Checklist'));
+      setTitle(user ? (_allLists.find(l => l.id === _activeId)?.name || 'My Checklist') : (localStorage.getItem(NAME_KEY) || 'My Checklist'), true);
       return;
     }
     if (user && _activeId) {
@@ -393,7 +393,7 @@
     if (e.key === 'Enter')  { e.preventDefault(); titleEl.blur(); }
     if (e.key === 'Escape') {
       const user = SB_AUTH.getUser();
-      setTitle(user ? (_allLists.find(l => l.id === _activeId)?.name || 'My Checklist') : (localStorage.getItem(NAME_KEY) || 'My Checklist'));
+      setTitle(user ? (_allLists.find(l => l.id === _activeId)?.name || 'My Checklist') : (localStorage.getItem(NAME_KEY) || 'My Checklist'), true);
       titleEl.blur();
     }
   });
