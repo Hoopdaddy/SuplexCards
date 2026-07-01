@@ -163,15 +163,13 @@ window.SB_AUTH = {
       password,
       options: {
         data: { display_name: displayName },
-        emailRedirectTo: window.location.origin +
-          _authBase() + 'auth-callback.html'
+        emailRedirectTo: 'https://hoopdaddy.github.io/SuplexCards/wrestling/auth-callback.html'
       }
     }),
 
   resetPasswordEmail: (email) =>
     sb.auth.resetPasswordForEmail(email, {
-      redirectTo: window.location.origin +
-        _authBase() + 'reset-password.html'
+      redirectTo: 'https://hoopdaddy.github.io/SuplexCards/wrestling/reset-password.html'
     }),
 
   updatePassword: (newPassword) =>
