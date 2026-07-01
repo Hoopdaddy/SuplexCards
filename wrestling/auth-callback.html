@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirming… — Suplex Trading Cards</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .auth-wrap {
+      min-height: calc(100vh - 64px);
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #0d1117 0%, #12161f 100%);
+    }
+    .auth-card {
+      background: var(--mid); border: 1px solid var(--border);
+      border-radius: 10px; padding: 2.5rem 2rem;
+      width: 100%; max-width: 380px; text-align: center;
+    }
+    .spinner {
+      width: 40px; height: 40px; border: 3px solid var(--border);
+      border-top-color: var(--gold); border-radius: 50%;
+      animation: spin 0.8s linear infinite; margin: 0 auto 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    h2 { color: var(--gold); margin-bottom: 0.4rem; }
+    p  { color: var(--muted); font-size: 0.85rem; }
+    .success-icon { font-size: 3rem; margin-bottom: 0.8rem; }
+    .error-icon   { font-size: 3rem; margin-bottom: 0.8rem; }
+    .btn-back { display: inline-block; margin-top: 1.2rem; background: var(--red); color: #fff; padding: 0.6rem 1.4rem; border-radius: 5px; text-decoration: none; font-weight: 700; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+<div class="auth-wrap">
+  <div class="auth-card" id="card">
+    <div class="spinner" id="spinner"></div>
+    <h2 id="title">Confirming your account…</h2>
+    <p id="msg">Please wait a moment.</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="js/supabase-client.js"></script>
+<script>
+(async function () {
+  const hash   = window.location.hash.substring(1);
+  const params = new URLSearchParams(hash);
+  const type   = params.get('type');
+  const token  = params.get('access_token');
+
+  const spinner = document.getElementById('spinner');
+  const title   = document.getElementById('title');
+  const msg     = document.getElementById('msg');
+  const card    = document.getElementById('card');
+
+  function showSuccess(heading, body, href, linkText) {
+    spinner.style.display = 'none';
+    card.innerHTML = `
+      <div class="success-icon">✅</div>
+      <h2>${heading}</h2>
+      <p>${body}</p>
+      <a class="btn-back" href="${href}">${linkText}</a>`;
+  }
+
+  function showError(detail) {
+    spinner.style.display = 'none';
+    card.innerHTML = `
+      <div class="error-icon">❌</div>
+      <h2 style="color:#f87171">Something went wrong</h2>
+      <p>${detail}</p>
+      <a class="btn-back" href="login.html">Back to Sign In</a>`;
+  }
+
+  if (!token) {
+    // Try Supabase PKCE flow (newer versions redirect with code param in query)
+    const qp = new URLSearchParams(window.location.search);
+    const code = qp.get('code');
+    if (code) {
+      const { error } = await sb.auth.exchangeCodeForSession(code);
+      if (error) { showError(error.message); return; }
+      showSuccess('Email Confirmed!', 'Your account is active. Redirecting to sign in…', 'login.html?verified=1', 'Sign In');
+      setTimeout(() => window.location.href = 'login.html?verified=1', 2500);
+      return;
+    }
+    showError('No confirmation token found. The link may have expired.');
+    return;
+  }
+
+  if (type === 'recovery') {
+    // Password reset — pass token along to reset page
+    window.location.href = `reset-password.html${window.location.hash}`;
+    return;
+  }
+
+  // Email confirmation (type === 'signup' or 'email_change')
+  const { error } = await sb.auth.setSession({
+    access_token:  token,
+    refresh_token: params.get('refresh_token') || ''
+  });
+
+  if (error) {
+    showError(error.message);
+  } else {
+    showSuccess(
+      'Email Confirmed!',
+      'Your account is active. Redirecting to sign in…',
+      'login.html?verified=1',
+      'Sign In Now'
+    );
+    setTimeout(() => window.location.href = 'login.html?verified=1', 2500);
+  }
+})();
+</script>
+</body>
+</html>

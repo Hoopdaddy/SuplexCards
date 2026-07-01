@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account — Suplex Trading Cards</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .auth-wrap {
+      min-height: calc(100vh - 64px);
+      display: flex; align-items: flex-start; justify-content: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(135deg, #0d1117 0%, #12161f 100%);
+    }
+    .auth-card {
+      background: var(--mid); border: 1px solid var(--border);
+      border-radius: 10px; padding: 2rem 2rem 2.5rem;
+      width: 100%; max-width: 420px;
+    }
+    .auth-logo { text-align: center; margin-bottom: 1.5rem; }
+    .auth-logo h2 { font-size: 1.4rem; color: var(--gold); margin: 0; }
+    .auth-logo p  { color: var(--muted); font-size: 0.82rem; margin: 0.3rem 0 0; }
+
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.35rem; }
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"] {
+      width: 100%; box-sizing: border-box;
+      background: var(--darker); border: 1px solid var(--border);
+      color: var(--text); border-radius: 5px;
+      padding: 0.6rem 0.8rem; font-size: 0.88rem;
+      transition: border-color 0.15s;
+    }
+    .form-group input:focus { outline: none; border-color: var(--gold); }
+    .form-group input.error { border-color: #f87171; }
+
+    .pw-wrap { position: relative; }
+    .pw-toggle {
+      position: absolute; right: 0.7rem; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: var(--muted); cursor: pointer;
+      font-size: 0.8rem; padding: 0;
+    }
+    .pw-toggle:hover { color: var(--text); }
+
+    .strength-bar { display: flex; gap: 3px; margin-top: 0.35rem; }
+    .strength-seg { flex: 1; height: 3px; border-radius: 2px; background: var(--border); transition: background 0.2s; }
+    .strength-label { font-size: 0.7rem; color: var(--muted); margin-top: 0.2rem; }
+
+    .check-group { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.8rem; }
+    .check-group input[type="checkbox"] { margin-top: 2px; accent-color: var(--red); flex-shrink: 0; }
+    .check-group label { font-size: 0.8rem; color: var(--muted); cursor: pointer; }
+    .check-group a { color: var(--gold); }
+
+    .btn-submit {
+      width: 100%; padding: 0.7rem; background: var(--red);
+      color: #fff; border: none; border-radius: 5px;
+      font-size: 0.9rem; font-weight: 800; cursor: pointer;
+      margin-top: 0.5rem; transition: background 0.15s;
+      letter-spacing: 0.03em;
+    }
+    .btn-submit:hover:not(:disabled) { background: #c0392b; }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .auth-error {
+      background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.3);
+      color: #f87171; border-radius: 5px; padding: 0.6rem 0.8rem;
+      font-size: 0.82rem; margin-bottom: 1rem; display: none;
+    }
+    .auth-success {
+      background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.3);
+      color: #34d399; border-radius: 5px; padding: 1.2rem 1rem;
+      font-size: 0.9rem; text-align: center; display: none;
+    }
+    .auth-success strong { display: block; font-size: 1.1rem; margin-bottom: 0.4rem; }
+
+    .auth-footer { text-align: center; margin-top: 1.2rem; font-size: 0.82rem; color: var(--muted); }
+    .auth-footer a { color: var(--gold); text-decoration: none; }
+    .auth-footer a:hover { text-decoration: underline; }
+
+    .field-error { font-size: 0.72rem; color: #f87171; margin-top: 0.25rem; display: none; }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="img/logo.png" alt="Suplex Trading Cards" class="nav-logo-img">
+      <span class="nav-logo-text">Suplex <span class="nav-logo-accent">Trading</span> Cards</span>
+    </a>
+    <ul class="nav-links">
+      <li class="dropdown">
+        <span class="nav-drop-trigger">Card Eras</span>
+        <ul class="dropdown-menu">
+          <li><a href="current-topps.html">Current Topps Era (2025+)</a></li>
+          <li><a href="panini-era.html">Panini Era (2022–2024)</a></li>
+          <li><a href="first-topps.html">First Topps Era (2005–2021)</a></li>
+          <li><a href="fleer-era.html">Fleer Years (2001–2004)</a></li>
+          <li><a href="golden-age.html">Golden Age (1990–2000)</a></li>
+          <li><a href="early-wwf.html">Early WWF (1981–1989)</a></li>
+          <li><a href="pre1980.html">Vintage Pre-1982</a></li>
+        </ul>
+      </li>
+      <li><a href="search.html">Search</a></li>
+      <li><a href="checklist.html">My Checklist</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <h2>Create Your Account</h2>
+      <p>Track your collection across devices — free forever</p>
+    </div>
+
+    <div class="auth-error" id="auth-error"></div>
+
+    <div class="auth-success" id="auth-success">
+      <strong>Check your email! 📬</strong>
+      We sent a confirmation link to <span id="confirm-email"></span>.<br>
+      Click it to activate your account, then sign in.
+    </div>
+
+    <form id="register-form" autocomplete="on" novalidate>
+      <div class="form-group">
+        <label for="display-name">Display Name</label>
+        <input type="text" id="display-name" name="display_name" placeholder="e.g. RingsideCollector" autocomplete="username" maxlength="40" required>
+        <div class="field-error" id="err-name">Enter a display name (2–40 characters)</div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        <div class="field-error" id="err-email">Enter a valid email address</div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="pw-wrap">
+          <input type="password" id="password" name="password" placeholder="At least 8 characters" autocomplete="new-password" required>
+          <button type="button" class="pw-toggle" data-target="password">Show</button>
+        </div>
+        <div class="strength-bar">
+          <div class="strength-seg" id="s1"></div>
+          <div class="strength-seg" id="s2"></div>
+          <div class="strength-seg" id="s3"></div>
+          <div class="strength-seg" id="s4"></div>
+        </div>
+        <div class="strength-label" id="strength-label"></div>
+        <div class="field-error" id="err-password">Password must be at least 8 characters</div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <div class="pw-wrap">
+          <input type="password" id="confirm-password" name="confirm_password" placeholder="Repeat password" autocomplete="new-password" required>
+          <button type="button" class="pw-toggle" data-target="confirm-password">Show</button>
+        </div>
+        <div class="field-error" id="err-confirm">Passwords do not match</div>
+      </div>
+
+      <div class="check-group">
+        <input type="checkbox" id="age-check" required>
+        <label for="age-check">I confirm I am 13 years of age or older</label>
+      </div>
+
+      <div class="check-group">
+        <input type="checkbox" id="tos-check" required>
+        <label for="tos-check">I agree to the <a href="about.html">Terms of Service</a> and <a href="about.html">Privacy Policy</a></label>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submit-btn">Create Account</button>
+    </form>
+
+    <div class="auth-footer">
+      Already have an account? <a href="login.html">Sign in</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="js/supabase-client.js"></script>
+<script>
+(function () {
+  // Redirect if already logged in
+  sb.auth.getSession().then(({ data: { session } }) => {
+    if (session) window.location.href = 'checklist.html';
+  });
+
+  // Password visibility toggle
+  document.querySelectorAll('.pw-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const inp = document.getElementById(btn.dataset.target);
+      const show = inp.type === 'password';
+      inp.type = show ? 'text' : 'password';
+      btn.textContent = show ? 'Hide' : 'Show';
+    });
+  });
+
+  // Password strength
+  const colors = ['#f87171', '#fb923c', '#facc15', '#34d399'];
+  const labels = ['Weak', 'Fair', 'Good', 'Strong'];
+  document.getElementById('password').addEventListener('input', function () {
+    const v = this.value;
+    let score = 0;
+    if (v.length >= 8)  score++;
+    if (/[A-Z]/.test(v)) score++;
+    if (/[0-9]/.test(v)) score++;
+    if (/[^A-Za-z0-9]/.test(v)) score++;
+    for (let i = 1; i <= 4; i++) {
+      const seg = document.getElementById('s' + i);
+      seg.style.background = i <= score ? colors[score - 1] : 'var(--border)';
+    }
+    document.getElementById('strength-label').textContent = v.length ? labels[score - 1] || '' : '';
+  });
+
+  // Form submit
+  document.getElementById('register-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const name    = document.getElementById('display-name').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const pw      = document.getElementById('password').value;
+    const pw2     = document.getElementById('confirm-password').value;
+    const age     = document.getElementById('age-check').checked;
+    const tos     = document.getElementById('tos-check').checked;
+
+    // Clear previous errors
+    document.querySelectorAll('.field-error').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('input').forEach(el => el.classList.remove('error'));
+    document.getElementById('auth-error').style.display = 'none';
+
+    let valid = true;
+    function fieldErr(id, errId) { document.getElementById(id).classList.add('error'); document.getElementById(errId).style.display = 'block'; valid = false; }
+
+    if (name.length < 2 || name.length > 40) fieldErr('display-name', 'err-name');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) fieldErr('email', 'err-email');
+    if (pw.length < 8) fieldErr('password', 'err-password');
+    if (pw !== pw2) fieldErr('confirm-password', 'err-confirm');
+    if (!age || !tos) {
+      const err = document.getElementById('auth-error');
+      err.textContent = 'Please confirm your age and agree to the terms.';
+      err.style.display = 'block';
+      valid = false;
+    }
+    if (!valid) return;
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Creating account…';
+
+    const { error } = await SB_AUTH.signUp(email, pw, name);
+
+    if (error) {
+      const err = document.getElementById('auth-error');
+      err.textContent = error.message;
+      err.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Create Account';
+    } else {
+      document.getElementById('register-form').style.display = 'none';
+      document.getElementById('confirm-email').textContent = email;
+      document.getElementById('auth-success').style.display = 'block';
+    }
+  });
+})();
+</script>
+</body>
+</html>
