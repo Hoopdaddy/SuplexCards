@@ -43,14 +43,15 @@
 <script src="js/supabase-client.js"></script>
 <script>
 (async function () {
-  const hash   = window.location.hash.substring(1);
-  const params = new URLSearchParams(hash);
-  const type   = params.get('type');
-  const token  = params.get('access_token');
+  console.log('auth-callback URL:', window.location.href);
+  console.log('hash:', window.location.hash);
+  console.log('search:', window.location.search);
+
+  const hashStr = window.location.hash.substring(1);
+  const hashParams = new URLSearchParams(hashStr);
+  const qp = new URLSearchParams(window.location.search);
 
   const spinner = document.getElementById('spinner');
-  const title   = document.getElementById('title');
-  const msg     = document.getElementById('msg');
   const card    = document.getElementById('card');
 
   function showSuccess(heading, body, href, linkText) {
@@ -71,44 +72,62 @@
       <a class="btn-back" href="login.html">Back to Sign In</a>`;
   }
 
-  if (!token) {
-    // Try Supabase PKCE flow (newer versions redirect with code param in query)
-    const qp = new URLSearchParams(window.location.search);
-    const code = qp.get('code');
-    if (code) {
-      const { error } = await sb.auth.exchangeCodeForSession(code);
-      if (error) { showError(error.message); return; }
-      showSuccess('Email Confirmed!', 'Your account is active. Redirecting to sign in…', 'login.html?verified=1', 'Sign In');
-      setTimeout(() => window.location.href = 'login.html?verified=1', 2500);
+  // Check for error in either hash or query
+  const errorDesc = hashParams.get('error_description') || qp.get('error_description');
+  if (errorDesc) { showError(errorDesc); return; }
+
+  // PKCE flow: ?code=...
+  const code = qp.get('code');
+  if (code) {
+    const { error } = await sb.auth.exchangeCodeForSession(code);
+    if (error) { showError(error.message); return; }
+    showSuccess('Email Confirmed!', 'Your account is active. Redirecting to sign in…', 'login.html?verified=1', 'Sign In');
+    setTimeout(() => window.location.href = 'login.html?verified=1', 2500);
+    return;
+  }
+
+  // Token hash flow: ?token_hash=...&type=...
+  const tokenHash = qp.get('token_hash');
+  if (tokenHash) {
+    const type = qp.get('type') || 'email';
+    if (type === 'recovery') {
+      window.location.href = `reset-password.html?token_hash=${tokenHash}&type=recovery`;
       return;
     }
-    showError('No confirmation token found. The link may have expired.');
-    return;
-  }
-
-  if (type === 'recovery') {
-    // Password reset — pass token along to reset page
-    window.location.href = `reset-password.html${window.location.hash}`;
-    return;
-  }
-
-  // Email confirmation (type === 'signup' or 'email_change')
-  const { error } = await sb.auth.setSession({
-    access_token:  token,
-    refresh_token: params.get('refresh_token') || ''
-  });
-
-  if (error) {
-    showError(error.message);
-  } else {
-    showSuccess(
-      'Email Confirmed!',
-      'Your account is active. Redirecting to sign in…',
-      'login.html?verified=1',
-      'Sign In Now'
-    );
+    const { error } = await sb.auth.verifyOtp({ token_hash: tokenHash, type });
+    if (error) { showError(error.message); return; }
+    showSuccess('Email Confirmed!', 'Your account is active. Redirecting to sign in…', 'login.html?verified=1', 'Sign In');
     setTimeout(() => window.location.href = 'login.html?verified=1', 2500);
+    return;
   }
+
+  // Implicit flow: #access_token=...
+  const accessToken = hashParams.get('access_token');
+  const type = hashParams.get('type');
+  if (accessToken) {
+    if (type === 'recovery') {
+      window.location.href = `reset-password.html${window.location.hash}`;
+      return;
+    }
+    const { error } = await sb.auth.setSession({
+      access_token:  accessToken,
+      refresh_token: hashParams.get('refresh_token') || ''
+    });
+    if (error) { showError(error.message); return; }
+    showSuccess('Email Confirmed!', 'Your account is active. Redirecting to sign in…', 'login.html?verified=1', 'Sign In Now');
+    setTimeout(() => window.location.href = 'login.html?verified=1', 2500);
+    return;
+  }
+
+  // Let detectSessionInUrl handle it if Supabase already parsed the session
+  const { data: { session } } = await sb.auth.getSession();
+  if (session) {
+    showSuccess('Email Confirmed!', 'Your account is active. Redirecting to sign in…', 'login.html?verified=1', 'Sign In');
+    setTimeout(() => window.location.href = 'login.html?verified=1', 2500);
+    return;
+  }
+
+  showError('No confirmation token found. The link may have expired.');
 })();
 </script>
 </body>
