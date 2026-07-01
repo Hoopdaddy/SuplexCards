@@ -113,23 +113,37 @@ nav {
   pointer-events: none;
 }
 
-/* Auth nav: signed-in user + sign-out */
-.nav-user-wrap  { display: inline-flex; align-items: center; gap: 0.5rem; }
-.nav-user-name  { color: var(--gold); font-size: 0.8rem; font-weight: 700; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Auth nav: separate block to the right of nav-links */
+.nav-auth {
+  display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0;
+  border-left: 1px solid var(--border); padding-left: 1rem; margin-left: 0.25rem;
+}
+.nav-auth-signin {
+  font-size: 0.75rem; color: var(--muted); text-decoration: none;
+  font-family: 'Oswald', sans-serif; font-weight: 400; letter-spacing: 0.04em;
+  transition: color 0.12s;
+}
+.nav-auth-signin:hover { color: var(--text); }
+.nav-auth-register {
+  font-size: 0.72rem; font-family: 'Oswald', sans-serif; font-weight: 600;
+  letter-spacing: 0.05em; text-decoration: none;
+  border: 1px solid var(--gold); color: var(--gold);
+  padding: 0.22rem 0.7rem; border-radius: 3px;
+  transition: background 0.12s, color 0.12s;
+}
+.nav-auth-register:hover { background: var(--gold); color: var(--darker); }
+.nav-user-name {
+  font-size: 0.75rem; font-family: 'Oswald', sans-serif; font-weight: 400;
+  color: var(--gold); max-width: 110px; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap; letter-spacing: 0.03em;
+}
 .nav-signout-btn {
   background: transparent; border: 1px solid var(--border); color: var(--muted);
-  border-radius: 4px; padding: 0.2rem 0.55rem; font-size: 0.72rem; font-weight: 600;
-  cursor: pointer; transition: all 0.12s;
+  border-radius: 3px; padding: 0.2rem 0.5rem; font-size: 0.68rem;
+  font-family: 'Oswald', sans-serif; font-weight: 400; letter-spacing: 0.04em;
+  cursor: pointer; transition: all 0.12s; text-transform: uppercase;
 }
 .nav-signout-btn:hover { border-color: #f87171; color: #f87171; }
-.nav-auth-links { display: inline-flex; align-items: center; gap: 0.5rem; }
-.nav-signin-link   { color: var(--muted); font-size: 0.82rem; text-decoration: none; }
-.nav-signin-link:hover { color: var(--text); }
-.nav-register-link {
-  background: var(--red); color: #fff !important; font-size: 0.78rem; font-weight: 700;
-  padding: 0.25rem 0.65rem; border-radius: 4px; text-decoration: none;
-}
-.nav-register-link:hover { background: #c0392b; }
 
 /* Dropdown */
 .dropdown { position: relative; }

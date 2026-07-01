@@ -102,32 +102,31 @@ async function uploadLocalChecklist() {
 
 // ── Nav auth UI ───────────────────────────────────────────────────
 function injectAuthNav() {
-  const navLinks = document.querySelector('.nav-links');
-  if (!navLinks) return;
-  document.getElementById('nav-auth-item')?.remove();
+  const navInner = document.querySelector('.nav-inner');
+  if (!navInner) return;
+  document.getElementById('nav-auth')?.remove();
 
-  const li = document.createElement('li');
-  li.id = 'nav-auth-item';
+  const base = _authBase();
+  const div = document.createElement('div');
+  div.id = 'nav-auth';
+  div.className = 'nav-auth';
 
   if (_currentUser) {
     const meta = _currentUser.user_metadata || {};
     const name = meta.display_name || _currentUser.email.split('@')[0];
-    li.innerHTML = `
-      <span class="nav-user-wrap">
-        <span class="nav-user-name" title="${_currentUser.email}">&#x1F464; ${name}</span>
-        <button class="nav-signout-btn" id="nav-signout-btn">Sign Out</button>
-      </span>`;
-    li.querySelector('#nav-signout-btn').addEventListener('click', () => SB_AUTH.signOut());
+    div.innerHTML = `
+      <span class="nav-user-name" title="${_currentUser.email}">&#x1F464; ${name}</span>
+      <button class="nav-signout-btn" id="nav-signout-btn">Sign Out</button>`;
+    div.querySelector('#nav-signout-btn').addEventListener('click', () => SB_AUTH.signOut());
   } else {
-    const base = _authBase();
-    li.innerHTML = `
-      <span class="nav-auth-links">
-        <a href="${base}login.html" class="nav-signin-link">Sign In</a>
-        <a href="${base}register.html" class="nav-register-link">Register</a>
-      </span>`;
+    div.innerHTML = `
+      <a href="${base}login.html" class="nav-auth-signin">Sign In</a>
+      <a href="${base}register.html" class="nav-auth-register">Register</a>`;
   }
 
-  navLinks.appendChild(li);
+  // Insert before the hamburger (last child), or just append
+  const hamburger = navInner.querySelector('.hamburger');
+  hamburger ? navInner.insertBefore(div, hamburger) : navInner.appendChild(div);
 }
 
 function _authBase() {
