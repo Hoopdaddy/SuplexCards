@@ -103,6 +103,16 @@ nav {
 }
 .nav-drop-trigger::after { content: '▾'; font-size: 0.65rem; }
 
+/* Checklist nav link + badge */
+.nav-cl-link { position: relative; display: inline-flex !important; align-items: center; gap: 6px; }
+.nav-cl-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 18px; height: 18px; padding: 0 5px;
+  border-radius: 9px; font-size: 0.6rem; font-weight: 800;
+  background: var(--red); color: #fff; line-height: 1;
+  pointer-events: none;
+}
+
 /* Dropdown */
 .dropdown { position: relative; }
 .dropdown-menu {
