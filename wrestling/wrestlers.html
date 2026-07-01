@@ -443,6 +443,28 @@ let activeName   = null;
 let activeEra    = 'all';
 let activeType   = 'all';
 
+// Strip leading "The " for name comparison
+function stripThe(s) { return s.toLowerCase().replace(/^the\s+/i, ''); }
+function nameMatches(wName, query) {
+  const wl = wName.toLowerCase(), ql = query.toLowerCase();
+  return wl.includes(ql) || stripThe(wl).includes(stripThe(ql));
+}
+
+// Find wrestler by name or alias (uses WRESTLER_PERSONAS if available)
+function findWrestler(q) {
+  const match = WRESTLERS.find(w => nameMatches(w.name, q));
+  if (match) return match;
+  if (typeof WRESTLER_PERSONAS !== 'undefined') {
+    for (const [canon, persona] of Object.entries(WRESTLER_PERSONAS)) {
+      if (persona.aliases?.some(a => nameMatches(a, q))) {
+        const found = WRESTLERS.find(w => w.name === canon);
+        if (found) return found;
+      }
+    }
+  }
+  return null;
+}
+
 const YEAR_ERAS = [
   { key: 'all',     label: 'All',       min: null, max: null  },
   { key: 'pre2001', label: 'Pre-2001',  min: null, max: 2000  },
@@ -466,7 +488,7 @@ function cardInEra(c, eraKey) {
 function updateSearchResults(q) {
   const el = document.getElementById('wlResults');
   if (!q) { el.classList.remove('open'); return; }
-  const matches = WRESTLERS.filter(w => w.name.toLowerCase().includes(q.toLowerCase()));
+  const matches = WRESTLERS.filter(w => nameMatches(w.name, q));
   if (!matches.length) {
     el.innerHTML = `<div class="wl-no-results">No wrestlers found for "${q}"</div>`;
   } else {
@@ -753,11 +775,21 @@ document.addEventListener('click', e => {
   }
 });
 
+// ── Enter key — select first match ───────────────────────────────────────
+document.getElementById('wlSearch').addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const q = document.getElementById('wlSearch').value.trim();
+    if (!q) return;
+    const match = findWrestler(q);
+    if (match) selectWrestler(match.name);
+  }
+});
+
 // ── Quick-search suggestions ──────────────────────────────────────────────
 function quickSearch(name) {
   document.getElementById('wlSearch').value = name;
   updateSearchResults(name);
-  const match = WRESTLERS.find(w => w.name.toLowerCase().includes(name.toLowerCase()));
+  const match = findWrestler(name);
   if (match) selectWrestler(match.name);
 }
 
