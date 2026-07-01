@@ -144,6 +144,13 @@ nav {
   cursor: pointer; transition: all 0.12s; text-transform: uppercase;
 }
 .nav-signout-btn:hover { border-color: #f87171; color: #f87171; }
+.nav-list-select {
+  background: var(--darker); border: 1px solid var(--border);
+  color: var(--gold); border-radius: 3px; padding: 0.18rem 0.35rem;
+  font-size: 0.7rem; font-family: 'Oswald', sans-serif; letter-spacing: 0.03em;
+  cursor: pointer; max-width: 120px;
+}
+.nav-list-select:focus { outline: none; border-color: var(--gold); }
 
 /* Dropdown */
 .dropdown { position: relative; }

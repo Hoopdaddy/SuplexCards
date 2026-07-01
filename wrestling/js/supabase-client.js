@@ -178,6 +178,20 @@ async function uploadLocalChecklist() {
     .upsert(rows, { onConflict: 'checklist_id,card_key' });
 }
 
+// ── Nav list selector (populated after auth resolves) ─────────────
+async function populateNavListSelect() {
+  const select = document.getElementById('nav-list-select');
+  if (!select || !_currentUser) return;
+  const lists = await SUPABASE_CHECKLIST.getAllChecklists();
+  if (!lists || lists.length < 2) return;
+  const activeId = _activeChecklistId || lists[0]?.id;
+  select.innerHTML = lists.map(l =>
+    `<option value="${l.id}"${l.id === activeId ? ' selected' : ''}>${l.name}</option>`
+  ).join('');
+  select.style.display = '';
+  select.addEventListener('change', () => SUPABASE_CHECKLIST.setActive(select.value));
+}
+
 // ── Nav auth UI ───────────────────────────────────────────────────
 function injectAuthNav() {
   const navInner = document.querySelector('.nav-inner');
@@ -194,8 +208,10 @@ function injectAuthNav() {
     const name = meta.display_name || _currentUser.email.split('@')[0];
     div.innerHTML = `
       <span class="nav-user-name" title="${_currentUser.email}">&#x1F464; ${name}</span>
+      <select class="nav-list-select" id="nav-list-select" style="display:none" title="Active checklist"></select>
       <button class="nav-signout-btn" id="nav-signout-btn">Sign Out</button>`;
     div.querySelector('#nav-signout-btn').addEventListener('click', () => SB_AUTH.signOut());
+    populateNavListSelect();
   } else {
     div.innerHTML = `
       <a href="${base}login.html" class="nav-auth-signin">Sign In</a>
