@@ -29,9 +29,10 @@
     .cl-list-title:focus  { border-bottom-color: var(--gold); cursor: text; }
     .cl-name-edit-icon {
       color: var(--muted); font-size: 0.75rem; cursor: pointer;
-      opacity: 0; transition: opacity 0.15s;
+      opacity: 0.35; transition: opacity 0.15s;
     }
-    .cl-name-wrap:hover .cl-name-edit-icon { opacity: 1; }
+    .cl-name-wrap:hover .cl-name-edit-icon { opacity: 0.8; }
+    .cl-name-edit-icon:hover { opacity: 1; color: var(--gold); }
 
     /* Guest mode pill */
     .cl-mode-pill {
@@ -360,6 +361,16 @@
     titleEl.contentEditable = editable ? 'true' : 'false';
     titleEl.style.cursor = editable ? 'text' : 'default';
   }
+
+  // Pencil icon focuses the title for editing
+  document.querySelector('.cl-name-edit-icon')?.addEventListener('click', () => {
+    titleEl.focus();
+    const range = document.createRange();
+    range.selectNodeContents(titleEl);
+    range.collapse(false);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+  });
 
   titleEl.addEventListener('blur', async () => {
     const val = titleEl.textContent.trim();
