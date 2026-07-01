@@ -895,10 +895,11 @@ function renderWrestlerCards() {
   const counts = { rc:0, auto:0, relic:0, insert:0 };
   w.cards.forEach(c => { if (counts[c.type] !== undefined) counts[c.type]++; });
 
-  const typeBadge = type => {
+  const typeBadge = (type, tags = []) => {
+    const effective = (type === 'base' && tags.includes('rc')) ? 'rc' : type;
     const map = { base:'BASE', rc:'RC', auto:'AUTO', relic:'RELIC', insert:'INSERT' };
     const cls = { base:'badge-base', rc:'badge-rc', auto:'badge-auto', relic:'badge-relic', insert:'badge-insert' };
-    return `<span class="ri-type-badge ${cls[type]||'badge-base'}">${map[type]||type}</span>`;
+    return `<span class="ri-type-badge ${cls[effective]||'badge-base'}">${map[effective]||type}</span>`;
   };
 
   let html = `<div class="results-header">
@@ -918,7 +919,7 @@ function renderWrestlerCards() {
       html += `
         <div class="result-item" data-row="${rowIdx}" style="border-left-color:${typeColor};margin-bottom:0">
           <span style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);min-width:38px">${c.year}</span>
-          ${typeBadge(c.type)}
+          ${typeBadge(c.type, c.tags || [])}
           <span class="ri-set">${escHtml(c.set)}</span>
           ${parallelBadge(c.set, rowIdx)}
           ${c.note ? `<span class="ri-era" style="min-width:auto;flex:2;text-align:left">${escHtml(c.note.slice(0,80))}</span>` : ''}
