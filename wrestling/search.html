@@ -687,6 +687,13 @@ let activeEraFilter  = 'all';
 let activeTypeFilter = 'all';
 let currentWrestler  = null;
 
+// Strip leading "The " so "The Godfather" and "Godfather" match each other
+function stripThe(s) { return s.toLowerCase().replace(/^the\s+/i, ''); }
+function nameMatches(wName, query) {
+  const wl = wName.toLowerCase(), ql = query.toLowerCase();
+  return wl.includes(ql) || stripThe(wl).includes(stripThe(ql)) || stripThe(ql) === stripThe(wl);
+}
+
 function setTypeFilter(type) {
   activeTypeFilter = type;
   document.querySelectorAll('[data-type]').forEach(b => b.classList.toggle('active', b.dataset.type === type));
@@ -784,8 +791,8 @@ document.getElementById('searchInput').addEventListener('input', function() {
   const ql = q.toLowerCase();
   const personas = (typeof WRESTLER_PERSONAS !== 'undefined') ? WRESTLER_PERSONAS : {};
   const matches = WRESTLERS.filter(w => {
-    if (w.name.toLowerCase().includes(ql)) return true;
-    return personas[w.name]?.aliases?.some(a => a.toLowerCase().includes(ql));
+    if (nameMatches(w.name, ql)) return true;
+    return personas[w.name]?.aliases?.some(a => nameMatches(a, ql));
   }).slice(0, 8);
 
   if (!matches.length) { hideSuggestions(); return; }
@@ -870,13 +877,13 @@ function doSearch() {
 
   // 1. Try to find a wrestler in the WRESTLERS database (full card set)
   let wrestler = (typeof WRESTLERS !== 'undefined')
-    ? WRESTLERS.find(w => w.name.toLowerCase().includes(ql))
+    ? WRESTLERS.find(w => nameMatches(w.name, ql))
     : null;
 
   // 1b. Alias fallback — search WRESTLER_PERSONAS aliases
   if (!wrestler && typeof WRESTLER_PERSONAS !== 'undefined') {
     for (const [canonName, persona] of Object.entries(WRESTLER_PERSONAS)) {
-      if (persona.aliases?.some(a => a.toLowerCase().includes(ql))) {
+      if (persona.aliases?.some(a => nameMatches(a, ql))) {
         const found = WRESTLERS.find(w => w.name === canonName);
         if (found) { wrestler = found; break; }
       }
