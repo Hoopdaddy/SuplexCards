@@ -9,43 +9,49 @@
   <title>My Checklist — Suplex Trading Cards</title>
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    /* ── Checklist page styles ─────────────────────────── */
+    /* ── Hero ─────────────────────────────────────────────── */
     .cl-hero {
       background: linear-gradient(135deg, #0d1117 0%, #12161f 100%);
       border-bottom: 1px solid var(--border);
       padding: 2rem 1.5rem 1.5rem;
       text-align: center;
     }
-    .cl-hero h1 { font-size: 2rem; color: var(--gold); margin-bottom: 0.3rem; }
-    .cl-hero p  { color: var(--muted); font-size: 0.9rem; }
+
+    /* Editable checklist name */
+    .cl-name-wrap { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+    .cl-list-title {
+      font-size: 2rem; color: var(--gold); outline: none;
+      border-bottom: 2px solid transparent; cursor: text;
+      transition: border-color 0.15s; padding-bottom: 1px;
+      font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em;
+    }
+    .cl-list-title:hover  { border-bottom-color: var(--border); }
+    .cl-list-title:focus  { border-bottom-color: var(--gold); cursor: text; }
+    .cl-name-edit-icon {
+      color: var(--muted); font-size: 0.75rem; cursor: pointer;
+      opacity: 0; transition: opacity 0.15s;
+    }
+    .cl-name-wrap:hover .cl-name-edit-icon { opacity: 1; }
+
+    /* Guest mode pill */
+    .cl-mode-pill {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.72rem; color: var(--muted);
+      background: var(--mid); border: 1px solid var(--border);
+      border-radius: 20px; padding: 0.18rem 0.65rem;
+      margin-bottom: 0.8rem;
+    }
+    .cl-mode-pill.logged-in { color: var(--green); border-color: rgba(46,204,113,0.3); background: rgba(46,204,113,0.07); }
+
     .cl-stats {
       display: flex; justify-content: center; gap: 2rem;
-      margin-top: 1rem; flex-wrap: wrap;
+      margin-top: 0.5rem; flex-wrap: wrap;
     }
     .cl-stat { text-align: center; }
-    .cl-stat-num  { font-size: 2rem; font-weight: 800; color: var(--text); font-family: 'Bebas Neue', sans-serif; }
-    .cl-stat-label{ font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .cl-stat-num   { font-size: 2rem; font-weight: 800; color: var(--text); font-family: 'Bebas Neue', sans-serif; }
+    .cl-stat-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
 
-    /* Guest banner */
-    .cl-guest-banner {
-      background: linear-gradient(90deg, #1a0f2a, #1a1535);
-      border: 1px solid #3a2a5a;
-      border-radius: 8px;
-      padding: 1rem 1.2rem;
-      margin: 1.2rem 0;
-      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
-    }
-    .cl-guest-icon { font-size: 1.5rem; }
-    .cl-guest-text { flex: 1; min-width: 200px; }
-    .cl-guest-text strong { color: #c084fc; display: block; margin-bottom: 0.2rem; }
-    .cl-guest-text span   { color: var(--muted); font-size: 0.82rem; }
-    .cl-guest-cta { display: flex; gap: 0.5rem; }
-    .btn-register { background: #7c3aed; color: #fff; border: none; border-radius: 4px; padding: 0.45rem 1rem; font-size: 0.8rem; font-weight: 700; cursor: pointer; text-decoration: none; }
-    .btn-register:hover { background: #6d28d9; }
-    .btn-login    { background: transparent; color: #c084fc; border: 1px solid #5a3a8a; border-radius: 4px; padding: 0.45rem 1rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; text-decoration: none; }
-    .btn-login:hover { border-color: #c084fc; }
-
-    /* Toolbar */
+    /* ── Toolbar ───────────────────────────────────────────── */
     .cl-toolbar {
       display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
       margin-bottom: 1.2rem;
@@ -58,9 +64,7 @@
       font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em;
       transition: all 0.12s;
     }
-    .cl-filter-btn:hover, .cl-filter-btn.active {
-      border-color: var(--gold); color: var(--gold);
-    }
+    .cl-filter-btn:hover, .cl-filter-btn.active { border-color: var(--gold); color: var(--gold); }
     .btn-export {
       background: var(--mid); border: 1px solid var(--border); color: var(--text);
       border-radius: 4px; padding: 0.35rem 0.8rem; font-size: 0.75rem;
@@ -74,15 +78,15 @@
     }
     .btn-clear-all:hover { border-color: #f87171; }
 
-    /* Set groups */
+    /* ── Set groups ─────────────────────────────────────────── */
     .cl-set-group { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 0.8rem; overflow: hidden; }
     .cl-set-header {
       display: flex; align-items: center; gap: 0.8rem;
       padding: 0.7rem 1rem; background: var(--mid); cursor: pointer;
       user-select: none;
     }
-    .cl-set-name { font-weight: 700; color: var(--text); font-size: 0.9rem; flex: 1; }
-    .cl-set-year { color: var(--muted); font-size: 0.78rem; }
+    .cl-set-name  { font-weight: 700; color: var(--text); font-size: 0.9rem; flex: 1; }
+    .cl-set-year  { color: var(--muted); font-size: 0.78rem; }
     .cl-set-count {
       font-size: 0.7rem; font-weight: 800; color: var(--gold);
       background: rgba(230,196,58,0.1); border: 1px solid rgba(230,196,58,0.2);
@@ -90,7 +94,7 @@
     }
     .cl-set-chevron { color: var(--muted); font-size: 0.7rem; transition: transform 0.15s; }
     .cl-set-group.collapsed .cl-set-chevron { transform: rotate(-90deg); }
-    .cl-set-group.collapsed .cl-set-body    { display: none; }
+    .cl-set-group.collapsed .cl-set-body   { display: none; }
 
     .cl-set-body { background: var(--darker); }
     .cl-card-row {
@@ -106,16 +110,16 @@
       font-size: 0.6rem; font-weight: 800; text-transform: uppercase;
       padding: 0.1rem 0.4rem; border-radius: 3px;
     }
-    .cl-type-auto   { background: rgba(230,196,58,0.15); color: var(--gold); border: 1px solid rgba(230,196,58,0.3); }
-    .cl-type-relic  { background: rgba(231,76,60,0.12);  color: #e74c3c;    border: 1px solid rgba(231,76,60,0.25); }
-    .cl-type-insert { background: rgba(52,152,219,0.12); color: #3498db;    border: 1px solid rgba(52,152,219,0.25); }
+    .cl-type-auto   { background: rgba(230,196,58,0.15); color: var(--gold);  border: 1px solid rgba(230,196,58,0.3); }
+    .cl-type-relic  { background: rgba(231,76,60,0.12);  color: #e74c3c;      border: 1px solid rgba(231,76,60,0.25); }
+    .cl-type-insert { background: rgba(52,152,219,0.12); color: #3498db;      border: 1px solid rgba(52,152,219,0.25); }
     .cl-type-base   { background: var(--mid);            color: var(--muted); border: 1px solid var(--border); }
     .cl-card-link   { color: var(--muted); font-size: 0.7rem; text-decoration: none; }
     .cl-card-link:hover { color: var(--gold); }
     .cl-remove      { background: none; border: none; color: #4a2020; cursor: pointer; font-size: 0.85rem; padding: 0 4px; }
     .cl-remove:hover { color: #f87171; }
 
-    /* Empty state */
+    /* ── Empty state ────────────────────────────────────────── */
     .cl-empty {
       text-align: center; padding: 4rem 1.5rem; color: var(--muted);
     }
@@ -124,6 +128,30 @@
     .cl-empty p    { font-size: 0.85rem; max-width: 380px; margin: 0 auto 1.2rem; }
     .btn-browse    { display: inline-block; background: var(--red); color: #fff; border-radius: 4px; padding: 0.6rem 1.4rem; font-weight: 700; text-decoration: none; font-size: 0.85rem; }
     .btn-browse:hover { background: #c0392b; }
+
+    /* ── Guest upgrade nudge (bottom, non-intrusive) ────────── */
+    .cl-upgrade-nudge {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: 0.9rem 1.1rem; margin-top: 1.5rem;
+      background: var(--mid);
+    }
+    .cl-upgrade-text { flex: 1; min-width: 180px; }
+    .cl-upgrade-text p { color: var(--muted); font-size: 0.82rem; margin: 0; line-height: 1.5; }
+    .cl-upgrade-text p strong { color: var(--text); }
+    .cl-upgrade-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
+    .btn-upgrade-register {
+      background: var(--red); color: #fff; border: none; border-radius: 4px;
+      padding: 0.42rem 0.9rem; font-size: 0.78rem; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+    }
+    .btn-upgrade-register:hover { background: #c0392b; color: #fff; }
+    .btn-upgrade-signin {
+      background: transparent; color: var(--muted); border: 1px solid var(--border);
+      border-radius: 4px; padding: 0.42rem 0.9rem; font-size: 0.78rem;
+      font-weight: 600; cursor: pointer; text-decoration: none;
+    }
+    .btn-upgrade-signin:hover { color: var(--text); border-color: var(--text); }
   </style>
 </head>
 <body>
@@ -159,8 +187,18 @@
 </nav>
 
 <div class="cl-hero">
-  <h1>My Checklist</h1>
-  <p>Cards you've checked across all era pages — tracked right in your browser</p>
+  <!-- Editable checklist name -->
+  <div class="cl-name-wrap">
+    <h1 class="cl-list-title" id="cl-list-title" contenteditable="true" spellcheck="false">My Checklist</h1>
+    <span class="cl-name-edit-icon" title="Click title to rename">✏️</span>
+  </div>
+
+  <!-- Mode indicator (guest vs logged-in) -->
+  <div class="cl-mode-pill" id="cl-mode-pill">
+    🖥️ Saved in this browser
+  </div>
+
+  <!-- Stats -->
   <div class="cl-stats">
     <div class="cl-stat">
       <div class="cl-stat-num" id="stat-total">0</div>
@@ -183,19 +221,6 @@
 
 <div class="section" style="max-width:860px;margin:0 auto;">
 
-  <!-- Guest banner (hidden once auth is wired in Release 2) -->
-  <div class="cl-guest-banner" id="guest-banner">
-    <div class="cl-guest-icon">🔒</div>
-    <div class="cl-guest-text">
-      <strong>Save up to 5 checklists — create a free account</strong>
-      <span>Right now your checklist is saved to this browser only. Register to sync across devices and create multiple named lists.</span>
-    </div>
-    <div class="cl-guest-cta">
-      <a href="register.html" class="btn-register">Create Account</a>
-      <a href="login.html" class="btn-login">Sign In</a>
-    </div>
-  </div>
-
   <!-- Toolbar -->
   <div class="cl-toolbar" id="cl-toolbar" style="display:none">
     <div class="cl-toolbar-left" id="cl-filters">
@@ -217,9 +242,21 @@
   <!-- Empty state -->
   <div class="cl-empty" id="cl-empty" style="display:none">
     <div class="cl-empty-icon">📋</div>
-    <h3>No cards checked yet</h3>
-    <p>Browse any era page and check cards you own — they'll appear here automatically.</p>
+    <h3>Your checklist is empty</h3>
+    <p>Browse any era page and check the cards you own — they'll appear here automatically.</p>
     <a href="current-topps.html" class="btn-browse">Browse Current Topps →</a>
+  </div>
+
+  <!-- Guest upgrade nudge (shown only when guest, at the bottom) -->
+  <div class="cl-upgrade-nudge" id="cl-upgrade-nudge" style="display:none">
+    <div class="cl-upgrade-text">
+      <p><strong>Want to access this list on any device?</strong><br>
+      Create a free account to sync your checklist across browsers and devices — and unlock up to 5 named lists.</p>
+    </div>
+    <div class="cl-upgrade-actions">
+      <a href="register.html" class="btn-upgrade-register">Create Account</a>
+      <a href="login.html" class="btn-upgrade-signin">Sign In</a>
+    </div>
   </div>
 
 </div>
@@ -263,10 +300,58 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="js/supabase-client.js"></script>
 <script src="js/checklist.js"></script>
 <script src="js/main.js"></script>
 <script>
 (function () {
+  const NAME_KEY = 'sc_list_name';
+
+  // ── Checklist name (editable, persisted in localStorage) ─────
+  const titleEl = document.getElementById('cl-list-title');
+  titleEl.textContent = localStorage.getItem(NAME_KEY) || 'My Checklist';
+
+  titleEl.addEventListener('blur', () => {
+    const val = titleEl.textContent.trim();
+    if (!val) { titleEl.textContent = localStorage.getItem(NAME_KEY) || 'My Checklist'; return; }
+    localStorage.setItem(NAME_KEY, val);
+  });
+
+  titleEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); titleEl.blur(); }
+    if (e.key === 'Escape') { titleEl.textContent = localStorage.getItem(NAME_KEY) || 'My Checklist'; titleEl.blur(); }
+  });
+
+  // Max length guard
+  titleEl.addEventListener('input', () => {
+    if (titleEl.textContent.length > 50) {
+      titleEl.textContent = titleEl.textContent.slice(0, 50);
+      const range = document.createRange();
+      range.selectNodeContents(titleEl); range.collapse(false);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+    }
+  });
+
+  // ── Auth-aware UI ─────────────────────────────────────────────
+  function updateAuthUI() {
+    const user   = typeof SB_AUTH !== 'undefined' ? SB_AUTH.getUser() : null;
+    const pill   = document.getElementById('cl-mode-pill');
+    const nudge  = document.getElementById('cl-upgrade-nudge');
+
+    if (user) {
+      const name = user.user_metadata?.display_name || user.email.split('@')[0];
+      pill.textContent = '✓ Synced — signed in as ' + name;
+      pill.classList.add('logged-in');
+      if (nudge) nudge.style.display = 'none';
+    } else {
+      pill.textContent = '🖥️ Saved in this browser';
+      pill.classList.remove('logged-in');
+      if (nudge) nudge.style.display = '';
+    }
+  }
+
   // ── Type badge HTML ───────────────────────────────────────────
   function typeBadge(type) {
     const map = { auto: 'cl-type-auto', relic: 'cl-type-relic', insert: 'cl-type-insert', base: 'cl-type-base' };
@@ -282,7 +367,6 @@
       if (!sets[key]) sets[key] = { setId: card.setId, setName: card.setName, year: card.year, link: card.link, cards: [] };
       sets[key].cards.push(card);
     }
-    // Sort sets by year desc, then name
     return Object.values(sets).sort((a, b) => b.year - a.year || a.setName.localeCompare(b.setName));
   }
 
@@ -293,12 +377,11 @@
     document.getElementById('stat-sets').textContent   = new Set(all.map(c => c.setId)).size;
     document.getElementById('stat-autos').textContent  = all.filter(c => c.type === 'auto').length;
     document.getElementById('stat-relics').textContent = all.filter(c => c.type === 'relic').length;
-    // Update nav badge
     const badge = document.getElementById('nav-cl-badge');
     if (badge) { badge.textContent = all.length; badge.style.display = all.length > 0 ? 'inline-flex' : 'none'; }
   }
 
-  // ── Render the card list ──────────────────────────────────────
+  // ── Render ────────────────────────────────────────────────────
   let activeFilter = 'all';
 
   function render() {
@@ -309,6 +392,7 @@
     const toolbar = document.getElementById('cl-toolbar');
 
     renderStats(cards);
+    updateAuthUI();
 
     if (allList.length === 0) {
       list.innerHTML = '';
@@ -320,17 +404,13 @@
     empty.style.display = 'none';
     toolbar.style.display = '';
 
-    // Filter
-    const filtered = activeFilter === 'all'
-      ? allList
-      : allList.filter(c => c.type === activeFilter);
+    const filtered = activeFilter === 'all' ? allList : allList.filter(c => c.type === activeFilter);
 
     if (filtered.length === 0) {
       list.innerHTML = `<p style="text-align:center;color:var(--muted);padding:2rem">No ${activeFilter} cards in your checklist.</p>`;
       return;
     }
 
-    // Group and render
     const groups = groupBySet(Object.fromEntries(filtered.map(c => [c.id, c])));
     list.innerHTML = groups.map(group => {
       const rows = group.cards
@@ -342,7 +422,7 @@
             <span class="cl-card-name">${card.name || '—'}</span>
             ${typeBadge(card.type)}
             ${card.link ? `<a class="cl-card-link" href="${card.link}" title="View set">↗</a>` : ''}
-            <button class="cl-remove" data-id="${card.id}" title="Remove from checklist">✕</button>
+            <button class="cl-remove" data-id="${card.id}" title="Remove">✕</button>
           </div>`).join('');
 
       return `
@@ -357,22 +437,13 @@
         </div>`;
     }).join('');
 
-    // Remove button handlers
     list.querySelectorAll('.cl-remove').forEach(btn => {
-      btn.addEventListener('click', () => {
-        CHECKLIST.remove(btn.dataset.id);
-        render();
-      });
+      btn.addEventListener('click', () => { CHECKLIST.remove(btn.dataset.id); render(); });
     });
 
-    // Uncheck = remove
     list.querySelectorAll('.cl-card-row input[type="checkbox"]').forEach(cb => {
       cb.addEventListener('change', () => {
-        if (!cb.checked) {
-          const row = cb.closest('.cl-card-row');
-          CHECKLIST.remove(row.dataset.id);
-          render();
-        }
+        if (!cb.checked) { CHECKLIST.remove(cb.closest('.cl-card-row').dataset.id); render(); }
       });
     });
   }
@@ -391,12 +462,12 @@
   document.getElementById('btn-export').addEventListener('click', () => {
     const cards = Object.values(CHECKLIST.getAll());
     if (!cards.length) return;
+    const name = (localStorage.getItem(NAME_KEY) || 'suplex-checklist').toLowerCase().replace(/\s+/g, '-');
     const rows = [
       ['Set', 'Year', 'Card #', 'Name', 'Type', 'Checked At'],
       ...cards.map(c => [
         `"${(c.setName||'').replace(/"/g,'""')}"`,
-        c.year || '',
-        c.num || '',
+        c.year || '', c.num || '',
         `"${(c.name||'').replace(/"/g,'""')}"`,
         c.type || '',
         c.checkedAt ? c.checkedAt.slice(0, 10) : ''
@@ -405,20 +476,24 @@
     const csv  = rows.map(r => r.join(',')).join('\n');
     const blob = new Blob([csv], { type: 'text/csv' });
     const url  = URL.createObjectURL(blob);
-    const a    = Object.assign(document.createElement('a'), { href: url, download: 'suplex-checklist.csv' });
-    a.click();
+    Object.assign(document.createElement('a'), { href: url, download: `${name}.csv` }).click();
     URL.revokeObjectURL(url);
   });
 
   // ── Clear all ────────────────────────────────────────────────
   document.getElementById('btn-clear-all').addEventListener('click', () => {
     if (!confirm('Remove all cards from your checklist? This cannot be undone.')) return;
-    CHECKLIST.clear();
-    render();
+    CHECKLIST.clear(); render();
   });
 
-  // ── Initial render ─────────────────────────────────────────────
+  // ── Initial render + auth-state updates ───────────────────────
   render();
+
+  // Re-run auth UI after Supabase resolves session (slight delay on page load)
+  if (typeof sb !== 'undefined') {
+    sb.auth.onAuthStateChange(() => updateAuthUI());
+    sb.auth.getSession().then(() => updateAuthUI());
+  }
 })();
 </script>
 </body>
