@@ -19,6 +19,7 @@ const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
 
 let _currentUser = null;
 let _defaultChecklist = null;
+let _activeChecklistId = localStorage.getItem('sc_active_list') || null;
 
 // ── Default checklist (create on first login if missing) ─────────
 async function getDefaultChecklist() {
@@ -44,11 +45,22 @@ async function getDefaultChecklist() {
   return created;
 }
 
+// ── Active checklist (falls back to default) ─────────────────────
+async function getActiveChecklist() {
+  if (!_currentUser) return null;
+  if (_activeChecklistId) {
+    const { data } = await sb.from('checklists').select('*')
+      .eq('id', _activeChecklistId).eq('user_id', _currentUser.id).maybeSingle();
+    if (data) return data;
+  }
+  return getDefaultChecklist();
+}
+
 // ── Cloud sync hook — called by checklist.js on every add/remove ─
 window.SUPABASE_CHECKLIST = {
   async sync(action, card) {
     if (!_currentUser) return;
-    const cl = await getDefaultChecklist();
+    const cl = await getActiveChecklist();
     if (!cl) return;
 
     if (action === 'add') {
@@ -71,6 +83,72 @@ window.SUPABASE_CHECKLIST = {
         .eq('checklist_id', cl.id)
         .eq('card_key', card.id);
     }
+  },
+
+  setActive(id) {
+    _activeChecklistId = id;
+    if (id) localStorage.setItem('sc_active_list', id);
+    else localStorage.removeItem('sc_active_list');
+  },
+
+  async getAllChecklists() {
+    if (!_currentUser) return [];
+    const { data } = await sb.from('checklists')
+      .select('id, name, is_default, created_at')
+      .eq('user_id', _currentUser.id)
+      .order('created_at');
+    return data || [];
+  },
+
+  async getItems(checklistId) {
+    const { data } = await sb.from('checklist_items')
+      .select('*')
+      .eq('checklist_id', checklistId);
+    return (data || []).map(r => ({
+      id:        r.card_key,
+      setId:     r.set_id,
+      setName:   r.set_name,
+      year:      r.year,
+      num:       r.card_num,
+      name:      r.card_name,
+      type:      r.card_type,
+      link:      r.page_link,
+      checkedAt: r.created_at
+    }));
+  },
+
+  async createChecklist(name) {
+    if (!_currentUser) return { error: 'Not signed in.' };
+    const { data: existing } = await sb.from('checklists')
+      .select('id').eq('user_id', _currentUser.id);
+    if (existing && existing.length >= 5)
+      return { error: 'You can have a maximum of 5 checklists.' };
+    const { data, error } = await sb.from('checklists')
+      .insert({ user_id: _currentUser.id, name, is_default: false })
+      .select().single();
+    return { data, error: error?.message };
+  },
+
+  async renameChecklist(id, name) {
+    if (!_currentUser) return;
+    await sb.from('checklists').update({ name })
+      .eq('id', id).eq('user_id', _currentUser.id);
+  },
+
+  async deleteChecklist(id) {
+    if (!_currentUser) return { error: 'Not signed in.' };
+    const { data: all } = await sb.from('checklists')
+      .select('id').eq('user_id', _currentUser.id);
+    if (!all || all.length <= 1)
+      return { error: 'Cannot delete your only checklist.' };
+    await sb.from('checklist_items').delete().eq('checklist_id', id);
+    await sb.from('checklists').delete().eq('id', id).eq('user_id', _currentUser.id);
+    if (_activeChecklistId === id) {
+      _activeChecklistId = null;
+      localStorage.removeItem('sc_active_list');
+      _defaultChecklist = null;
+    }
+    return {};
   }
 };
 

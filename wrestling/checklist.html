@@ -129,6 +129,43 @@
     .btn-browse    { display: inline-block; background: var(--red); color: #fff; border-radius: 4px; padding: 0.6rem 1.4rem; font-weight: 700; text-decoration: none; font-size: 0.85rem; }
     .btn-browse:hover { background: #c0392b; }
 
+    /* ── List switcher (logged-in only) ────────────────────────── */
+    .cl-switcher {
+      background: var(--mid); border-bottom: 1px solid var(--border);
+      padding: 0.55rem 1.5rem; display: flex; align-items: center;
+      gap: 0.4rem; flex-wrap: wrap;
+    }
+    .cl-switcher-tab {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); border-radius: 4px;
+      padding: 0.28rem 0.65rem; font-size: 0.75rem; font-weight: 600;
+      cursor: pointer; white-space: nowrap; transition: all 0.12s;
+      font-family: 'Oswald', sans-serif; letter-spacing: 0.04em;
+    }
+    .cl-switcher-tab:hover { border-color: var(--gold); color: var(--text); }
+    .cl-switcher-tab.active { border-color: var(--gold); color: var(--gold); background: rgba(230,196,58,0.07); }
+    .cl-tab-count {
+      font-size: 0.65rem; color: var(--muted);
+      background: var(--darker); border-radius: 10px; padding: 0.05rem 0.4rem;
+    }
+    .cl-switcher-tab.active .cl-tab-count { color: var(--gold); background: rgba(230,196,58,0.15); }
+    .cl-tab-del {
+      background: none; border: none; color: var(--muted);
+      cursor: pointer; font-size: 0.6rem; padding: 0 0 0 2px;
+      opacity: 0.5; line-height: 1;
+    }
+    .cl-tab-del:hover { color: #f87171; opacity: 1; }
+    .cl-new-list-btn {
+      background: transparent; border: 1px dashed var(--border);
+      color: var(--muted); border-radius: 4px;
+      padding: 0.28rem 0.7rem; font-size: 0.75rem;
+      cursor: pointer; transition: all 0.12s;
+      font-family: 'Oswald', sans-serif; letter-spacing: 0.04em;
+    }
+    .cl-new-list-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
+    .cl-new-list-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
     /* ── Guest upgrade nudge (bottom, non-intrusive) ────────── */
     .cl-upgrade-nudge {
       display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
@@ -219,6 +256,9 @@
   </div>
 </div>
 
+<!-- Checklist switcher — visible only when signed in -->
+<div class="cl-switcher" id="cl-switcher" style="display:none"></div>
+
 <div class="section" style="max-width:860px;margin:0 auto;">
 
   <!-- Toolbar -->
@@ -305,44 +345,66 @@
 <script src="js/checklist.js"></script>
 <script src="js/main.js"></script>
 <script>
-(function () {
+(async function () {
   const NAME_KEY = 'sc_list_name';
+  let activeFilter = 'all';
+  let _activeId    = null;   // active checklist id (logged-in)
+  let _allLists    = [];     // all user's checklists
+  let _cloudCards  = {};     // id → card, used when logged in
 
-  // ── Checklist name (editable, persisted in localStorage) ─────
+  // ── Title element ─────────────────────────────────────────────
   const titleEl = document.getElementById('cl-list-title');
-  titleEl.textContent = localStorage.getItem(NAME_KEY) || 'My Checklist';
 
-  titleEl.addEventListener('blur', () => {
+  function setTitle(text, editable) {
+    titleEl.textContent = text;
+    titleEl.contentEditable = editable ? 'true' : 'false';
+    titleEl.style.cursor = editable ? 'text' : 'default';
+  }
+
+  titleEl.addEventListener('blur', async () => {
     const val = titleEl.textContent.trim();
-    if (!val) { titleEl.textContent = localStorage.getItem(NAME_KEY) || 'My Checklist'; return; }
-    localStorage.setItem(NAME_KEY, val);
-  });
-
-  titleEl.addEventListener('keydown', e => {
-    if (e.key === 'Enter') { e.preventDefault(); titleEl.blur(); }
-    if (e.key === 'Escape') { titleEl.textContent = localStorage.getItem(NAME_KEY) || 'My Checklist'; titleEl.blur(); }
-  });
-
-  // Max length guard
-  titleEl.addEventListener('input', () => {
-    if (titleEl.textContent.length > 50) {
-      titleEl.textContent = titleEl.textContent.slice(0, 50);
-      const range = document.createRange();
-      range.selectNodeContents(titleEl); range.collapse(false);
-      window.getSelection().removeAllRanges();
-      window.getSelection().addRange(range);
+    const user = SB_AUTH.getUser();
+    if (!val) {
+      setTitle(user ? (_allLists.find(l => l.id === _activeId)?.name || 'My Checklist') : (localStorage.getItem(NAME_KEY) || 'My Checklist'));
+      return;
+    }
+    if (user && _activeId) {
+      await SUPABASE_CHECKLIST.renameChecklist(_activeId, val);
+      const list = _allLists.find(l => l.id === _activeId);
+      if (list) list.name = val;
+      renderSwitcher();
+    } else {
+      localStorage.setItem(NAME_KEY, val);
     }
   });
 
-  // ── Auth-aware UI ─────────────────────────────────────────────
-  function updateAuthUI() {
-    const user   = typeof SB_AUTH !== 'undefined' ? SB_AUTH.getUser() : null;
-    const pill   = document.getElementById('cl-mode-pill');
-    const nudge  = document.getElementById('cl-upgrade-nudge');
+  titleEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter')  { e.preventDefault(); titleEl.blur(); }
+    if (e.key === 'Escape') {
+      const user = SB_AUTH.getUser();
+      setTitle(user ? (_allLists.find(l => l.id === _activeId)?.name || 'My Checklist') : (localStorage.getItem(NAME_KEY) || 'My Checklist'));
+      titleEl.blur();
+    }
+  });
 
+  titleEl.addEventListener('input', () => {
+    if (titleEl.textContent.length > 50) {
+      titleEl.textContent = titleEl.textContent.slice(0, 50);
+      const r = document.createRange();
+      r.selectNodeContents(titleEl); r.collapse(false);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(r);
+    }
+  });
+
+  // ── Auth pill + nudge ─────────────────────────────────────────
+  function updateAuthUI() {
+    const user  = SB_AUTH.getUser();
+    const pill  = document.getElementById('cl-mode-pill');
+    const nudge = document.getElementById('cl-upgrade-nudge');
     if (user) {
       const name = user.user_metadata?.display_name || user.email.split('@')[0];
-      pill.textContent = '✓ Synced — signed in as ' + name;
+      pill.textContent = '✓ Synced — ' + name;
       pill.classList.add('logged-in');
       if (nudge) nudge.style.display = 'none';
     } else {
@@ -352,25 +414,111 @@
     }
   }
 
-  // ── Type badge HTML ───────────────────────────────────────────
-  function typeBadge(type) {
-    const map = { auto: 'cl-type-auto', relic: 'cl-type-relic', insert: 'cl-type-insert', base: 'cl-type-base' };
-    const label = type === 'auto' ? 'AUTO' : type === 'relic' ? 'RELIC' : type === 'insert' ? 'INSERT' : 'BASE';
-    return `<span class="cl-card-type ${map[type] || 'cl-type-base'}">${label}</span>`;
+  // ── Switcher ──────────────────────────────────────────────────
+  function renderSwitcher() {
+    const el = document.getElementById('cl-switcher');
+    if (!SB_AUTH.getUser() || !_allLists.length) { el.style.display = 'none'; return; }
+    el.style.display = '';
+    el.innerHTML = _allLists.map(list => `
+      <button class="cl-switcher-tab${list.id === _activeId ? ' active' : ''}" data-id="${list.id}">
+        ${list.name}
+        <span class="cl-tab-count">${list._count ?? ''}</span>
+        ${_allLists.length > 1 ? `<span class="cl-tab-del" data-del="${list.id}" title="Delete list">✕</span>` : ''}
+      </button>`).join('') +
+      (_allLists.length < 5
+        ? `<button class="cl-new-list-btn" id="btn-new-list">+ New List</button>`
+        : `<button class="cl-new-list-btn" disabled title="Max 5 lists reached">+ New List</button>`);
+
+    el.querySelectorAll('.cl-switcher-tab').forEach(tab => {
+      tab.addEventListener('click', async e => {
+        if (e.target.closest('.cl-tab-del')) return;
+        const id = tab.dataset.id;
+        if (id === _activeId) return;
+        _activeId = id;
+        SUPABASE_CHECKLIST.setActive(id);
+        await loadCloud();
+      });
+    });
+
+    el.querySelectorAll('.cl-tab-del').forEach(btn => {
+      btn.addEventListener('click', async e => {
+        e.stopPropagation();
+        const id  = btn.dataset.del;
+        const lst = _allLists.find(l => l.id === id);
+        if (!confirm(`Delete "${lst?.name}"? This cannot be undone.`)) return;
+        const { error } = await SUPABASE_CHECKLIST.deleteChecklist(id);
+        if (error) { alert(error); return; }
+        await loadLists(true);
+      });
+    });
+
+    const newBtn = document.getElementById('btn-new-list');
+    if (newBtn) {
+      newBtn.addEventListener('click', async () => {
+        const name = prompt('Name your new list:', 'New List');
+        if (!name?.trim()) return;
+        const { data, error } = await SUPABASE_CHECKLIST.createChecklist(name.trim());
+        if (error) { alert(error); return; }
+        _activeId = data.id;
+        SUPABASE_CHECKLIST.setActive(data.id);
+        await loadLists(true);
+      });
+    }
   }
 
-  // ── Group cards by set ────────────────────────────────────────
+  // ── Load checklists + items from Supabase ─────────────────────
+  async function loadLists(andCloud = false) {
+    _allLists = await SUPABASE_CHECKLIST.getAllChecklists();
+    if (!_activeId || !_allLists.find(l => l.id === _activeId)) {
+      _activeId = _allLists[0]?.id || null;
+      SUPABASE_CHECKLIST.setActive(_activeId);
+    }
+    if (andCloud) await loadCloud();
+    else renderSwitcher();
+  }
+
+  async function loadCloud() {
+    if (!_activeId) { _cloudCards = {}; render(); return; }
+    const items = await SUPABASE_CHECKLIST.getItems(_activeId);
+    _cloudCards = Object.fromEntries(items.map(c => [c.id, c]));
+
+    // Stamp item counts on list objects for the switcher
+    _allLists.forEach(l => { if (l.id === _activeId) l._count = items.length; });
+
+    const lst = _allLists.find(l => l.id === _activeId);
+    setTitle(lst?.name || 'My Checklist', true);
+    renderSwitcher();
+    render();
+  }
+
+  // ── Remove helper (works for both guest and cloud) ────────────
+  function removeCard(id) {
+    const user = SB_AUTH.getUser();
+    if (user) {
+      delete _cloudCards[id];
+      SUPABASE_CHECKLIST.sync('remove', { id });
+    } else {
+      CHECKLIST.remove(id);
+    }
+    render();
+  }
+
+  // ── Shared render helpers ─────────────────────────────────────
+  function typeBadge(type) {
+    const map = { auto: 'cl-type-auto', relic: 'cl-type-relic', insert: 'cl-type-insert', base: 'cl-type-base' };
+    const lbl = { auto: 'AUTO', relic: 'RELIC', insert: 'INSERT', base: 'BASE' };
+    return `<span class="cl-card-type ${map[type] || 'cl-type-base'}">${lbl[type] || 'BASE'}</span>`;
+  }
+
   function groupBySet(cards) {
     const sets = {};
-    for (const card of Object.values(cards)) {
-      const key = card.setId;
-      if (!sets[key]) sets[key] = { setId: card.setId, setName: card.setName, year: card.year, link: card.link, cards: [] };
-      sets[key].cards.push(card);
+    for (const c of Object.values(cards)) {
+      if (!sets[c.setId]) sets[c.setId] = { setId: c.setId, setName: c.setName, year: c.year, link: c.link, cards: [] };
+      sets[c.setId].cards.push(c);
     }
     return Object.values(sets).sort((a, b) => b.year - a.year || a.setName.localeCompare(b.setName));
   }
 
-  // ── Stats ─────────────────────────────────────────────────────
   function renderStats(cards) {
     const all = Object.values(cards);
     document.getElementById('stat-total').textContent  = all.length;
@@ -381,11 +529,10 @@
     if (badge) { badge.textContent = all.length; badge.style.display = all.length > 0 ? 'inline-flex' : 'none'; }
   }
 
-  // ── Render ────────────────────────────────────────────────────
-  let activeFilter = 'all';
-
+  // ── Main render ───────────────────────────────────────────────
   function render() {
-    const cards   = CHECKLIST.getAll();
+    const user    = SB_AUTH.getUser();
+    const cards   = user ? _cloudCards : CHECKLIST.getAll();
     const allList = Object.values(cards);
     const list    = document.getElementById('cl-list');
     const empty   = document.getElementById('cl-empty');
@@ -400,31 +547,28 @@
       toolbar.style.display = 'none';
       return;
     }
-
     empty.style.display = 'none';
     toolbar.style.display = '';
 
     const filtered = activeFilter === 'all' ? allList : allList.filter(c => c.type === activeFilter);
-
     if (filtered.length === 0) {
-      list.innerHTML = `<p style="text-align:center;color:var(--muted);padding:2rem">No ${activeFilter} cards in your checklist.</p>`;
+      list.innerHTML = `<p style="text-align:center;color:var(--muted);padding:2rem">No ${activeFilter} cards in this list.</p>`;
       return;
     }
 
     const groups = groupBySet(Object.fromEntries(filtered.map(c => [c.id, c])));
     list.innerHTML = groups.map(group => {
       const rows = group.cards
-        .sort((a, b) => a.num.localeCompare(b.num, undefined, { numeric: true }))
+        .sort((a, b) => (a.num || '').localeCompare(b.num || '', undefined, { numeric: true }))
         .map(card => `
           <div class="cl-card-row" data-id="${card.id}" data-type="${card.type}">
             <input type="checkbox" checked title="Uncheck to remove">
-            <span class="cl-card-num">${card.num !== '—' ? '#' + card.num : '—'}</span>
+            <span class="cl-card-num">${card.num && card.num !== '—' ? '#' + card.num : '—'}</span>
             <span class="cl-card-name">${card.name || '—'}</span>
             ${typeBadge(card.type)}
             ${card.link ? `<a class="cl-card-link" href="${card.link}" title="View set">↗</a>` : ''}
             <button class="cl-remove" data-id="${card.id}" title="Remove">✕</button>
           </div>`).join('');
-
       return `
         <div class="cl-set-group">
           <div class="cl-set-header" onclick="this.closest('.cl-set-group').classList.toggle('collapsed')">
@@ -437,15 +581,10 @@
         </div>`;
     }).join('');
 
-    list.querySelectorAll('.cl-remove').forEach(btn => {
-      btn.addEventListener('click', () => { CHECKLIST.remove(btn.dataset.id); render(); });
-    });
-
-    list.querySelectorAll('.cl-card-row input[type="checkbox"]').forEach(cb => {
-      cb.addEventListener('change', () => {
-        if (!cb.checked) { CHECKLIST.remove(cb.closest('.cl-card-row').dataset.id); render(); }
-      });
-    });
+    list.querySelectorAll('.cl-remove').forEach(btn =>
+      btn.addEventListener('click', () => removeCard(btn.dataset.id)));
+    list.querySelectorAll('.cl-card-row input[type="checkbox"]').forEach(cb =>
+      cb.addEventListener('change', () => { if (!cb.checked) removeCard(cb.closest('.cl-card-row').dataset.id); }));
   }
 
   // ── Filters ───────────────────────────────────────────────────
@@ -460,40 +599,61 @@
 
   // ── Export CSV ────────────────────────────────────────────────
   document.getElementById('btn-export').addEventListener('click', () => {
-    const cards = Object.values(CHECKLIST.getAll());
+    const user  = SB_AUTH.getUser();
+    const cards = Object.values(user ? _cloudCards : CHECKLIST.getAll());
     if (!cards.length) return;
-    const name = (localStorage.getItem(NAME_KEY) || 'suplex-checklist').toLowerCase().replace(/\s+/g, '-');
+    const listName = user
+      ? (_allLists.find(l => l.id === _activeId)?.name || 'checklist')
+      : (localStorage.getItem(NAME_KEY) || 'suplex-checklist');
+    const filename = listName.toLowerCase().replace(/\s+/g, '-');
     const rows = [
       ['Set', 'Year', 'Card #', 'Name', 'Type', 'Checked At'],
       ...cards.map(c => [
         `"${(c.setName||'').replace(/"/g,'""')}"`,
-        c.year || '', c.num || '',
+        c.year||'', c.num||'',
         `"${(c.name||'').replace(/"/g,'""')}"`,
-        c.type || '',
-        c.checkedAt ? c.checkedAt.slice(0, 10) : ''
+        c.type||'',
+        c.checkedAt ? c.checkedAt.slice(0,10) : ''
       ])
     ];
-    const csv  = rows.map(r => r.join(',')).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv' });
+    const blob = new Blob([rows.map(r => r.join(',')).join('\n')], { type: 'text/csv' });
     const url  = URL.createObjectURL(blob);
-    Object.assign(document.createElement('a'), { href: url, download: `${name}.csv` }).click();
+    Object.assign(document.createElement('a'), { href: url, download: `${filename}.csv` }).click();
     URL.revokeObjectURL(url);
   });
 
-  // ── Clear all ────────────────────────────────────────────────
-  document.getElementById('btn-clear-all').addEventListener('click', () => {
-    if (!confirm('Remove all cards from your checklist? This cannot be undone.')) return;
-    CHECKLIST.clear(); render();
+  // ── Clear all ─────────────────────────────────────────────────
+  document.getElementById('btn-clear-all').addEventListener('click', async () => {
+    if (!confirm('Remove all cards from this list? This cannot be undone.')) return;
+    const user = SB_AUTH.getUser();
+    if (user && _activeId) {
+      await sb.from('checklist_items').delete().eq('checklist_id', _activeId);
+      _cloudCards = {};
+      render();
+    } else {
+      CHECKLIST.clear(); render();
+    }
   });
 
-  // ── Initial render + auth-state updates ───────────────────────
-  render();
-
-  // Re-run auth UI after Supabase resolves session (slight delay on page load)
-  if (typeof sb !== 'undefined') {
-    sb.auth.onAuthStateChange(() => updateAuthUI());
-    sb.auth.getSession().then(() => updateAuthUI());
+  // ── Init ──────────────────────────────────────────────────────
+  const { data: { session } } = await sb.auth.getSession();
+  if (session) {
+    await loadLists(true);
+  } else {
+    setTitle(localStorage.getItem(NAME_KEY) || 'My Checklist', true);
+    render();
   }
+
+  sb.auth.onAuthStateChange(async (event) => {
+    if (event === 'SIGNED_IN') {
+      await loadLists(true);
+    } else if (event === 'SIGNED_OUT') {
+      _allLists = []; _activeId = null; _cloudCards = {};
+      document.getElementById('cl-switcher').style.display = 'none';
+      setTitle(localStorage.getItem(NAME_KEY) || 'My Checklist', true);
+      render();
+    }
+  });
 })();
 </script>
 </body>
