@@ -237,6 +237,22 @@
       letter-spacing: 0.04em;
     }
 
+    /* Alias / persona styles */
+    .suggestion-hint { font-size:0.72rem; color:var(--muted); margin-left:0.4rem; font-style:italic; }
+    .persona-bar {
+      font-family:'Oswald',sans-serif; font-size:0.78rem; letter-spacing:0.04em;
+      color:var(--muted); margin-top:0.35rem; display:flex; gap:1.2rem; flex-wrap:wrap; align-items:center;
+    }
+    .persona-bar .aka { color:var(--gold); }
+    .persona-bar .aka-label { color:var(--muted); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.07em; margin-right:0.2rem; }
+    .persona-bar .related-link {
+      font-family:'Oswald',sans-serif; font-size:0.75rem; font-weight:700; letter-spacing:0.05em;
+      text-transform:uppercase; background:rgba(232,200,74,0.08); border:1px solid var(--border);
+      color:var(--gold); border-radius:3px; padding:0.1rem 0.45rem; cursor:pointer;
+      transition:background 0.12s, border-color 0.12s;
+    }
+    .persona-bar .related-link:hover { background:rgba(232,200,74,0.18); border-color:var(--gold); }
+
     /* Empty / tip states */
     .search-tip {
       text-align: center;
@@ -766,23 +782,32 @@ document.getElementById('searchInput').addEventListener('input', function() {
   if (!q || typeof WRESTLERS === 'undefined') { hideSuggestions(); return; }
 
   const ql = q.toLowerCase();
-  const matches = WRESTLERS
-    .filter(w => w.name.toLowerCase().includes(ql))
-    .slice(0, 8);
+  const personas = (typeof WRESTLER_PERSONAS !== 'undefined') ? WRESTLER_PERSONAS : {};
+  const matches = WRESTLERS.filter(w => {
+    if (w.name.toLowerCase().includes(ql)) return true;
+    return personas[w.name]?.aliases?.some(a => a.toLowerCase().includes(ql));
+  }).slice(0, 8);
 
   if (!matches.length) { hideSuggestions(); return; }
 
   focusedIdx = -1;
   const box = document.getElementById('searchSuggestions');
   box.innerHTML = matches.map((w, i) => {
+    const nameMatch = w.name.toLowerCase().includes(ql);
+    const matchedAlias = !nameMatch
+      ? personas[w.name]?.aliases?.find(a => a.toLowerCase().includes(ql))
+      : null;
     const highlighted = w.name.replace(
       new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'),
       '<mark>$1</mark>'
     );
+    const aliasHint = matchedAlias
+      ? `<span class="suggestion-hint">aka ${matchedAlias}</span>`
+      : '';
     return `<button class="suggestion-item" data-idx="${i}" data-name="${w.name.replace(/"/g,'&quot;')}"
       onmousedown="pickSuggestion('${w.name.replace(/'/g,"\\'")}')">
       <span class="suggestion-dot" style="background:${w.dotColor}"></span>
-      <span>${highlighted}</span>
+      <span>${highlighted}${aliasHint}</span>
       <span class="suggestion-count">${w.cards.length} cards</span>
     </button>`;
   }).join('');
@@ -844,9 +869,19 @@ function doSearch() {
   const ql = q.toLowerCase();
 
   // 1. Try to find a wrestler in the WRESTLERS database (full card set)
-  const wrestler = (typeof WRESTLERS !== 'undefined')
+  let wrestler = (typeof WRESTLERS !== 'undefined')
     ? WRESTLERS.find(w => w.name.toLowerCase().includes(ql))
     : null;
+
+  // 1b. Alias fallback — search WRESTLER_PERSONAS aliases
+  if (!wrestler && typeof WRESTLER_PERSONAS !== 'undefined') {
+    for (const [canonName, persona] of Object.entries(WRESTLER_PERSONAS)) {
+      if (persona.aliases?.some(a => a.toLowerCase().includes(ql))) {
+        const found = WRESTLERS.find(w => w.name === canonName);
+        if (found) { wrestler = found; break; }
+      }
+    }
+  }
 
   if (wrestler) {
     currentWrestler = wrestler;
@@ -902,11 +937,25 @@ function renderWrestlerCards() {
     return `<span class="ri-type-badge ${cls[effective]||'badge-base'}">${map[effective]||type}</span>`;
   };
 
+  const persona = (typeof WRESTLER_PERSONAS !== 'undefined') ? WRESTLER_PERSONAS[w.name] : null;
+  const akaHtml = persona?.aliases?.length
+    ? `<span><span class="aka-label">Also on cards as</span><span class="aka">${persona.aliases.join(' · ')}</span></span>`
+    : '';
+  const relatedHtml = persona?.related?.filter(r => WRESTLERS.some(x => x.name === r)).length
+    ? `<span><span class="aka-label">See also</span>${
+        persona.related
+          .filter(r => WRESTLERS.some(x => x.name === r))
+          .map(r => `<button class="related-link" onclick="setSearch('${r.replace(/'/g,"\\'").replace(/"/g,'&quot;')}')">→ ${escHtml(r)}</button>`)
+          .join(' ')
+      }</span>`
+    : '';
+
   let html = `<div class="results-header">
     <div class="results-count">
       <strong>${visible.length}</strong> of <strong>${w.cards.length}</strong> cards for
       <strong style="color:var(--gold)">${escHtml(w.name)}</strong>
     </div>
+    ${(akaHtml || relatedHtml) ? `<div class="persona-bar">${akaHtml}${relatedHtml}</div>` : ''}
   </div>`;
 
   if (!visible.length) {

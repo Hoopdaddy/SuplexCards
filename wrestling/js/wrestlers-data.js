@@ -37419,3 +37419,54 @@ const WRESTLERS = [
     ]
   }
 ];
+
+/* ═══════════════════════════════════════════════════════════════
+   WRESTLER PERSONAS
+   Maps canonical WRESTLERS entry names to:
+     aliases  — alternate names that appear on card faces but are
+                NOT separate WRESTLERS entries (search by alias
+                finds this wrestler's entry)
+     related  — separate WRESTLERS entries for the same real person
+                (shown as cross-reference links in search results)
+═══════════════════════════════════════════════════════════════ */
+const WRESTLER_PERSONAS = {
+  'Steve Austin':              { aliases:['Stone Cold Steve Austin','Stunning Steve Austin','Stone Cold'], related:[] },
+  'Kevin Nash':                { aliases:['Big Daddy Cool'], related:['Diesel'] },
+  'Diesel':                    { aliases:[], related:['Kevin Nash'] },
+  'Scott Hall':                { aliases:['The Bad Guy'], related:['Razor Ramon'] },
+  'Razor Ramon':               { aliases:[], related:['Scott Hall'] },
+  'X-Pac':                     { aliases:['1-2-3 Kid','Syxx-Pac'], related:['Syxx'] },
+  'Syxx':                      { aliases:[], related:['X-Pac'] },
+  'Mick Foley':                { aliases:['Mankind','Dude Love','Cactus Jack'], related:[] },
+  'Ron Simmons':               { aliases:[], related:['Faarooq'] },
+  'Faarooq':                   { aliases:['Faarooq Asad'], related:['Ron Simmons'] },
+  'Booker T':                  { aliases:['GI Bro','G.I. Bro'], related:['King Booker','Booker T.'] },
+  'Booker T.':                 { aliases:[], related:['Booker T','King Booker'] },
+  'King Booker':               { aliases:[], related:['Booker T','Booker T.'] },
+  'Rey Mysterio':              { aliases:['Rey Mysterio Jr.','Rey Misterio Jr.'], related:['Rey Mysterio Jr.'] },
+  'Rey Mysterio Jr.':          { aliases:[], related:['Rey Mysterio'] },
+  'Alundra Blayze':            { aliases:['Medusa Miceli'], related:['Madusa'] },
+  'Madusa':                    { aliases:[], related:['Alundra Blayze'] },
+  '"Ravishing" Rick Rude':     { aliases:['Rick Rude','Ravishing Rick Rude'], related:['Rick Rude','Ravishing Rick Rude'] },
+  'Rick Rude':                 { aliases:[], related:['"Ravishing" Rick Rude','Ravishing Rick Rude'] },
+  'Ravishing Rick Rude':       { aliases:[], related:['"Ravishing" Rick Rude','Rick Rude'] },
+  'Jacqueline':                { aliases:['Miss Jacqueline','Jackie Moore'], related:[] },
+  'Terry Funk':                { aliases:['Chainsaw Charlie'], related:[] },
+  'Jeff Jarrett':              { aliases:['Double J'], related:['Double J Jeff Jarrett'] },
+  'Double J Jeff Jarrett':     { aliases:[], related:['Jeff Jarrett'] },
+  'Bubba Ray Dudley':          { aliases:['Buh-Buh Ray Dudley','Brother Ray','Bully Ray'], related:[] },
+  'D-Von Dudley':              { aliases:['Brother Devon','Devon'], related:['D-Von'] },
+  'D-Von':                     { aliases:[], related:['D-Von Dudley'] },
+  'Papa Shango':               { aliases:['Kama','Kama Mustafa','Goodfather'], related:['Kama','Kama Mustafa','The Godfather','Godfather'] },
+  'Kama':                      { aliases:[], related:['Papa Shango','Kama Mustafa','The Godfather','Godfather'] },
+  'Kama Mustafa':              { aliases:[], related:['Papa Shango','Kama','The Godfather','Godfather'] },
+  'The Godfather':             { aliases:[], related:['Papa Shango','Kama','Kama Mustafa','Godfather'] },
+  'Godfather':                 { aliases:[], related:['Papa Shango','Kama','Kama Mustafa','The Godfather'] },
+  'Diamond Dallas Page':       { aliases:['DDP'], related:[] },
+  'Billy Gunn':                { aliases:['Mr. Ass','Kip James','Daddy Ass'], related:['"The One" Billy Gunn'] },
+  '"The One" Billy Gunn':      { aliases:['Kip James','Daddy Ass','Mr. Ass'], related:['Billy Gunn'] },
+  '"Road Dogg" Jesse James':   { aliases:['Road Dogg','BG James','Jesse James'], related:['Road Dogg Jesse James','Road Dogg','The Road Dogg'] },
+  'Road Dogg Jesse James':     { aliases:['Road Dogg','BG James'], related:['"Road Dogg" Jesse James','Road Dogg','The Road Dogg'] },
+  'Road Dogg':                 { aliases:['BG James'], related:['"Road Dogg" Jesse James','Road Dogg Jesse James','The Road Dogg'] },
+  'The Road Dogg':             { aliases:['BG James'], related:['"Road Dogg" Jesse James','Road Dogg Jesse James','Road Dogg'] },
+};
