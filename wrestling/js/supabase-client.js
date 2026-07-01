@@ -197,11 +197,19 @@ function injectAuthNav() {
   const navInner = document.querySelector('.nav-inner');
   if (!navInner) return;
   document.getElementById('nav-auth')?.remove();
+  document.getElementById('nav-mobile-auth')?.remove();
 
   const base = _authBase();
+
+  // Desktop top-bar auth block
   const div = document.createElement('div');
   div.id = 'nav-auth';
   div.className = 'nav-auth';
+
+  // Mobile auth block — appended inside .nav-links overlay
+  const mobileEl = document.createElement('li');
+  mobileEl.id = 'nav-mobile-auth';
+  mobileEl.className = 'nav-mobile-auth';
 
   if (_currentUser) {
     const meta = _currentUser.user_metadata || {};
@@ -211,16 +219,27 @@ function injectAuthNav() {
       <select class="nav-list-select" id="nav-list-select" style="display:none" title="Active checklist"></select>
       <button class="nav-signout-btn" id="nav-signout-btn">Sign Out</button>`;
     div.querySelector('#nav-signout-btn').addEventListener('click', () => SB_AUTH.signOut());
+    mobileEl.innerHTML = `
+      <span class="nav-user-name">&#x1F464; ${name}</span>
+      <button class="nav-signout-btn" id="nav-mobile-signout-btn">Sign Out</button>`;
+    mobileEl.querySelector('#nav-mobile-signout-btn').addEventListener('click', () => SB_AUTH.signOut());
     populateNavListSelect();
   } else {
     div.innerHTML = `
       <a href="${base}login.html" class="nav-auth-signin">Sign In</a>
       <a href="${base}register.html" class="nav-auth-register">Register</a>`;
+    mobileEl.innerHTML = `
+      <a href="${base}login.html" class="nav-auth-signin">Sign In</a>
+      <a href="${base}register.html" class="nav-auth-register">Register</a>`;
   }
 
-  // Insert before the hamburger (last child), or just append
+  // Insert desktop block before the hamburger
   const hamburger = navInner.querySelector('.hamburger');
   hamburger ? navInner.insertBefore(div, hamburger) : navInner.appendChild(div);
+
+  // Append mobile block at bottom of slide-out nav
+  const navLinks = document.querySelector('.nav-links');
+  if (navLinks) navLinks.appendChild(mobileEl);
 }
 
 function _authBase() {

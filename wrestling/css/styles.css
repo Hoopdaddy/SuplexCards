@@ -1112,22 +1112,76 @@ footer {
 
 /* ── RESPONSIVE ──────────────────────────────────── */
 @media (max-width: 900px) {
-  /* Nav */
-  .nav-links { display: none; flex-direction: column; position: fixed; top: 65px; left: 0; right: 0; bottom: 0; background: var(--darker); padding: 1rem; overflow-y: auto; z-index: 999; }
+  /* Nav — fix hamburger being pushed off-screen */
+  nav { overflow: hidden; }
+  .nav-auth { display: none; }           /* hide top-bar auth; it moves into the slide-out menu */
+  .hamburger { display: flex; flex-shrink: 0; margin-left: auto; }
+  .hamburger span { width: 28px; height: 3px; }
+
+  .nav-links { display: none; flex-direction: column; position: fixed; top: 65px; left: 0; right: 0; bottom: 0; background: var(--darker); padding: 1rem 1rem 0; overflow-y: auto; z-index: 999; }
   .nav-links.open { display: flex; }
-  .nav-links > li > a,
-  .nav-links > li > .nav-drop-trigger { padding: 0.65rem 0.9rem; font-size: 0.85rem; }
+  .nav-links > li:not(.nav-mobile-auth) > a,
+  .nav-links > li:not(.nav-mobile-auth) > .nav-drop-trigger { padding: 0.75rem 0.9rem; font-size: 0.9rem; border-bottom: 1px solid var(--border); }
   .dropdown-menu { position: static; border: none; border-left: 3px solid var(--border); margin-left: 1rem; box-shadow: none; display: none; }
   .dropdown-menu li a { font-size: 0.82rem; padding: 0.55rem 1rem; }
   .dropdown.open .dropdown-menu { display: block; }
-  .hamburger { display: flex; }
-  .hamburger span { width: 28px; height: 3px; }
+
+  /* Mobile auth — injected at bottom of slide-out menu */
+  .nav-mobile-auth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    margin-top: auto;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .nav-mobile-auth .nav-auth-signin {
+    font-size: 0.85rem; padding: 0.5rem 1rem; color: var(--muted);
+    font-family: 'Oswald', sans-serif; font-weight: 400; letter-spacing: 0.04em;
+  }
+  .nav-mobile-auth .nav-auth-register {
+    font-size: 0.82rem; font-family: 'Oswald', sans-serif; font-weight: 600;
+    letter-spacing: 0.05em; border: 1px solid var(--gold); color: var(--gold);
+    padding: 0.5rem 1.2rem; border-radius: 3px;
+  }
+  .nav-mobile-auth .nav-user-name {
+    font-size: 0.85rem; color: var(--gold); font-family: 'Oswald', sans-serif;
+  }
+  .nav-mobile-auth .nav-signout-btn {
+    font-size: 0.78rem; padding: 0.45rem 1rem; min-height: 40px;
+  }
 
   /* Layout */
   .two-col { grid-template-columns: 1fr; }
   .section { padding: 2rem 1.1rem; }
   .hero { padding: 3.5rem 1.1rem 3rem; }
   .hero-era { padding: 2.5rem 1.1rem 2rem; }
+
+  /* Filter / tab bars — horizontal scroll so all options are reachable without page-scroll */
+  .checklist-tabs,
+  .year-filter-bar,
+  .hof-filter-bar,
+  .auto-filter-bar {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 6px;
+    /* right-fade hint that more buttons exist */
+    -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+    mask-image: linear-gradient(to right, black 80%, transparent 100%);
+  }
+  .checklist-tabs::-webkit-scrollbar,
+  .year-filter-bar::-webkit-scrollbar,
+  .hof-filter-bar::-webkit-scrollbar,
+  .auto-filter-bar::-webkit-scrollbar { display: none; }
+  /* Prevent individual buttons from shrinking */
+  .tab-btn, .year-btn, .filter-btn { flex-shrink: 0; }
+
+  /* Better touch targets for all interactive controls */
+  .tab-btn, .year-btn, .filter-btn, .btn-small { min-height: 40px; }
 
   /* Wrestlers layout: stack sidebar above detail */
   .wl-layout { grid-template-columns: 1fr; }
