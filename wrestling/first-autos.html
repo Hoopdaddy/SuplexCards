@@ -326,6 +326,8 @@ const autoData = [
 ];
 
 const setId = 'first-auto';
+// Stable index map so sort order doesn't corrupt localStorage/cloud keys
+const origIdxMap = new Map(autoData.map((w, i) => [w, i]));
 
 function getTypePill(type) {
   if (type === 'On-Card') return `<span class="type-pill" style="background:rgba(46,204,113,0.15);color:var(--green);">On-Card</span>`;
@@ -335,15 +337,16 @@ function getTypePill(type) {
 function renderTable(data) {
   const tbody = document.getElementById('autoBody');
   tbody.innerHTML = '';
-  data.forEach((w, i) => {
-    const key = `${setId}-${i}`;
+  data.forEach((w) => {
+    const origIdx = origIdxMap.get(w);
+    const key     = `${setId}-${origIdx}`;
     const checked = localStorage.getItem(key) === '1';
     const tr = document.createElement('tr');
     tr.dataset.tags = w.tags.join(' ');
-    tr.dataset.idx  = i;
+    tr.dataset.idx  = origIdx;
     if (checked) tr.classList.add('owned');
     tr.innerHTML = `
-      <td class="col-check"><input type="checkbox" id="${key}" value="${i}" ${checked?'checked':''}></td>
+      <td class="col-check"><input type="checkbox" id="${key}" value="${origIdx}" ${checked?'checked':''}></td>
       <td class="col-name">${w.name}</td>
       <td class="col-year">${w.hof}</td>
       <td class="col-year" style="color:var(--muted)">${w.year}</td>
@@ -354,9 +357,17 @@ function renderTable(data) {
     `;
     tbody.appendChild(tr);
     document.getElementById(key).addEventListener('change', function() {
-      localStorage.setItem(key, this.checked ? '1' : '0');
-      this.closest('tr').classList.toggle('owned', this.checked);
+      const isChecked = this.checked;
+      localStorage.setItem(key, isChecked ? '1' : '0');
+      this.closest('tr').classList.toggle('owned', isChecked);
       updateProgress();
+      if (window.SUPABASE_CHECKLIST && window.SB_AUTH?.getUser()) {
+        SUPABASE_CHECKLIST.sync(isChecked ? 'add' : 'remove', {
+          id: key, setId: 'first-auto', setName: w.set,
+          year: w.year || null, num: '—', name: w.autoCard,
+          type: 'auto', link: 'first-autos.html'
+        });
+      }
     });
   });
   updateProgress();
@@ -418,6 +429,53 @@ document.querySelectorAll('.auto-table thead th[data-col]').forEach(th => {
 });
 
 renderTable(autoData);
+
+// ── Cloud sync ────────────────────────────────────────────────────────────────
+function allAutoKeys() {
+  return autoData.map((_, i) => `${setId}-${i}`);
+}
+
+async function autoSyncCloud() {
+  if (!window.SB_AUTH?.getUser() || !window.SUPABASE_CHECKLIST) return;
+  const lists = await SUPABASE_CHECKLIST.getAllChecklists();
+  if (!lists.length) return;
+  const activeId = localStorage.getItem('sc_active_list')
+    || lists.find(l => l.is_default)?.id
+    || lists[0]?.id;
+  if (!activeId) return;
+
+  const items    = await SUPABASE_CHECKLIST.getItems(activeId);
+  const cloudSet = new Set(items.map(it => it.id));
+
+  // Upload any locally-checked items not yet in the cloud
+  autoData.forEach((w, i) => {
+    const key = `${setId}-${i}`;
+    if (localStorage.getItem(key) === '1' && !cloudSet.has(key)) {
+      SUPABASE_CHECKLIST.sync('add', {
+        id: key, setId: 'first-auto', setName: w.set,
+        year: w.year || null, num: '—', name: w.autoCard,
+        type: 'auto', link: 'first-autos.html'
+      });
+      cloudSet.add(key);
+    }
+  });
+
+  // Update UI to match merged cloud state
+  allAutoKeys().forEach(key => {
+    const el = document.getElementById(key);
+    if (!el) return;
+    const inCloud = cloudSet.has(key);
+    el.checked = inCloud;
+    localStorage.setItem(key, inCloud ? '1' : '0');
+    el.closest('tr')?.classList.toggle('owned', inCloud);
+  });
+  updateProgress();
+}
+
+SB_AUTH.getClient().auth.onAuthStateChange(event => {
+  if (event === 'SIGNED_IN') setTimeout(autoSyncCloud, 400);
+});
+autoSyncCloud();
 </script>
 </body>
 </html>

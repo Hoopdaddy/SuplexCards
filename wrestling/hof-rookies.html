@@ -565,9 +565,17 @@ function renderTable(data) {
       tbody.appendChild(tr);
 
       document.getElementById(key).addEventListener('change', function() {
-        localStorage.setItem(key, this.checked ? '1' : '0');
-        this.closest('tr').classList.toggle('owned', this.checked);
+        const isChecked = this.checked;
+        localStorage.setItem(key, isChecked ? '1' : '0');
+        this.closest('tr').classList.toggle('owned', isChecked);
         updateProgress();
+        if (window.SUPABASE_CHECKLIST && window.SB_AUTH?.getUser()) {
+          SUPABASE_CHECKLIST.sync(isChecked ? 'add' : 'remove', {
+            id: key, setId: 'hof-rookie', setName: c.set,
+            year: w.cardYear || null, num: c.num, name: c.card,
+            type: 'base', link: 'hof-rookies.html'
+          });
+        }
       });
     });
   });
@@ -644,6 +652,51 @@ document.querySelectorAll('.hof-table thead th[data-col]').forEach(th => {
 
 // Init
 renderTable(hofData);
+
+// ── Cloud sync ────────────────────────────────────────────────────────────────
+async function hofSyncCloud() {
+  if (!window.SB_AUTH?.getUser() || !window.SUPABASE_CHECKLIST) return;
+  const lists = await SUPABASE_CHECKLIST.getAllChecklists();
+  if (!lists.length) return;
+  const activeId = localStorage.getItem('sc_active_list')
+    || lists.find(l => l.is_default)?.id
+    || lists[0]?.id;
+  if (!activeId) return;
+
+  const items   = await SUPABASE_CHECKLIST.getItems(activeId);
+  const cloudSet = new Set(items.map(it => it.id));
+
+  // Upload any locally-checked items not yet in the cloud
+  hofData.forEach((w, wi) => {
+    w.cards.forEach((c, ci) => {
+      const key = `${setId}-${wi}-${ci}`;
+      if (localStorage.getItem(key) === '1' && !cloudSet.has(key)) {
+        SUPABASE_CHECKLIST.sync('add', {
+          id: key, setId: 'hof-rookie', setName: c.set,
+          year: w.cardYear || null, num: c.num, name: c.card,
+          type: 'base', link: 'hof-rookies.html'
+        });
+        cloudSet.add(key);
+      }
+    });
+  });
+
+  // Update UI to match merged cloud state
+  allKeys().forEach(key => {
+    const el = document.getElementById(key);
+    if (!el) return;
+    const inCloud = cloudSet.has(key);
+    el.checked = inCloud;
+    localStorage.setItem(key, inCloud ? '1' : '0');
+    el.closest('tr')?.classList.toggle('owned', inCloud);
+  });
+  updateProgress();
+}
+
+SB_AUTH.getClient().auth.onAuthStateChange(event => {
+  if (event === 'SIGNED_IN') setTimeout(hofSyncCloud, 400);
+});
+hofSyncCloud();
 </script>
 </body>
 </html>
