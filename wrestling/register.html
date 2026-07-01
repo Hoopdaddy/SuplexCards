@@ -254,6 +254,7 @@
     const { error } = await SB_AUTH.signUp(email, pw, name);
 
     if (error) {
+      console.error('Supabase signUp error:', error, JSON.stringify(error));
       const err = document.getElementById('auth-error');
       const msg = (typeof error.message === 'string' && error.message.trim() && error.message !== '{}')
         ? error.message
