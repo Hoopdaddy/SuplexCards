@@ -255,7 +255,10 @@
 
     if (error) {
       const err = document.getElementById('auth-error');
-      err.textContent = error.message;
+      const msg = (typeof error.message === 'string' && error.message.trim() && error.message !== '{}')
+        ? error.message
+        : (error.error_description || error.code || 'Something went wrong. Please try again in a moment.');
+      err.textContent = msg;
       err.style.display = 'block';
       btn.disabled = false;
       btn.textContent = 'Create Account';
