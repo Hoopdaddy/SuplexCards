@@ -163,13 +163,13 @@ window.SB_AUTH = {
       password,
       options: {
         data: { display_name: displayName },
-        emailRedirectTo: 'https://suplexcards.cardboardmania.com/wrestling/auth-callback.html'
+        emailRedirectTo: 'https://suplexcards.cardboardmania.com/auth-callback.html'
       }
     }),
 
   resetPasswordEmail: (email) =>
     sb.auth.resetPasswordForEmail(email, {
-      redirectTo: 'https://suplexcards.cardboardmania.com/wrestling/reset-password.html'
+      redirectTo: 'https://suplexcards.cardboardmania.com/reset-password.html'
     }),
 
   updatePassword: (newPassword) =>
