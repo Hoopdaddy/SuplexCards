@@ -82,6 +82,25 @@
     .era-pill-link { cursor: pointer; transition: opacity 0.15s, transform 0.1s; }
     .era-pill-link:hover { opacity: 0.8; transform: translateY(-1px); }
 
+    .cl-callout {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--green);
+      padding: 0.85rem 1.2rem;
+      border-radius: 4px;
+      margin-bottom: 1.2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .cl-callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+    .cl-callout a { color: var(--gold); text-decoration: none; }
+    .cl-callout a:hover { text-decoration: underline; }
+
     .progress-summary {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -138,6 +157,11 @@
 </div>
 
 <div class="section">
+
+  <div class="cl-callout">
+    <span class="cl-callout-icon">✓</span>
+    <span>Check any card you own to track your collection. Checked cards are saved in your browser automatically and sync to your <a href="checklist.html">My Checklist</a> when signed in — so you can access your list from any device.</span>
+  </div>
 
   <div class="progress-summary" id="hofProgress">
     <div class="prog-stat">
