@@ -167,6 +167,46 @@ const CHECKLIST = (() => {
     }, true); // capture phase so we see it before bubbling stops
   }
 
+  // ── "Saving to" banner (shown once per era page section) ────────
+  async function updateDestBanner() {
+    const banners = document.querySelectorAll('.cl-dest-banner');
+    if (!banners.length) return;
+
+    const user = (typeof SB_AUTH !== 'undefined') ? SB_AUTH.getUser() : null;
+    let html;
+
+    if (user) {
+      let name = 'My Checklist';
+      try {
+        if (typeof SUPABASE_CHECKLIST !== 'undefined') {
+          const lists    = await SUPABASE_CHECKLIST.getAllChecklists();
+          const activeId = localStorage.getItem('sc_active_list');
+          const active   = lists.find(l => l.id === activeId) || lists[0];
+          if (active) name = active.name;
+        }
+      } catch {}
+      html = `<span class="cl-dest-icon">✓</span> Saving to <strong class="cl-dest-name">${name}</strong> &nbsp;·&nbsp; <a href="checklist.html">View Checklist →</a>`;
+    } else {
+      html = `<span class="cl-dest-icon">📋</span> Cards saved in this browser &nbsp;·&nbsp; <a href="login.html">Sign in</a> to sync across devices`;
+    }
+
+    banners.forEach(b => b.innerHTML = html);
+  }
+
+  function injectDestBanner() {
+    // Only inject on pages that have accordion checklist-bodies (era pages)
+    const sections = [...document.querySelectorAll('.section')].filter(s =>
+      s.querySelector('.checklist-body')
+    );
+    sections.forEach(section => {
+      if (section.querySelector('.cl-dest-banner')) return;
+      const banner = document.createElement('div');
+      banner.className = 'cl-dest-banner';
+      section.insertBefore(banner, section.firstChild);
+    });
+    updateDestBanner();
+  }
+
   // ── Init ────────────────────────────────────────────────────────
   function init() {
     if (document.readyState === 'loading') {
@@ -179,6 +219,7 @@ const CHECKLIST = (() => {
   function _run() {
     injectNav();
     wireCheckboxes();
+    injectDestBanner();
 
     // Also mark already-checked cards as "in checklist" from prior visits
     // (main.js already restores visual state; this just keeps the store in sync)
@@ -201,5 +242,5 @@ const CHECKLIST = (() => {
 
   init();
 
-  return { add, remove, has, getAll, count, clear, updateBadge };
+  return { add, remove, has, getAll, count, clear, updateBadge, updateDestBanner };
 })();

@@ -255,6 +255,7 @@ sb.auth.onAuthStateChange(async (event, session) => {
   _defaultChecklist = null;
   injectAuthNav();
   if (event === 'SIGNED_IN') await uploadLocalChecklist();
+  if (typeof CHECKLIST !== 'undefined') CHECKLIST.updateDestBanner?.();
 });
 
 // ── Public API ────────────────────────────────────────────────────

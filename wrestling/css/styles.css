@@ -1104,6 +1104,26 @@ footer {
 .footer-bottom a:hover { color: var(--gold); }
 .footer-disclaimer { text-align: center; flex: 1; min-width: 220px; }
 
+/* ── ACTIVE CHECKLIST DESTINATION BANNER ────────── */
+.cl-dest-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--green);
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.4rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+.cl-dest-banner a { color: var(--gold); text-decoration: none; }
+.cl-dest-banner a:hover { text-decoration: underline; }
+.cl-dest-banner strong.cl-dest-name { color: var(--text); font-weight: 500; }
+.cl-dest-icon { flex-shrink: 0; }
+
 @media (max-width: 800px) {
   .footer-cols { grid-template-columns: 1fr 1fr; text-align: left; }
   .footer-brand { grid-column: 1 / -1; }
