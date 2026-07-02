@@ -525,8 +525,8 @@
         });
         input.addEventListener('blur', save);
 
-        tab.innerHTML = '';
-        tab.appendChild(input);
+        // Replace the tab button with the input (can't nest input inside button — invalid HTML)
+        tab.parentNode.replaceChild(input, tab);
         setTimeout(() => { input.focus(); input.select(); }, 0);
       });
     });
