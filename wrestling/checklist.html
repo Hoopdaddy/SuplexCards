@@ -463,7 +463,7 @@
       <button class="cl-switcher-tab${list.id === _activeId ? ' active' : ''}" data-id="${list.id}">
         ${list.name}
         <span class="cl-tab-count">${list._count ?? ''}</span>
-        <button class="cl-tab-rename" data-id="${list.id}" title="Rename list">✏</button>
+        <span class="cl-tab-rename" data-id="${list.id}" title="Rename list">✏</span>
         ${_allLists.length > 1 ? `<span class="cl-tab-del" data-del="${list.id}" title="Delete list">✕</span>` : ''}
       </button>`).join('') +
       (_allLists.length < 5
