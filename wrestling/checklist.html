@@ -90,7 +90,14 @@
       padding: 0.7rem 1rem; background: var(--mid); cursor: pointer;
       user-select: none;
     }
-    .cl-set-name  { font-weight: 700; color: var(--text); font-size: 0.9rem; flex: 1; }
+    .cl-set-titlewrap { flex: 1; display: flex; align-items: center; gap: 0.45rem; min-width: 0; }
+    .cl-set-name  { font-weight: 700; color: var(--text); font-size: 0.9rem; }
+    .cl-set-rename {
+      color: var(--muted); font-size: 0.72rem; cursor: pointer;
+      opacity: 0.4; transition: opacity 0.15s, color 0.15s; flex-shrink: 0;
+    }
+    .cl-set-header:hover .cl-set-rename { opacity: 0.8; }
+    .cl-set-rename:hover { opacity: 1; color: var(--gold); }
     .cl-set-year  { color: var(--muted); font-size: 0.78rem; }
     .cl-set-count {
       font-size: 0.7rem; font-weight: 800; color: var(--gold);
@@ -616,7 +623,10 @@
       return `
         <div class="cl-set-group">
           <div class="cl-set-header" onclick="this.closest('.cl-set-group').classList.toggle('collapsed')">
-            <span class="cl-set-name">${group.setName || group.setId}</span>
+            <div class="cl-set-titlewrap">
+              <span class="cl-set-name">${group.setName || group.setId}</span>
+              <span class="cl-set-rename" data-set="${group.setId}" title="Rename this set">✏</span>
+            </div>
             <span class="cl-set-year">${group.year || ''}</span>
             <span class="cl-set-count">${group.cards.length} card${group.cards.length !== 1 ? 's' : ''}</span>
             <div class="cl-set-actions" onclick="event.stopPropagation()">
@@ -638,6 +648,35 @@
       btn.addEventListener('click', e => { e.stopPropagation(); exportSetCSV(btn.dataset.set, cards); }));
     list.querySelectorAll('.cl-set-btn[data-action="pdf"]').forEach(btn =>
       btn.addEventListener('click', e => { e.stopPropagation(); exportSetPDF(btn.dataset.set, cards); }));
+
+    list.querySelectorAll('.cl-set-rename').forEach(btn =>
+      btn.addEventListener('click', e => { e.stopPropagation(); renameSet(btn.dataset.set, cards); }));
+  }
+
+  // ── Rename a set group (updates set_name on every card in that set) ──
+  async function renameSet(setId, cards) {
+    const setCards = Object.values(cards).filter(c => c.setId === setId);
+    if (!setCards.length) return;
+    const current = setCards[0].setName || setId;
+    const val = prompt('Rename this set:', current);
+    if (!val || !val.trim() || val.trim() === current) return;
+    const newName = val.trim().slice(0, 80);
+
+    const user = SB_AUTH.getUser();
+    if (user && _activeId) {
+      await sb.from('checklist_items')
+        .update({ set_name: newName })
+        .eq('checklist_id', _activeId)
+        .eq('set_id', setId);
+      Object.values(_cloudCards).forEach(c => { if (c.setId === setId) c.setName = newName; });
+    } else {
+      try {
+        const raw = JSON.parse(localStorage.getItem('sc_list') || '{"version":2,"cards":{}}');
+        Object.values(raw.cards).forEach(c => { if (c.setId === setId) c.setName = newName; });
+        localStorage.setItem('sc_list', JSON.stringify(raw));
+      } catch {}
+    }
+    render();
   }
 
   // ── Per-set export helpers ────────────────────────────────────
