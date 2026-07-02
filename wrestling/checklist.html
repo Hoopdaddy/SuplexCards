@@ -17,22 +17,26 @@
       text-align: center;
     }
 
-    /* Editable checklist name */
+    /* Checklist name heading */
     .cl-name-wrap { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
     .cl-list-title {
-      font-size: 2rem; color: var(--gold); outline: none;
-      border-bottom: 2px solid transparent; cursor: text;
-      transition: border-color 0.15s; padding-bottom: 1px;
+      font-size: 2rem; color: var(--gold);
       font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em;
+      cursor: pointer;
     }
-    .cl-list-title:hover  { border-bottom-color: var(--border); }
-    .cl-list-title:focus  { border-bottom-color: var(--gold); cursor: text; }
+    .cl-list-title:hover { opacity: 0.85; }
     .cl-name-edit-icon {
       color: var(--muted); font-size: 0.75rem; cursor: pointer;
       opacity: 0.35; transition: opacity 0.15s;
     }
     .cl-name-wrap:hover .cl-name-edit-icon { opacity: 0.8; }
     .cl-name-edit-icon:hover { opacity: 1; color: var(--gold); }
+    .cl-title-input {
+      font-size: 2rem; color: var(--gold); background: transparent;
+      border: none; border-bottom: 2px solid var(--gold); outline: none;
+      font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em;
+      padding-bottom: 1px; min-width: 4ch; width: auto; max-width: 100%;
+    }
 
     /* Guest mode pill */
     .cl-mode-pill {
@@ -254,7 +258,7 @@
 <div class="cl-hero">
   <!-- Editable checklist name -->
   <div class="cl-name-wrap">
-    <h1 class="cl-list-title" id="cl-list-title" contenteditable="true" spellcheck="false">My Checklist</h1>
+    <h1 class="cl-list-title" id="cl-list-title">My Checklist</h1>
     <span class="cl-name-edit-icon" title="Click title to rename">✏️</span>
   </div>
 
@@ -385,57 +389,51 @@
   // ── Title element ─────────────────────────────────────────────
   const titleEl = document.getElementById('cl-list-title');
 
-  function setTitle(text, editable) {
+  function setTitle(text) {
     titleEl.textContent = text;
-    titleEl.contentEditable = editable ? 'true' : 'false';
-    titleEl.style.cursor = editable ? 'text' : 'default';
   }
 
-  // Pencil icon focuses the title for editing
-  document.querySelector('.cl-name-edit-icon')?.addEventListener('click', () => {
-    titleEl.focus();
-    const range = document.createRange();
-    range.selectNodeContents(titleEl);
-    range.collapse(false);
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
-  });
+  function startTitleEdit() {
+    if (document.querySelector('.cl-title-input')) return; // already editing
+    const user    = SB_AUTH.getUser();
+    const current = titleEl.textContent.trim();
 
-  titleEl.addEventListener('blur', async () => {
-    const val = titleEl.textContent.trim();
-    const user = SB_AUTH.getUser();
-    if (!val) {
-      setTitle(user ? (_allLists.find(l => l.id === _activeId)?.name || 'My Checklist') : (localStorage.getItem(NAME_KEY) || 'My Checklist'), true);
-      return;
-    }
-    if (user && _activeId) {
-      await SUPABASE_CHECKLIST.renameChecklist(_activeId, val);
-      const list = _allLists.find(l => l.id === _activeId);
-      if (list) list.name = val;
-      renderSwitcher();
-    } else {
-      localStorage.setItem(NAME_KEY, val);
-    }
-  });
+    const input   = document.createElement('input');
+    input.type      = 'text';
+    input.value     = current;
+    input.maxLength = 50;
+    input.className = 'cl-title-input';
 
-  titleEl.addEventListener('keydown', e => {
-    if (e.key === 'Enter')  { e.preventDefault(); titleEl.blur(); }
-    if (e.key === 'Escape') {
-      const user = SB_AUTH.getUser();
-      setTitle(user ? (_allLists.find(l => l.id === _activeId)?.name || 'My Checklist') : (localStorage.getItem(NAME_KEY) || 'My Checklist'), true);
-      titleEl.blur();
-    }
-  });
+    let saved = false;
+    const save = async () => {
+      if (saved) return; saved = true;
+      const val = input.value.trim() || current;
+      if (val !== current) {
+        if (user && _activeId) {
+          await SUPABASE_CHECKLIST.renameChecklist(_activeId, val);
+          const list = _allLists.find(l => l.id === _activeId);
+          if (list) list.name = val;
+          renderSwitcher();
+        } else {
+          localStorage.setItem(NAME_KEY, val);
+        }
+      }
+      titleEl.textContent = val;
+      input.parentNode?.replaceChild(titleEl, input);
+    };
 
-  titleEl.addEventListener('input', () => {
-    if (titleEl.textContent.length > 50) {
-      titleEl.textContent = titleEl.textContent.slice(0, 50);
-      const r = document.createRange();
-      r.selectNodeContents(titleEl); r.collapse(false);
-      window.getSelection().removeAllRanges();
-      window.getSelection().addRange(r);
-    }
-  });
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter')  { e.preventDefault(); input.blur(); }
+      if (e.key === 'Escape') { saved = true; input.parentNode?.replaceChild(titleEl, input); }
+    });
+    input.addEventListener('blur', save);
+
+    titleEl.parentNode.replaceChild(input, titleEl);
+    setTimeout(() => { input.focus(); input.select(); }, 0);
+  }
+
+  titleEl.addEventListener('click', startTitleEdit);
+  document.querySelector('.cl-name-edit-icon')?.addEventListener('click', startTitleEdit);
 
   // ── Auth pill + nudge ─────────────────────────────────────────
   function updateAuthUI() {
