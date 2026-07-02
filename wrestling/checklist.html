@@ -506,9 +506,11 @@
     const newBtn = document.getElementById('btn-new-list');
     if (newBtn) {
       newBtn.addEventListener('click', async () => {
-        const name = prompt('Name your new list:', 'New List');
-        if (!name?.trim()) return;
-        const { data, error } = await SUPABASE_CHECKLIST.createChecklist(name.trim());
+        // Auto-assign a generic name (first free "Checklist N"); rename via the tab afterward
+        const existing = new Set(_allLists.map(l => l.name));
+        let n = _allLists.length + 1, name;
+        do { name = `Checklist ${n++}`; } while (existing.has(name));
+        const { data, error } = await SUPABASE_CHECKLIST.createChecklist(name);
         if (error) { alert(error); return; }
         _activeId = data.id;
         SUPABASE_CHECKLIST.setActive(data.id);
