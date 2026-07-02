@@ -393,47 +393,24 @@
     titleEl.textContent = text;
   }
 
-  function startTitleEdit() {
-    if (document.querySelector('.cl-title-input')) return; // already editing
-    const user    = SB_AUTH.getUser();
-    const current = titleEl.textContent.trim();
-
-    const input   = document.createElement('input');
-    input.type      = 'text';
-    input.value     = current;
-    input.maxLength = 50;
-    input.className = 'cl-title-input';
-
-    let saved = false;
-    const save = async () => {
-      if (saved) return; saved = true;
-      const val = input.value.trim() || current;
-      if (val !== current) {
-        if (user && _activeId) {
-          await SUPABASE_CHECKLIST.renameChecklist(_activeId, val);
-          const list = _allLists.find(l => l.id === _activeId);
-          if (list) list.name = val;
-          renderSwitcher();
-        } else {
-          localStorage.setItem(NAME_KEY, val);
-        }
-      }
-      titleEl.textContent = val;
-      input.parentNode?.replaceChild(titleEl, input);
-    };
-
-    input.addEventListener('keydown', e => {
-      if (e.key === 'Enter')  { e.preventDefault(); input.blur(); }
-      if (e.key === 'Escape') { saved = true; input.parentNode?.replaceChild(titleEl, input); }
-    });
-    input.addEventListener('blur', save);
-
-    titleEl.parentNode.replaceChild(input, titleEl);
-    setTimeout(() => { input.focus(); input.select(); }, 0);
+  async function renameActive(currentName) {
+    const val = prompt('Rename checklist:', currentName);
+    if (!val || !val.trim() || val.trim() === currentName) return;
+    const newName = val.trim().slice(0, 50);
+    const user = SB_AUTH.getUser();
+    if (user && _activeId) {
+      await SUPABASE_CHECKLIST.renameChecklist(_activeId, newName);
+      const list = _allLists.find(l => l.id === _activeId);
+      if (list) list.name = newName;
+      renderSwitcher();
+    } else {
+      localStorage.setItem(NAME_KEY, newName);
+    }
+    setTitle(newName);
   }
 
-  titleEl.addEventListener('click', startTitleEdit);
-  document.querySelector('.cl-name-edit-icon')?.addEventListener('click', startTitleEdit);
+  titleEl.addEventListener('click', () => renameActive(titleEl.textContent.trim()));
+  document.querySelector('.cl-name-edit-icon')?.addEventListener('click', () => renameActive(titleEl.textContent.trim()));
 
   // ── Auth pill + nudge ─────────────────────────────────────────
   function updateAuthUI() {
@@ -492,40 +469,18 @@
     });
 
     el.querySelectorAll('.cl-tab-rename').forEach(btn => {
-      btn.addEventListener('click', e => {
+      btn.addEventListener('click', async e => {
         e.stopPropagation();
         const id  = btn.dataset.id;
         const lst = _allLists.find(l => l.id === id);
         if (!lst) return;
-        const tab     = btn.closest('.cl-switcher-tab');
-        const oldName = lst.name;
-
-        const input = document.createElement('input');
-        input.type      = 'text';
-        input.value     = oldName;
-        input.className = 'cl-tab-rename-input';
-        input.maxLength = 50;
-
-        let saved = false;
-        const save = async () => {
-          if (saved) return; saved = true;
-          const val = input.value.trim();
-          if (val && val !== oldName) {
-            await SUPABASE_CHECKLIST.renameChecklist(id, val);
-            lst.name = val;
-            if (id === _activeId) setTitle(val, true);
-          }
-          renderSwitcher();
-        };
-        input.addEventListener('keydown', e2 => {
-          if (e2.key === 'Enter')  { e2.preventDefault(); input.blur(); }
-          if (e2.key === 'Escape') { saved = true; renderSwitcher(); }
-        });
-        input.addEventListener('blur', save);
-
-        // Replace the tab button with the input (can't nest input inside button — invalid HTML)
-        tab.parentNode.replaceChild(input, tab);
-        setTimeout(() => { input.focus(); input.select(); }, 0);
+        const val = prompt('Rename checklist:', lst.name);
+        if (!val || !val.trim() || val.trim() === lst.name) return;
+        const newName = val.trim().slice(0, 50);
+        await SUPABASE_CHECKLIST.renameChecklist(id, newName);
+        lst.name = newName;
+        if (id === _activeId) setTitle(newName);
+        renderSwitcher();
       });
     });
 
