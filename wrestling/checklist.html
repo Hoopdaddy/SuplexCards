@@ -401,7 +401,7 @@
   }
 
   async function renameActive(currentName) {
-    const val = prompt('Rename checklist:', currentName);
+    const val = prompt('Rename Collection:', currentName);
     if (!val || !val.trim() || val.trim() === currentName) return;
     const newName = val.trim().slice(0, 50);
     const user = SB_AUTH.getUser();
@@ -460,7 +460,7 @@
           // Clicking the active tab renames it
           const lst = _allLists.find(l => l.id === id);
           if (!lst) return;
-          const val = prompt('Rename checklist:', lst.name);
+          const val = prompt('Rename Collection:', lst.name);
           if (!val || !val.trim() || val.trim() === lst.name) return;
           const newName = val.trim().slice(0, 50);
           await SUPABASE_CHECKLIST.renameChecklist(id, newName);
@@ -493,7 +493,7 @@
         const id  = btn.dataset.id;
         const lst = _allLists.find(l => l.id === id);
         if (!lst) return;
-        const val = prompt('Rename checklist:', lst.name);
+        const val = prompt('Rename Collection:', lst.name);
         if (!val || !val.trim() || val.trim() === lst.name) return;
         const newName = val.trim().slice(0, 50);
         await SUPABASE_CHECKLIST.renameChecklist(id, newName);
