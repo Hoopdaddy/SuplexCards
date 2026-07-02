@@ -144,6 +144,7 @@ nav {
   cursor: pointer; transition: all 0.12s; text-transform: uppercase;
 }
 .nav-signout-btn:hover { border-color: #f87171; color: #f87171; }
+.nav-mobile-auth { display: none; } /* hidden on desktop; mobile media query overrides to flex */
 .nav-list-select {
   background: var(--darker); border: 1px solid var(--border);
   color: var(--gold); border-radius: 3px; padding: 0.18rem 0.35rem;
