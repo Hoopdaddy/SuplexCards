@@ -63,6 +63,9 @@
     .hof-table tbody tr { transition: background 0.1s; }
     .hof-table tbody tr:hover td { background: rgba(255,255,255,0.03); }
     .hof-table tbody tr.hidden { display: none; }
+    .hof-table tbody tr.ineligible td { opacity: 0.5; font-style: italic; }
+    .hof-table tbody tr.ineligible:hover td { background: transparent; }
+    .ineligible-mark { color: var(--muted); }
 
     .hof-table td {
       padding: 0.6rem 0.9rem;
@@ -264,35 +267,36 @@
 // columns: name, hof (class year), cardYear, era, tags,
 //   cards: [{ card, set, num, note }]
 const hofData = [
-  // GOLDEN ERA
+  // ── EXISTING (order preserved; cards updated per client list) ──
   { name:"Hulk Hogan",          hof:2005, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
     { card:"Hulk Hogan RC",          set:"1982 Wrestling All-Stars Series A", num:"#2",  note:"True RC — predates 1985 Topps by 3 years. Shared pose with Andre." },
   ]},
-  { name:"Randy Savage",        hof:2015, cardYear:1987, era:"Early WWF", tags:["golden"], cards:[
-    { card:"Randy Savage RC KEY",    set:"1987 Topps WWF",                    num:"#7",  note:"Macho Man's true RC with Miss Elizabeth." },
-    { card:"Randy Savage Sticker",   set:"1987 Topps WWF Stickers",           num:"#28", note:"Sticker parallel from same year set." },
+  { name:"Randy Savage",        hof:2015, cardYear:1985, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Randy Savage RC",        set:"1985 O-Pee-Chee Pro Wrestling",     num:"#63", note:"Earliest Macho Man card — Canadian O-Pee-Chee." },
+    { card:"Randy Savage KEY",        set:"1987 Topps WWF",                   num:"#7",  note:"Macho Man with Miss Elizabeth." },
+    { card:"Randy Savage Sticker",   set:"1987 Topps WWF Stickers",           num:"#28", note:"Sticker parallel." },
   ]},
-  { name:"Andre the Giant",     hof:1993, cardYear:1982, era:"Early WWF", tags:["golden","tag"], cards:[
-    { card:"Andre the Giant RC",     set:"1982 Wrestling All-Stars Series A", num:"#2",  note:"True RC — shared card with Hulk Hogan." },
+  { name:"Andre the Giant",     hof:1993, cardYear:1974, era:"Pre-1980", tags:["golden","tag"], cards:[
+    { card:"Andre the Giant RC",     set:"1974 Yamakatsu",                    num:"—",   note:"Earliest Andre card — Japanese Yamakatsu release." },
   ]},
   { name:"Roddy Piper",         hof:2005, cardYear:1985, era:"Early WWF", tags:["golden"], cards:[
-    { card:"Roddy Piper RC",         set:"1985 Topps WWF",                    num:"#3",  note:"True RC — Piper was not in the 1982 All-Stars sets." },
+    { card:"Roddy Piper RC",         set:"1985 Topps WWF",                    num:"#7",  note:"True RC — Piper was not in the 1982 All-Stars sets." },
     { card:"Roddy Piper Sticker",    set:"1985 Topps WWF Stickers",           num:"S-5", note:"Sticker parallel from same year set." },
   ]},
   { name:"Iron Sheik",          hof:2005, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
     { card:"Iron Sheik RC",          set:"1982 Wrestling All-Stars Series B", num:"#25", note:"True RC — in the set before his WWF title win." },
   ]},
   { name:"Nikolai Volkoff",     hof:2005, cardYear:1985, era:"Early WWF", tags:["golden"], cards:[
-    { card:"Nikolai Volkoff",        set:"1985 Topps WWF",                    num:"#6",  note:"" },
+    { card:"Nikolai Volkoff RC",     set:"1985 O-Pee-Chee Pro Wrestling",     num:"#1",  note:"Canadian O-Pee-Chee rookie." },
   ]},
-  { name:"Greg Valentine",      hof:2004, cardYear:1985, era:"Early WWF", tags:["golden"], cards:[
-    { card:"Greg Valentine",         set:"1985 Topps WWF",                    num:"#8",  note:"" },
+  { name:"Greg Valentine",      hof:2004, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Greg Valentine RC",      set:"1982 Wrestling All-Stars Series B", num:"#33", note:"True RC — predates 1985 Topps." },
   ]},
   { name:"Junkyard Dog",        hof:2004, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
     { card:"Junkyard Dog RC",        set:"1982 Wrestling All-Stars Series A", num:"#5",  note:"True RC — Series A predates 1985 Topps by 3 years." },
   ]},
-  { name:"Tito Santana",        hof:2004, cardYear:1985, era:"Early WWF", tags:["golden"], cards:[
-    { card:"Tito Santana",           set:"1985 Topps WWF",                    num:"#10", note:"" },
+  { name:"Tito Santana",        hof:2004, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Tito Santana RC",        set:"1982 Wrestling All-Stars Series B", num:"#13", note:"True RC — predates 1985 Topps." },
   ]},
   { name:"Ricky Steamboat",     hof:2009, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
     { card:"Ricky Steamboat RC",     set:"1982 Wrestling All-Stars Series B", num:"#11", note:"True RC — first Steamboat card ever produced." },
@@ -314,54 +318,55 @@ const hofData = [
   { name:"Jake Roberts",        hof:2014, cardYear:1986, era:"Early WWF", tags:["golden"], cards:[
     { card:"Jake Roberts RC",        set:"1986 Topps WWF",                    num:"#9",  note:"DDT Jake's debut card." },
   ]},
-  { name:"Superstar Billy Graham",hof:2004,cardYear:1975,era:"Pre-1980", tags:["golden"], cards:[
-    { card:"Billy Graham",           set:"Pre-1980 Regional",                 num:"—",   note:"Territory-era regional card." },
+  { name:"Superstar Billy Graham",hof:2004,cardYear:1983,era:"Early WWF", tags:["golden"], cards:[
+    { card:"Billy Graham RC",        set:"1983 Wrestling All-Stars",          num:"#1",  note:"Card #1 of the set." },
   ]},
-  { name:"Harley Race",         hof:2004, cardYear:1975, era:"Pre-1980", tags:["golden"], cards:[
-    { card:"Harley Race",            set:"Pre-1980 NWA Regional",             num:"—",   note:"NWA era promotional card." },
+  { name:"Harley Race",         hof:2004, cardYear:1976, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"Harley Race RC",         set:"1976 Yamakatsu Wrestling",          num:"#21", note:"Japanese Yamakatsu — NWA World Champion era." },
   ]},
   { name:"Jimmy Snuka",         hof:1996, cardYear:1983, era:"Early WWF", tags:["golden"], cards:[
     { card:"Jimmy Snuka RC",         set:"1983 Wrestling All-Stars",          num:"#7",  note:"True RC — first Snuka card ever produced." },
   ]},
-  { name:"Koko B. Ware",        hof:2009, cardYear:1987, era:"Early WWF", tags:["golden"], cards:[
-    { card:"Koko B. Ware RC",        set:"1987 Topps WWF",                    num:"#17", note:"" },
+  { name:"Koko B. Ware",        hof:2009, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Koko B. Ware RC",        set:"1982 Wrestling All-Stars Series B", num:"#35", note:"True RC as Sweet Brown Sugar — predates 1985 Topps." },
   ]},
   { name:"Jim Duggan",          hof:2011, cardYear:1983, era:"Early WWF", tags:["golden"], cards:[
     { card:"Jim Duggan RC",          set:"1983 Wrestling All-Stars",          num:"#10", note:"True RC — predates 1985 Topps." },
   ]},
   { name:"Hillbilly Jim",       hof:2018, cardYear:1985, era:"Early WWF", tags:["golden"], cards:[
-    { card:"Hillbilly Jim RC",       set:"1985 Topps WWF",                    num:"#13", note:"" },
+    { card:"Hillbilly Jim RC",       set:"1985 Topps WWF",                    num:"#15", note:"" },
   ]},
   { name:"Brutus Beefcake",     hof:2019, cardYear:1985, era:"Early WWF", tags:["golden"], cards:[
-    { card:"Brutus Beefcake RC",     set:"1985 Topps WWF",                    num:"#11", note:"" },
+    { card:"Brutus Beefcake RC",     set:"1985 Topps WWF",                    num:"#10", note:"" },
   ]},
-  { name:"Honky Tonk Man",      hof:2019, cardYear:1986, era:"Early WWF", tags:["golden"], cards:[
-    { card:"Honky Tonk Man RC",      set:"1986 Topps WWF",                    num:"#29", note:"Longest-reigning IC Champ." },
+  { name:"Honky Tonk Man",      hof:2019, cardYear:1987, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Honky Tonk Man RC",      set:"1987 Topps WWF",                    num:"#13", note:"Longest-reigning IC Champ." },
   ]},
   { name:"Mr. Perfect",         hof:2007, cardYear:1983, era:"Early WWF", tags:["golden"], cards:[
     { card:"Curt Hennig RC",         set:"1983 Wrestling All-Stars",          num:"#5",  note:"True RC as Curt Hennig — predates WWE career by years." },
   ]},
-  { name:"The Ultimate Warrior", hof:2014, cardYear:1990, era:"Golden Age", tags:["golden"], cards:[
-    { card:"Ultimate Warrior RC",    set:"1990 Classic WWF",                  num:"#3",  note:"Key card — massive demand." },
+  { name:"The Ultimate Warrior", hof:2014, cardYear:1989, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Ultimate Warrior RC",    set:"1989 WWF Superstars",               num:"#11", note:"Earliest Warrior card." },
   ]},
-  { name:"The Undertaker",      hof:2022, cardYear:1990, era:"Golden Age", tags:["modern"], cards:[
-    { card:"Undertaker RC",          set:"1990 Classic WWF",                  num:"#57", note:"WWE debut card. Highly sought." },
+  { name:"The Undertaker",      hof:2022, cardYear:1991, era:"Golden Age", tags:["modern"], cards:[
+    { card:"Undertaker RC",          set:"1991 Classic WWF",                  num:"#64", note:"WWE debut card. Highly sought." },
   ]},
   { name:"Shawn Michaels",      hof:2011, cardYear:1990, era:"Golden Age", tags:["golden"], cards:[
     { card:"Shawn Michaels RC",      set:"1990 Classic WWF",                  num:"#25", note:"The Rockers era first card." },
     { card:"Shawn Michaels",         set:"1990 Classic WWF Series 2",         num:"#76", note:"Second Classic WWF card same year." },
+    { card:"Shawn Michaels",         set:"1992 Merlin Series 1",              num:"#80", note:"UK Merlin release." },
   ]},
-  { name:"Ted DiBiase",         hof:2010, cardYear:1990, era:"Golden Age", tags:["golden"], cards:[
-    { card:"Ted DiBiase RC",         set:"1990 Classic WWF",                  num:"#5",  note:"Million Dollar Man." },
+  { name:"Ted DiBiase",         hof:2010, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Ted DiBiase RC",         set:"1982 Wrestling All-Stars Series A", num:"#4",  note:"True RC — predates 1990 Classic." },
   ]},
-  { name:"Big Boss Man",        hof:2016, cardYear:1990, era:"Golden Age", tags:["golden"], cards:[
-    { card:"Big Boss Man RC",        set:"1990 Classic WWF",                  num:"#10", note:"" },
+  { name:"Big Boss Man",        hof:2016, cardYear:1988, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Big Bubba Rogers RC",    set:"1988 NWA Wonderama Superstars",     num:"#283",note:"Earliest card, as Big Bubba Rogers." },
   ]},
   { name:"Dusty Rhodes",        hof:2007, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
     { card:"Dusty Rhodes RC",        set:"1982 Wrestling All-Stars Series A", num:"#6",  note:"True RC — first Dusty Rhodes card ever produced." },
   ]},
-  { name:"Sgt. Slaughter",      hof:2004, cardYear:1990, era:"Golden Age", tags:["golden"], cards:[
-    { card:"Sgt. Slaughter RC",      set:"1990 Classic WWF",                  num:"#31", note:"" },
+  { name:"Sgt. Slaughter",      hof:2004, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Sgt. Slaughter RC",      set:"1982 Wrestling All-Stars Series B", num:"#14", note:"True RC — predates 1990 Classic." },
   ]},
   { name:"Hawk (LOD)",          hof:2011, cardYear:1990, era:"Golden Age", tags:["golden","tag"], cards:[
     { card:"Hawk RC",                set:"1990 Classic WWF",                  num:"#33", note:"LOD debuted in WWF set." },
@@ -372,77 +377,86 @@ const hofData = [
   { name:"Ric Flair",           hof:2008, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
     { card:"Ric Flair RC",           set:"1982 Wrestling All-Stars Series A", num:"#27", note:"True RC — NWA Champion at time of issue. Predates all WWE sets." },
   ]},
-  { name:"Sting",               hof:2016, cardYear:1995, era:"Golden Age", tags:["golden"], cards:[
-    { card:"Sting RC",               set:"1995 Cardz WCW",                    num:"#3",  note:"" },
+  { name:"Sting",               hof:2016, cardYear:1988, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Sting RC",               set:"1988 NWA Wonderama Superstars",     num:"#194",note:"Earliest Sting card." },
+    { card:"Sting",                  set:"1995 Cardz WCW",                    num:"#3",  note:"WCW-era card." },
     { card:"Sting",                  set:"1995 Cardz WCW Main Event",         num:"#2",  note:"Second 1995 WCW card." },
   ]},
-  { name:"Stone Cold Steve Austin", hof:2009, cardYear:1995, era:"Golden Age", tags:["golden"], cards:[
-    { card:"Stunning Steve Austin RC",set:"1995 Cardz WCW",                   num:"#13", note:"Rarest Austin card — WCW era before character change." },
+  { name:"Stone Cold Steve Austin", hof:2009, cardYear:1991, era:"Golden Age", tags:["golden"], cards:[
+    { card:"Steve Austin RC",        set:"1991 Cromy",                        num:"—",   note:"Earliest Austin card — Argentine Cromy release." },
+    { card:"Stunning Steve Austin",  set:"1995 Cardz WCW",                    num:"#13", note:"WCW era before character change." },
     { card:"Steve Austin",           set:"1995 Cardz WCW Main Event",         num:"#4",  note:"Second 1995 WCW card." },
   ]},
-  { name:"Goldberg",            hof:2018, cardYear:1999, era:"Golden Age", tags:["modern"], cards:[
-    { card:"Goldberg RC",            set:"1999 Topps WCW/nWo Nitro",          num:"#1",  note:"173-0. Card #1. Perfect symmetry." },
-    { card:"Goldberg",               set:"1999 Topps WCW Embossed",           num:"#11", note:"Second 1999 WCW product." },
+  { name:"Goldberg",            hof:2018, cardYear:1998, era:"Golden Age", tags:["modern"], cards:[
+    { card:"Goldberg RC",            set:"1998 Topps WCW/nWo",                num:"#68", note:"Earliest Goldberg card." },
+    { card:"Goldberg",               set:"1999 Topps WCW/nWo Nitro",          num:"#1",  note:"173-0. Card #1." },
   ]},
   { name:"Booker T",            hof:2013, cardYear:1995, era:"Golden Age", tags:["modern"], cards:[
     { card:"Booker T RC",            set:"1995 Cardz WCW",                    num:"#15", note:"Harlem Heat era first card." },
-    { card:"Booker T",               set:"1995 Cardz WCW Main Event",         num:"#15", note:"Second 1995 WCW card." },
+    { card:"Booker T",               set:"1995 Cardz WCW Main Event",         num:"#16", note:"Second 1995 WCW card." },
   ]},
-  { name:"Rey Mysterio",        hof:2023, cardYear:1999, era:"Golden Age", tags:["modern"], cards:[
-    { card:"Rey Mysterio Jr. RC",    set:"1999 Topps WCW/nWo Nitro",          num:"#12", note:"619's first major card." },
+  { name:"Rey Mysterio",        hof:2023, cardYear:1998, era:"Golden Age", tags:["modern"], cards:[
+    { card:"Rey Mysterio RC",        set:"1998 Topps WCW/nWo",                num:"#32", note:"619's earliest major card." },
+    { card:"Rey Mysterio Jr.",       set:"1999 Topps WCW/nWo Nitro",          num:"#12", note:"Second WCW card." },
   ]},
-  { name:"Eddie Guerrero",      hof:2006, cardYear:1999, era:"Golden Age", tags:["golden"], cards:[
-    { card:"Eddie Guerrero RC",      set:"1999 Topps WCW/nWo Nitro",          num:"#13", note:"Lie, Cheat &amp; Steal — posthumous HOF." },
+  { name:"Eddie Guerrero",      hof:2006, cardYear:1995, era:"Golden Age", tags:["golden"], cards:[
+    { card:"Eddy Guerrero RC",       set:"1995 BBM Pro Wrestling",            num:"#33", note:"Japanese BBM rookie — Lie, Cheat &amp; Steal." },
   ]},
-  { name:"Kurt Angle",          hof:2017, cardYear:2000, era:"Golden Age", tags:["golden"], cards:[
-    { card:"Kurt Angle RC",          set:"2000 Fleer WWF WrestleMania",       num:"#7",  note:"Olympic Gold Medalist — Attitude RC." },
+  { name:"Kurt Angle",          hof:2017, cardYear:2000, era:"Fleer", tags:["attitude"], cards:[
+    { card:"Kurt Angle RC",          set:"2000 Comic Images WWF No Mercy",    num:"#38", note:"Olympic Gold Medalist — earliest card." },
+    { card:"Kurt Angle",             set:"2000 Fleer WWF WrestleMania",       num:"#7",  note:"Fleer rookie." },
     { card:"Kurt Angle",             set:"2000 Fleer WWF Fully Loaded",       num:"#18", note:"Second 2000 Fleer product." },
   ]},
-  { name:"Edge",                hof:2012, cardYear:2000, era:"Golden Age", tags:["attitude"], cards:[
-    { card:"Edge RC",                set:"2000 Fleer WWF WrestleMania",       num:"#9",  note:"Edge's first WWE-licensed card." },
+  { name:"Edge",                hof:2012, cardYear:1998, era:"Golden Age", tags:["attitude"], cards:[
+    { card:"Edge RC",                set:"1998 WWF Superstarz",               num:"#46", note:"Earliest Edge card." },
+    { card:"Edge",                   set:"2000 Fleer WWF WrestleMania",       num:"#9",  note:"Fleer card." },
     { card:"Edge",                   set:"2000 Fleer WWF Fully Loaded",       num:"#9",  note:"Second 2000 Fleer product." },
   ]},
-  { name:"Chris Jericho",       hof:2025, cardYear:2000, era:"Golden Age", tags:["attitude"], cards:[
+  { name:"Chris Jericho",       hof:2025, cardYear:2000, era:"Fleer", tags:["attitude"], cards:[
     { card:"Chris Jericho RC",       set:"2000 Fleer WWF WrestleMania",       num:"#8",  note:"Y2J's first WWF card." },
     { card:"Chris Jericho",          set:"2000 Fleer WWF Fully Loaded",       num:"#8",  note:"Second 2000 Fleer product." },
   ]},
-  { name:"Lita",                hof:2014, cardYear:2000, era:"Golden Age", tags:["attitude","women"], cards:[
+  { name:"Lita",                hof:2014, cardYear:2000, era:"Fleer", tags:["attitude","women"], cards:[
     { card:"Lita RC",                set:"2000 Fleer WWF WrestleMania",       num:"#15", note:"First Lita card alongside Hardy Boyz." },
+    { card:"Lita",                   set:"2001 Fleer WWF Raw Is War",         num:"#6",  note:"2001 Raw Is War card." },
   ]},
-  { name:"Trish Stratus",       hof:2013, cardYear:2000, era:"Golden Age", tags:["attitude","women"], cards:[
+  { name:"Trish Stratus",       hof:2013, cardYear:2000, era:"Fleer", tags:["attitude","women"], cards:[
     { card:"Trish Stratus RC",       set:"2000 Fleer WWF WrestleMania",       num:"#16", note:"Hall of Famer's debut card." },
+    { card:"Trish Stratus",          set:"2001 Fleer WWF Raw Is War",         num:"#17", note:"2001 Raw Is War card." },
   ]},
-  { name:"Matt Hardy",          hof:2020, cardYear:2000, era:"Golden Age", tags:["attitude","tag"], cards:[
+  { name:"Matt Hardy",          hof:2020, cardYear:2000, era:"Fleer", tags:["attitude","tag"], cards:[
     { card:"Matt Hardy RC",          set:"2000 Fleer WWF WrestleMania",       num:"#13", note:"" },
     { card:"Matt Hardy",             set:"2000 Fleer WWF Fully Loaded",       num:"#13", note:"Second 2000 Fleer product." },
   ]},
-  { name:"Jeff Hardy",          hof:2025, cardYear:2000, era:"Golden Age", tags:["attitude","tag"], cards:[
+  { name:"Jeff Hardy",          hof:2025, cardYear:2000, era:"Fleer", tags:["attitude","tag"], cards:[
     { card:"Jeff Hardy RC",          set:"2000 Fleer WWF WrestleMania",       num:"#14", note:"Charismatic Enigma's debut card." },
     { card:"Jeff Hardy",             set:"2000 Fleer WWF Fully Loaded",       num:"#14", note:"Second 2000 Fleer product." },
   ]},
-  { name:"Bubba Ray Dudley",    hof:2024, cardYear:2000, era:"Golden Age", tags:["attitude","tag"], cards:[
+  { name:"Bubba Ray Dudley",    hof:2024, cardYear:2000, era:"Fleer", tags:["attitude","tag"], cards:[
     { card:"Bubba Ray Dudley RC",    set:"2000 Fleer WWF WrestleMania",       num:"#23", note:"" },
   ]},
-  { name:"D-Von Dudley",        hof:2024, cardYear:2000, era:"Golden Age", tags:["attitude","tag"], cards:[
+  { name:"D-Von Dudley",        hof:2024, cardYear:2000, era:"Fleer", tags:["attitude","tag"], cards:[
     { card:"D-Von Dudley RC",        set:"2000 Fleer WWF WrestleMania",       num:"#22", note:"Testify! Dudley Boyz debut." },
   ]},
-  { name:"Rikishi",             hof:2015, cardYear:2000, era:"Golden Age", tags:["attitude"], cards:[
-    { card:"Rikishi RC",             set:"2000 Fleer WWF WrestleMania",       num:"#11", note:"" },
+  { name:"Rikishi",             hof:2015, cardYear:1993, era:"Golden Age", tags:["modern"], cards:[
+    { card:"Fatu RC",                set:"1993 Merlin",                       num:"#78", note:"Earliest card, as Fatu." },
+    { card:"Rikishi",                set:"2000 Comic Images WWF No Mercy",    num:"#40", note:"As Rikishi." },
   ]},
-  // ATTITUDE ERA
-  { name:"The Rock",            hof:2008, cardYear:2000, era:"Golden Age", tags:["attitude"], cards:[
+  { name:"The Rock",            hof:2008, cardYear:1997, era:"Golden Age", tags:["attitude"], cards:[
+    { card:"The Rock RC",            set:"1997 Cardinal WWF Trivia",          num:"—",   note:"Earliest Rock card." },
     { card:"The Rock",               set:"2000 Fleer WWF WrestleMania",       num:"#2",  note:"Most electrifying in sports entertainment." },
-    { card:"The Rock",               set:"2000 Fleer WWF Fully Loaded",       num:"#2",  note:"Second 2000 Fleer product." },
   ]},
-  { name:"Mick Foley",          hof:2013, cardYear:2000, era:"Golden Age", tags:["attitude"], cards:[
-    { card:"Mankind RC",             set:"2000 Fleer WWF WrestleMania",       num:"#5",  note:"First major card. Also appears as Cactus Jack &amp; Dude Love in other sets." },
+  { name:"Mick Foley",          hof:2013, cardYear:1995, era:"Golden Age", tags:["attitude"], cards:[
+    { card:"Cactus Jack RC",         set:"1995 BBM Pro Wrestling",            num:"#123",note:"Earliest Foley card, as Cactus Jack." },
+    { card:"Mankind",                set:"2000 Fleer WWF WrestleMania",       num:"#5",  note:"WWF Fleer card." },
   ]},
-  { name:"Triple H",            hof:2019, cardYear:2000, era:"Golden Age", tags:["attitude"], cards:[
-    { card:"Triple H RC",            set:"2000 Fleer WWF WrestleMania",       num:"#3",  note:"The Game's debut card in Fleer." },
-    { card:"Triple H",               set:"2000 Fleer WWF Fully Loaded",       num:"#3",  note:"Second 2000 Fleer product." },
+  { name:"Triple H",            hof:2019, cardYear:1995, era:"Golden Age", tags:["attitude"], cards:[
+    { card:"Triple H RC",            set:"1995 Panini WWF",                   num:"#25", note:"Earliest HHH card — Panini sticker." },
+    { card:"Triple H",               set:"2000 Fleer WWF WrestleMania",       num:"#3",  note:"The Game's Fleer card." },
   ]},
-  { name:"Rob Van Dam",         hof:2021, cardYear:1997, era:"Golden Age", tags:["attitude"], cards:[
-    { card:"Rob Van Dam RC",         set:"1997 Cardz ECW Hardcore Heaven",    num:"#3",  note:"Mr. Monday Night's rarest RC." },
+  { name:"Rob Van Dam",         hof:2021, cardYear:1996, era:"Golden Age", tags:["attitude"], cards:[
+    { card:"Rob Van Dam RC",         set:"1996 BBM New Japan Pro Wrestling",  num:"#62", note:"Earliest RVD card — Japanese BBM." },
+    { card:"Rob Van Dam",            set:"1997 Cardz ECW Hardcore Heaven",    num:"#3",  note:"ECW-era card." },
   ]},
   { name:"Tazz",                hof:2024, cardYear:1997, era:"Golden Age", tags:["attitude"], cards:[
     { card:"Tazz RC",                set:"1997 Cardz ECW Hardcore Heaven",    num:"#7",  note:"ECW Human Suplex Machine." },
@@ -450,45 +464,242 @@ const hofData = [
   { name:"Tommy Dreamer",       hof:2016, cardYear:1997, era:"Golden Age", tags:["attitude"], cards:[
     { card:"Tommy Dreamer RC",       set:"1997 Cardz ECW Hardcore Heaven",    num:"#2",  note:"ECW original — extremely rare." },
   ]},
-  { name:"Diamond Dallas Page", hof:2017, cardYear:1995, era:"Golden Age", tags:["attitude"], cards:[
-    { card:"Diamond Dallas Page RC", set:"1995 Cardz WCW",                    num:"—",   note:"Self High Five!" },
-    { card:"Diamond Dallas Page",    set:"1995 Cardz WCW Main Event",         num:"—",   note:"Second 1995 WCW card." },
+  { name:"Diamond Dallas Page", hof:2017, cardYear:1992, era:"Golden Age", tags:["attitude"], cards:[
+    { card:"Diamond Dallas Page RC", set:"1992 Topps WCW",                    num:"#25", note:"Self High Five! — earliest DDP card." },
+    { card:"Diamond Dallas Page",    set:"1995 Cardz WCW",                    num:"—",   note:"WCW-era card." },
   ]},
-  { name:"Chyna",               hof:2019, cardYear:2000, era:"Golden Age", tags:["attitude","women"], cards:[
-    { card:"Chyna RC",               set:"2000 Fleer WWF WrestleMania",       num:"—",   note:"Ninth Wonder of the World." },
-  ]},
-  // RUTHLESS AGGRESSION / FLEER ERA
-  { name:"John Cena",           hof:2025, cardYear:2002, era:"Fleer", tags:["modern"], cards:[
-    { card:"John Cena RC",           set:"2002 Fleer WWE",                    num:"—",   note:"First Cena card. Major key." },
-    { card:"John Cena",              set:"2002 Fleer WWE Raw vs. SmackDown",  num:"—",   note:"Second 2002 Fleer product." },
-  ]},
-  { name:"Brock Lesnar",        hof:2025, cardYear:2002, era:"Fleer", tags:["modern"], cards:[
-    { card:"Brock Lesnar RC",        set:"2002 Fleer WWE",                    num:"—",   note:"Beast Incarnate's debut card." },
-    { card:"Brock Lesnar",           set:"2002 Fleer WWE Raw vs. SmackDown",  num:"—",   note:"Second 2002 Fleer product." },
+  { name:"Chyna",               hof:2019, cardYear:1998, era:"Golden Age", tags:["attitude","women"], cards:[
+    { card:"Chyna RC",               set:"1998 WWF Superstarz",               num:"#63", note:"Ninth Wonder of the World — earliest card." },
   ]},
   { name:"Batista",             hof:2020, cardYear:2002, era:"Fleer", tags:["modern"], cards:[
-    { card:"Batista RC",             set:"2002 Fleer WWE",                    num:"—",   note:"Animal's first card." },
+    { card:"Batista RC",             set:"2002 Fleer WWE Royal Rumble",       num:"#67", note:"Animal's first card." },
   ]},
-  { name:"Randy Orton",         hof:2025, cardYear:2002, era:"Fleer", tags:["modern"], cards:[
-    { card:"Randy Orton RC",         set:"2002 Fleer WWE",                    num:"—",   note:"Viper's debut — undervalued." },
-  ]},
-  // FIRST TOPPS ERA
   { name:"Daniel Bryan",        hof:2023, cardYear:2012, era:"First Topps", tags:["modern"], cards:[
     { card:"Daniel Bryan RC",        set:"2012 Topps WWE Heritage",           num:"#15", note:"YES! Movement — Heritage RC." },
     { card:"Daniel Bryan",           set:"2012 Topps WWE",                    num:"#7",  note:"Flagship debut card same year." },
   ]},
-  // WOMEN'S DIVISION SPECIFIC
-  { name:"Alundra Blayze",      hof:2015, cardYear:1985, era:"Pre-1980", tags:["women"], cards:[
-    { card:"Regional / German card", set:"International release",             num:"—",   note:"Pre-WWF career international cards as Medusa Miceli." },
+  { name:"Alundra Blayze",      hof:2015, cardYear:1995, era:"Golden Age", tags:["women"], cards:[
+    { card:"Alundra Blayze RC",      set:"1995 Action Packed Gold",           num:"#8",  note:"WWF Women's Champion." },
   ]},
   { name:"Wendi Richter",       hof:2010, cardYear:1985, era:"Early WWF", tags:["women"], cards:[
-    { card:"Wendi Richter RC",       set:"1985 Topps WWF",                    num:"#29", note:"First women's wrestler in 1985 Topps." },
+    { card:"Wendi Richter RC",       set:"1985 Topps WWF",                    num:"#8",  note:"First women's wrestler in 1985 Topps." },
   ]},
-  { name:"Sensational Sherri",  hof:2006, cardYear:1990, era:"Golden Age", tags:["women"], cards:[
-    { card:"Sensational Sherri RC",  set:"1990 Classic WWF",                  num:"—",   note:"" },
+  { name:"Sensational Sherri",  hof:2006, cardYear:1989, era:"Early WWF", tags:["women"], cards:[
+    { card:"Sensational Sherri RC",  set:"1989 Classic WWF",                  num:"#18", note:"Earliest Sherri card." },
   ]},
-  { name:"Mae Young",           hof:2008, cardYear:1990, era:"Golden Age", tags:["women"], cards:[
-    { card:"Mae Young",              set:"1990 Classic WWF",                  num:"—",   note:"" },
+  { name:"Mae Young",           hof:2008, cardYear:2001, era:"Fleer", tags:["attitude","women"], cards:[
+    { card:"Mae Young RC",           set:"2001 Fleer WWF WrestleMania",       num:"#56", note:"" },
+  ]},
+
+  // ── NEW ADDITIONS (appended; verify HOF years) ──
+  { name:"Abdullah the Butcher",hof:2011, cardYear:1974, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"Abdullah the Butcher RC",set:"1974 Yamakatsu",                    num:"#36", note:"Japanese Yamakatsu release." },
+  ]},
+  { name:"AJ Styles",           hof:2026, cardYear:2004, era:"Fleer", tags:["modern"], cards:[
+    { card:"AJ Styles RC",           set:"2004 Pacific TNA",                  num:"#47", note:"TNA rookie — additional 2004 cards to be added." },
+  ]},
+  { name:"Antonino Rocca",      hof:1995, cardYear:1954, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"Antonino Rocca RC",      set:"1954 Parkhurst",                    num:"#5",  note:"Vintage Parkhurst wrestling issue." },
+  ]},
+  { name:"Antonio Inoki",       hof:2010, cardYear:1968, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"Antonio Inoki RC",       set:"1968 Shonen Trump",                 num:"—",   note:"Vintage Japanese release." },
+  ]},
+  { name:"Arnold Skaaland",     hof:1994, cardYear:1969, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"Arnold Skaaland RC",     set:"1969-72 Wrestling Gong Magazine",   num:"—",   note:"Japanese magazine card." },
+  ]},
+  { name:"Beth Phoenix",        hof:2017, cardYear:2006, era:"First Topps", tags:["modern","women"], cards:[
+    { card:"Beth Phoenix RC",        set:"2006 Topps Heritage",               num:"#63", note:"The Glamazon's rookie." },
+  ]},
+  { name:"Big John Studd",      hof:2004, cardYear:1983, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Big John Studd RC",      set:"1983 Wrestling All-Stars",          num:"#22", note:"" },
+  ]},
+  { name:"Bill Watts",          hof:2009, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Bill Watts RC",          set:"1982 Wrestling All-Stars Series A", num:"#35", note:"Cowboy Bill Watts." },
+  ]},
+  { name:"Bob Backlund",        hof:2013, cardYear:1978, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"Bob Backlund RC",        set:"1978 Amada Kings",                  num:"—",   note:"Japanese Amada release." },
+  ]},
+  { name:"Bob Orton",           hof:2005, cardYear:1985, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Bob Orton RC",           set:"1985 Topps WWF",                    num:"#12", note:"Cowboy Bob Orton." },
+  ]},
+  { name:"Bobo Brazil",         hof:1994, cardYear:1955, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"Bobo Brazil RC",         set:"1955-56 Parkhurst",                 num:"#6",  note:"Vintage Parkhurst issue." },
+  ]},
+  { name:"British Bulldog",     hof:2020, cardYear:1985, era:"Early WWF", tags:["golden","tag"], cards:[
+    { card:"British Bulldog RC",     set:"1985 O-Pee-Chee Pro Wrestling",     num:"#48", note:"Davey Boy Smith — Canadian O-Pee-Chee." },
+  ]},
+  { name:"Bruno Sammartino",    hof:2013, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Bruno Sammartino RC",    set:"1982 Wrestling All-Stars Series A", num:"#13", note:"The Living Legend." },
+  ]},
+  { name:"Buddy Rogers",        hof:1994, cardYear:1952, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"Buddy Rogers RC",        set:"1952 Al Haft's Sports Stars of the Mat", num:"—", note:"Nature Boy — vintage regional issue." },
+  ]},
+  { name:"Carlos Colon",        hof:2014, cardYear:1985, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Carlos Colon RC",        set:"1985 Wrestling All-Stars",          num:"#18", note:"WWC legend." },
+  ]},
+  { name:"Chief Jay Strongbow", hof:1994, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Chief Jay Strongbow RC", set:"1982 Wrestling All-Stars Series B", num:"#6",  note:"" },
+  ]},
+  { name:"Don Muraco",          hof:2004, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Don Muraco RC",          set:"1982 Wrestling All-Stars Series A", num:"#15", note:"Magnificent Muraco." },
+  ]},
+  { name:"Eric Bischoff",       hof:2021, cardYear:1995, era:"Golden Age", tags:["modern"], cards:[
+    { card:"Eric Bischoff RC",       set:"1995 Cardz WCW Main Event",         num:"#48", note:"WCW authority figure." },
+  ]},
+  { name:"Ernie Ladd",          hof:1995, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Ernie Ladd RC",          set:"1982 Wrestling All-Stars Series A", num:"#32", note:"The Big Cat." },
+  ]},
+  { name:"Fabulous Moolah",     hof:1995, cardYear:1982, era:"Early WWF", tags:["golden","women"], cards:[
+    { card:"Fabulous Moolah RC",     set:"1982 Wrestling All-Stars Series A", num:"#21", note:"Longtime Women's Champion." },
+  ]},
+  { name:"Freddie Blassie",     hof:1994, cardYear:1983, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Freddie Blassie RC",     set:"1983 Wrestling All-Stars",          num:"#31", note:"Classy Freddie Blassie." },
+  ]},
+  { name:"George Steele",       hof:1995, cardYear:1985, era:"Early WWF", tags:["golden"], cards:[
+    { card:"George Steele RC",       set:"1985 Topps WWF",                    num:"#21", note:"The Animal — additional 1985 cards to be added." },
+  ]},
+  { name:"Gorgeous George",     hof:2010, cardYear:1954, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"Gorgeous George RC",     set:"1954 Parkhurst",                    num:"#69", note:"Vintage Parkhurst issue." },
+  ]},
+  { name:"Gorilla Monsoon",     hof:1994, cardYear:1989, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Gorilla Monsoon RC",     set:"1989 Classic WWF",                  num:"#52", note:"" },
+  ]},
+  { name:"The Grand Wizard",    hof:1995, cardYear:1983, era:"Early WWF", tags:["golden"], cards:[
+    { card:"The Grand Wizard RC",    set:"1983 Wrestling All-Stars",          num:"#33", note:"Manager." },
+  ]},
+  { name:"Great Khali",         hof:2021, cardYear:2006, era:"First Topps", tags:["modern"], cards:[
+    { card:"Great Khali RC",         set:"2006 Topps Heritage",               num:"#7",  note:"" },
+  ]},
+  { name:"Ivan Putski",         hof:1995, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Ivan Putski RC",         set:"1982 Wrestling All-Stars Series A", num:"#28", note:"Polish Power." },
+  ]},
+  { name:"Ivory",               hof:2018, cardYear:2002, era:"Fleer", tags:["modern","women"], cards:[
+    { card:"Ivory RC",               set:"2002 Fleer WWE Royal Rumble",       num:"#45", note:"" },
+  ]},
+  { name:"Jacqueline",          hof:2016, cardYear:1998, era:"Golden Age", tags:["attitude","women"], cards:[
+    { card:"Jacqueline RC",          set:"1998 WWF Superstarz",               num:"#67", note:"" },
+  ]},
+  { name:"Jeff Jarrett",        hof:2018, cardYear:1995, era:"Golden Age", tags:["modern"], cards:[
+    { card:"Jeff Jarrett RC",        set:"1995 Action Packed",                num:"#33", note:"" },
+  ]},
+  { name:"Jerry Lawler",        hof:2007, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Jerry Lawler RC",        set:"1982 Wrestling All-Stars Series A", num:"#34", note:"The King." },
+  ]},
+  { name:"Jim Ross",            hof:2007, cardYear:1991, era:"Golden Age", tags:["golden"], cards:[
+    { card:"Jim Ross RC",            set:"1991 Impel WCW",                    num:"#156",note:"Good ol' JR — announcer." },
+  ]},
+  { name:"Johnny Rodz",         hof:1996, cardYear:2022, era:"Panini", tags:["modern"], cards:[
+    { card:"Johnny Rodz RC",         set:"2022 Panini Chronicles",            num:"#398",note:"First licensed Rodz card." },
+  ]},
+  { name:"Jushin Thunder Liger",hof:2020, cardYear:1992, era:"Golden Age", tags:["modern"], cards:[
+    { card:"Jushin Thunder Liger RC",set:"1992 London Publishing WCW Magazine",num:"#16",note:"WCW Magazine card." },
+  ]},
+  { name:"Kevin Nash",          hof:2015, cardYear:1994, era:"Golden Age", tags:["golden"], cards:[
+    { card:"Kevin Nash RC",          set:"1994 Action Packed",                num:"#4",  note:"As Diesel." },
+  ]},
+  { name:"Killer Kowalski",     hof:1996, cardYear:1986, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Killer Kowalski RC",     set:"1986 Monte Gum",                    num:"#56", note:"" },
+  ]},
+  { name:"Larry Zbyszko",       hof:2015, cardYear:1988, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Larry Zbyszko RC",       set:"1988 NWA Wonderama Superstars",     num:"#67", note:"" },
+  ]},
+  { name:"Lex Luger",           hof:2025, cardYear:1988, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Lex Luger RC",           set:"1988 NWA Wonderama Superstars",     num:"#125",note:"The Total Package." },
+  ]},
+  { name:"Lou Albano",          hof:1996, cardYear:1983, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Lou Albano RC",          set:"1983 Wrestling All-Stars",          num:"#32", note:"Captain Lou." },
+  ]},
+  { name:"Mad Dog Vachon",      hof:2010, cardYear:2011, era:"First Topps", tags:["golden"], cards:[
+    { card:"Mad Dog Vachon RC",      set:"2011 In the Game Canadiana",        num:"#37", note:"First licensed Vachon card." },
+  ]},
+  { name:"Mean Gene Okerlund",  hof:2006, cardYear:1985, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Mean Gene Okerlund RC",  set:"1985 Topps WWF",                    num:"#65", note:"Announcer." },
+  ]},
+  { name:"Mil Mascaras",        hof:2012, cardYear:1974, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"Mil Mascaras RC",        set:"1974 Menko All Japan",              num:"—",   note:"Japanese Menko release." },
+  ]},
+  { name:"Mr. Fuji",            hof:2007, cardYear:1985, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Mr. Fuji RC",            set:"1985 Topps WWF",                    num:"#17", note:"" },
+  ]},
+  { name:"Nick Bockwinkel",     hof:2007, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Nick Bockwinkel RC",     set:"1982 Wrestling All-Stars Series A", num:"#11", note:"AWA World Champion." },
+  ]},
+  { name:"Pat Patterson",       hof:1996, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Pat Patterson RC",       set:"1982 Wrestling All-Stars Series A", num:"#26", note:"First Intercontinental Champion." },
+  ]},
+  { name:"Paul Bearer",         hof:2014, cardYear:1991, era:"Golden Age", tags:["golden"], cards:[
+    { card:"Paul Bearer RC",         set:"1991 Classic WWF",                  num:"#93", note:"" },
+  ]},
+  { name:"Paul Heyman",         hof:2024, cardYear:1991, era:"Golden Age", tags:["golden"], cards:[
+    { card:"Paul Heyman RC",         set:"1991 Championship Marketing",       num:"#23", note:"" },
+  ]},
+  { name:"Paul Orndorff",       hof:2005, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Paul Orndorff RC",       set:"1982 Wrestling All-Stars Series B", num:"#52", note:"Mr. Wonderful." },
+  ]},
+  { name:"Pedro Morales",       hof:1995, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Pedro Morales RC",       set:"1982 Wrestling All-Stars Series A", num:"#14", note:"Triple Crown Champion." },
+  ]},
+  { name:"Peter Maivia",        hof:2008, cardYear:1955, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"Peter Maivia RC",        set:"1955 Parkhurst Wrestling",          num:"#72", note:"High Chief — as Prince Maivia." },
+  ]},
+  { name:"Rick Rude",           hof:2017, cardYear:1986, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Rick Rude RC",           set:"1986 Monte Gum",                    num:"#44", note:"Ravishing Rick Rude." },
+  ]},
+  { name:"Rocky Johnson",       hof:2008, cardYear:1983, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Rocky Johnson RC",       set:"1983 Wrestling All-Stars",          num:"#24", note:"" },
+  ]},
+  { name:"Ron Simmons",         hof:2012, cardYear:1988, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Ron Simmons RC",         set:"1988 NWA Wonderama Superstars",     num:"#10", note:"Damn!" },
+  ]},
+  { name:"Scott Hall",          hof:2014, cardYear:1991, era:"Golden Age", tags:["golden"], cards:[
+    { card:"Scott Hall RC",          set:"1991 Cromy",                        num:"#G3", note:"As Diamond Studd — Argentine Cromy." },
+  ]},
+  { name:"The Sheik",           hof:2007, cardYear:1973, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"The Sheik RC",           set:"1973 Wrestling Annual",             num:"#6",  note:"Ed Farhat." },
+  ]},
+  { name:"Stan Hansen",         hof:2016, cardYear:1981, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Stan Hansen RC",         set:"1981 Kajiwara Wrestling",           num:"—",   note:"Japanese Kajiwara release." },
+  ]},
+  { name:"Stu Hart",            hof:2010, cardYear:1997, era:"Golden Age", tags:["golden"], cards:[
+    { card:"Stu Hart RC",            set:"1997 WWF Magazine",                 num:"#89", note:"Hart family patriarch." },
+  ]},
+  { name:"Tatsumi Fujinami",    hof:2015, cardYear:1981, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Tatsumi Fujinami RC",    set:"1981 Takara Wrestling Game",        num:"3",   note:"Japanese Takara release." },
+  ]},
+  { name:"Tony Atlas",          hof:2006, cardYear:1982, era:"Early WWF", tags:["golden"], cards:[
+    { card:"Tony Atlas RC",          set:"1982 Wrestling All-Stars Series A", num:"#25", note:"Mr. USA." },
+  ]},
+  { name:"Torrie Wilson",       hof:2019, cardYear:2002, era:"Fleer", tags:["modern","women"], cards:[
+    { card:"Torrie Wilson RC",       set:"2002 Fleer WWE Royal Rumble",       num:"#52", note:"" },
+  ]},
+  { name:"Vader",               hof:2022, cardYear:1992, era:"Golden Age", tags:["modern"], cards:[
+    { card:"Vader RC",               set:"1992 Topps WCW",                    num:"#61", note:"" },
+  ]},
+  { name:"Verne Gagne",         hof:2006, cardYear:1955, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"Verne Gagne RC",         set:"1955 Parkhurst",                    num:"#43", note:"AWA founder." },
+  ]},
+  { name:"Yokozuna",            hof:2012, cardYear:1992, era:"Golden Age", tags:["golden"], cards:[
+    { card:"Yokozuna RC",            set:"1992 Quartett",                     num:"#H1", note:"German Quartett release." },
+  ]},
+
+  // ── INELIGIBLE — no rookie card available (not checklist-eligible) ──
+  { name:"Bob Armstrong",       hof:2011, cardYear:0, era:"Early WWF", tags:["golden"], cards:[
+    { card:"No rookie card available", set:"—", num:"—", note:"No mainstream rookie card exists.", noCard:true },
+  ]},
+  { name:"Eddie Graham",        hof:2008, cardYear:0, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"No rookie card available", set:"—", num:"—", note:"No mainstream rookie card exists.", noCard:true },
+  ]},
+  { name:"James Dudley",        hof:1994, cardYear:0, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"No rookie card available", set:"—", num:"—", note:"No mainstream rookie card exists.", noCard:true },
+  ]},
+  { name:"Mikel Scicluna",      hof:1996, cardYear:0, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"No rookie card available", set:"—", num:"—", note:"No mainstream rookie card exists.", noCard:true },
+  ]},
+  { name:"Thunderbolt Patterson",hof:"—", cardYear:0, era:"Early WWF", tags:["golden"], cards:[
+    { card:"No rookie card available", set:"—", num:"—", note:"No mainstream rookie card exists.", noCard:true },
+  ]},
+  { name:"Vince McMahon Sr.",   hof:1996, cardYear:0, era:"Pre-1980", tags:["golden"], cards:[
+    { card:"No rookie card available", set:"—", num:"—", note:"No mainstream rookie card exists.", noCard:true },
   ]},
 ];
 
@@ -499,7 +710,7 @@ const setId = 'hof-rookie';
 function allKeys() {
   const keys = [];
   hofData.forEach((w, wi) =>
-    w.cards.forEach((_, ci) => keys.push(`${setId}-${wi}-${ci}`))
+    w.cards.forEach((c, ci) => { if (!c.noCard) keys.push(`${setId}-${wi}-${ci}`); })
   );
   return keys;
 }
@@ -534,7 +745,7 @@ function renderTable(data) {
 
     w.cards.forEach((c, ci) => {
       const key     = `${setId}-${wi}-${ci}`;
-      const checked = localStorage.getItem(key) === '1';
+      const checked = !c.noCard && localStorage.getItem(key) === '1';
       const tr      = document.createElement('tr');
 
       tr.dataset.tags   = w.tags.join(' ');
@@ -542,6 +753,7 @@ function renderTable(data) {
       tr.dataset.ci     = ci;
       tr.dataset.isCard = '1';
       if (checked) tr.classList.add('owned');
+      if (c.noCard) tr.classList.add('ineligible');
 
       // For multi-card HOFers: first card row shows wrestler info with rowspan,
       // subsequent card rows show blank wrestler cells (visually merged via CSS)
@@ -558,8 +770,12 @@ function renderTable(data) {
 
       const subStyle = ci > 0 ? 'border-top:1px dashed rgba(255,255,255,0.07)' : '';
 
+      const checkCell = c.noCard
+        ? `<span class="ineligible-mark" title="No rookie card available">—</span>`
+        : `<input type="checkbox" id="${key}" value="${key}" ${checked ? 'checked' : ''}>`;
+
       tr.innerHTML = `
-        <td class="col-check" style="${subStyle}"><input type="checkbox" id="${key}" value="${key}" ${checked ? 'checked' : ''}></td>
+        <td class="col-check" style="${subStyle}">${checkCell}</td>
         ${nameCell}
         <td class="col-card" style="${subStyle}">${c.card}</td>
         <td class="col-set"  style="${subStyle}">${c.set}</td>
@@ -568,6 +784,8 @@ function renderTable(data) {
       `;
 
       tbody.appendChild(tr);
+
+      if (c.noCard) return; // ineligible entry — no checkbox to wire
 
       document.getElementById(key).addEventListener('change', function() {
         const isChecked = this.checked;
@@ -594,7 +812,7 @@ function updateProgress() {
   const ownedCards = keys.filter(k => localStorage.getItem(k) === '1').length;
   // HOFers with at least one card owned
   const ownedHOF   = hofData.filter((w, wi) =>
-    w.cards.some((_, ci) => localStorage.getItem(`${setId}-${wi}-${ci}`) === '1')
+    w.cards.some((c, ci) => !c.noCard && localStorage.getItem(`${setId}-${wi}-${ci}`) === '1')
   ).length;
 
   document.getElementById('ownedCount').textContent  = ownedCards;
