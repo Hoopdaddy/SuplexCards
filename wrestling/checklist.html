@@ -449,7 +449,19 @@
       tab.addEventListener('click', async e => {
         if (e.target.closest('.cl-tab-del') || e.target.closest('.cl-tab-rename')) return;
         const id = tab.dataset.id;
-        if (id === _activeId) return;
+        if (id === _activeId) {
+          // Clicking the active tab renames it
+          const lst = _allLists.find(l => l.id === id);
+          if (!lst) return;
+          const val = prompt('Rename checklist:', lst.name);
+          if (!val || !val.trim() || val.trim() === lst.name) return;
+          const newName = val.trim().slice(0, 50);
+          await SUPABASE_CHECKLIST.renameChecklist(id, newName);
+          lst.name = newName;
+          setTitle(newName);
+          renderSwitcher();
+          return;
+        }
         _activeId = id;
         SUPABASE_CHECKLIST.setActive(id);
         await loadCloud();
