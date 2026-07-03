@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Keep auth and utility pages out of search indexes
+Disallow: /login.html
+Disallow: /register.html
+Disallow: /forgot-password.html
+Disallow: /reset-password.html
+Disallow: /auth-callback.html
+
+Sitemap: https://suplexcards.cardboardmania.com/sitemap.xml
