@@ -1,0 +1,35 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "The Lore Vault",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "C:\\Users\\ghoop\\lv-serve.bat"],
+      "port": 3000
+    },
+    {
+      "name": "SFFR Website",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "C:\\Users\\ghoop\\sffr-serve.bat"],
+      "port": 3001
+    }
+  ,{
+      "name": "Suplex Trading Cards",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "npx", "serve", "wrestling", "-p", "3002", "-l", "3002"],
+      "port": 3002
+    }
+  ,{
+      "name": "Bird Dog Sports Cards",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "npx", "serve", "bird-dog", "-p", "3003", "-l", "3003"],
+      "port": 3003
+    }
+  ,{
+      "name": "Cardboard Mania",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "C:\\Users\\ghoop\\OneDrive\\Desktop\\cardboard-mania", "--", "-p", "3004"],
+      "port": 3004
+    }
+  ]
+}
