@@ -35603,13 +35603,6 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'90A', promo:'wwe', type:'auto', tags:["Undisputed Champions Auto"], note:'Autographs — Undisputed Champions.', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'154A', promo:'wwe', type:'auto', tags:["Champion v Champion","Dual Auto"], note:'Autographs — Champion v Champion dual auto with Kane.', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'156A', promo:'wwe', type:'auto', tags:["Triple Threat","Triple Auto"], note:'Autographs — Triple Threat: Kane, Stone Cold Steve Austin, Undertaker.', link:'current-topps.html' }
-    ]
-  },
-  {
-    name: 'Undertaker',
-    dotColor: '#3498db',
-    keyNote: '',
-    cards: [
       { year:1994, set:'1994 WWF Action Packed Trading Cards', num:'AUTO', promo:'wwf', type:'auto', tags:[], note:'', link:'golden-age.html' },
       { year:1994, set:'1994 WWF Action Packed Trading Cards', num:'Prototype 2', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' },
       { year:1995, set:'1995 WWF Action Packed Trading Cards', num:'2', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
@@ -35926,7 +35919,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'5A', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'90A', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'HF9', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'MQ6', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
+      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'MQ6', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
