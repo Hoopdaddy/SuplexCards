@@ -1614,47 +1614,6 @@ const WRESTLERS = [
     ]
   },
   {
-    name: 'Andre The Giant',
-    dotColor: '#3498db',
-    keyNote: '',
-    cards: [
-      { year:1990, set:'1990 WWF Classic Series 1', num:'10', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1990, set:'1990 WWF Classic Series 1', num:'66', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1990, set:'1990 WWF Classic Series 1', num:'76', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1990, set:'1990 WWF Classic Series 1', num:'111', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1990, set:'1990 WWF Classic Series 1', num:'130', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1994, set:'1994 WWF Action Packed Trading Cards', num:'26', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:2004, set:'2004 Fleer WWE WrestleMania XX', num:'75', promo:'wwf', type:'base', tags:[], note:'', link:'fleer-era.html' },
-      { year:2006, set:'2006 WWE Heritage II', num:'89', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2006, set:'2006 WWE Heritage II', num:'TLB6', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2006, set:'2006 WWE Heritage II', num:'TR L 12/12', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2014, set:'2014 Topps WWE Chrome', num:'26', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2014, set:'2014 Topps WWE Trading Cards', num:'26', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2022, set:'2022 Panini WWE Chronicles', num:'142', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Chronicles', num:'353', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Chronicles', num:'445', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Immaculate', num:'96', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Impeccable', num:'71', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Impeccable', num:'13', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Prizm', num:'200', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Revolution Debut Edition', num:'101', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Select', num:'18', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini Impeccable WWE', num:'97', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini Impeccable WWE', num:'9', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini WWE Donruss Elite', num:'128', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini WWE Donruss Elite', num:'1', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini WWE Revolution', num:'109', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini WWE Revolution', num:'16', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini WWE Revolution', num:'9', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini WWE Select', num:'138', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini WWE Select', num:'268', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini WWE Select', num:'359', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 WWE Panini Chronicles', num:'176', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 WWE Panini Prizm Trading Cards', num:'159', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 WWE Panini Prizm Trading Cards', num:'6', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' }
-    ]
-  },
-  {
     name: 'Angel',
     dotColor: '#3498db',
     keyNote: '',
@@ -3822,10 +3781,19 @@ const WRESTLERS = [
     ]
   },
   {
-    name: 'Big Show',
-    dotColor: '#3498db',
+    name: 'The Big Show',
+    dotColor: '#e8c84a',
     keyNote: '',
     cards: [
+      { year:1999, set:'1999 Comic Images WWF SmackDown! Chromium Trading Cards', num:'4', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1999, set:'1999 Comic Images WWF SmackDown! Chromium Trading Cards', num:'44', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1999, set:'1999 Comic Images WWF SmackDown! Chromium Trading Cards', num:'5 of 6', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' },
+      { year:1999, set:'1999 Comic Images WWF SmackDown! Trading Cards', num:'4', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1999, set:'1999 Comic Images WWF SmackDown! Trading Cards', num:'44', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1999, set:'1999 Comic Images WWF SmackDown! Trading Cards', num:'5 of 6', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' },
+      { year:2000, set:'2000 Comic Images WWF No Mercy', num:'20', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:2013, set:'2013 Topps WWE', num:'49', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
+      { year:2013, set:'2013 Topps WWE', num:'85', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
       { year:2001, set:'2001 WWF Championship Clash', num:'18', promo:'wwf', type:'insert', tags:[], note:'', link:'fleer-era.html' },
       { year:2001, set:'2001 WWF Championship Clash', num:'58', promo:'wwf', type:'insert', tags:[], note:'', link:'fleer-era.html' },
       { year:2001, set:'2001 WWF RAW Is War', num:'44', promo:'wwf', type:'insert', tags:[], note:'', link:'fleer-era.html' },
@@ -3901,22 +3869,6 @@ const WRESTLERS = [
       { year:2016, set:'2016 WWE Topps Road to WrestleMania', num:'WM32-19', promo:'wwe', type:'base', tags:[], note:'', link:'first-topps.html' },
       { year:2016, set:'2016 WWE Topps Then, Now, Forever', num:'121', promo:'wwe', type:'base', tags:[], note:'', link:'first-topps.html' },
       { year:2019, set:'2019 Topps WWE', num:'HH-5', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' }
-    ]
-  },
-  {
-    name: 'The Big Show',
-    dotColor: '#e8c84a',
-    keyNote: '',
-    cards: [
-      { year:1999, set:'1999 Comic Images WWF SmackDown! Chromium Trading Cards', num:'4', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1999, set:'1999 Comic Images WWF SmackDown! Chromium Trading Cards', num:'44', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1999, set:'1999 Comic Images WWF SmackDown! Chromium Trading Cards', num:'5 of 6', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' },
-      { year:1999, set:'1999 Comic Images WWF SmackDown! Trading Cards', num:'4', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1999, set:'1999 Comic Images WWF SmackDown! Trading Cards', num:'44', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1999, set:'1999 Comic Images WWF SmackDown! Trading Cards', num:'5 of 6', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' },
-      { year:2000, set:'2000 Comic Images WWF No Mercy', num:'20', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:2013, set:'2013 Topps WWE', num:'49', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2013, set:'2013 Topps WWE', num:'85', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' }
     ]
   },
   {
@@ -4424,14 +4376,7 @@ const WRESTLERS = [
       { year:2025, set:'2025 Topps Universe WWE', num:'FOB-2', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2025, set:'2025 Topps Universe WWE', num:'MAS-9', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2025, set:'2025 WWE Topps Finest', num:'172', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 WWE Topps Finest', num:'DE-BGM', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
-    ]
-  },
-  {
-    name: 'Boogeyman',
-    dotColor: '#3498db',
-    keyNote: '',
-    cards: [
+      { year:2025, set:'2025 WWE Topps Finest', num:'DE-BGM', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2006, set:'2006 Topps WWE Heritage Chrome', num:'14', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
       { year:2006, set:'2006 Topps WWE Heritage Chrome', num:'Level D', promo:'wwe', type:'relic', tags:[], note:'', link:'first-topps.html' },
       { year:2006, set:'2006 Topps WWE Insider', num:'41', promo:'wwe', type:'base', tags:[], note:'', link:'first-topps.html' },
@@ -5247,10 +5192,23 @@ const WRESTLERS = [
     ]
   },
   {
-    name: 'British Bulldog',
+    name: 'The British Bulldog',
     dotColor: '#3498db',
     keyNote: '',
     cards: [
+      { year:2006, set:'2006 Topps WWE Heritage Chrome', num:'71', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
+      { year:2006, set:'2006 WWE Heritage II', num:'79', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
+      { year:2007, set:'2007 Topps WWE Heritage III', num:'AG L 9', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
+      { year:2010, set:'2010 Topps WWE', num:'NH25', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
+      { year:2011, set:'2011 Topps WWE', num:'90', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
+      { year:2011, set:'2011 Topps WWE', num:'H-8', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
+      { year:2011, set:'2011 WWE Champions', num:'F8', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
+      { year:2012, set:'2012 Topps WWE Heritage', num:'65', promo:'wwe', type:'base', tags:[], note:'', link:'first-topps.html' },
+      { year:2012, set:'2012 Topps WWE Heritage', num:'RA12', promo:'wwe', type:'base', tags:[], note:'', link:'first-topps.html' },
+      { year:2015, set:'2015 Topps WWE Heritage', num:'7', promo:'wwe', type:'base', tags:[], note:'', link:'first-topps.html' },
+      { year:2022, set:'2022 Panini WWE Select', num:'244', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
+      { year:2022, set:'2022 Panini WWE Select', num:'12', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
+      { year:2022, set:'2022 Panini WWE Select', num:'13', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
       { year:1991, set:'1991 WWF Merlin Trading Cards', num:'23', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
       { year:1991, set:'1991 WWF Merlin Trading Cards', num:'111', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
       { year:1991, set:'1991 WWF Merlin Trading Cards', num:'132', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
@@ -5295,26 +5253,6 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Chrome WWE', num:'WMR-11', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'8', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'HF7', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
-    ]
-  },
-  {
-    name: 'The British Bulldog',
-    dotColor: '#3498db',
-    keyNote: '',
-    cards: [
-      { year:2006, set:'2006 Topps WWE Heritage Chrome', num:'71', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2006, set:'2006 WWE Heritage II', num:'79', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2007, set:'2007 Topps WWE Heritage III', num:'AG L 9', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2010, set:'2010 Topps WWE', num:'NH25', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2011, set:'2011 Topps WWE', num:'90', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2011, set:'2011 Topps WWE', num:'H-8', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2011, set:'2011 WWE Champions', num:'F8', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2012, set:'2012 Topps WWE Heritage', num:'65', promo:'wwe', type:'base', tags:[], note:'', link:'first-topps.html' },
-      { year:2012, set:'2012 Topps WWE Heritage', num:'RA12', promo:'wwe', type:'base', tags:[], note:'', link:'first-topps.html' },
-      { year:2015, set:'2015 Topps WWE Heritage', num:'7', promo:'wwe', type:'base', tags:[], note:'', link:'first-topps.html' },
-      { year:2022, set:'2022 Panini WWE Select', num:'244', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Select', num:'12', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Select', num:'13', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' }
     ]
   },
   {
@@ -8896,24 +8834,17 @@ const WRESTLERS = [
     ]
   },
   {
-    name: 'D\'lo Brown',
+    name: 'D\'Lo Brown',
     dotColor: '#e8c84a',
     keyNote: '',
     cards: [
       { year:1998, set:'1998 WWF Comic Images Superstarz', num:'24', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
       { year:1999, set:'1999 Comic Images WWF SmackDown! Chromium Trading Cards', num:'AUTO', promo:'wwf', type:'auto', tags:[], note:'', link:'golden-age.html' },
-      { year:1999, set:'1999 Comic Images WWF SmackDown! Trading Cards', num:'AUTO', promo:'wwf', type:'auto', tags:[], note:'', link:'golden-age.html' },
-      { year:2001, set:'2001 WWF WrestleMania', num:'50', promo:'wwf', type:'base', tags:[], note:'', link:'fleer-era.html' }
-    ]
-  },
-  {
-    name: 'D\'Lo Brown',
-    dotColor: '#e8c84a',
-    keyNote: '',
-    cards: [
       { year:1999, set:'1999 Comic Images WWF SmackDown! Chromium Trading Cards', num:'14', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1999, set:'1999 Comic Images WWF SmackDown! Trading Cards', num:'AUTO', promo:'wwf', type:'auto', tags:[], note:'', link:'golden-age.html' },
       { year:1999, set:'1999 Comic Images WWF SmackDown! Trading Cards', num:'14', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
       { year:2000, set:'2000 Comic Images WWF No Mercy', num:'36', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:2001, set:'2001 WWF WrestleMania', num:'50', promo:'wwf', type:'base', tags:[], note:'', link:'fleer-era.html' },
       { year:2002, set:'2002 Fleer WWE RAW vs. SmackDown!', num:'37', promo:'wwf', type:'base', tags:[], note:'', link:'fleer-era.html' },
       { year:2002, set:'2002 Fleer WWE Royal Rumble', num:'8', promo:'wwf', type:'base', tags:[], note:'', link:'fleer-era.html' },
       { year:2003, set:'2003 Fleer WWE WrestleMania XIX', num:'11', promo:'wwf', type:'base', tags:[], note:'', link:'fleer-era.html' },
@@ -9924,14 +9855,7 @@ const WRESTLERS = [
       { year:2012, set:'2012 Topps WWE Heritage', num:'AUTO', promo:'wwe', type:'base', tags:[], note:'', link:'first-topps.html' },
       { year:2013, set:'2013 Topps WWE: Best of WWE', num:'10', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
       { year:2014, set:'2014 Topps WWE Chrome', num:'10', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2015, set:'2015 Topps WWE Heritage', num:'13', promo:'wwe', type:'base', tags:[], note:'', link:'first-topps.html' }
-    ]
-  },
-  {
-    name: 'Doink The Clown',
-    dotColor: '#e8c84a',
-    keyNote: '',
-    cards: [
+      { year:2015, set:'2015 Topps WWE Heritage', num:'13', promo:'wwe', type:'base', tags:[], note:'', link:'first-topps.html' },
       { year:1994, set:'1994 WWF Action Packed Trading Cards', num:'3', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
       { year:1995, set:'1995 WWF Action Packed Trading Cards', num:'6', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' }
     ]
@@ -12664,21 +12588,6 @@ const WRESTLERS = [
     ]
   },
   {
-    name: 'Godfather',
-    dotColor: '#e8c84a',
-    keyNote: '',
-    cards: [
-      { year:1999, set:'1999 Comic Images WWF SmackDown! Chromium Trading Cards', num:'19', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1999, set:'1999 Comic Images WWF SmackDown! Chromium Trading Cards', num:'AUTO', promo:'wwf', type:'auto', tags:[], note:'', link:'golden-age.html' },
-      { year:1999, set:'1999 Comic Images WWF SmackDown! Trading Cards', num:'19', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1999, set:'1999 Comic Images WWF SmackDown! Trading Cards', num:'AUTO', promo:'wwf', type:'auto', tags:[], note:'', link:'golden-age.html' },
-      { year:2003, set:'2003 Fleer WWE WrestleMania XIX', num:'38', promo:'wwf', type:'base', tags:[], note:'', link:'fleer-era.html' },
-      { year:2006, set:'2006 Topps WWE Heritage Chrome', num:'89', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2025, set:'2025 Topps Chrome WWE', num:'SG-GF', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Universe WWE', num:'183', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
-    ]
-  },
-  {
     name: 'The Godfather',
     dotColor: '#3498db',
     keyNote: '',
@@ -12721,7 +12630,15 @@ const WRESTLERS = [
       { year:2025, set:'2025 WWE Topps Finest', num:'219', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'165', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'103', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'103A', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' }
+      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'103A', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
+      { year:1999, set:'1999 Comic Images WWF SmackDown! Chromium Trading Cards', num:'19', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1999, set:'1999 Comic Images WWF SmackDown! Chromium Trading Cards', num:'AUTO', promo:'wwf', type:'auto', tags:[], note:'', link:'golden-age.html' },
+      { year:1999, set:'1999 Comic Images WWF SmackDown! Trading Cards', num:'19', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1999, set:'1999 Comic Images WWF SmackDown! Trading Cards', num:'AUTO', promo:'wwf', type:'auto', tags:[], note:'', link:'golden-age.html' },
+      { year:2003, set:'2003 Fleer WWE WrestleMania XIX', num:'38', promo:'wwf', type:'base', tags:[], note:'', link:'fleer-era.html' },
+      { year:2006, set:'2006 Topps WWE Heritage Chrome', num:'89', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
+      { year:2025, set:'2025 Topps Chrome WWE', num:'SG-GF', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2025, set:'2025 Topps Universe WWE', num:'183', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -13012,17 +12929,6 @@ const WRESTLERS = [
     ]
   },
   {
-    name: 'Great Khali',
-    dotColor: '#3498db',
-    keyNote: '',
-    cards: [
-      { year:2007, set:'2007 Topps WWE Heritage III', num:'R-8', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2010, set:'2010 Topps WWE', num:'62', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2012, set:'2012 Topps WWE: The Best in Class', num:'JLA', promo:'wwe', type:'base', tags:[], note:'', link:'first-topps.html' },
-      { year:2025, set:'2025 Topps Universe WWE', num:'DDE-7', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
-    ]
-  },
-  {
     name: 'The Great Khali',
     dotColor: '#3498db',
     keyNote: '',
@@ -13058,7 +12964,11 @@ const WRESTLERS = [
       { year:2024, set:'2024 Panini Three-Count WWE', num:'184', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
       { year:2024, set:'2024 Panini Three-Count WWE', num:'194', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
       { year:2024, set:'2024 Panini WWE Select', num:'51', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2025, set:'2025 WWE Topps Finest', num:'INT-KH', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
+      { year:2025, set:'2025 WWE Topps Finest', num:'INT-KH', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2007, set:'2007 Topps WWE Heritage III', num:'R-8', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
+      { year:2010, set:'2010 Topps WWE', num:'62', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
+      { year:2012, set:'2012 Topps WWE: The Best in Class', num:'JLA', promo:'wwe', type:'base', tags:[], note:'', link:'first-topps.html' },
+      { year:2025, set:'2025 Topps Universe WWE', num:'DDE-7', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -13552,14 +13462,7 @@ const WRESTLERS = [
     keyNote: '',
     cards: [
       { year:2010, set:'2010 Topps WWE', num:'FF9', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
-      { year:2010, set:'2010 Topps WWE Platinum', num:'PP-16', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' }
-    ]
-  },
-  {
-    name: 'Hart Dynasty',
-    dotColor: '#3498db',
-    keyNote: '',
-    cards: [
+      { year:2010, set:'2010 Topps WWE Platinum', num:'PP-16', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
       { year:2010, set:'2010 Topps WWE', num:'77', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
       { year:2010, set:'2010 Topps WWE', num:'C9', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' }
     ]
@@ -13741,23 +13644,6 @@ const WRESTLERS = [
     ]
   },
   {
-    name: 'Honky Tonk Man',
-    dotColor: '#e8c84a',
-    keyNote: '',
-    cards: [
-      { year:1990, set:'1990 WWF Classic Series 1', num:'27', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1990, set:'1990 WWF Classic Series 1', num:'44', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1990, set:'1990 WWF Classic Series 1', num:'80', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1990, set:'1990 WWF Classic Series 1', num:'117', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1990, set:'1990 WWF Classic Series 1', num:'133', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1990, set:'1990 WWF Classic Series 1', num:'138', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' },
-      { year:2025, set:'2025 Topps Chrome WWE', num:'MOC-HT', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Universe WWE', num:'FOB-4', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'35', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'35A', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' }
-    ]
-  },
-  {
     name: 'The Honky Tonk Man',
     dotColor: '#3498db',
     keyNote: '',
@@ -13788,7 +13674,17 @@ const WRESTLERS = [
       { year:2024, set:'2024 Panini WWE Select', num:'4', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
       { year:2025, set:'2025 Topps Exalted WWE', num:'STS-HTM', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2025, set:'2025 Topps Royalty WWE', num:'GHA-THT', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 WWE Topps Finest', num:'FMS-HTM', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
+      { year:2025, set:'2025 WWE Topps Finest', num:'FMS-HTM', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:1990, set:'1990 WWF Classic Series 1', num:'27', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1990, set:'1990 WWF Classic Series 1', num:'44', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1990, set:'1990 WWF Classic Series 1', num:'80', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1990, set:'1990 WWF Classic Series 1', num:'117', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1990, set:'1990 WWF Classic Series 1', num:'133', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1990, set:'1990 WWF Classic Series 1', num:'138', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' },
+      { year:2025, set:'2025 Topps Chrome WWE', num:'MOC-HT', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
+      { year:2025, set:'2025 Topps Universe WWE', num:'FOB-4', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'35', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'35A', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -14284,14 +14180,7 @@ const WRESTLERS = [
       { year:2025, set:'2025 Topps Chrome Sapphire WWE', num:'LCA-TH', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2025, set:'2025 Topps Chrome WWE', num:'LCA-TH', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2025, set:'2025 Topps Universe WWE', num:'197', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 WWE Topps Finest', num:'SSS-HC', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
-    ]
-  },
-  {
-    name: 'Hurricane',
-    dotColor: '#e8c84a',
-    keyNote: '',
-    cards: [
+      { year:2025, set:'2025 WWE Topps Finest', num:'SSS-HC', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2002, set:'2002 Fleer WWE Absolute Divas', num:'63', promo:'wwf', type:'base', tags:[], note:'', link:'fleer-era.html' },
       { year:2023, set:'2023 Panini Immaculate Collection WWE', num:'The', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' }
     ]
@@ -19638,138 +19527,6 @@ const WRESTLERS = [
     ]
   },
   {
-    name: 'La Knight',
-    dotColor: '#e8c84a',
-    keyNote: 'YEAH! The megastar\'s 2023 Panini Prizm WWE RC is one of the highest-demand modern RCs — a fan favorite who organically became a main event star. His card trajectory is one to watch closely.',
-    cards: [
-      { year:2022, set:'2022 Panini WWE Immaculate', num:'13', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Immaculate', num:'12', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Impeccable', num:'12', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE NXT 2.0 Wrestling Cards', num:'5', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE NXT 2.0 Wrestling Cards', num:'55', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE NXT 2.0 Wrestling Cards', num:'8', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE NXT 2.0 Wrestling Cards', num:'19', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Prizm', num:'142', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Prizm', num:'IR-CL', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Prizm', num:'SS-LAK', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Revolution Debut Edition', num:'87', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Select', num:'1', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Select', num:'126', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Select', num:'290', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Select', num:'2', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Select', num:'RA-LAK', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini Immaculate Collection WWE', num:'42', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini Immaculate Collection WWE', num:'18', promo:'wwe', type:'relic', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini Immaculate Collection WWE', num:'9', promo:'wwe', type:'relic', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini Immaculate Collection WWE', num:'6', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini Immaculate Collection WWE', num:'22', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini Immaculate Collection WWE', num:'32', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini Immaculate Collection WWE', num:'28', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini Impeccable WWE', num:'27', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini Impeccable WWE', num:'12', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini Impeccable WWE', num:'40', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini Impeccable WWE', num:'2', promo:'wwe', type:'relic', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini WWE Donruss Elite', num:'37', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini WWE Donruss Elite', num:'88', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini WWE Select', num:'243', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini WWE Select', num:'9', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 Panini WWE Select', num:'29', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 WWE Panini Chronicles', num:'78', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 WWE Panini Chronicles', num:'132', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 WWE Panini Chronicles', num:'251', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 WWE Panini Chronicles', num:'300', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 WWE Panini Chronicles', num:'303', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 WWE Panini Chronicles', num:'377', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 WWE Panini Chronicles', num:'29', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 WWE Panini Chronicles', num:'16', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 WWE Panini Prizm Trading Cards', num:'120', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 WWE Panini Prizm Trading Cards', num:'81', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'Panini Prizm WWE', num:'#9', promo:'wwe', type:'rc', tags:["RC","KEY","MEGASTAR"], note:'The breakout RC. Organic megastar.', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini Flawless WWE', num:'48', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini Flawless WWE', num:'27', promo:'wwe', type:'relic', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini Flawless WWE', num:'17', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini Flawless WWE', num:'29', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini Flawless WWE', num:'4', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini Flawless WWE', num:'7', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini Flawless WWE', num:'10', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini National Treasures WWE', num:'3', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini National Treasures WWE', num:'17', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini National Treasures WWE', num:'25', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini National Treasures WWE', num:'37', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini National Treasures WWE', num:'31', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini PhotoGenic WWE', num:'6', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini PhotoGenic WWE', num:'14', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini PhotoGenic WWE', num:'27', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini Prizm WWE', num:'23', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini Prizm WWE', num:'33', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini Prizm WWE', num:'6', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini Three-Count WWE', num:'47', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini Three-Count WWE', num:'16', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini WWE Select', num:'74', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini WWE Select', num:'170', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini WWE Select', num:'257', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini WWE Select', num:'16', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini WWE Select', num:'7', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini WWE Select', num:'20', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini WWE Select', num:'28', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2024, set:'2024 Panini WWE Select', num:'2', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2025, set:'2025 Topps Chrome — Cactus Jack x WWE', num:'12', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Chrome — Cactus Jack x WWE', num:'AKA-LAK', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Chrome — Cactus Jack x WWE', num:'AOK-51', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Chrome — Cactus Jack x WWE', num:'TRT-36', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Chrome — Cactus Jack x WWE', num:'KON-33', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Chrome — Cactus Jack x WWE', num:'FVF-12', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Chrome Sapphire WWE', num:'118', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Chrome WWE', num:'118', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Chrome WWE', num:'CLA-LA', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Chrome WWE', num:'MEA-LAK', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Chrome WWE', num:'85TC-LA', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Chrome WWE', num:'HLX-LAK', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Chrome WWE', num:'PAR-LAK', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Chrome WWE', num:'SMY-LAK', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Chrome WWE — Cactus Jack x WrestleMania Event Exclusive', num:'12', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Chrome WWE — Cactus Jack x WrestleMania Event Exclusive', num:'CJA-LA', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Chrome WWE — Cactus Jack x WrestleMania Event Exclusive', num:'CCA-20', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Exalted WWE', num:'48', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Exalted WWE', num:'EXA-LAK', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Exalted WWE', num:'INI-LAK', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Exalted WWE', num:'MM-LA', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Royalty WWE', num:'7', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Royalty WWE', num:'SUP-LAK', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Royalty WWE', num:'RDE-LAK', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Royalty WWE', num:'TRS-LAK', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Royalty WWE', num:'WPA-LAK', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Royalty WWE', num:'SR-5', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Universe WWE', num:'91', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Universe WWE', num:'TMA-LAK', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Universe WWE', num:'WAU-LAK', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Universe WWE', num:'SPO-21', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Universe WWE', num:'WNO-1', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 WWE Topps Finest', num:'98', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 WWE Topps Finest', num:'198', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 WWE Topps Finest', num:'SSS-LK', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 WWE Topps Finest', num:'FMS-LAK', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 WWE Topps Royal Rumble: Indianapolis World Exclusive', num:'RR-21', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 WWE Topps SummerSlam: New Jersey World Exclusive', num:'SS-15', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 WWE Topps WrestleMania 41: Las Vegas World Exclusive', num:'WM-50', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'Topps WWE', num:'#10', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Chrome WWE', num:'87', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Chrome WWE', num:'287', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Chrome WWE', num:'RBA-LAK', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Chrome WWE', num:'MOC-LA', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Chrome WWE', num:'86T-LA', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Chrome WWE', num:'IIA-LAK', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Chrome WWE', num:'SCO-6', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Chrome WWE', num:'FR-6', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Chrome WWE', num:'LG-2', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'141', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'EA-LAK', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'GG-14', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'GS-9', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'SF-45', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
-    ]
-  },
-  {
     name: 'LA Knight',
     dotColor: '#3498db',
     keyNote: '',
@@ -19890,7 +19647,15 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'141', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'EA-LAK', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'GG-14', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'SF-45', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
+      { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'SF-45', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2022, set:'2022 Panini WWE Immaculate', num:'13', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
+      { year:2022, set:'2022 Panini WWE Immaculate', num:'12', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
+      { year:2022, set:'2022 Panini WWE NXT 2.0 Wrestling Cards', num:'5', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
+      { year:2022, set:'2022 Panini WWE Prizm', num:'IR-CL', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
+      { year:2023, set:'2023 Panini Immaculate Collection WWE', num:'6', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
+      { year:2023, set:'Panini Prizm WWE', num:'#9', promo:'wwe', type:'rc', tags:["RC","KEY","MEGASTAR"], note:'The breakout RC. Organic megastar.', link:'panini-era.html' },
+      { year:2025, set:'Topps WWE', num:'#10', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'GS-9', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -25778,14 +25543,7 @@ const WRESTLERS = [
     keyNote: '',
     cards: [
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'106', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'106A', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' }
-    ]
-  },
-  {
-    name: 'Red Rooster',
-    dotColor: '#3498db',
-    keyNote: '',
-    cards: [
+      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'106A', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:1990, set:'1990 WWF Classic Series 1', num:'39', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
       { year:1990, set:'1990 WWF Classic Series 1', num:'91', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
       { year:1990, set:'1990 WWF Classic Series 1', num:'122', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
@@ -27095,14 +26853,7 @@ const WRESTLERS = [
       { year:2024, set:'2024 Panini Three-Count WWE', num:'15', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
       { year:2024, set:'2024 Panini WWE Select', num:'221', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
       { year:2025, set:'2025 Topps Chrome WWE', num:'MOC-RDG', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 WWE Topps Finest', num:'112', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
-    ]
-  },
-  {
-    name: 'The Road Dogg',
-    dotColor: '#e8c84a',
-    keyNote: '',
-    cards: [
+      { year:2025, set:'2025 WWE Topps Finest', num:'112', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:1999, set:'1999 Comic Images WWF SmackDown! Chromium Trading Cards', num:'9', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
       { year:1999, set:'1999 Comic Images WWF SmackDown! Trading Cards', num:'9', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' }
     ]
@@ -28961,14 +28712,7 @@ const WRESTLERS = [
       { year:2025, set:'2025 Topps Universe WWE', num:'RL-17', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2025, set:'2025 Topps Universe WWE', num:'FOB-19', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'72', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'72A', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' }
-    ]
-  },
-  {
-    name: 'Sandman',
-    dotColor: '#e67e22',
-    keyNote: '',
-    cards: [
+      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'72A', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2004, set:'2004 TNA Wrestling Trading Cards', num:'39', promo:'tna', type:'base', tags:[], note:'', link:'fleer-era.html' },
       { year:2007, set:'2007 Topps WWE Action', num:'63', promo:'wwe', type:'base', tags:[], note:'', link:'first-topps.html' }
     ]
@@ -31727,18 +31471,6 @@ const WRESTLERS = [
     ]
   },
   {
-    name: 'Steiner Brothers',
-    dotColor: '#e8c84a',
-    keyNote: '',
-    cards: [
-      { year:1993, set:'1993 Wacky Wrestling', num:'25', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1993, set:'1993 Wacky Wrestling', num:'66', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1994, set:'1994 WWF Action Packed Trading Cards', num:'24', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1994, set:'1994 WWF Action Packed Trading Cards', num:'41', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' },
-      { year:1994, set:'1994 WWF Action Packed Trading Cards', num:'5G', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' }
-    ]
-  },
-  {
     name: 'The Steiner Brothers',
     dotColor: '#e8c84a',
     keyNote: '',
@@ -31747,7 +31479,12 @@ const WRESTLERS = [
       { year:1993, set:'1993 WWF Wrestling Trading Cards', num:'72', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
       { year:1993, set:'1993 WWF Wrestling Trading Cards', num:'117', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' },
       { year:1993, set:'1993 WWF Wrestling Trading Cards', num:'159', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' },
-      { year:1993, set:'1993 WWF Wrestling Trading Cards', num:'189', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' }
+      { year:1993, set:'1993 WWF Wrestling Trading Cards', num:'189', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' },
+      { year:1993, set:'1993 Wacky Wrestling', num:'25', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1993, set:'1993 Wacky Wrestling', num:'66', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1994, set:'1994 WWF Action Packed Trading Cards', num:'24', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1994, set:'1994 WWF Action Packed Trading Cards', num:'41', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' },
+      { year:1994, set:'1994 WWF Action Packed Trading Cards', num:'5G', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' }
     ]
   },
   {
@@ -32914,17 +32651,6 @@ const WRESTLERS = [
     ]
   },
   {
-    name: 'Ted Dibiase',
-    dotColor: '#e8c84a',
-    keyNote: '',
-    cards: [
-      { year:1991, set:'1991 WWF Merlin Trading Cards', num:'25', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1991, set:'1991 WWF Merlin Trading Cards', num:'91', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1995, set:'1995 WWF Action Packed Trading Cards', num:'36', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' },
-      { year:1995, set:'1995 WWF Action Packed Trading Cards', num:'G12', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' }
-    ]
-  },
-  {
     name: 'Ted DiBiase',
     dotColor: '#3498db',
     keyNote: '',
@@ -33022,7 +32748,11 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'CCA-MDM', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'9', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'9A', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'HF6', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
+      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'HF6', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:1991, set:'1991 WWF Merlin Trading Cards', num:'25', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1991, set:'1991 WWF Merlin Trading Cards', num:'91', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:1995, set:'1995 WWF Action Packed Trading Cards', num:'36', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' },
+      { year:1995, set:'1995 WWF Action Packed Trading Cards', num:'G12', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' }
     ]
   },
   {
@@ -36405,15 +36135,6 @@ const WRESTLERS = [
     ]
   },
   {
-    name: 'Walter',
-    dotColor: '#3498db',
-    keyNote: '',
-    cards: [
-      { year:2026, set:'2026 Topps Chrome WWE', num:'208', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Chrome WWE', num:'APA-WT', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' }
-    ]
-  },
-  {
     name: 'WALTER',
     dotColor: '#3498db',
     keyNote: '',
@@ -36425,7 +36146,9 @@ const WRESTLERS = [
       { year:2022, set:'2022 Panini WWE NXT 2.0 Wrestling Cards', num:'44', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
       { year:2022, set:'2022 Panini WWE NXT 2.0 Wrestling Cards', num:'12', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
       { year:2022, set:'2022 Panini WWE Prizm', num:'140', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Prizm', num:'SA-WTR', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' }
+      { year:2022, set:'2022 Panini WWE Prizm', num:'SA-WTR', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
+      { year:2026, set:'2026 Topps Chrome WWE', num:'208', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Chrome WWE', num:'APA-WT', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
