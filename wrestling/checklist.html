@@ -18,19 +18,32 @@
     }
 
     /* Checklist name heading */
-    .cl-name-wrap { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+    .cl-name-field {
+      display: inline-flex; flex-direction: column; align-items: center;
+      gap: 0.3rem; margin-bottom: 1rem;
+    }
+    .cl-name-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .cl-name-wrap {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--mid); border: 1px solid var(--border);
+      border-radius: 8px; padding: 0.5rem 1rem 0.5rem 1.2rem;
+      cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    }
+    .cl-name-wrap:hover {
+      border-color: var(--gold); background: rgba(232,200,74,0.06);
+    }
     .cl-list-title {
-      font-size: 2rem; color: var(--gold);
+      font-size: 1.7rem; color: var(--gold);
       font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em;
-      cursor: pointer;
     }
-    .cl-list-title:hover { opacity: 0.85; }
     .cl-name-edit-icon {
-      color: var(--muted); font-size: 0.75rem; cursor: pointer;
-      opacity: 0.35; transition: opacity 0.15s;
+      color: var(--muted); font-size: 0.85rem; cursor: pointer;
+      opacity: 0.5; transition: opacity 0.15s;
     }
-    .cl-name-wrap:hover .cl-name-edit-icon { opacity: 0.8; }
-    .cl-name-edit-icon:hover { opacity: 1; color: var(--gold); }
+    .cl-name-wrap:hover .cl-name-edit-icon { opacity: 1; color: var(--gold); }
     .cl-title-input {
       font-size: 2rem; color: var(--gold); background: transparent;
       border: none; border-bottom: 2px solid var(--gold); outline: none;
@@ -278,9 +291,12 @@
 
 <div class="cl-hero">
   <!-- Editable checklist name -->
-  <div class="cl-name-wrap">
-    <h1 class="cl-list-title" id="cl-list-title">My Checklist</h1>
-    <span class="cl-name-edit-icon" title="Click title to rename">✏️</span>
+  <div class="cl-name-field">
+    <span class="cl-name-label">Collection Name</span>
+    <div class="cl-name-wrap">
+      <h1 class="cl-list-title" id="cl-list-title">My Checklist</h1>
+      <span class="cl-name-edit-icon" title="Click to rename">✏️</span>
+    </div>
   </div>
 
   <!-- Mode indicator (guest vs logged-in) -->
