@@ -87,11 +87,11 @@ const CHECKLIST = (() => {
 
   // ── Nav badge ────────────────────────────────────────────────────
   function updateBadge() {
+    // Badge shows checklist count (set by supabase-client for logged-in users).
+    // Guests have no named lists — hide the badge; cloud will override when auth resolves.
     const badge = document.getElementById('nav-cl-badge');
-    const n = count();
     if (!badge) return;
-    badge.textContent = n > 999 ? '999+' : n;
-    badge.style.display = n > 0 ? 'inline-flex' : 'none';
+    badge.style.display = 'none';
   }
 
   function injectNav() {

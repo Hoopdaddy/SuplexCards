@@ -592,8 +592,9 @@
     document.getElementById('stat-sets').textContent   = new Set(all.map(c => c.setId)).size;
     document.getElementById('stat-autos').textContent  = all.filter(c => c.type === 'auto').length;
     document.getElementById('stat-relics').textContent = all.filter(c => c.type === 'relic').length;
+    const n = _allLists.length;
     const badge = document.getElementById('nav-cl-badge');
-    if (badge) { badge.textContent = all.length; badge.style.display = all.length > 0 ? 'inline-flex' : 'none'; }
+    if (badge) { badge.textContent = n > 999 ? '999+' : n; badge.style.display = n > 0 ? 'inline-flex' : 'none'; }
   }
 
   // ── Main render ───────────────────────────────────────────────

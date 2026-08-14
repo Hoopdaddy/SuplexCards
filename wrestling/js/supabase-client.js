@@ -252,11 +252,8 @@ function _authBase() {
 // ── Nav badge: cloud count for logged-in users ────────────────────
 async function _updateNavBadgeFromCloud() {
   try {
-    const cl = await getDefaultChecklist();
-    if (!cl) return;
-    const { count } = await sb.from('checklist_items')
+    const { count } = await sb.from('checklists')
       .select('id', { count: 'exact', head: true })
-      .eq('checklist_id', cl.id)
       .eq('user_id', _currentUser.id);
     if (count == null) return;
     const badge = document.getElementById('nav-cl-badge');
