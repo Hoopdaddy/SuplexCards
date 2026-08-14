@@ -415,19 +415,35 @@
   }
 
   async function renameActive(currentName) {
-    const val = prompt('Rename Collection:', currentName);
-    if (!val || !val.trim() || val.trim() === currentName) return;
-    const newName = val.trim().slice(0, 50);
-    const user = SB_AUTH.getUser();
-    if (user && _activeId) {
-      await SUPABASE_CHECKLIST.renameChecklist(_activeId, newName);
-      const list = _allLists.find(l => l.id === _activeId);
-      if (list) list.name = newName;
-      renderSwitcher();
-    } else {
-      localStorage.setItem(NAME_KEY, newName);
+    titleEl.innerHTML = '';
+    const inp = document.createElement('input');
+    inp.className = 'cl-title-input';
+    inp.value = currentName;
+    inp.maxLength = 50;
+    titleEl.appendChild(inp);
+    inp.focus();
+    inp.select();
+
+    async function commit() {
+      const newName = (inp.value.trim() || currentName).slice(0, 50);
+      titleEl.textContent = newName;
+      if (newName === currentName) return;
+      const user = SB_AUTH.getUser();
+      if (user && _activeId) {
+        await SUPABASE_CHECKLIST.renameChecklist(_activeId, newName);
+        const list = _allLists.find(l => l.id === _activeId);
+        if (list) list.name = newName;
+        renderSwitcher();
+      } else {
+        localStorage.setItem(NAME_KEY, newName);
+      }
     }
-    setTitle(newName);
+
+    inp.addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); inp.blur(); }
+      if (e.key === 'Escape') { inp.value = currentName; inp.blur(); }
+    });
+    inp.addEventListener('blur', commit, { once: true });
   }
 
   titleEl.addEventListener('click', () => renameActive(titleEl.textContent.trim()));
@@ -638,7 +654,7 @@
         .map(card => `
           <div class="cl-card-row" data-id="${card.id}" data-type="${card.type}">
             <input type="checkbox" checked title="Uncheck to remove">
-            <span class="cl-card-num">${card.num && card.num !== '—' ? '#' + card.num : '—'}</span>
+            <span class="cl-card-num">${card.num && card.num !== '—' && (/^\d+$/.test(card.num) || /[A-Z]/.test(card.num)) ? '#' + card.num : ''}</span>
             <span class="cl-card-name">${card.name || '—'}</span>
             ${typeBadge(card.type)}
             ${card.link ? `<a class="cl-card-link" href="${card.link}" title="View set">↗</a>` : ''}
