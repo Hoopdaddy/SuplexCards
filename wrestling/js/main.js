@@ -348,6 +348,10 @@ function _hideEmptyYearBreaks() {
         hasVisible = true;
         break;
       }
+      if (sib.classList.contains('set-block')) {
+        const inner = sib.querySelector('.set-header');
+        if (inner && inner.style.display !== 'none') { hasVisible = true; break; }
+      }
       sib = sib.nextElementSibling;
     }
     yb.style.display = hasVisible ? '' : 'none';
