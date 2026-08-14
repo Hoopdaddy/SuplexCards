@@ -249,6 +249,24 @@ function _authBase() {
   return segs.join('/');
 }
 
+// ── Nav badge: cloud count for logged-in users ────────────────────
+async function _updateNavBadgeFromCloud() {
+  try {
+    const cl = await getDefaultChecklist();
+    if (!cl) return;
+    const { count } = await sb.from('checklist_items')
+      .select('id', { count: 'exact', head: true })
+      .eq('checklist_id', cl.id)
+      .eq('user_id', _currentUser.id);
+    if (count == null) return;
+    const badge = document.getElementById('nav-cl-badge');
+    if (badge) {
+      badge.textContent = count > 999 ? '999+' : count;
+      badge.style.display = count > 0 ? 'inline-flex' : 'none';
+    }
+  } catch {}
+}
+
 // ── Auth state listener ───────────────────────────────────────────
 sb.auth.onAuthStateChange(async (event, session) => {
   _currentUser = session?.user || null;
@@ -256,6 +274,7 @@ sb.auth.onAuthStateChange(async (event, session) => {
   injectAuthNav();
   if (event === 'SIGNED_IN') await uploadLocalChecklist();
   if (typeof CHECKLIST !== 'undefined') CHECKLIST.updateDestBanner?.();
+  if (_currentUser) _updateNavBadgeFromCloud();
 });
 
 // ── Public API ────────────────────────────────────────────────────
