@@ -606,6 +606,13 @@
     const empty   = document.getElementById('cl-empty');
     const toolbar = document.getElementById('cl-toolbar');
 
+    // Keep switcher tab count in sync with current card data
+    if (user) {
+      const n = allList.length;
+      _allLists.forEach(l => { if (l.id === _activeId) l._count = n; });
+      renderSwitcher();
+    }
+
     renderStats(cards);
     updateAuthUI();
 
