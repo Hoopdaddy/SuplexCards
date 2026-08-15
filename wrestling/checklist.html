@@ -866,7 +866,7 @@
   const _PRICE_TTL = 24 * 60 * 60 * 1000;
 
   async function _fetchPrices(card) {
-    const q = [card.name, card.year, card.setName].filter(Boolean).join(' ');
+    const q = [card.name, card.setName].filter(Boolean).join(' ');
 
     // Check Supabase cache first
     try {
