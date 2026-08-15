@@ -143,6 +143,23 @@
     .cl-card-link:hover { color: var(--gold); }
     .cl-remove      { background: none; border: none; color: #4a2020; cursor: pointer; font-size: 0.85rem; padding: 0 4px; }
     .cl-remove:hover { color: #f87171; }
+    .cl-price-btn   { background: none; border: none; cursor: pointer; font-size: 0.8rem; padding: 0 3px; opacity: 0.35; transition: opacity 0.15s; line-height: 1; }
+    .cl-price-btn:hover { opacity: 1; }
+    .cl-price-btn:disabled { opacity: 0.2; cursor: default; }
+    .cl-price-panel {
+      background: var(--darker); border-top: 1px solid var(--border);
+      padding: 0.55rem 1rem 0.55rem 2.8rem; font-size: 0.78rem;
+    }
+    .cl-price-panel[hidden] { display: none; }
+    .cl-price-row   { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.18rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .cl-price-row:last-of-type { border-bottom: none; }
+    .cl-price-amt   { font-weight: 700; color: #4ade80; min-width: 52px; }
+    .cl-price-title { flex: 1; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 0.73rem; }
+    .cl-price-date  { color: var(--muted); font-size: 0.68rem; white-space: nowrap; opacity: 0.7; }
+    .cl-price-link  { color: var(--muted); font-size: 0.68rem; text-decoration: none; }
+    .cl-price-link:hover { color: var(--gold); }
+    .cl-price-empty { color: var(--muted); font-style: italic; margin: 0; }
+    .cl-price-meta  { color: var(--muted); font-size: 0.65rem; margin: 0.35rem 0 0; opacity: 0.5; }
 
     /* ── Empty state ────────────────────────────────────────── */
     .cl-empty {
@@ -674,8 +691,10 @@
             <span class="cl-card-name">${card.name || '—'}</span>
             ${typeBadge(card.type)}
             ${card.link ? `<a class="cl-card-link" href="${card.link}" title="View set">↗</a>` : ''}
+            <button class="cl-price-btn" data-id="${card.id}" title="Check recent eBay prices">💰</button>
             <button class="cl-remove" data-id="${card.id}" title="Remove">✕</button>
-          </div>`).join('');
+          </div>
+          <div class="cl-price-panel" data-price-for="${card.id}" hidden></div>`).join('');
       return `
         <div class="cl-set-group">
           <div class="cl-set-header" onclick="this.closest('.cl-set-group').classList.toggle('collapsed')">
@@ -707,6 +726,9 @@
 
     list.querySelectorAll('.cl-set-rename').forEach(btn =>
       btn.addEventListener('click', e => { e.stopPropagation(); renameSet(btn.dataset.set, cards); }));
+
+    list.querySelectorAll('.cl-price-btn').forEach(btn =>
+      btn.addEventListener('click', () => handlePriceLookup(btn, cards)));
   }
 
   // ── Rename a set group (updates set_name on every card in that set) ──
@@ -838,6 +860,82 @@
     Object.assign(document.createElement('a'), { href: url, download: `${filename}.csv` }).click();
     URL.revokeObjectURL(url);
   });
+
+  // ── CardSight price lookup ────────────────────────────────────
+  const _CSKEY = '93fb139c43c1464cb1012b7dc4edbf11';
+  const _PRICE_TTL = 24 * 60 * 60 * 1000;
+
+  async function _fetchPrices(card) {
+    const q = [card.name, card.year, card.setName].filter(Boolean).join(' ');
+
+    // Check Supabase cache first
+    try {
+      const { data } = await sb.from('card_prices')
+        .select('results, fetched_at').eq('query', q).maybeSingle();
+      if (data && Date.now() - new Date(data.fetched_at).getTime() < _PRICE_TTL)
+        return data.results;
+    } catch {}
+
+    // Fetch from CardSight
+    const resp = await fetch(
+      `https://api.cardsight.ai/v1/pricing/search?q=${encodeURIComponent(q)}&limit=5`,
+      { headers: { 'X-API-Key': _CSKEY } }
+    );
+    if (!resp.ok) throw new Error('CardSight API error');
+    const json = await resp.json();
+    const results = json.results || [];
+
+    // Store in cache
+    try {
+      await sb.from('card_prices').upsert(
+        { query: q, results, fetched_at: new Date().toISOString() },
+        { onConflict: 'query' }
+      );
+    } catch {}
+
+    return results;
+  }
+
+  function _renderPricePanel(panel, results) {
+    if (!results.length) {
+      panel.innerHTML = `<p class="cl-price-empty">No recent eBay sales found.</p>`;
+      return;
+    }
+    const rows = results.map(r => {
+      const d = new Date(r.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      const title = (r.title || '').replace(/</g, '&lt;');
+      return `<div class="cl-price-row">
+        <span class="cl-price-amt">$${Number(r.price).toFixed(2)}</span>
+        <span class="cl-price-title" title="${title}">${title}</span>
+        <span class="cl-price-date">${d}</span>
+        <a class="cl-price-link" href="${r.url}" target="_blank" rel="noopener">↗</a>
+      </div>`;
+    }).join('');
+    panel.innerHTML = rows + `<p class="cl-price-meta">Recent eBay sales · CardSight AI · updated daily</p>`;
+  }
+
+  async function handlePriceLookup(btn, cards) {
+    const id    = btn.dataset.id;
+    const card  = Object.values(cards).find(c => c.id === id);
+    const panel = document.querySelector(`.cl-price-panel[data-price-for="${id}"]`);
+    if (!card || !panel) return;
+
+    // Toggle off if already open
+    if (!panel.hidden) { panel.hidden = true; return; }
+
+    panel.hidden = false;
+    panel.innerHTML = `<span style="color:var(--muted);font-size:0.78rem">Checking prices…</span>`;
+    btn.disabled = true;
+
+    try {
+      const results = await _fetchPrices(card);
+      _renderPricePanel(panel, results);
+    } catch {
+      panel.innerHTML = `<p class="cl-price-empty">Could not load prices — try again.</p>`;
+    } finally {
+      btn.disabled = false;
+    }
+  }
 
   // ── Clear all ─────────────────────────────────────────────────
   document.getElementById('btn-clear-all').addEventListener('click', async () => {
