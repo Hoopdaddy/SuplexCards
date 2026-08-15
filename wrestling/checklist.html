@@ -865,8 +865,18 @@
   const _CSKEY = '93fb139c43c1464cb1012b7dc4edbf11';
   const _PRICE_TTL = 24 * 60 * 60 * 1000;
 
+  function _buildQuery(card) {
+    // Strip description after em dash (e.g. "Debra — Skirt" → "Debra")
+    const name = (card.name || '').replace(/\s*[—–]\s*.+$/, '').trim();
+    const parts = [name, card.setName].filter(Boolean);
+    // Append card type hint for relics/autos to improve match quality
+    if (card.type === 'relic') parts.push('relic');
+    else if (card.type === 'auto') parts.push('autograph');
+    return parts.join(' ');
+  }
+
   async function _fetchPrices(card) {
-    const q = [card.name, card.setName].filter(Boolean).join(' ');
+    const q = _buildQuery(card);
 
     // Check Supabase cache first
     try {
@@ -876,16 +886,19 @@
         return data.results;
     } catch {}
 
-    // Fetch from CardSight
-    const resp = await fetch(
-      `https://api.cardsight.ai/v1/pricing/search?q=${encodeURIComponent(q)}&limit=5`,
-      { headers: { 'X-API-Key': _CSKEY } }
-    );
-    if (!resp.ok) throw new Error('CardSight API error');
-    const json = await resp.json();
-    const results = json.results || [];
+    // Fetch completed sales + active listings in parallel
+    const headers = { 'X-API-Key': _CSKEY };
+    const qs = encodeURIComponent(q);
+    const [salesResp, listingsResp] = await Promise.all([
+      fetch(`https://api.cardsight.ai/v1/pricing/search?q=${qs}&limit=4`, { headers }),
+      fetch(`https://api.cardsight.ai/v1/marketplace/search?q=${qs}&limit=3`, { headers })
+    ]);
 
-    // Store in cache
+    const sales    = salesResp.ok    ? ((await salesResp.json()).results    || []).map(r => ({ ...r, _kind: 'sold' }))   : [];
+    const listings = listingsResp.ok ? ((await listingsResp.json()).results || []).map(r => ({ ...r, _kind: 'listed' })) : [];
+    const results  = [...sales, ...listings];
+
+    // Store in cache (counts as 2 API calls — log both)
     try {
       await sb.from('card_prices').upsert(
         { query: q, results, fetched_at: new Date().toISOString() },
@@ -898,20 +911,25 @@
 
   function _renderPricePanel(panel, results) {
     if (!results.length) {
-      panel.innerHTML = `<p class="cl-price-empty">No recent eBay sales found.</p>`;
+      panel.innerHTML = `<p class="cl-price-empty">No eBay sales or listings found for this card.</p>`;
       return;
     }
     const rows = results.map(r => {
-      const d = new Date(r.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-      const title = (r.title || '').replace(/</g, '&lt;');
+      const isSold   = r._kind === 'sold';
+      const d        = new Date(r.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      const title    = (r.title || '').replace(/</g, '&lt;');
+      const kindTag  = isSold
+        ? `<span style="font-size:0.62rem;color:var(--muted);opacity:0.6">SOLD</span>`
+        : `<span style="font-size:0.62rem;color:#3b82f6">LISTED</span>`;
       return `<div class="cl-price-row">
-        <span class="cl-price-amt">$${Number(r.price).toFixed(2)}</span>
+        <span class="cl-price-amt" style="${isSold ? '' : 'color:#3b82f6'}">$${Number(r.price).toFixed(2)}</span>
+        ${kindTag}
         <span class="cl-price-title" title="${title}">${title}</span>
         <span class="cl-price-date">${d}</span>
         <a class="cl-price-link" href="${r.url}" target="_blank" rel="noopener">↗</a>
       </div>`;
     }).join('');
-    panel.innerHTML = rows + `<p class="cl-price-meta">Recent eBay sales · CardSight AI · updated daily</p>`;
+    panel.innerHTML = rows + `<p class="cl-price-meta">eBay data via CardSight AI · updated daily</p>`;
   }
 
   async function handlePriceLookup(btn, cards) {
