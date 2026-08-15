@@ -143,6 +143,9 @@
     .cl-card-link:hover { color: var(--gold); }
     .cl-remove      { background: none; border: none; color: #4a2020; cursor: pointer; font-size: 0.85rem; padding: 0 4px; }
     .cl-remove:hover { color: #f87171; }
+    .cl-legend { display: flex; gap: 1.2rem; padding: 0.4rem 0 0.6rem; flex-wrap: wrap; }
+    .cl-legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; color: var(--muted); }
+    .cl-legend-icon { font-size: 0.85rem; line-height: 1; }
     .cl-price-btn   { background: none; border: none; cursor: pointer; font-size: 0.8rem; padding: 0 3px; opacity: 0.35; transition: opacity 0.15s; line-height: 1; }
     .cl-price-btn:hover { opacity: 1; }
     .cl-price-btn:disabled { opacity: 0.2; cursor: default; }
@@ -362,6 +365,11 @@
     </div>
   </div>
 
+  <!-- Legend (signed-in users only) -->
+  <div class="cl-legend" id="cl-legend" style="display:none">
+    <span class="cl-legend-item"><span class="cl-legend-icon">💰</span> Check recent eBay sales for this card</span>
+  </div>
+
   <!-- Card list -->
   <div id="cl-list"></div>
 
@@ -484,18 +492,21 @@
 
   // ── Auth pill + nudge ─────────────────────────────────────────
   function updateAuthUI() {
-    const user  = SB_AUTH.getUser();
-    const pill  = document.getElementById('cl-mode-pill');
-    const nudge = document.getElementById('cl-upgrade-nudge');
+    const user   = SB_AUTH.getUser();
+    const pill   = document.getElementById('cl-mode-pill');
+    const nudge  = document.getElementById('cl-upgrade-nudge');
+    const legend = document.getElementById('cl-legend');
     if (user) {
       const name = user.user_metadata?.display_name || user.email.split('@')[0];
       pill.textContent = '✓ Synced — ' + name;
       pill.classList.add('logged-in');
-      if (nudge) nudge.style.display = 'none';
+      if (nudge)  nudge.style.display  = 'none';
+      if (legend) legend.style.display = '';
     } else {
       pill.textContent = '🖥️ Saved in this browser';
       pill.classList.remove('logged-in');
-      if (nudge) nudge.style.display = '';
+      if (nudge)  nudge.style.display  = '';
+      if (legend) legend.style.display = 'none';
     }
   }
 
