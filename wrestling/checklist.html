@@ -208,6 +208,21 @@
       width: 130px; outline: none;
     }
 
+    /* ── List type badges ───────────────────────────────────── */
+    .cl-tab-type {
+      font-size: 0.55rem; font-weight: 800; letter-spacing: 0.07em;
+      text-transform: uppercase; padding: 0.1rem 0.4rem; border-radius: 3px;
+      cursor: pointer; transition: opacity 0.12s; opacity: 0.85; user-select: none;
+    }
+    .cl-tab-type:hover { opacity: 1; }
+    .tl-collection { background: rgba(255,255,255,0.07); color: var(--muted); }
+    .tl-wishlist   { background: rgba(52,152,219,0.18); color: #60a5fa; }
+    .tl-fortrade   { background: rgba(46,204,113,0.15); color: #4ade80; }
+
+    /* ── Trade / want match icons on card rows ──────────────── */
+    .cl-match-trade { font-size: 0.72rem; cursor: default; title: 'Available for trade'; }
+    .cl-match-want  { font-size: 0.72rem; cursor: default; }
+
     /* ── Per-set export buttons ─────────────────────────────── */
     .cl-set-actions {
       display: flex; gap: 0.3rem; flex-shrink: 0;
@@ -503,25 +518,34 @@
     }
   }
 
+  // ── List type helpers ─────────────────────────────────────────
+  const TYPE_CYCLE  = { collection: 'wishlist', wishlist: 'for_trade', for_trade: 'collection' };
+  const TYPE_LABEL  = { collection: 'Collection', wishlist: 'Wishlist', for_trade: 'For Trade' };
+  const TYPE_CLASS  = { collection: 'tl-collection', wishlist: 'tl-wishlist', for_trade: 'tl-fortrade' };
+
   // ── Switcher ──────────────────────────────────────────────────
   function renderSwitcher() {
     const el = document.getElementById('cl-switcher');
     if (!SB_AUTH.getUser() || !_allLists.length) { el.style.display = 'none'; return; }
     el.style.display = '';
-    el.innerHTML = _allLists.map(list => `
+    el.innerHTML = _allLists.map(list => {
+      const lt = list.list_type || 'collection';
+      return `
       <button class="cl-switcher-tab${list.id === _activeId ? ' active' : ''}" data-id="${list.id}">
         ${list.name}
         <span class="cl-tab-count">${list._count ?? ''}</span>
+        <span class="cl-tab-type ${TYPE_CLASS[lt]}" data-type-btn="${list.id}" title="Click to change list type">${TYPE_LABEL[lt]}</span>
         <span class="cl-tab-rename" data-id="${list.id}" title="Rename list">✏</span>
         ${_allLists.length > 1 ? `<span class="cl-tab-del" data-del="${list.id}" title="Delete list">✕</span>` : ''}
-      </button>`).join('') +
+      </button>`;
+    }).join('') +
       (_allLists.length < 5
         ? `<button class="cl-new-list-btn" id="btn-new-list">+ New List</button>`
         : `<button class="cl-new-list-btn" disabled title="Max 5 lists reached">+ New List</button>`);
 
     el.querySelectorAll('.cl-switcher-tab').forEach(tab => {
       tab.addEventListener('click', async e => {
-        if (e.target.closest('.cl-tab-del') || e.target.closest('.cl-tab-rename')) return;
+        if (e.target.closest('.cl-tab-del') || e.target.closest('.cl-tab-rename') || e.target.closest('.cl-tab-type')) return;
         const id = tab.dataset.id;
         if (id === _activeId) {
           // Clicking the active tab renames it
@@ -560,12 +584,25 @@
         const id  = btn.dataset.id;
         const lst = _allLists.find(l => l.id === id);
         if (!lst) return;
-        const val = prompt('Rename Collection:', lst.name);
+        const val = prompt('Rename list:', lst.name);
         if (!val || !val.trim() || val.trim() === lst.name) return;
         const newName = val.trim().slice(0, 50);
         await SUPABASE_CHECKLIST.renameChecklist(id, newName);
         lst.name = newName;
         if (id === _activeId) setTitle(newName);
+        renderSwitcher();
+      });
+    });
+
+    el.querySelectorAll('.cl-tab-type').forEach(badge => {
+      badge.addEventListener('click', async e => {
+        e.stopPropagation();
+        const id  = badge.dataset.typeBtn;
+        const lst = _allLists.find(l => l.id === id);
+        if (!lst) return;
+        const next = TYPE_CYCLE[lst.list_type || 'collection'];
+        lst.list_type = next;
+        await SUPABASE_CHECKLIST.changeListType(id, next);
         renderSwitcher();
       });
     });
@@ -733,6 +770,48 @@
 
     list.querySelectorAll('.cl-price-btn').forEach(btn =>
       btn.addEventListener('click', () => handlePriceLookup(btn, cards)));
+
+    // Match icons load async after the list renders — no await so it doesn't block
+    _fetchCardMatches(cards);
+  }
+
+  // ── Trade / want match icons ──────────────────────────────────
+  async function _fetchCardMatches(cards) {
+    const user = SB_AUTH.getUser();
+    if (!user) return;
+    const cardKeys = Object.keys(cards);
+    if (!cardKeys.length) return;
+
+    try {
+      const { data } = await sb
+        .from('checklist_items')
+        .select('card_key, checklist:checklists(list_type)')
+        .in('card_key', cardKeys)
+        .neq('user_id', user.id);
+
+      const forTrade = new Set();
+      const wanted   = new Set();
+      (data || []).forEach(item => {
+        const lt = item.checklist?.list_type;
+        if (lt === 'for_trade') forTrade.add(item.card_key);
+        else if (lt === 'wishlist') wanted.add(item.card_key);
+      });
+
+      forTrade.forEach(key => _addMatchIcon(key, '🔄', 'Available for trade by another user', 'cl-match-trade'));
+      wanted.forEach(key   => _addMatchIcon(key, '⭐', 'On another user\'s wishlist', 'cl-match-want'));
+    } catch {}
+  }
+
+  function _addMatchIcon(cardKey, emoji, tooltip, cls) {
+    const row = document.querySelector(`.cl-card-row[data-id="${cardKey}"]`);
+    if (!row || row.querySelector(`.${cls}`)) return;
+    const icon = document.createElement('span');
+    icon.className = cls;
+    icon.textContent = emoji;
+    icon.title = tooltip;
+    // Insert before the ↗ link / price btn / remove btn
+    const anchor = row.querySelector('.cl-card-link') || row.querySelector('.cl-price-btn') || row.querySelector('.cl-remove');
+    anchor ? row.insertBefore(icon, anchor) : row.appendChild(icon);
   }
 
   // ── Rename a set group (updates set_name on every card in that set) ──

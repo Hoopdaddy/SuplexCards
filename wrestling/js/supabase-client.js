@@ -94,10 +94,16 @@ window.SUPABASE_CHECKLIST = {
   async getAllChecklists() {
     if (!_currentUser) return [];
     const { data } = await sb.from('checklists')
-      .select('id, name, is_default, created_at')
+      .select('id, name, is_default, list_type, created_at')
       .eq('user_id', _currentUser.id)
       .order('created_at');
     return data || [];
+  },
+
+  async changeListType(id, type) {
+    if (!_currentUser) return;
+    await sb.from('checklists').update({ list_type: type })
+      .eq('id', id).eq('user_id', _currentUser.id);
   },
 
   async getItems(checklistId) {
