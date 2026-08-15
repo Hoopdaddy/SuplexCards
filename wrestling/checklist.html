@@ -859,7 +859,7 @@
       ['Set', 'Year', 'Card #', 'Name', 'Type'],
       ...sc.map(c => [
         `"${(c.setName || '').replace(/"/g, '""')}"`,
-        c.year || '', c.num || '',
+        c.year || '', (c.num && c.num !== '—' && (/^\d+$/.test(c.num) || /[A-Z]/.test(c.num)) ? c.num : ''),
         `"${(c.name || '').replace(/"/g, '""')}"`,
         c.type || ''
       ])
@@ -898,7 +898,10 @@
     doc.autoTable({
       startY: 35,
       head: [['#', 'Card Name', 'Type']],
-      body: sc.map(c => [c.num || '—', c.name || '—', (c.type || 'base').toUpperCase()]),
+      body: sc.map(c => {
+        const num = c.num && c.num !== '—' && (/^\d+$/.test(c.num) || /[A-Z]/.test(c.num)) ? c.num : '—';
+        return [num, c.name || '—', (c.type || 'base').toUpperCase()];
+      }),
       theme: 'grid',
       styles:          { fillColor: [20, 20, 20], textColor: [200, 200, 200], fontSize: 9, lineColor: [50, 50, 50], lineWidth: 0.3 },
       headStyles:      { fillColor: [30, 30, 30], textColor: [232, 200, 74], fontStyle: 'bold' },
