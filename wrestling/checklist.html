@@ -377,7 +377,7 @@
   <div class="cl-upgrade-nudge" id="cl-upgrade-nudge" style="display:none">
     <div class="cl-upgrade-text">
       <p><strong>Want to access this list on any device?</strong><br>
-      Create a free account to sync your checklist across browsers and devices — and unlock up to 5 named lists.</p>
+      Create a free account to sync your checklist across devices, unlock up to 5 named lists, and get <strong>live eBay price lookups</strong> on every card you own.</p>
     </div>
     <div class="cl-upgrade-actions">
       <a href="register.html" class="btn-upgrade-register">Create Account</a>
@@ -691,7 +691,7 @@
             <span class="cl-card-name">${card.name || '—'}</span>
             ${typeBadge(card.type)}
             ${card.link ? `<a class="cl-card-link" href="${card.link}" title="View set">↗</a>` : ''}
-            <button class="cl-price-btn" data-id="${card.id}" title="Check recent eBay prices">💰</button>
+            ${user ? `<button class="cl-price-btn" data-id="${card.id}" title="Check recent eBay prices">💰</button>` : ''}
             <button class="cl-remove" data-id="${card.id}" title="Remove">✕</button>
           </div>
           <div class="cl-price-panel" data-price-for="${card.id}" hidden></div>`).join('');
