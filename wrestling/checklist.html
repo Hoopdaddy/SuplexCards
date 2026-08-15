@@ -367,7 +367,7 @@
 
   <!-- Legend (signed-in users only) -->
   <div class="cl-legend" id="cl-legend" style="display:none">
-    <span class="cl-legend-item"><span class="cl-legend-icon">💰</span> Check recent eBay sales for this card</span>
+    <span class="cl-legend-item"><span class="cl-legend-icon">💰</span> Search eBay sold listings for this card — sales data available for 2022 to present</span>
   </div>
 
   <!-- Card list -->
@@ -951,7 +951,7 @@
     panel.innerHTML = rows + `<p class="cl-price-meta">eBay data via CardSight AI · updated daily &nbsp;·&nbsp; ${ebayLink}</p>`;
   }
 
-  async function handlePriceLookup(btn, cards) {
+  function handlePriceLookup(btn, cards) {
     const id    = btn.dataset.id;
     const card  = Object.values(cards).find(c => c.id === id);
     const panel = document.querySelector(`.cl-price-panel[data-price-for="${id}"]`);
@@ -960,18 +960,10 @@
     // Toggle off if already open
     if (!panel.hidden) { panel.hidden = true; return; }
 
-    panel.hidden = false;
-    panel.innerHTML = `<span style="color:var(--muted);font-size:0.78rem">Checking prices…</span>`;
-    btn.disabled = true;
-
-    try {
-      const results = await _fetchPrices(card);
-      _renderPricePanel(panel, results, card);
-    } catch {
-      panel.innerHTML = `<p class="cl-price-empty">Could not load prices — try again.</p>`;
-    } finally {
-      btn.disabled = false;
-    }
+    const ebayUrl = _ebaySearchUrl(card);
+    panel.hidden  = false;
+    panel.innerHTML = `<a class="cl-price-link" href="${ebayUrl}" target="_blank" rel="noopener"
+      style="font-size:0.78rem;color:var(--gold)">Search eBay sold listings →</a>`;
   }
 
   // ── Clear all ─────────────────────────────────────────────────
