@@ -920,9 +920,17 @@
     return results;
   }
 
-  function _renderPricePanel(panel, results) {
+  function _ebaySearchUrl(card) {
+    const name = (card.name || '').replace(/\s*[—–]\s*.+$/, '').trim();
+    const q = [name, card.setName].filter(Boolean).join(' ');
+    return `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(q)}&LH_Complete=1&LH_Sold=1`;
+  }
+
+  function _renderPricePanel(panel, results, card) {
+    const ebayUrl = _ebaySearchUrl(card);
+    const ebayLink = `<a class="cl-price-link" href="${ebayUrl}" target="_blank" rel="noopener" style="font-size:0.75rem;color:var(--gold)">Search eBay sold listings →</a>`;
     if (!results.length) {
-      panel.innerHTML = `<p class="cl-price-empty">No eBay sales or listings found for this card.</p>`;
+      panel.innerHTML = `<p class="cl-price-empty" style="margin-bottom:0.4rem">No automated price data found.</p>${ebayLink}`;
       return;
     }
     const rows = results.map(r => {
@@ -940,7 +948,7 @@
         <a class="cl-price-link" href="${r.url}" target="_blank" rel="noopener">↗</a>
       </div>`;
     }).join('');
-    panel.innerHTML = rows + `<p class="cl-price-meta">eBay data via CardSight AI · updated daily</p>`;
+    panel.innerHTML = rows + `<p class="cl-price-meta">eBay data via CardSight AI · updated daily &nbsp;·&nbsp; ${ebayLink}</p>`;
   }
 
   async function handlePriceLookup(btn, cards) {
@@ -958,7 +966,7 @@
 
     try {
       const results = await _fetchPrices(card);
-      _renderPricePanel(panel, results);
+      _renderPricePanel(panel, results, card);
     } catch {
       panel.innerHTML = `<p class="cl-price-empty">Could not load prices — try again.</p>`;
     } finally {
