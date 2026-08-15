@@ -369,6 +369,7 @@
     </div>
     <div class="cl-toolbar-right">
       <button class="btn-export" id="btn-export">⬇ Export CSV</button>
+      <button class="btn-export" id="btn-export-pdf">⬇ Export PDF</button>
       <button class="btn-clear-all" id="btn-clear-all">Clear All</button>
     </div>
   </div>
@@ -969,6 +970,73 @@
     panel.innerHTML = `<a class="cl-price-link" href="${ebayUrl}" target="_blank" rel="noopener"
       style="font-size:0.78rem;color:var(--gold)">Search eBay sold listings →</a>`;
   }
+
+  // ── Export full checklist PDF ─────────────────────────────────
+  document.getElementById('btn-export-pdf').addEventListener('click', () => {
+    const user    = SB_AUTH.getUser();
+    const cards   = user ? _cloudCards : CHECKLIST.getAll();
+    const allList = Object.values(cards);
+    if (!allList.length) return;
+    if (!window.jspdf?.jsPDF) { alert('PDF library not loaded yet — please try again in a moment.'); return; }
+
+    const listName = user
+      ? (_allLists.find(l => l.id === _activeId)?.name || 'My Checklist')
+      : (localStorage.getItem(NAME_KEY) || 'My Checklist');
+    const filename = listName.toLowerCase().replace(/\s+/g, '-');
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+    // Header
+    doc.setFillColor(13, 13, 13);
+    doc.rect(0, 0, 210, 297, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(18);
+    doc.setTextColor(232, 200, 74);
+    doc.text(listName, 14, 18);
+    doc.setFontSize(9);
+    doc.setTextColor(120, 120, 120);
+    doc.text(`${allList.length} card${allList.length !== 1 ? 's' : ''} · Suplex Trading Cards · ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`, 14, 25);
+
+    const groups = groupBySet(cards);
+    let y = 32;
+
+    groups.forEach((group, i) => {
+      const sorted = group.cards.sort((a, b) =>
+        (a.num || '').localeCompare(b.num || '', undefined, { numeric: true }));
+
+      // Set name subheader
+      if (i > 0 && y > 250) { doc.addPage(); doc.setFillColor(13,13,13); doc.rect(0,0,210,297,'F'); y = 14; }
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8);
+      doc.setTextColor(232, 200, 74);
+      doc.text(`${group.setName || group.setId}${group.year ? '  (' + group.year + ')' : ''}`, 14, y + 5);
+      y += 7;
+
+      doc.autoTable({
+        startY: y,
+        head: [['#', 'Card Name', 'Type']],
+        body: sorted.map(c => {
+          const num = c.num && c.num !== '—' && (/^\d+$/.test(c.num) || /[A-Z]/.test(c.num)) ? c.num : '—';
+          return [num, c.name || '—', (c.type || 'base').toUpperCase()];
+        }),
+        theme: 'grid',
+        styles:             { fillColor: [20,20,20], textColor: [200,200,200], fontSize: 8, lineColor: [50,50,50], lineWidth: 0.3 },
+        headStyles:         { fillColor: [30,30,30], textColor: [232,200,74], fontStyle: 'bold' },
+        alternateRowStyles: { fillColor: [25,25,25] },
+        columnStyles:       { 0: { cellWidth: 18, textColor: [100,100,100] }, 2: { cellWidth: 24, halign: 'center' } },
+        margin:             { left: 14, right: 14 },
+        didDrawPage: (data) => {
+          doc.setFillColor(13,13,13);
+          doc.rect(0, 0, 210, data.settings.startY, 'F');
+        }
+      });
+
+      y = doc.lastAutoTable.finalY + 6;
+    });
+
+    doc.save(`${filename}.pdf`);
+  });
 
   // ── Clear all ─────────────────────────────────────────────────
   document.getElementById('btn-clear-all').addEventListener('click', async () => {
