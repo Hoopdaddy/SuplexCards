@@ -247,7 +247,7 @@ function initNav() {
 // ── TABS (multi-select, name-based filtering) ─────────
 // Rules: which set names belong to each tab.
 // First Topps premium: Undisputed, Transcendent, Legends, Women's Division, Elite
-const _PREMIUM_TOPPS  = /undisputed|transcendent|\blegends\b|women.s.division|\belite\b|exalted|royalty/i;
+const _PREMIUM_TOPPS  = /undisputed|transcendent|\blegends\b|women.s.division|\belite\b|exalted|royalty|stadium.club/i;
 // Panini premium: National Treasures, Immaculate, Impeccable, Prizm Premium Box Set
 const _PREMIUM_PANINI = /national.treasures|immaculate|impeccable|prizm.premium.box/i;
 const _isPremium      = n => _PREMIUM_TOPPS.test(n) || _PREMIUM_PANINI.test(n);

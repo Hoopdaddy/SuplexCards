@@ -491,6 +491,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'133', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-AR', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-3', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'138', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -573,6 +574,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'28', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-PL', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-6', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'10', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -759,6 +761,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'GE-8', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'HMM-21', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'A-28', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'150', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -830,6 +833,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'228', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-AK', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-AT', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'170', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -944,6 +948,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'162', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'137', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-AF', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'19', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -1036,6 +1041,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'145', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'234', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WRA-AB', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'156', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -1072,6 +1078,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'198', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'26', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-MC', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'34', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -1297,6 +1304,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'A-4', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-AB', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-14', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'103', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -1507,7 +1515,8 @@ const WRESTLERS = [
       { year:2025, set:'2025 Topps Royalty WWE', num:'RYA-CRH', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2025, set:'2025 Topps Royalty WWE', num:'WPA-CRH', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2025, set:'2025 Topps Royalty WWE', num:'RR-13', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
-      { year:2025, set:'2025 Topps Royalty WWE', num:'LQ-4', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
+      { year:2025, set:'2025 Topps Royalty WWE', num:'LQ-4', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'8', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -1588,6 +1597,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-AN', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-AC', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-40', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'133', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -1680,6 +1690,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'183', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-LG', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'LLL-4', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'197', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -1765,6 +1776,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'23', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-AD', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-SP', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'160', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -1880,6 +1892,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Chrome WWE', num:'175', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'172', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-AC', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'42', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -1924,6 +1937,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'65', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-AG', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-20', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'131', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -2218,6 +2232,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'GE-23', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'HMM-5', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'A-29', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'15', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -2349,6 +2364,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'42', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-AT', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-AT', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'159', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -2460,6 +2476,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-AX', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-FX', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'LLL-8', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'149', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -2499,6 +2516,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'176', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-BF', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-MB', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'116', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -2858,6 +2876,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'221', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'A-21', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-17', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'72', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -3066,6 +3085,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-BA', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'RR-BL', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NS-5', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'200', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -3326,6 +3346,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'A-23', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-BL', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-24', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'3', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -3345,6 +3366,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'137', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'182', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'LLL-2', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'94', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -3666,6 +3688,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'A-7', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-BB', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-10', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'49', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -3857,6 +3880,7 @@ const WRESTLERS = [
       { year:2025, set:'2025 Topps Universe WWE', num:'IIM-15', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2025, set:'2025 WWE Topps Finest', num:'242', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'126', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'134', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -3875,7 +3899,8 @@ const WRESTLERS = [
       { year:2025, set:'2025 Topps Chrome WWE', num:'85TL-BJ', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2025, set:'2025 Topps Chrome WWE', num:'WM-BS', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2025, set:'2025 Topps Universe WWE', num:'221', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Chrome WWE', num:'WMR-7', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
+      { year:2026, set:'2026 Topps Chrome WWE', num:'WMR-7', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'123', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -4151,6 +4176,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'WRA-BM', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTN-15', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-7', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'17', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -4626,6 +4652,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Chrome WWE', num:'271', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Chrome WWE', num:'IIA-BOT', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'140', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'132', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -4879,6 +4906,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'GE-1', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'A-22', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-BW', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'137', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -4888,7 +4916,8 @@ const WRESTLERS = [
     cards: [
       { year:2015, set:'2015 Topps WWE Road to WrestleMania', num:'AUTO /100', promo:'wwe', type:'auto', tags:[], note:'', link:'first-topps.html' },
       { year:2015, set:'2015 Topps WWE Road to WrestleMania', num:'RELIC /100', promo:'wwe', type:'auto', tags:[], note:'', link:'first-topps.html' },
-      { year:2015, set:'2015 Topps WWE Road to WrestleMania', num:'AUTO RELIC /10', promo:'wwe', type:'auto', tags:[], note:'', link:'first-topps.html' }
+      { year:2015, set:'2015 Topps WWE Road to WrestleMania', num:'AUTO RELIC /10', promo:'wwe', type:'auto', tags:[], note:'', link:'first-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'31', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -5374,7 +5403,8 @@ const WRESTLERS = [
       { year:2025, set:'2025 WWE Topps Finest', num:'229', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Chrome WWE', num:'WMR-11', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'8', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'HF7', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
+      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'HF7', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'173', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -5629,6 +5659,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'34', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'GS-10', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NS-15', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'175', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -5804,6 +5835,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-BK', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NS-6', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-15', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'25', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -5834,6 +5866,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'57', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-OM', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-31', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'44', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -5886,6 +5919,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'15', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'252', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WRA-BR', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'18', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -5939,6 +5973,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-BJ', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-BJ', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-37', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'63', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -6119,6 +6154,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'53', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'129', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-AM', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'65', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -6662,6 +6698,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'SFS-CLR', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'7', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-CL', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'97', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -6980,6 +7017,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'269', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-CH', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-CH', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'106', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -7134,6 +7172,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Chrome WWE', num:'FR-10', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'127', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-CG', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'162', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -7185,6 +7224,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-CL', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-CL', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-50', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'12', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -7237,6 +7277,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'46', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NLA-CD', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-30', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'192', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -7538,6 +7579,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'A-15', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-CF', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-4', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'176', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -7710,6 +7752,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'136', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WRA-CG', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-CG', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'109', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -7948,6 +7991,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Chrome WWE', num:'FR-28', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'199', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'27', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'21', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -8101,6 +8145,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Chrome WWE', num:'ERA-25', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'51', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'A-19', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'181', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -8415,6 +8460,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'A-14', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-CP', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-18', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'102', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -8929,6 +8975,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'123', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-LO', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'LLL-11', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'198', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -8954,7 +9001,8 @@ const WRESTLERS = [
       { year:1999, set:'1999 Topps WCW Embossed', num:'29', promo:'wcw', type:'base', tags:[], note:'', link:'golden-age.html' },
       { year:1999, set:'1999 Topps WCW/nWo Nitro', num:'40', promo:'wcw', type:'base', tags:[], note:'', link:'golden-age.html' },
       { year:1999, set:'1999 Topps WCW/nWo Nitro', num:'AUTO', promo:'wcw', type:'auto', tags:[], note:'', link:'golden-age.html' },
-      { year:2015, set:'2015 Topps WWE Heritage', num:'38/40', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' }
+      { year:2015, set:'2015 Topps WWE Heritage', num:'38/40', promo:'wwe', type:'insert', tags:[], note:'', link:'first-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'187', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -8986,6 +9034,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-CJ', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-CJ', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-44', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'36', promo:'wwe', type:'rookie', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -9325,6 +9374,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'96', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-DP', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'GE-15', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'46', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -9516,6 +9566,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-DC', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-DC', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-15', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'146', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -9784,7 +9835,8 @@ const WRESTLERS = [
       { year:2022, set:'2022 Panini WWE Prizm', num:'112', promo:'wwe', type:'base', tags:[], note:'', link:'panini-era.html' },
       { year:2022, set:'2022 Panini WWE Prizm', num:'13', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
       { year:2022, set:'2022 Panini WWE Prizm', num:'1', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2022, set:'2022 Panini WWE Prizm', num:'SA-FBL', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' }
+      { year:2022, set:'2022 Panini WWE Prizm', num:'SA-FBL', promo:'wwe', type:'auto', tags:[], note:'', link:'panini-era.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'90', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -9856,6 +9908,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'CCA-DLU', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'157', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-WS', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'99', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -10003,6 +10056,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'HF8', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'LA-DS', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'A-26', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'151', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -10050,6 +10104,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'165', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-DL', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-45', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'128', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -10360,6 +10415,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'NS-7', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-DM', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-23', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'50', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -10545,6 +10601,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'WRA-DL', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-DL', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'LLL-5', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'168', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -10790,6 +10847,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'GE-24', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'HMM-9', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-8', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'6', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -11423,6 +11481,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'SF-28', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'121', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'LLL-1', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'118', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -11568,6 +11627,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'48', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'13', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-PD', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'23', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -11715,6 +11775,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'CCA-ERO', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'158', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-ER', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'129', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -11769,6 +11830,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'EA-ERK', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'91', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-WR', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'196', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -11838,6 +11900,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'WRA-EP', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TMR-EP', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-22', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'107', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -12101,6 +12164,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'39', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-FH', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-12', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'89', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -12872,6 +12936,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'DD-9', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NS-16', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-GI', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'79', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -12936,6 +13001,7 @@ const WRESTLERS = [
       { year:2025, set:'2025 Topps Chrome WWE', num:'SG-GF', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2025, set:'2025 Topps Universe WWE', num:'183', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'LA-GF', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'108', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -13225,6 +13291,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'144', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'CCA-GRY', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'43', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'140', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -13519,6 +13586,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'NS-13', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'A-9', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-GU', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'185', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -13656,6 +13724,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'19', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-HT', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-17', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'81', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -13955,7 +14024,8 @@ const WRESTLERS = [
       { year:2003, set:'2003 Fleer WWE WrestleMania XIX', num:'WMF', promo:'wwf', type:'insert', tags:[], note:'', link:'fleer-era.html' },
       { year:2025, set:'2025 Topps Universe WWE', num:'252', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Chrome WWE', num:'NWO-HH', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Chrome WWE', num:'VIR-13', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
+      { year:2026, set:'2026 Topps Chrome WWE', num:'VIR-13', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'43', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -14602,6 +14672,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'226', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-ID', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-ID', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'165', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -14750,6 +14821,7 @@ const WRESTLERS = [
       { year:2025, set:'2025 WWE Topps Finest', num:'81', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'SC-3', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'211', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'189', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -14912,6 +14984,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'CCA-IVR', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'EA-IVR', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'92', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'95', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -15068,6 +15141,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'47', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'130', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-IN', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'145', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -15191,6 +15265,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'GS-20', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NS-14', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-IS', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'30', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -15235,6 +15310,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'NLA-ID', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-ID', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-35', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'98', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -15376,6 +15452,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'TMR-JF', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-JF', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-13', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'2', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -15544,6 +15621,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'NLA-JJ', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TMR-JJ', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-10', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'121', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -15637,6 +15715,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'GS-7', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NS-11', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-JG', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'171', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -15699,6 +15778,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-JP', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-JP', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-33', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'74', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -16003,6 +16083,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'SFS-JCM', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'111', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-JM', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'68', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -16055,6 +16136,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'SFS-JDM', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'118', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-JM', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'105', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -16491,6 +16573,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'NS-10', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'A-18', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-19', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'20', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -16833,6 +16916,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-JU', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-JU', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'HMM-11', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'62', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -16943,6 +17027,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'28', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'124', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'LLL-9', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'153', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -17028,6 +17113,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'20', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'CCA-JGC', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'156', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'193', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -17048,6 +17134,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'192', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-JH', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-6', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'122', promo:'wwe', type:'rookie', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -17631,6 +17718,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'S-JC', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-25', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-3', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'9', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -17772,6 +17860,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Chrome WWE', num:'FR-37', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'151', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'9', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'113', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -17959,6 +18048,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'87', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-JG', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-JG', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'67', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -17995,6 +18085,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'59', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-JB', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-26', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'174', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -18070,6 +18161,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Chrome WWE', num:'RBA-JUL', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'54', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'128', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'80', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -18246,6 +18338,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'64', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'238', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WRA-KS', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'60', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -18559,6 +18652,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'LA-KN', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'A-5', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-22', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'158', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -18645,6 +18739,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-KP', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-KP', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-24', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'114', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -18915,6 +19010,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'41', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-KJ', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-14', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'172', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -19004,6 +19100,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'18', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'18A', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'LA-KS', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'56', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -19022,6 +19119,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'NLA-KG', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-KG', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-13', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'167', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -19359,6 +19457,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'WRA-KO', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-KO', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NS-2', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'51', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -19409,6 +19508,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'49', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'107', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-KJ', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'154', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -19708,6 +19808,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'262', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-KK', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-ND', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'38', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -19944,6 +20045,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'LA-KA', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'HMM-13', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-6', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'194', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -20120,6 +20222,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'NS-8', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-11', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-12', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'125', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -20180,6 +20283,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'NLA-LR', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-LR', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-16', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'47', promo:'wwe', type:'rookie', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -20297,6 +20401,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-LL', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-LL', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'RR-LL', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'183', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -20483,6 +20588,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'84', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-LK', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-47', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'141', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -20777,6 +20883,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'LA-LT', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'LIT6', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'LIT7', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'53', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -20953,6 +21060,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'NS-3', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-LM', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-2', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'45', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -21019,6 +21127,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-LV', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-LV', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-21', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'152', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -21048,6 +21157,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'93', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-LC', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-2', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'148', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -21093,6 +21203,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'164', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'58', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-32', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'104', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -21174,6 +21285,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'CCA-LUK', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'113', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WRA-LK', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'135', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -21303,6 +21415,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'239', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WRA-LV', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-8', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'120', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -21417,6 +21530,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-MB', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-MB', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-9', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'96', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -21725,6 +21839,7 @@ const WRESTLERS = [
       { year:2025, set:'2025 Topps Royalty WWE', num:'RAU-MAR', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2025, set:'2025 WWE Topps Finest', num:'243', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'195', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'126', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -21938,6 +22053,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'EA-MXD', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'73', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-MD', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'190', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -22257,6 +22373,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'143', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'EA-MIC', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'177', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'39', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -22825,6 +22942,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'TTN-7', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'HMM-28', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NS-4', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'73', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -23127,6 +23245,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'22', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'243', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-MO', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'57', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -23471,6 +23590,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'47', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NLA-MB', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-28', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'111', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -23598,6 +23718,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'TMR-NO', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-NM', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'GE-12', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'5', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -23793,6 +23914,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'146', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'225', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-NF', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'91', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -23908,6 +24030,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'247', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-NJ', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'RR-NJ', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'54', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -24082,6 +24205,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-NB', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-NB', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTN-14', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'33', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -24131,6 +24255,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'EA-NKC', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'159', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WRA-NC', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'11', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -24215,6 +24340,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-NL', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-NL', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-19', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'52', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -24248,7 +24374,8 @@ const WRESTLERS = [
       { year:2025, set:'2025 Topps Chrome WWE', num:'WM-NV', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2025, set:'2025 WWE Topps Finest', num:'281', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Chrome WWE', num:'WMR-6', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'22', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
+      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'22', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'22', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -24320,6 +24447,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'194', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NLA-ND', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-ND', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'24', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -24436,6 +24564,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-OF', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'RR-OF', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-14', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'4', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -24607,6 +24736,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-OG', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-OG', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-43', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'69', promo:'wwe', type:'rookie', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -24686,6 +24816,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'74', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-OT', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-OT', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'180', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -24911,7 +25042,8 @@ const WRESTLERS = [
       { year:2025, set:'2025 Topps Universe WWE', num:'FOB-6', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2025, set:'2025 WWE Topps Finest', num:'220', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2025, set:'2025 WWE Topps Finest', num:'DE-PBR', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'33', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
+      { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'33', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'164', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -25007,6 +25139,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'279', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-PH', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-10', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'13', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -25071,6 +25204,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-PT', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'LLL-10', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NS-19', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'40', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -25158,6 +25292,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'23', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'186', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-PD', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'93', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -25211,6 +25346,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'194', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'138', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-PN', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'71', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -25321,7 +25457,8 @@ const WRESTLERS = [
       { year:2022, set:'2022 Panini WWE Select', num:'158', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
       { year:2022, set:'2022 Panini WWE Select', num:'375', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
       { year:2022, set:'2022 Panini WWE Select', num:'SG-QZL', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2023, set:'2023 WWE Panini Prizm Trading Cards', num:'8', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' }
+      { year:2023, set:'2023 WWE Panini Prizm Trading Cards', num:'8', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'59', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -25408,6 +25545,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'14', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'66', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-RK', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'182', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -25868,6 +26006,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'A-25', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-RO', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-7', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'66', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -26019,6 +26158,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'253', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-RR', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-JD', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'35', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -26070,7 +26210,8 @@ const WRESTLERS = [
       { year:2015, set:'2015 Topps WWE Undisputed', num:'68', promo:'wwe', type:'base', tags:[], note:'', link:'first-topps.html' },
       { year:2022, set:'2022 Panini WWE Chronicles', num:'66', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
       { year:2022, set:'2022 Panini WWE Select', num:'317', promo:'wwe', type:'insert', tags:[], note:'', link:'panini-era.html' },
-      { year:2025, set:'2025 Topps Universe WWE', num:'285', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' }
+      { year:2025, set:'2025 Topps Universe WWE', num:'285', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'127', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -26137,6 +26278,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'MQ4', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'216', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'A-10', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'161', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -26279,6 +26421,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'268', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WRA-RF', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'LLL-12', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'82', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -26631,6 +26774,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'LLL-3', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'HMM-29', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-18', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'115', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -26872,6 +27016,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'S-RP', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-19', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-16', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'100', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -27125,6 +27270,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-RY', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-RY', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-8', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'7', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -27412,6 +27558,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'23A', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'218', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'LA-RK', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'139', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -28130,6 +28277,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'S-TR', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-7', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-5', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'112', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -28329,6 +28477,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'222', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'287', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'A-12', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'28', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -28711,6 +28860,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'A-30', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-RR', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-3', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'101', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -28967,6 +29117,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-RP', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-RP', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-16', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'55', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -29051,6 +29202,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'SF-26', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'181', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WRA-RV', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'155', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -29315,6 +29467,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'HMM-18', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NS-1', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-11', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'124', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -29540,6 +29693,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-SH', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-SS', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-46', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'58', promo:'wwe', type:'rookie', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -30039,7 +30193,8 @@ const WRESTLERS = [
       { year:1991, set:'1991 WWF Superstar Cards', num:'47', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
       { year:1991, set:'1991 WWF Superstar Cards', num:'77', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
       { year:1991, set:'1991 WWF Superstar Cards', num:'107', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
-      { year:1991, set:'1991 WWF Superstar Cards', num:'132', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' }
+      { year:1991, set:'1991 WWF Superstar Cards', num:'132', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'142', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -30067,7 +30222,8 @@ const WRESTLERS = [
     keyNote: '',
     cards: [
       { year:1992, set:'1992 WWF Merlin Gold Series', num:'80', promo:'wwf', type:'insert', tags:[], note:'', link:'golden-age.html' },
-      { year:1992, set:'1992 WWF Merlin Gold Series', num:'93', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' }
+      { year:1992, set:'1992 WWF Merlin Gold Series', num:'93', promo:'wwf', type:'base', tags:[], note:'', link:'golden-age.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'169', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -30395,6 +30551,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'S-SR', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-20', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-17', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'1', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -30990,6 +31147,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'154', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-SP', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-34', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'27', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -31246,6 +31404,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'HMM-15', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NS-17', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'A-16', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'85', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -31441,6 +31600,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-SN', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'GE-3', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'HMM-25', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'186', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -31793,6 +31953,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'RR-RU', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-ZR', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-5', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'86', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -31922,6 +32083,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-SS', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTN-1', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'GS-11', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'26', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -32165,6 +32327,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'CCA-STK', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'219', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'LA-SK', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'191', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -32342,6 +32505,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'A-1', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-SV', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-21', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'75', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -32744,6 +32908,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'S-SA', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-15', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-1', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'16', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -33186,6 +33351,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'110', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-TT', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-TT', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'166', promo:'wwe', type:'rookie', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -33225,6 +33391,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'EA-TTO', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'112', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WRA-TT', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'119', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -33292,6 +33459,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'HN-11', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'18', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-18', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'76', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -33373,6 +33541,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'NLA-TP', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-TP', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-38', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'177', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -33392,6 +33561,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'44', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NLA-TV', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-27', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'92', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -33891,6 +34061,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'114', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NLA-TH', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-49', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'188', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -34100,6 +34271,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'S-TS', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-5', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-2', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'14', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -34361,6 +34533,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'127', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'109', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-TL', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'84', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -34448,6 +34621,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'134', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-TD', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-4', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'195', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -34653,7 +34827,8 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Chrome WWE', num:'266', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Chrome WWE', num:'BCA-TOW', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Chrome WWE', num:'LCA-TW', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
-      { year:2026, set:'2026 Topps Chrome WWE', num:'IIA-TOR', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' }
+      { year:2026, set:'2026 Topps Chrome WWE', num:'IIA-TOR', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'147', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -34786,6 +34961,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-TW', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'HMM-19', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-9', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'163', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -35171,6 +35347,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'DD-15', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'A-17', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'E-13', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'184', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -35433,6 +35610,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'LA-TS', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TRS6', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TRS7', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'64', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -35573,6 +35751,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'38', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'185', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-TB', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'110', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -35653,6 +35832,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'36', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NLA-TS', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-11', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'61', promo:'wwe', type:'rookie', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -35668,6 +35848,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-TI', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'TTR-TN', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-25', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'157', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -35681,6 +35862,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'124', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'12', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-23', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'179', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -35822,6 +36004,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'204', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'248', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'HMM-20', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'48', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -35908,6 +36091,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'CCA-HOW', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'EA-UNC', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'155', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'77', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -36494,6 +36678,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'A-24', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'S-UT', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'FP-1', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'37', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -37095,6 +37280,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'21', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UA-WC', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'UR-WC', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'41', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -37337,6 +37523,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'NLA-WS', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'WA-WS', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-29', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'117', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -37604,6 +37791,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'35', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Cosmic Chrome WWE', num:'EA-XVW', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'168', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'130', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -37727,6 +37915,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'21', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Decades: 90s Edition WWE', num:'92', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'202', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'144', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   },
   {
@@ -37844,6 +38033,7 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'98', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NLA-ZA', promo:'wwe', type:'auto', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'NXT-42', promo:'wwe', type:'insert', tags:[], note:'', link:'current-topps.html' },
+          { year:2026, set:'2026 Topps Stadium Club WWE', num:'143', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
     ]
   },
   {
@@ -38000,6 +38190,79 @@ const WRESTLERS = [
       { year:2026, set:'2026 Topps Universe WWE', num:'88', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'236', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' },
       { year:2026, set:'2026 Topps Universe WWE', num:'SRS-ZS', promo:'wwe', type:'relic', tags:[], note:'', link:'current-topps.html' },
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'70', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
+    ]
+  },
+  {
+    name: 'Niko Vance',
+    dotColor: '#3498db',
+    keyNote: '',
+    cards: [
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'29', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
+    ]
+  },
+  {
+    name: 'Jasper Troy',
+    dotColor: '#3498db',
+    keyNote: '',
+    cards: [
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'32', promo:'wwe', type:'rookie', tags:[], note:'', link:'current-topps.html' }
+    ]
+  },
+  {
+    name: 'Uriah Connors',
+    dotColor: '#3498db',
+    keyNote: '',
+    cards: [
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'83', promo:'wwe', type:'rookie', tags:[], note:'', link:'current-topps.html' }
+    ]
+  },
+  {
+    name: 'Skylar Raye',
+    dotColor: '#3498db',
+    keyNote: '',
+    cards: [
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'88', promo:'wwe', type:'rookie', tags:[], note:'', link:'current-topps.html' }
+    ]
+  },
+  {
+    name: 'Kale Dixon',
+    dotColor: '#3498db',
+    keyNote: '',
+    cards: [
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'136', promo:'wwe', type:'rookie', tags:[], note:'', link:'current-topps.html' }
+    ]
+  },
+  {
+    name: 'Shiloh Hill',
+    dotColor: '#3498db',
+    keyNote: '',
+    cards: [
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'178', promo:'wwe', type:'rookie', tags:[], note:'', link:'current-topps.html' }
+    ]
+  },
+  {
+    name: 'Danhausen',
+    dotColor: '#3498db',
+    keyNote: '',
+    cards: [
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'199', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
+    ]
+  },
+  {
+    name: 'Je\'Von Evans',
+    dotColor: '#3498db',
+    keyNote: '',
+    cards: [
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'78', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
+    ]
+  },
+  {
+    name: 'Nattie',
+    dotColor: '#3498db',
+    keyNote: '',
+    cards: [
+      { year:2026, set:'2026 Topps Stadium Club WWE', num:'87', promo:'wwe', type:'base', tags:[], note:'', link:'current-topps.html' }
     ]
   }
 ];
